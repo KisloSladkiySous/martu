@@ -2,21 +2,34 @@
 interface Props {
   borderColor: string;
   size?: "lg" | "md" | "sm";
+  imagePath?: string;
+  // rootMargin?: number;
 }
-const { borderColor = "white", size = "md" } = Astro.props;
+const {
+  borderColor = "white",
+  size = "md",
+  imagePath = "/martu/images/hero-circle.jpg",
+  // rootMargin = 12,
+} = Astro.props;
 const sizes = {
-  sm: { outer: 20, inner: 10 },
+  sm: { outer: 86, inner: 76 },
   md: { outer: 40, inner: 20 },
   lg: { outer: 215, inner: 190 },
+};
+const margin = {
+  sm: "5px",
+  md: "10px",
+  lg: "12px",
 };
 
 const outerSize = sizes[size].outer;
 const innerSize = sizes[size].inner;
+const rootMargin = margin[size];
 ---
 
 <div
   class="outer circle"
-  style={`width: ${outerSize}px; height: ${outerSize}px;`}
+  style={`width: ${outerSize}px; height: ${outerSize}px; background-image: url("${imagePath}")`}
 >
   <div
     class="inner circle"
@@ -24,18 +37,17 @@ const innerSize = sizes[size].inner;
   >
   </div>
 </div>
-<style define:vars={{ borderColor }}>
+<style define:vars={{ borderColor, rootMargin }}>
   .outer {
     background-color: var(--background-color-white);
     display: flex;
     justify-content: center;
-    background-image: url("/martu/images/hero-circle.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
   }
   .inner {
-    margin: 12px;
+    margin: var(--rootMargin);
     border: 1px solid var(--borderColor);
   }
   .circle {

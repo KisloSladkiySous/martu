@@ -52,7 +52,13 @@ h1 {
   font-size: 64px;
   margin: 0;
 }
-
+h2 {
+  margin: 0;
+  font-size: 54px;
+  color: var(--text-color-secondary);
+  font-weight: 400;
+  text-align: center;
+}
 /* Grouping content
      ========================================================================== */
 
