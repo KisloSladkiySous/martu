@@ -1,0 +1,20 @@
+:root {
+  --background-color: #f8f2e9;
+  --background-color-white: #ffffff;
+  --brand-color: #57718c;
+  --border-color: #cbdae9;
+  --border-color-white: #ffffff;
+  --text-color-primary: #333333;
+  --text-color-secondary: #444444;
+  --text-color-white: #ffffff;
+  /* font tokens */
+  --fs-12: 12px;
+  --fs-14: 14px;
+  --fs-18: 18px;
+  --fs-46: 46px;
+  --ff-main: "Playfair Display", "serif";
+  --nav-color-odd: red; /* Серый для нечетных */
+  --nav-color-even: yellow; /* Черный для четных */
+  --nav-active-odd: #606060; /* Активный в нечетных */
+  --nav-active-even: #333333; /* Активный в четных */
+}

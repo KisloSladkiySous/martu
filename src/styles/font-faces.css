@@ -1,0 +1,22 @@
+@font-face {
+  font-family: "Playfair Display";
+  src: url("fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf")
+      format("woff2-variations"),
+    url("fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf")
+      format("woff2");
+  font-weight: 400 900; /* Variable weight range */
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Optional: If you also have the italic variable font */
+/* @font-face {
+  font-family: "Playfair Display";
+  src: url("fonts/Playfair_Display/PlayfairDisplay-Italic-VariableFont_wght.ttf")
+      format("woff2-variations"),
+    url("fonts/Playfair_Display/PlayfairDisplay-Italic-VariableFont_wght.ttf")
+      format("woff2");
+  font-weight: 400 900;
+  font-style: italic;
+  font-display: swap;
+} */

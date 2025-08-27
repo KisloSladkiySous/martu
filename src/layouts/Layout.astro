@@ -1,22 +1,157 @@
+---
+// src/layouts/Layout.astro
+import "../styles/styles.css";
+import Navigation from "../components/Navigation.astro";
+import Hero from "../components/Hero.astro";
+import HeroMobile from "../components/HeroMobile.astro";
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/Logo.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Martu</title>
+  </head>
+  <body>
+    <Navigation />
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+    <main>
+      <Hero />
+      <HeroMobile />
+      <section id="about" data-nav-section data-section-index="2">
+        <div class="column with-image">
+          <div class="wrapper">
+            <h1>Мы заодно с вами</h1>
+          </div>
+        </div>
+        <div class="column"></div>
+      </section>
+      <section data-nav-section data-section-index="3">
+        <div class="column">
+          <div class="wrapper">
+            <h1>Мы заодно с вами</h1>
+          </div>
+        </div>
+        <div class="column with-image"></div>
+      </section>
+      <section data-nav-section data-section-index="4">
+        <div class="column with-image">
+          <div class="wrapper">
+            <h1>Мы заодно с вами</h1>
+          </div>
+        </div>
+        <div class="column"></div>
+      </section>
+      <section data-nav-section data-section-index="5">
+        <div class="column">
+          <div class="wrapper">
+            <h1>Мы заодно с вами</h1>
+          </div>
+        </div>
+        <div class="column with-image"></div>
+      </section>
+    </main>
+    <script lang="js">
+      document.addEventListener("DOMContentLoaded", () => {
+        const nav = document.getElementById("navigation");
+        const sections = document.querySelectorAll("[data-nav-section]");
+        const navLinks = document.querySelectorAll("#navigation a");
+
+        // Определяем, где будет nav (между секциями)
+        let currentSectionIndex = 1;
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              console.log(entry);
+
+              if (entry.isIntersecting) {
+                const index = parseInt(
+                  entry.target.getAttribute("data-section-index")
+                );
+
+                currentSectionIndex = index;
+
+                // Определяем чётность
+                const isEven = index % 2 === 0;
+
+                nav.style.color = isEven ? "white" : "black";
+
+                navLinks.forEach((link) => {
+                  link.classList.remove(isEven ? "black" : "white");
+                  link.classList.add(isEven ? "white" : "black");
+                  const sectionId = link.getAttribute("href").slice(1);
+                  const targetSection = document.getElementById(sectionId);
+                  const targetIndex = targetSection
+                    ? parseInt(targetSection.getAttribute("data-section-index"))
+                    : 0;
+
+                  if (targetIndex === index) {
+                    link.classList.add("active");
+                  } else {
+                    link.classList.remove("active");
+                  }
+                });
+              }
+            });
+          },
+          {
+            threshold: 0.9, // Секция видна на 50%
+            rootMargin: "0px",
+          }
+        );
+
+        // Наблюдаем за всеми секциями
+        sections.forEach((section) => {
+          observer.observe(section);
+        });
+
+        // Плавная прокрутка по клику
+        // navLinks.forEach((link) => {
+        //   link.addEventListener("click", (e) => {
+        //     e.preventDefault();
+        //     const targetId = link.getAttribute("href");
+        //     const targetSection = document.querySelector(targetId);
+        //     if (targetSection) {
+        //       window.scrollTo({
+        //         top: targetSection.offsetTop,
+        //         behavior: "smooth",
+        //       });
+        //     }
+        //   });
+        // });
+      });
+    </script>
+  </body>
+
+  <style>
+    .bordered {
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+    }
+    .border-bottom {
+      border-bottom: 1px solid var(--border-color-white);
+    }
+
+    .underline {
+      position: relative;
+      display: inline-block;
+      padding-bottom: 12px; /* место для SVG */
+    }
+
+    .underline-draw {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: auto;
+    }
+
+    .underline-draw svg {
+      display: block;
+    }
+  </style>
+</html>

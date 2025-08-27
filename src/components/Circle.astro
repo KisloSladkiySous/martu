@@ -1,0 +1,44 @@
+---
+interface Props {
+  borderColor: string;
+  size?: "lg" | "md" | "sm";
+}
+const { borderColor = "white", size = "md" } = Astro.props;
+const sizes = {
+  sm: { outer: 20, inner: 10 },
+  md: { outer: 40, inner: 20 },
+  lg: { outer: 215, inner: 190 },
+};
+
+const outerSize = sizes[size].outer;
+const innerSize = sizes[size].inner;
+---
+
+<div
+  class="outer circle"
+  style={`width: ${outerSize}px; height: ${outerSize}px;`}
+>
+  <div
+    class="inner circle"
+    style={`width: ${innerSize}px; height: ${innerSize}px;`}
+  >
+  </div>
+</div>
+<style define:vars={{ borderColor }}>
+  .outer {
+    background-color: var(--background-color-white);
+    display: flex;
+    justify-content: center;
+    background-image: url("images/hero-circle.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .inner {
+    margin: 12px;
+    border: 1px solid var(--borderColor);
+  }
+  .circle {
+    border-radius: 50%;
+  }
+</style>
