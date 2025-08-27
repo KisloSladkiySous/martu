@@ -1,8 +1,8 @@
 @font-face {
   font-family: "Playfair Display";
-  src: url("fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf")
+  src: url("/martu/fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf")
       format("woff2-variations"),
-    url("fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf")
+    url("/martu/fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf")
       format("woff2");
   font-weight: 400 900; /* Variable weight range */
   font-style: normal;
