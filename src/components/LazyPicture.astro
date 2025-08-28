@@ -1,0 +1,338 @@
+---
+// LazyPicture.astro
+export interface Props {
+  sources: Array<{
+    srcset: string;
+    media?: string;
+    type?: string;
+  }>;
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  class?: string;
+  placeholder?: string;
+  // Новые опции для управления загрузкой
+  preloadDistance?: string; // Дистанция до начала загрузки (по умолчанию высота viewport)
+  useViewportHeight?: boolean; // Использовать высоту viewport как дистанцию
+}
+
+const {
+  sources,
+  src,
+  alt,
+  width,
+  height,
+  class: className = "",
+  placeholder = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"%3E%3Crect fill="%23e0e0e0"/%3E%3C/svg%3E',
+  preloadDistance,
+  useViewportHeight = true,
+} = Astro.props;
+
+// Generate unique ID for this picture element
+const pictureId = `lazy-picture-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<picture
+  class={`lazy-picture ${className}`}
+  data-picture-id={pictureId}
+  data-preload-distance={preloadDistance}
+  data-use-viewport-height={useViewportHeight}
+>
+  {
+    sources.map((source) => (
+      <source
+        data-srcset={source.srcset}
+        media={source.media}
+        type={source.type}
+      />
+    ))
+  }
+  <img
+    data-src={src}
+    src={placeholder}
+    alt={alt}
+    width={width}
+    height={height}
+    class="lazy-picture-img"
+  />
+</picture>
+
+<script>
+  interface LoadingState {
+    isLoading: boolean;
+    isLoaded: boolean;
+    picture: HTMLElement;
+  }
+
+  // Глобальный Map для отслеживания состояния загрузки
+  const loadingStates = new Map<HTMLElement, LoadingState>();
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const lazyPictures = document.querySelectorAll(".lazy-picture");
+
+    if ("IntersectionObserver" in window) {
+      // Создаём отдельный observer для предварительной загрузки
+      const createObserver = (picture: Element) => {
+        const useViewportHeight =
+          picture.getAttribute("data-use-viewport-height") === "true";
+        const customDistance = picture.getAttribute("data-preload-distance");
+
+        // Вычисляем rootMargin
+        let rootMargin: string;
+
+        if (customDistance) {
+          // Если указано кастомное расстояние
+          rootMargin = `${customDistance} 0px`;
+        } else if (useViewportHeight) {
+          // Используем высоту viewport как расстояние для предзагрузки
+          const viewportHeight = window.innerHeight;
+          rootMargin = `${viewportHeight}px 0px`;
+        } else {
+          // По умолчанию 200px
+          rootMargin = "200px 0px";
+        }
+
+        return new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const pictureElement = entry.target as HTMLElement;
+                const state = loadingStates.get(pictureElement);
+
+                // Если уже загружаем или загрузили, пропускаем
+                if (state && (state.isLoading || state.isLoaded)) {
+                  observer.unobserve(pictureElement);
+                  return;
+                }
+
+                // Устанавливаем состояние загрузки
+                loadingStates.set(pictureElement, {
+                  isLoading: true,
+                  isLoaded: false,
+                  picture: pictureElement,
+                });
+
+                loadImage(pictureElement);
+                observer.unobserve(pictureElement);
+              }
+            });
+          },
+          {
+            rootMargin,
+            threshold: 0,
+          }
+        );
+      };
+
+      // Функция загрузки изображения
+      const loadImage = (picture: HTMLElement) => {
+        const img = picture.querySelector("img") as HTMLImageElement;
+        const sources = picture.querySelectorAll("source");
+
+        // Добавляем класс загрузки
+        picture.classList.add("is-loading");
+
+        // Загружаем source элементы
+        sources.forEach((source) => {
+          const srcset = source.dataset.srcset;
+          if (srcset) {
+            source.srcset = srcset;
+            source.removeAttribute("data-srcset");
+          }
+        });
+
+        // Загружаем изображение
+        const src = img.dataset.src;
+        if (src) {
+          // Создаём временное изображение для предзагрузки
+          const tempImg = new Image();
+
+          // Определяем, какое изображение будет загружено браузером
+          const currentSource = getCurrentSource(picture);
+          const imageToLoad = currentSource || src;
+
+          tempImg.onload = () => {
+            img.src = src;
+            img.classList.add("loaded");
+            img.removeAttribute("data-src");
+            picture.classList.remove("is-loading");
+            picture.classList.add("picture-loaded");
+
+            // Обновляем состояние
+            const state = loadingStates.get(picture);
+            if (state) {
+              state.isLoading = false;
+              state.isLoaded = true;
+            }
+          };
+
+          tempImg.onerror = () => {
+            img.classList.add("error");
+            picture.classList.remove("is-loading");
+            picture.classList.add("picture-error");
+
+            // Обновляем состояние
+            const state = loadingStates.get(picture);
+            if (state) {
+              state.isLoading = false;
+              state.isLoaded = false;
+            }
+          };
+
+          tempImg.src = imageToLoad;
+        }
+      };
+
+      // Функция для определения текущего source на основе media queries
+      const getCurrentSource = (picture: HTMLElement): string | null => {
+        const sources = picture.querySelectorAll("source");
+
+        for (const source of sources) {
+          const media = source.getAttribute("media");
+          if (media && window.matchMedia(media).matches) {
+            return (
+              source.getAttribute("srcset") ||
+              source.getAttribute("data-srcset")
+            );
+          }
+        }
+
+        return null;
+      };
+
+      // Создаём observer для каждой картинки с индивидуальными настройками
+      lazyPictures.forEach((picture) => {
+        const observer = createObserver(picture);
+        observer.observe(picture);
+
+        // Инициализируем состояние
+        loadingStates.set(picture as HTMLElement, {
+          isLoading: false,
+          isLoaded: false,
+          picture: picture as HTMLElement,
+        });
+      });
+
+      // Обновляем rootMargin при изменении размера окна
+      let resizeTimer: any;
+      window.addEventListener("resize", () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          // Пересоздаём observers для картинок, которые ещё не загружены
+          loadingStates.forEach((state, picture) => {
+            if (!state.isLoaded && !state.isLoading) {
+              const observer = createObserver(picture);
+              observer.observe(picture);
+            }
+          });
+        }, 250);
+      });
+    } else {
+      // Fallback для браузеров без поддержки IntersectionObserver
+      lazyPictures.forEach((picture) => {
+        const img = picture.querySelector("img") as HTMLImageElement;
+        const sources = picture.querySelectorAll("source");
+
+        sources.forEach((source) => {
+          const srcset = source.dataset.srcset;
+          if (srcset) {
+            source.srcset = srcset;
+            source.removeAttribute("data-srcset");
+          }
+        });
+
+        const src = img.dataset.src;
+        if (src) {
+          img.src = src;
+          img.removeAttribute("data-src");
+        }
+      });
+    }
+  });
+</script>
+
+<style>
+  .lazy-picture {
+    display: block;
+    position: relative;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+    overflow: hidden;
+  }
+
+  /* Анимация загрузки */
+  .lazy-picture.is-loading::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    animation: shimmer 1.5s infinite;
+    z-index: 1;
+  }
+
+  @keyframes shimmer {
+    0% {
+      left: -100%;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+
+  .lazy-picture-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .lazy-picture-img:not(.loaded) {
+    filter: blur(10px);
+    transform: scale(1.05);
+    opacity: 0;
+  }
+
+  .lazy-picture-img.loaded {
+    filter: blur(0);
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  .lazy-picture.picture-loaded {
+    animation: fadeIn 0.6s ease-out;
+    background: transparent;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0.9;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Состояние ошибки */
+  .lazy-picture.picture-error {
+    background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+  }
+
+  .lazy-picture.picture-error::after {
+    content: "⚠";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    color: #c62828;
+    opacity: 0.5;
+  }
+</style>

@@ -1,0 +1,395 @@
+---
+// SectionAwareLazyPicture.astro
+export interface Props {
+  sources: Array<{
+    srcset: string;
+    media?: string;
+    type?: string;
+  }>;
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  class?: string;
+  placeholder?: string;
+  sectionSelector?: string; // Селектор для определения секций
+  preloadSections?: number; // Количество секций для предзагрузки (по умолчанию 1)
+}
+
+const {
+  sources,
+  src,
+  alt,
+  width,
+  height,
+  class: className = "",
+  placeholder = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"%3E%3Crect fill="%23e0e0e0"/%3E%3C/svg%3E',
+  sectionSelector = "section, .section, [data-section]",
+  preloadSections = 1,
+} = Astro.props;
+
+const pictureId = `section-lazy-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<picture
+  class={`section-lazy-picture ${className}`}
+  data-picture-id={pictureId}
+  data-section-selector={sectionSelector}
+  data-preload-sections={preloadSections}
+>
+  {
+    sources.map((source) => (
+      <source
+        data-srcset={source.srcset}
+        media={source.media}
+        type={source.type}
+      />
+    ))
+  }
+  <img
+    data-src={src}
+    src={placeholder}
+    alt={alt}
+    width={width}
+    height={height}
+    class="section-lazy-img"
+  />
+</picture>
+
+<script>
+  interface SectionInfo {
+    element: Element;
+    top: number;
+    height: number;
+    bottom: number;
+  }
+
+  class SectionAwareLazyLoader {
+    private pictures: NodeListOf<Element>;
+    private loadedPictures: Set<Element> = new Set();
+    private loadingPictures: Set<Element> = new Set();
+    private sections: SectionInfo[] = [];
+    private sectionObserver: IntersectionObserver | null = null;
+
+    constructor() {
+      this.pictures = document.querySelectorAll(".section-lazy-picture");
+      this.init();
+    }
+
+    private init() {
+      if ("IntersectionObserver" in window) {
+        this.setupSectionTracking();
+        this.setupPictureLoading();
+      } else {
+        this.loadAllPictures();
+      }
+    }
+
+    private setupSectionTracking() {
+      // Получаем все секции на странице
+      const sectionSelectors = new Set<string>();
+
+      this.pictures.forEach((picture) => {
+        const selector = picture.getAttribute("data-section-selector");
+        if (selector) {
+          sectionSelectors.add(selector);
+        }
+      });
+
+      // Находим все секции
+      const allSections = Array.from(sectionSelectors).flatMap((selector) =>
+        Array.from(document.querySelectorAll(selector))
+      );
+
+      // Сортируем секции по их позиции на странице
+      this.updateSectionPositions(allSections);
+
+      // Создаём observer для отслеживания видимых секций
+      this.sectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              this.handleSectionVisible(entry.target);
+            }
+          });
+        },
+        {
+          rootMargin: "0px",
+          threshold: 0.1,
+        }
+      );
+
+      // Наблюдаем за всеми секциями
+      allSections.forEach((section) => {
+        this.sectionObserver?.observe(section);
+      });
+
+      // Обновляем позиции секций при изменении размера окна
+      let resizeTimer: any;
+      window.addEventListener("resize", () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          this.updateSectionPositions(allSections);
+        }, 250);
+      });
+    }
+
+    private updateSectionPositions(sections: Element[]) {
+      this.sections = sections
+        .map((section) => {
+          const rect = section.getBoundingClientRect();
+          const scrollTop =
+            window.pageYOffset || document.documentElement.scrollTop;
+
+          return {
+            element: section,
+            top: rect.top + scrollTop,
+            height: rect.height,
+            bottom: rect.bottom + scrollTop,
+          };
+        })
+        .sort((a, b) => a.top - b.top);
+    }
+
+    private handleSectionVisible(visibleSection: Element) {
+      // Находим индекс текущей секции
+      const currentIndex = this.sections.findIndex(
+        (s) => s.element === visibleSection
+      );
+
+      if (currentIndex === -1) return;
+
+      // Загружаем изображения в следующих секциях
+      this.pictures.forEach((picture) => {
+        const preloadCount = parseInt(
+          picture.getAttribute("data-preload-sections") || "1"
+        );
+
+        // Проверяем, находится ли картинка в следующих N секциях
+        for (let i = 0; i <= preloadCount; i++) {
+          const targetIndex = currentIndex + i;
+
+          if (targetIndex < this.sections.length) {
+            const targetSection = this.sections[targetIndex];
+
+            if (this.isPictureInSection(picture, targetSection)) {
+              this.loadPicture(picture);
+            }
+          }
+        }
+      });
+    }
+
+    private isPictureInSection(
+      picture: Element,
+      section: SectionInfo
+    ): boolean {
+      const pictureRect = picture.getBoundingClientRect();
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+      const pictureTop = pictureRect.top + scrollTop;
+      const pictureBottom = pictureRect.bottom + scrollTop;
+
+      // Проверяем, находится ли картинка внутри секции
+      return (
+        (pictureTop >= section.top && pictureTop <= section.bottom) ||
+        (pictureBottom >= section.top && pictureBottom <= section.bottom) ||
+        (pictureTop <= section.top && pictureBottom >= section.bottom)
+      );
+    }
+
+    private setupPictureLoading() {
+      // Дополнительный observer для загрузки картинок при приближении к viewport
+      const pictureObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              this.loadPicture(entry.target);
+            }
+          });
+        },
+        {
+          rootMargin: "50px",
+          threshold: 0,
+        }
+      );
+
+      this.pictures.forEach((picture) => {
+        pictureObserver.observe(picture);
+      });
+    }
+
+    private loadPicture(picture: Element) {
+      // Проверяем, не загружена ли уже картинка
+      if (
+        this.loadedPictures.has(picture) ||
+        this.loadingPictures.has(picture)
+      ) {
+        return;
+      }
+
+      this.loadingPictures.add(picture);
+      picture.classList.add("is-loading");
+
+      const img = picture.querySelector("img") as HTMLImageElement;
+      const sources = picture.querySelectorAll("source");
+
+      // Загружаем source элементы
+      sources.forEach((source) => {
+        const srcset = source.dataset.srcset;
+        if (srcset) {
+          source.srcset = srcset;
+          source.removeAttribute("data-srcset");
+        }
+      });
+
+      // Загружаем изображение
+      const src = img.dataset.src;
+      if (src) {
+        const tempImg = new Image();
+
+        tempImg.onload = () => {
+          img.src = src;
+          img.classList.add("loaded");
+          img.removeAttribute("data-src");
+          picture.classList.remove("is-loading");
+          picture.classList.add("picture-loaded");
+
+          this.loadingPictures.delete(picture);
+          this.loadedPictures.add(picture);
+        };
+
+        tempImg.onerror = () => {
+          img.classList.add("error");
+          picture.classList.remove("is-loading");
+          picture.classList.add("picture-error");
+
+          this.loadingPictures.delete(picture);
+        };
+
+        // Определяем правильный источник на основе media queries
+        const currentSource = this.getCurrentSource(picture);
+        tempImg.src = currentSource || src;
+      }
+    }
+
+    private getCurrentSource(picture: Element): string | null {
+      const sources = picture.querySelectorAll("source");
+
+      for (const source of sources) {
+        const media = source.getAttribute("media");
+        if (media && window.matchMedia(media).matches) {
+          return (
+            source.getAttribute("srcset") || source.getAttribute("data-srcset")
+          );
+        }
+      }
+
+      return null;
+    }
+
+    private loadAllPictures() {
+      // Fallback: загружаем все картинки
+      this.pictures.forEach((picture) => {
+        this.loadPicture(picture);
+      });
+    }
+  }
+
+  // Инициализация при загрузке DOM
+  document.addEventListener("DOMContentLoaded", () => {
+    new SectionAwareLazyLoader();
+  });
+</script>
+
+<style>
+  .section-lazy-picture {
+    display: block;
+    position: relative;
+    background: linear-gradient(135deg, #f0f0f0 0%, #e5e5e5 100%);
+    min-height: 100px;
+    overflow: hidden;
+  }
+
+  /* Индикатор загрузки */
+  .section-lazy-picture.is-loading::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.5),
+        transparent
+      ),
+      linear-gradient(135deg, #f0f0f0 0%, #e5e5e5 100%);
+    background-size:
+      200% 100%,
+      100% 100%;
+    animation: loading 1.5s linear infinite;
+    z-index: 1;
+  }
+
+  @keyframes loading {
+    0% {
+      background-position:
+        -200% center,
+        center;
+    }
+    100% {
+      background-position:
+        200% center,
+        center;
+    }
+  }
+
+  .section-lazy-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    opacity: 0;
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .section-lazy-img.loaded {
+    opacity: 1;
+  }
+
+  /* Плавное появление */
+  .section-lazy-picture.picture-loaded {
+    background: transparent;
+    animation: reveal 0.8s ease-out;
+  }
+
+  @keyframes reveal {
+    from {
+      transform: translateY(10px);
+      opacity: 0.8;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  /* Состояние ошибки */
+  .section-lazy-picture.picture-error {
+    background: linear-gradient(135deg, #ffe0e0 0%, #ffc0c0 100%);
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .section-lazy-picture.picture-error::after {
+    content: "❌ Изображение не загружено";
+    color: #d32f2f;
+    font-size: 14px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 4px;
+  }
+</style>
