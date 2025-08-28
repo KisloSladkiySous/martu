@@ -8,3 +8,26 @@ section {
   height: 100vh;
   background-color: var(--background-color);
 }
+.section__column {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+.section__content-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 50px;
+  height: 100%;
+  z-index: 1;
+}
+
+.section__content-wrapper--bordered {
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+.section__content-wrapper--bordered-bottom {
+  border-bottom: 1px solid var(--border-color-white);
+}

@@ -8,8 +8,8 @@ export interface Props {
   }>;
   src: string;
   alt: string;
-  width?: number;
-  height?: number;
+  width?: string;
+  height?: string;
   class?: string;
   placeholder?: string;
   sectionSelector?: string; // Селектор для определения секций
@@ -305,7 +305,7 @@ const pictureId = `section-lazy-${Math.random().toString(36).substr(2, 9)}`;
 <style>
   .section-lazy-picture {
     display: block;
-    position: relative;
+    position: absolute;
     background: linear-gradient(135deg, #f0f0f0 0%, #e5e5e5 100%);
     min-height: 100px;
     overflow: hidden;
@@ -349,7 +349,6 @@ const pictureId = `section-lazy-${Math.random().toString(36).substr(2, 9)}`;
   .section-lazy-img {
     display: block;
     width: 100%;
-    height: auto;
     opacity: 0;
     transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   }

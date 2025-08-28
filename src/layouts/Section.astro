@@ -1,0 +1,25 @@
+---
+interface Props {
+  id: string;
+  index: string;
+}
+const { id, index } = Astro.props;
+---
+
+<section
+  id={id}
+  class="section desktop"
+  data-nav-section
+  data-section-index={index}
+  data-section
+>
+  <div class="section__column">
+    <slot name="left-column-background" />
+    <slot name="left-column" />
+  </div>
+
+  <div class="section__column">
+    <slot name="right-column-background" />
+    <slot name="right-column" />
+  </div>
+</section>

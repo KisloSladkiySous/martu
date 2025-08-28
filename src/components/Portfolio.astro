@@ -20,36 +20,10 @@ const imageSources = [
         <span class="brand-color italic">прикосновения</span>, свет и взгляды.
       </h2>
       <div class="portfolio__visual">
-        <!-- <img
-          src="/martu/images/portfolio-section.png"
-          alt="ahuennoe image"
-          width="370"
-          height="230"
-        /> -->
-        <!-- <LazyPicture
-          sources={[
-            {
-              srcset: "/martu/images/portfolio-section.png",
-              media: "(max-width: 768px)",
-              type: "image/webp",
-            },
-            {
-              srcset: "/martu/images/portfolio-section.png",
-              media: "(min-width: 769px)",
-              type: "image/webp",
-            },
-          ]}
-          src="/martu/images/portfolio-section.png"
-          alt="Content image"
-          preloadDistance="900px"
-          useViewportHeight={false}
-        /> -->
         <SectionAware
           sources={imageSources}
           src="/martu/images/portfolio-section.png"
           alt="Feature"
-          width={1920}
-          height={1080}
           preloadSections={1}
           sectionSelector="[data-section]"
         />

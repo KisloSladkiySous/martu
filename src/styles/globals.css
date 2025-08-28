@@ -10,6 +10,27 @@ main {
 .italic {
   font-style: italic;
 }
+.underline {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 12px; /* место для SVG */
+}
+.background-image {
+  position: absolute;
+  inset: 0;
+}
+
+.underline-draw {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+}
+
+.underline-draw svg {
+  display: block;
+}
 .mobile {
   display: none !important;
 }
