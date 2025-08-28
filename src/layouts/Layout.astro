@@ -2,10 +2,12 @@
 // src/layouts/Layout.astro
 import "../styles/styles.css";
 import Navigation from "../components/Navigation.astro";
-import Hero from "../components/Hero.astro";
-import HeroMobile from "../components/HeroMobile.astro";
+// import Hero from "../components/Hero.astro";
+// import HeroMobile from "../components/HeroMobile.astro";
 import About from "../components/About.astro";
 import Portfolio from "../components/Portfolio.astro";
+import Hero from "../components/Hero.jsx";
+import HeroMobile from "../components/HeroMobile.jsx";
 ---
 
 <!doctype html>
@@ -27,10 +29,11 @@ import Portfolio from "../components/Portfolio.astro";
     <Navigation />
 
     <main>
-      <Hero kind="desktop" />
-      <HeroMobile kind="mobile" />
+      <!-- <HeroMobile /> -->
       <About />
       <Portfolio />
+      <Hero client:media="(min-width: 767px)" />
+      <HeroMobile client:media="(max-width: 767px)" />
       <!-- <section id="about" data-nav-section data-section-index="2">
         <div class="column with-image">
           <div class="wrapper">
@@ -39,7 +42,7 @@ import Portfolio from "../components/Portfolio.astro";
         </div>
         <div class="column"></div>
       </section> -->
-      <section data-nav-section data-section-index="3">
+      <!-- <section data-nav-section data-section-index="3">
         <div class="column">
           <div class="wrapper">
             <h1>Мы заодно с вами</h1>
@@ -62,7 +65,7 @@ import Portfolio from "../components/Portfolio.astro";
           </div>
         </div>
         <div class="column with-image"></div>
-      </section>
+      </section> -->
     </main>
   </body>
   <script lang="js">

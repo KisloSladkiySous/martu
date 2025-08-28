@@ -10,18 +10,12 @@ main {
 .italic {
   font-style: italic;
 }
-.mobile {
-  display: none !important;
-}
-.desktop {
-  display: flex !important;
-}
 
-@media (max-width: 767px) {
+/* @media (max-width: 767px) {
   .desktop {
     display: none !important;
   }
   .mobile {
     display: flex !important;
   }
-}
+} */

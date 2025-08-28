@@ -1,0 +1,99 @@
+.hero-section__column {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+.hero-section__content-wrapper {
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+}
+.hero-section__tagline {
+  margin-top: 146px;
+  text-align: center;
+  color: var(--text-color-primary);
+  font-size: var(--fs-16);
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+.hero-section__title {
+  color: var(--text-color-secondary);
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 68px;
+}
+.hero-section__content-wrapper--bordered {
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+.hero-section__content-wrapper--bordered-bottom {
+  border-bottom: 1px solid var(--border-color-white);
+}
+.hero-section__visual-element {
+  display: flex;
+  justify-content: center;
+}
+.hero-section__description {
+  color: var(--text-color-secondary);
+  font-size: var(--fs-12);
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: 16px;
+}
+.hero-section__column--featured {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  background-image: url("/martu/images/sectionimg1.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.underline {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 12px; /* место для SVG */
+}
+
+.underline-draw {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+}
+
+.underline-draw svg {
+  display: block;
+}
+.consultation {
+  margin-top: auto;
+}
+.consultation__title {
+  color: var(--text-color-white);
+  font-size: var(--fs-46);
+  margin-bottom: 20px;
+}
+.consultation__description {
+  color: var(--text-color-white);
+  font-size: var(--fs-14);
+  margin-bottom: 20px;
+  letter-spacing: 2%;
+  margin-bottom: 20px;
+}
+.consultation__cta-button {
+  color: var(--text-color-white);
+  font-size: var(--fs-18);
+  margin-bottom: 60px;
+}
+.showcase {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-color-white);
+  font-size: var(--fs-14);
+  margin-bottom: 16px;
+}
