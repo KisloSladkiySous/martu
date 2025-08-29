@@ -1,0 +1,26 @@
+.showcase {
+  margin-top: auto;
+}
+.showcase__title {
+  color: var(--text-color-white);
+  font-size: var(--fs-46);
+  margin-bottom: 1.25rem;
+}
+.showcase__description {
+  color: var(--text-color-white);
+  font-size: var(--fs-14);
+  margin-bottom: 1.25rem;
+  letter-spacing: 2%;
+}
+.showcase__cta-button {
+  color: var(--text-color-white);
+  font-size: var(--fs-18);
+  margin-bottom: 3.75rem;
+}
+.showcase__toolbar {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-color-white);
+  font-size: var(--fs-14);
+  margin-bottom: 1rem;
+}

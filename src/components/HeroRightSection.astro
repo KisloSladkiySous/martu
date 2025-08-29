@@ -1,43 +1,13 @@
-<div class="consultation">
-  <div class="consultation__title">
+---
+import ShowCase from "./ShowCase.astro";
+---
+
+<ShowCase date="Сентябрь 2025" names="Вероника и Максим">
+  <div slot="showcase__title" class="showcase__title">
     <span class="italic">Бесплатная</span> консультация по вашему запросу!
   </div>
-  <div class="consultation__description">
+  <div slot="showcase__description" class="showcase__description">
     Расскажите нам свои идеи, и мы предложим<br /> концепцию, формат и ориентир по
     бюджету <br /> — даже если вы ещё не выбрали агентство.
   </div>
-  <div class="consultation__cta-button">Связаться с нами</div>
-  <div class="showcase">
-    <span> Сентябрь 2025</span>
-    <span> Вероника и Максим</span>
-    <span class="border-bottom">Больше фото</span>
-  </div>
-</div>
-<style>
-  .consultation {
-    margin-top: auto;
-  }
-  .consultation__title {
-    color: var(--text-color-white);
-    font-size: var(--fs-46);
-    margin-bottom: 1.25rem;
-  }
-  .consultation__description {
-    color: var(--text-color-white);
-    font-size: var(--fs-14);
-    margin-bottom: 1.25rem;
-    letter-spacing: 2%;
-  }
-  .consultation__cta-button {
-    color: var(--text-color-white);
-    font-size: var(--fs-18);
-    margin-bottom: 3.75rem;
-  }
-  .showcase {
-    display: flex;
-    justify-content: space-between;
-    color: var(--text-color-white);
-    font-size: var(--fs-14);
-    margin-bottom: 1rem;
-  }
-</style>
+</ShowCase>

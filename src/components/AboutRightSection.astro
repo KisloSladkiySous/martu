@@ -1,0 +1,114 @@
+<div class="about-section__tagline">
+  Мы — команда <span class="brand-color italic">Martu</span>, <br />и мы любим
+  свадьбы.
+</div>
+<h2 class="about-section__title">
+  О тех, кто <span class="brand-color italic">влюблён</span>
+  <br /> в своё дело
+</h2>
+<div class="description">
+  <div class="description__column">
+    <p class="descrition__text">
+      Ваша свадьба — это больше, чем просто праздник. Это день, где каждая
+      деталь должна быть наполнена смыслом и красотой. В Martu мы верим, что
+      эмоции не поддаются шаблонам, и именно поэтому подходим к каждой паре с
+      теплом и вниманием.
+    </p>
+    <p class="descrition__text">
+      У нас нет случайных подрядчиков или дежурных решений. Каждая пара —
+      отдельная история, каждый день — уникальный проект. Мы собрали вокруг себя
+      людей, которым можно доверить праздник своей жизни: координаторов,
+      флористов, декораторов, стилистов. Наша задача — не просто выполнить
+      работу, а быть для вас поддержкой и опорой.
+    </p>
+  </div>
+  <div class="description__column">
+    <ul class="advantages">
+      <li>
+        Более <span class="brand-color italic">5 лет</span>
+        <br /> в индустрии
+      </li>
+      <li>
+        <span class="brand-color italic">100+</span> довольных <br /> и счастливых
+        пар
+      </li>
+      <li>
+        <span class="brand-color italic">0</span> стрессов <br /> у наших клиентов
+      </li>
+      <li>
+        <span class="brand-color italic">15</span> внимательных <br /> человек в
+        команде
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="copyright">
+  <span class="brand-color">2025</span><span class="brand-color"
+    >© MartuAgency</span
+  >
+</div>
+<style>
+  .about-section__title {
+    margin-bottom: 5.125rem;
+  }
+  .about-section__tagline {
+    margin-top: 2.5rem;
+    margin-bottom: 2rem;
+    font-size: var(--fs-14);
+    text-align: center;
+    text-transform: uppercase;
+  }
+  .description {
+    display: flex;
+  }
+  .description__column {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    gap: 3.75rem;
+  }
+  .underline {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.75rem;
+  }
+
+  .underline-draw {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+  }
+
+  .underline-draw svg {
+    display: block;
+  }
+  ul {
+    list-style: none;
+    display: flex;
+    list-style: none;
+    gap: 4.125rem;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  li {
+    color: var(--text-color-tertiary);
+    font-size: var(--fs-14);
+    width: 9.375rem;
+  }
+  li::after {
+    content: "";
+    display: block;
+    background-image: url("/martu/images/list-sign.svg");
+    width: 9.375rem;
+    height: 0.5rem;
+    background-repeat: no-repeat;
+  }
+  .copyright {
+    margin-top: auto;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+  }
+</style>

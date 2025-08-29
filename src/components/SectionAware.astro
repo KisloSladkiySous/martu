@@ -59,168 +59,170 @@ const pictureId = `section-lazy-${Math.random().toString(36).substr(2, 9)}`;
 <script>
   interface SectionInfo {
     element: Element;
-    top: number;
-    height: number;
-    bottom: number;
+    index: number;
+    pictures: Element[];
   }
 
   class SectionAwareLazyLoader {
     private pictures: NodeListOf<Element>;
     private loadedPictures: Set<Element> = new Set();
     private loadingPictures: Set<Element> = new Set();
-    private sections: SectionInfo[] = [];
+    private sections: Map<Element, SectionInfo> = new Map();
+    private currentVisibleSection: Element | null = null;
     private sectionObserver: IntersectionObserver | null = null;
 
     constructor() {
       this.pictures = document.querySelectorAll(".section-lazy-picture");
-      this.init();
+      if (this.pictures.length > 0) {
+        this.init();
+      }
     }
 
     private init() {
       if ("IntersectionObserver" in window) {
-        this.setupSectionTracking();
-        this.setupPictureLoading();
+        this.mapPicturesToSections();
+        this.setupSectionObserver();
+        this.setupFallbackObserver();
       } else {
         this.loadAllPictures();
       }
     }
 
-    private setupSectionTracking() {
-      // Получаем все секции на странице
-      const sectionSelectors = new Set<string>();
-
-      this.pictures.forEach((picture) => {
-        const selector = picture.getAttribute("data-section-selector");
-        if (selector) {
-          sectionSelectors.add(selector);
-        }
-      });
-
-      // Находим все секции
-      const allSections = Array.from(sectionSelectors).flatMap((selector) =>
-        Array.from(document.querySelectorAll(selector))
+    private mapPicturesToSections() {
+      // Получаем селектор секций из первой картинки (предполагаем одинаковый для всех)
+      const sectionSelector =
+        this.pictures[0].getAttribute("data-section-selector") || "section";
+      const allSections = Array.from(
+        document.querySelectorAll(sectionSelector)
       );
 
-      // Сортируем секции по их позиции на странице
-      this.updateSectionPositions(allSections);
+      // Создаём карту секций с их индексами и картинками
+      allSections.forEach((section, index) => {
+        const sectionPictures: Element[] = [];
 
-      // Создаём observer для отслеживания видимых секций
+        // Находим все картинки, которые находятся внутри этой секции
+        this.pictures.forEach((picture) => {
+          if (section.contains(picture)) {
+            sectionPictures.push(picture);
+          }
+        });
+
+        this.sections.set(section, {
+          element: section,
+          index: index,
+          pictures: sectionPictures,
+        });
+      });
+
+      // Отладочная информация
+      console.log(
+        `Mapped ${this.sections.size} sections with ${this.pictures.length} total pictures`
+      );
+    }
+
+    private setupSectionObserver() {
+      // Observer для отслеживания текущей видимой секции
       this.sectionObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              this.handleSectionVisible(entry.target);
+            if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
+              // Обновляем текущую видимую секцию
+              this.currentVisibleSection = entry.target;
+              this.handleSectionChange(entry.target);
             }
           });
         },
         {
           rootMargin: "0px",
-          threshold: 0.1,
+          threshold: [0.3, 0.5, 0.7], // Несколько порогов для более точного определения
         }
       );
 
       // Наблюдаем за всеми секциями
-      allSections.forEach((section) => {
+      this.sections.forEach((info, section) => {
         this.sectionObserver?.observe(section);
       });
-
-      // Обновляем позиции секций при изменении размера окна
-      let resizeTimer: any;
-      window.addEventListener("resize", () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-          this.updateSectionPositions(allSections);
-        }, 250);
-      });
     }
 
-    private updateSectionPositions(sections: Element[]) {
-      this.sections = sections
-        .map((section) => {
-          const rect = section.getBoundingClientRect();
-          const scrollTop =
-            window.pageYOffset || document.documentElement.scrollTop;
+    private handleSectionChange(visibleSection: Element) {
+      const currentSectionInfo = this.sections.get(visibleSection);
+      if (!currentSectionInfo) return;
 
-          return {
-            element: section,
-            top: rect.top + scrollTop,
-            height: rect.height,
-            bottom: rect.bottom + scrollTop,
-          };
-        })
-        .sort((a, b) => a.top - b.top);
-    }
+      console.log(`Currently in section ${currentSectionInfo.index}`);
 
-    private handleSectionVisible(visibleSection: Element) {
-      // Находим индекс текущей секции
-      const currentIndex = this.sections.findIndex(
-        (s) => s.element === visibleSection
-      );
+      // Проходим по всем секциям и проверяем, какие картинки нужно загрузить
+      this.sections.forEach((sectionInfo, section) => {
+        // Для каждой картинки в секции проверяем, нужно ли её загружать
+        sectionInfo.pictures.forEach((picture) => {
+          const preloadCount = parseInt(
+            picture.getAttribute("data-preload-sections") || "1"
+          );
 
-      if (currentIndex === -1) return;
+          // Вычисляем, должна ли загружаться картинка
+          // Картинка должна загружаться, если:
+          // - Мы находимся в секции N
+          // - Картинка находится в секции от N до N + preloadCount
+          const shouldLoad =
+            sectionInfo.index <= currentSectionInfo.index + preloadCount &&
+            sectionInfo.index >= currentSectionInfo.index;
 
-      // Загружаем изображения в следующих секциях
-      this.pictures.forEach((picture) => {
-        const preloadCount = parseInt(
-          picture.getAttribute("data-preload-sections") || "1"
-        );
-
-        // Проверяем, находится ли картинка в следующих N секциях
-        for (let i = 0; i <= preloadCount; i++) {
-          const targetIndex = currentIndex + i;
-
-          if (targetIndex < this.sections.length) {
-            const targetSection = this.sections[targetIndex];
-
-            if (this.isPictureInSection(picture, targetSection)) {
-              this.loadPicture(picture);
-            }
+          if (
+            shouldLoad &&
+            !this.loadedPictures.has(picture) &&
+            !this.loadingPictures.has(picture)
+          ) {
+            console.log(
+              `Loading picture in section ${sectionInfo.index} (current section: ${currentSectionInfo.index}, preload: ${preloadCount})`
+            );
+            this.loadPicture(picture);
           }
-        }
+        });
       });
     }
 
-    private isPictureInSection(
-      picture: Element,
-      section: SectionInfo
-    ): boolean {
-      const pictureRect = picture.getBoundingClientRect();
-      const scrollTop =
-        window.pageYOffset || document.documentElement.scrollTop;
-      const pictureTop = pictureRect.top + scrollTop;
-      const pictureBottom = pictureRect.bottom + scrollTop;
-
-      // Проверяем, находится ли картинка внутри секции
-      return (
-        (pictureTop >= section.top && pictureTop <= section.bottom) ||
-        (pictureBottom >= section.top && pictureBottom <= section.bottom) ||
-        (pictureTop <= section.top && pictureBottom >= section.bottom)
-      );
-    }
-
-    private setupPictureLoading() {
-      // Дополнительный observer для загрузки картинок при приближении к viewport
-      const pictureObserver = new IntersectionObserver(
+    private setupFallbackObserver() {
+      // Дополнительный observer как запасной вариант для картинок вне секций
+      const fallbackObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              this.loadPicture(entry.target);
+              const picture = entry.target;
+
+              // Загружаем только если картинка ещё не загружена и не в процессе
+              if (
+                !this.loadedPictures.has(picture) &&
+                !this.loadingPictures.has(picture)
+              ) {
+                console.log("Loading picture via fallback observer");
+                this.loadPicture(picture);
+              }
             }
           });
         },
         {
-          rootMargin: "50px",
+          rootMargin: "100px",
           threshold: 0,
         }
       );
 
+      // Наблюдаем только за картинками, которые не находятся ни в одной секции
       this.pictures.forEach((picture) => {
-        pictureObserver.observe(picture);
+        let isInSection = false;
+        this.sections.forEach((sectionInfo) => {
+          if (sectionInfo.pictures.includes(picture)) {
+            isInSection = true;
+          }
+        });
+
+        if (!isInSection) {
+          console.log("Picture not in any section, using fallback observer");
+          fallbackObserver.observe(picture);
+        }
       });
     }
 
     private loadPicture(picture: Element) {
-      // Проверяем, не загружена ли уже картинка
+      // Предотвращаем повторную загрузку
       if (
         this.loadedPictures.has(picture) ||
         this.loadingPictures.has(picture)
@@ -257,6 +259,10 @@ const pictureId = `section-lazy-${Math.random().toString(36).substr(2, 9)}`;
 
           this.loadingPictures.delete(picture);
           this.loadedPictures.add(picture);
+
+          console.log(
+            `Successfully loaded picture ${picture.getAttribute("data-picture-id")}`
+          );
         };
 
         tempImg.onerror = () => {
@@ -265,6 +271,9 @@ const pictureId = `section-lazy-${Math.random().toString(36).substr(2, 9)}`;
           picture.classList.add("picture-error");
 
           this.loadingPictures.delete(picture);
+          console.error(
+            `Failed to load picture ${picture.getAttribute("data-picture-id")}`
+          );
         };
 
         // Определяем правильный источник на основе media queries
@@ -289,7 +298,7 @@ const pictureId = `section-lazy-${Math.random().toString(36).substr(2, 9)}`;
     }
 
     private loadAllPictures() {
-      // Fallback: загружаем все картинки
+      // Fallback: загружаем все картинки для браузеров без IntersectionObserver
       this.pictures.forEach((picture) => {
         this.loadPicture(picture);
       });
@@ -300,15 +309,43 @@ const pictureId = `section-lazy-${Math.random().toString(36).substr(2, 9)}`;
   document.addEventListener("DOMContentLoaded", () => {
     new SectionAwareLazyLoader();
   });
+
+  // Добавляем визуальный индикатор для отладки (можно удалить в продакшене)
+  if (import.meta.env.DEV) {
+    document.addEventListener("DOMContentLoaded", () => {
+      const debugStyle = document.createElement("style");
+      debugStyle.textContent = `
+        .section-lazy-picture[data-picture-id]::after {
+          content: attr(data-picture-id);
+          position: absolute;
+          top: 10px;
+          left: 10px;
+          background: rgba(0, 0, 0, 0.7);
+          color: white;
+          padding: 4px 8px;
+          font-size: 10px;
+          border-radius: 4px;
+          z-index: 10;
+          pointer-events: none;
+        }
+        
+        .section-lazy-picture.picture-loaded::after {
+          background: rgba(0, 128, 0, 0.7);
+        }
+        
+        .section-lazy-picture.is-loading::after {
+          background: rgba(255, 165, 0, 0.7);
+        }
+      `;
+      document.head.appendChild(debugStyle);
+    });
+  }
 </script>
 
 <style>
   .section-lazy-picture {
-    display: block;
     position: absolute;
     background: linear-gradient(135deg, #f0f0f0 0%, #e5e5e5 100%);
-    min-height: 100px;
-    overflow: hidden;
   }
 
   /* Индикатор загрузки */
@@ -347,8 +384,9 @@ const pictureId = `section-lazy-${Math.random().toString(36).substr(2, 9)}`;
   }
 
   .section-lazy-img {
-    display: block;
+    position: absolute;
     width: 100%;
+
     opacity: 0;
     transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   }

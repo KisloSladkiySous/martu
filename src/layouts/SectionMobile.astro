@@ -1,9 +1,10 @@
 ---
 interface Props {
   id: string;
-  index: string;
+  indexFirst: number;
+  indexSecond: number;
 }
-const { id, index } = Astro.props;
+const { id, indexFirst, indexSecond } = Astro.props;
 ---
 
 <section
@@ -11,9 +12,10 @@ const { id, index } = Astro.props;
   class="section mobile"
   data-nav-section
   data-section
-  data-section-index={index}
+  data-section-index={indexFirst}
 >
   <div class="section__column">
+    <slot name="left-column-background" />
     <slot name="left-column" />
   </div>
 </section>
@@ -22,7 +24,7 @@ const { id, index } = Astro.props;
   class="section mobile"
   data-nav-section
   data-section
-  data-section-index={index}
+  data-section-index={indexSecond}
 >
   <div class="section__column">
     <slot name="right-column-background" />

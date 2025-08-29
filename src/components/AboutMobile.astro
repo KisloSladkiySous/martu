@@ -1,8 +1,8 @@
 ---
-import Section from "../layouts/Section.astro";
-import SectionAware from "../components/SectionAware.astro";
+import SectionMobile from "../layouts/SectionMobile.astro";
 import AboutLeftSection from "./AboutLeftSection.astro";
 import AboutRightSection from "./AboutRightSection.astro";
+import SectionAware from "../components/SectionAware.astro";
 const imageSources = [
   {
     srcset: "/martu/images/about-section-background.png",
@@ -12,7 +12,7 @@ const imageSources = [
 ];
 ---
 
-<Section id="about" index="2">
+<SectionMobile id="about" indexFirst={4} indexSecond={3}>
   <SectionAware
     class="background-image"
     sources={imageSources}
@@ -25,16 +25,13 @@ const imageSources = [
     sectionSelector="[data-section]"
   />
   <div
-    class="section__content-wrapper section__content-wrapper--bordered-top"
+    class="section__content-wrapper section__content-wrapper--bordered"
     slot="left-column"
   >
     <AboutLeftSection />
   </div>
 
-  <div
-    class="section__content-wrapper section__content-wrapper--bordered"
-    slot="right-column"
-  >
+  <div class="section__content-wrapper" slot="right-column">
     <AboutRightSection />
   </div>
-</Section>
+</SectionMobile>

@@ -28,6 +28,10 @@ section {
   border-top: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
 }
-.section__content-wrapper--bordered-bottom {
+.section__content-wrapper--bordered-bottom,
+.border-bottom {
   border-bottom: 1px solid var(--border-color-white);
+}
+.section__content-wrapper--bordered-top {
+  border-top: 1px solid var(--border-color-white);
 }

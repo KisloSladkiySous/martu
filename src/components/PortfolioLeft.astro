@@ -1,0 +1,57 @@
+---
+import SectionAware from "../components/SectionAware.astro";
+const imageSources = [
+  {
+    srcset: "/martu/images/portfolio-section.png",
+    media: "(max-width: 1440)",
+    type: "image/webp",
+  },
+];
+---
+
+<h2>
+  Образы, <br />
+  <span class="brand-color italic">прикосновения</span>, свет и взгляды.
+</h2>
+<div class="portfolio__visual">
+  <SectionAware
+    sources={imageSources}
+    src="/martu/images/portfolio-section.png"
+    alt="Feature"
+    preloadSections={1}
+    sectionSelector="[data-section]"
+  />
+</div>
+<div class="description">
+  <p class="text">
+    Каждая свадьба — это диалог с парой, поиск <br /> визуального кода, который откликается
+    именно им.
+  </p>
+  <p class="text">
+    Именно поэтому фотографии с наших мероприятий <br /> живут долго и не теряют
+    актуальности. Они <br /> передают атмосферу, эмоции и то самое “что-то”,
+    <br />
+    что словами не опишешь.
+  </p>
+</div>
+<style>
+  h2 {
+    margin-top: 146px;
+    margin-bottom: 32px;
+  }
+  .portfolio__visual {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 54px;
+  }
+  .text {
+    color: var(--text-color-secondary);
+    font-size: var(--fs-14);
+  }
+  .description {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    text-align: center;
+  }
+</style>

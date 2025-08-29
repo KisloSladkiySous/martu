@@ -5,7 +5,9 @@ import Navigation from "../components/Navigation.astro";
 import Hero from "../components/Hero.astro";
 import HeroMobile from "../components/HeroMobile.astro";
 import About from "../components/About.astro";
+import AboutMobile from "../components/AboutMobile.astro";
 import Portfolio from "../components/Portfolio.astro";
+import PortfolioMobile from "../components/PortfolioMobile.astro";
 ---
 
 <!doctype html>
@@ -30,15 +32,10 @@ import Portfolio from "../components/Portfolio.astro";
       <Hero />
       <HeroMobile />
       <About />
+      <AboutMobile />
       <Portfolio />
-      <!-- <section id="about" data-nav-section data-section-index="2">
-        <div class="column with-image">
-          <div class="wrapper">
-            <h1>Мы заодно с вами</h1>
-          </div>
-        </div>
-        <div class="column"></div>
-      </section> -->
+      <PortfolioMobile />
+
       <section data-nav-section data-section-index="3">
         <div class="column">
           <div class="wrapper">
@@ -77,8 +74,6 @@ import Portfolio from "../components/Portfolio.astro";
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            console.log(entry);
-
             if (entry.isIntersecting) {
               const index = parseInt(
                 entry.target.getAttribute("data-section-index")
