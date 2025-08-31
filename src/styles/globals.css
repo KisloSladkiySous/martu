@@ -17,6 +17,7 @@ main {
 }
 .background-image {
   position: absolute;
+  object-fit: cover;
   inset: 0;
 }
 

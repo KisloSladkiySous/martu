@@ -3,22 +3,17 @@ interface Props {
   borderColor: string;
   size?: "lg" | "md" | "sm";
   imagePath?: string;
-  // rootMargin?: number;
+  text?: string;
 }
-const {
-  borderColor = "white",
-  size = "md",
-  imagePath = "/martu/images/hero-circle.jpg",
-  // rootMargin = 12,
-} = Astro.props;
+const { borderColor = "white", size = "md", imagePath, text } = Astro.props;
 const sizes = {
   sm: { outer: 86, inner: 76 },
-  md: { outer: 40, inner: 20 },
+  md: { outer: 190, inner: 168 },
   lg: { outer: 215, inner: 190 },
 };
 const margin = {
   sm: "5px",
-  md: "10px",
+  md: "11px",
   lg: "12px",
 };
 
@@ -27,7 +22,7 @@ const innerSize = sizes[size].inner;
 const rootMargin = margin[size];
 ---
 
-<div
+<!-- <div
   class="outer circle"
   style={`width: ${outerSize}px; height: ${outerSize}px; background-image: url("${imagePath}")`}
 >
@@ -36,7 +31,20 @@ const rootMargin = margin[size];
     style={`width: ${innerSize}px; height: ${innerSize}px;`}
   >
   </div>
+</div> -->
+<div
+  class="outer circle"
+  data-size={size}
+  style={`width: ${outerSize}px; height: ${outerSize}px; ${imagePath ? `background-image: url("${imagePath}")` : ""}`}
+>
+  <div
+    class="inner circle"
+    style={`width: ${innerSize}px; height: ${innerSize}px;`}
+  >
+    <slot name="text" />
+  </div>
 </div>
+
 <style define:vars={{ borderColor, rootMargin }}>
   .outer {
     background-color: var(--background-color-white);

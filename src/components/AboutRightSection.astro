@@ -1,3 +1,7 @@
+---
+import Copyright from "./Copyright.astro";
+---
+
 <div class="about-section__tagline">
   Мы — команда <span class="brand-color italic">Martu</span>, <br />и мы любим
   свадьбы.
@@ -42,11 +46,7 @@
     </ul>
   </div>
 </div>
-<div class="copyright">
-  <span class="brand-color">2025</span><span class="brand-color"
-    >© MartuAgency</span
-  >
-</div>
+<Copyright />
 <style>
   .about-section__title {
     margin-bottom: 5.125rem;
@@ -104,11 +104,5 @@
     width: 9.375rem;
     height: 0.5rem;
     background-repeat: no-repeat;
-  }
-  .copyright {
-    margin-top: auto;
-    margin-bottom: 1rem;
-    display: flex;
-    justify-content: space-between;
   }
 </style>

@@ -1,0 +1,67 @@
+<div class="advantages">
+  <ul class="advantages__list">
+    <li>
+      <div class="advantages__title">Сильная команда</div>
+      <div class="advantages__description">
+        Cобственный декор, координаторы, подрядчики
+      </div>
+    </li>
+    <li>
+      <div class="advantages__title">Персональный подход</div>
+      <div class="advantages__description">
+        Свадьба по вашему стилю и характеру
+      </div>
+    </li>
+    <li>
+      <div class="advantages__title">Полное сопровождение</div>
+      <div class="advantages__description">
+        От брифа до финального бокала шампанского
+      </div>
+    </li>
+    <li>
+      <div class="advantages__title">Опыт и надёжность</div>
+      <div class="advantages__description">
+        Мы знаем, как предвосхищать сложности
+      </div>
+    </li>
+  </ul>
+</div>
+
+<style>
+  .advantages {
+    margin-top: auto;
+    z-index: 2;
+  }
+  .advantages__list {
+    color: var(--text-color-white);
+  }
+  .advantages__title {
+    font-size: var(--fs-16);
+  }
+  .advantages__description {
+    font-size: var(--fs-14);
+  }
+  li {
+    gap: 0.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+  li::before {
+    content: "";
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: var(--background-color-white);
+    border-radius: 50%;
+    position: relative;
+    left: -20px;
+    top: 20px;
+  }
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  ul > * {
+    flex: 1;
+  }
+</style>

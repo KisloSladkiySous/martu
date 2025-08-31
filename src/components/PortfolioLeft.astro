@@ -1,5 +1,6 @@
 ---
 import SectionAware from "../components/SectionAware.astro";
+import Circle from "../components/Circle.astro";
 const imageSources = [
   {
     srcset: "/martu/images/portfolio-section.png",
@@ -34,11 +35,25 @@ const imageSources = [
     что словами не опишешь.
   </p>
 </div>
+<div class="show-portfolio">
+  <Circle size="md" borderColor="#57718C">
+    <span slot="text" class="circle-text">
+      Смотреть <br /> портфолио
+    </span>
+  </Circle>
+</div>
 <style>
   h2 {
     margin-top: 146px;
     margin-bottom: 32px;
   }
+  .circle-text {
+    color: var(--brand-color);
+    display: block;
+    text-align: center;
+    margin: 62px 0;
+  }
+
   .portfolio__visual {
     display: flex;
     justify-content: center;
@@ -53,5 +68,10 @@ const imageSources = [
     flex-direction: column;
     gap: 32px;
     text-align: center;
+  }
+  .show-portfolio {
+    position: absolute;
+    right: -100px;
+    top: calc(50% - 100px);
   }
 </style>
