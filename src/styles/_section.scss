@@ -6,7 +6,7 @@ section {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  height: 100dvh;
+  // height: 100dvh;
   background-color: var(--background-color);
 }
 .section__column {
@@ -39,7 +39,7 @@ section {
   margin-bottom: 4.25rem;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 690px) {
   .section__content-wrapper {
     margin: 77px 20px 20px 20px;
   }
@@ -53,8 +53,11 @@ section {
 }
 
 .section__content-wrapper--bordered {
-  border-top: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
+
+  @media (min-width: 690px) {
+    border-top: 1px solid var(--border-color);
+  }
 }
 .section__content-wrapper--bordered-bottom,
 .border-bottom {
