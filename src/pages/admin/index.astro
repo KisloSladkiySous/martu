@@ -1,0 +1,56 @@
+---
+import { db, Group, Media, eq } from "astro:db";
+const groups = await db.select().from(Group).orderBy(Group.date);
+
+async function fetchMedia(groupId: number) {
+  return await db.select().from(Media).where(eq(Media.groupId, groupId));
+}
+
+export const prerender = false;
+---
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/src/styles/admin.css" />
+    <title>Админка</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Админ-панель</h1>
+      <a href="/admin/new">➕ Создать группу</a>
+
+      <ul class="group-list">
+        {groups.map(async (g) => (
+          <li>
+            <b>{g.title}</b> — {g.link} 
+            <a href={`/admin/edit/${g.id}`}>✏️</a>
+            <form method="post" action={`/admin/delete/${g.id}`} style="display:inline" class="delete" onsubmit="return confirm('Вы уверены, что хотите удалить группу?')">
+                <button type="submit">🗑️ Удалить</button>
+            </form>
+
+            <!-- Медиа -->
+            <ul class="media-list">
+              {await fetchMedia(g.id).then((media) =>
+                media.map((m) => (
+                  <li>
+                    {m.type === 'image' ? (
+                      <img src={m.url} alt={m.alt ?? ''} />
+                    ) : (
+                      <video src={m.url} poster={m.poster ?? ''} controls />
+                    )}
+                  </li>
+                ))
+              )}
+            </ul>
+
+            <form method="post" action="/api/upload" enctype="multipart/form-data">
+              <input type="hidden" name="groupId" value={g.id} />
+              <input type="file" name="file" multiple />
+              <button type="submit">Загрузить медиа</button>
+            </form>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </body>
+</html>

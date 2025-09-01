@@ -9,7 +9,13 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/db": "^0.17.1",
     "astro": "^5.13.4",
+    "bcrypt": "^6.0.0",
     "motion": "^12.23.12"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/formidable": "^3.4.5"
   }
 }
