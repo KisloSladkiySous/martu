@@ -1,15 +1,4 @@
-/*! 
-https://serp.co/tools/css-reset/
-<link rel="stylesheet" href="https://css.serp.co/css-reset/normalize.css/">
-*/
-
-/* Document
-   ========================================================================== */
-
-/**
- * 1. Correct the line height in all browsers.
- * 2. Prevent adjustments of font size after orientation changes in iOS.
- */
+@import "_mixins.scss";
 * {
   font-family: var(--ff-main);
 }
@@ -50,9 +39,7 @@ main {
    */
 
 h1 {
-  /* font-size: 64px;
-   */
-  font-size: clamp(52px, 47.385px + 1.1538vw, 64px);
+  @include fluid-text(52px, 64px, 400, 1440);
   margin: 0;
 }
 
