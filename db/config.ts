@@ -31,6 +31,23 @@ export const Users = defineTable({
   },
 });
 
+export const Reviews = defineTable({
+  columns: {
+    id: column.number({ primaryKey: true }),
+    text: column.text(),
+    author: column.text(),
+    authorImageId: column.number({
+      references: () => Media.columns.id,
+      nullable: true,
+    }),
+    mediaId: column.number({
+      references: () => Media.columns.id,
+      nullable: true,
+    }),
+    createdAt: column.date({ default: NOW }),
+  },
+});
+
 export default defineDb({
-  tables: { Group, Media, Users },
+  tables: { Group, Media, Users, Reviews },
 });
