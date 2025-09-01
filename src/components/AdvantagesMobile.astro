@@ -1,0 +1,37 @@
+---
+import SectionMobile from "../layouts/SectionMobile.astro";
+import AdvantagesLeftSection from "./AdvantagesLeftSection.astro";
+import AdvantagesRightSection from "./AdvantagesRightSection.astro";
+import SectionAware from "../components/SectionAware.astro";
+const imageSources = [
+  {
+    srcset: "/martu/images/about-section-background.png",
+    media: "(max-width: 1440)",
+    type: "image/png",
+  },
+];
+---
+
+<SectionMobile id="аdvantages" indexFirst={4} indexSecond={3}>
+  <!-- <SectionAware
+    class="background-image"
+    sources={imageSources}
+    src="/martu/images/about-section-background.png"
+    alt="about-section-background"
+    height="100%"
+    width="100%"
+    preloadSections={1}
+    slot="Right-column-background"
+    sectionSelector="[data-section]"
+  /> -->
+  <div
+    class="section__content-wrapper section__content-wrapper--bordered"
+    slot="left-column"
+  >
+    <AdvantagesLeftSection />
+  </div>
+
+  <div class="section__content-wrapper" slot="right-column">
+    <AdvantagesRightSection />
+  </div>
+</SectionMobile>

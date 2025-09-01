@@ -2,6 +2,7 @@
 import SectionAware from "../components/SectionAware.astro";
 import Section from "../layouts/Section.astro";
 import AdvantagesLeftSection from "./AdvantagesLeftSection.astro";
+import AdvantagesRightSection from "./AdvantagesRightSection.astro";
 const imageSources = [
   {
     srcset: "/martu/images/advantages-section-background.png",
@@ -25,14 +26,15 @@ const imageSources = [
   />
 
   <div
-    class="section__content-wrapper section__content-wrapper--bordered"
+    class="section__content-wrapper section__content-wrapper"
     slot="left-column"
   >
     <AdvantagesLeftSection />
   </div>
   <div
-    class="section__content-wrapper section__content-wrapper--bordered-bottom"
+    class="section__content-wrapper section__content-wrapper--bordered"
     slot="right-column"
   >
+    <AdvantagesRightSection />
   </div>
 </Section>

@@ -1,0 +1,47 @@
+---
+import SectionMobile from "../layouts/SectionMobile.astro";
+import SectionAware from "../components/SectionAware.astro";
+import WorkflowLeftSection from "./WorkflowLeftSection.astro";
+import ShowCase from "./ShowCase.astro";
+const imageSources = [
+  {
+    srcset: "/martu/images/workflow-section-background.png",
+    media: "(max-width: 1440)",
+    type: "image/png",
+  },
+];
+---
+
+<SectionMobile id="workflow" indexFirst={4} indexSecond={3}>
+  <SectionAware
+    class="background-image"
+    sources={imageSources}
+    src="/martu/images/workflow-section-background.png"
+    alt="about-section-background"
+    height="100%"
+    width="100%"
+    preloadSections={1}
+    slot="left-column-background"
+    sectionSelector="[data-section]"
+  />
+  <div
+    class="section__content-wrapper section__content-wrapper--bordered"
+    slot="left-column"
+  >
+    <WorkflowLeftSection />
+  </div>
+
+  <div class="section__content-wrapper" slot="right-column">
+    <ShowCase date="Весна 2024" names="Ольга и Константин">
+      <div slot="showcase__title" class="showcase__title">
+        В день свадьбы мы ваш щит, ваш тыл и ваша <span class="italic"
+          >уверенность</span
+        >
+      </div>
+      <div slot="showcase__description" class="showcase__description">
+        Вы можете забыть о часах, телефонах и логистике, потому что всё будет
+        идти по плану — или лучше.
+      </div>
+    </ShowCase>
+  </div>
+</SectionMobile>

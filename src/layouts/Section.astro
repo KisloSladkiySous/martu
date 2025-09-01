@@ -2,13 +2,15 @@
 interface Props {
   id: string;
   index: string;
+  cssClass?: string;
 }
-const { id, index } = Astro.props;
+const { id, index, cssClass = "section" } = Astro.props;
+console.log(cssClass);
 ---
 
 <section
   id={id}
-  class="section desktop"
+  class={`desktop ${cssClass}`}
   data-nav-section
   data-section-index={index}
   data-section

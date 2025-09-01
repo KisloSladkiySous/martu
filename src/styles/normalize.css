@@ -20,6 +20,7 @@ html {
 html,
 body {
   block-size: 100%;
+  font-size: var(--size-font);
 }
 
 /* Sections
@@ -49,9 +50,12 @@ main {
    */
 
 h1 {
-  font-size: 64px;
+  /* font-size: 64px;
+   */
+  font-size: clamp(52px, 47.385px + 1.1538vw, 64px);
   margin: 0;
 }
+
 h2 {
   margin: 0;
   font-size: 54px;

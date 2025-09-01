@@ -16,3 +16,24 @@
   --fs-64: 64px;
   --ff-main: "Playfair Display", "serif";
 }
+:root {
+  --size-unit: 16; /* body font-size in design - no px */
+  --size-container-ideal: 1440; /* screen-size in design - no px */
+  --size-container-min: 992px;
+  --size-container-max: 1920px;
+  --size-container: clamp(
+    var(--size-container-min),
+    100vw,
+    var(--size-container-max)
+  );
+  --size-font: calc(
+    var(--size-container) / (var(--size-container-ideal) / var(--size-unit))
+  );
+}
+@media screen and (max-width: 479px) {
+  :root {
+    --size-container-ideal: 440; /* screen-size in design - no px */
+    --size-container-min: 0px;
+    --size-container-max: 479px;
+  }
+}

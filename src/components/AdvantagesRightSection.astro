@@ -1,0 +1,132 @@
+---
+import Copyright from "./Copyright.astro";
+---
+
+<div class="advantages-section__tagline">
+  Именно это отличает нас от остальных
+</div>
+<h2>Мы не делаем “просто красиво” — мы делаем по-настоящему</h2>
+<div class="container">
+  <div class="content-block">
+    <div class="photo">
+      <img
+        src="https://via.placeholder.com/600x400/3498db/ffffff?text=Фото"
+        alt="Описание изображения"
+      />
+    </div>
+
+    <div class="text-wrapper">
+      <p class="text-1">
+        Нам не нужно ничего навязывать — мы умеем слышать вас, считывать
+        невысказанное, и именно поэтому результат всегда оказывается ближе к
+        мечте, чем вы сами могли сформулировать.
+      </p>
+
+      <p class="text-2">
+        Нас выбирают за чуткость, опыт и эстетику, которой можно доверять. И мы
+        отвечаем на это доверием в ответ.
+      </p>
+    </div>
+  </div>
+</div>
+<Copyright />
+
+<style>
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .content-block {
+    display: grid;
+    gap: 30px;
+  }
+
+  /* Десктоп версия - 2 колонки */
+  @media (min-width: 768px) {
+    .content-block {
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas: "photo text";
+      gap: 40px;
+      align-items: start;
+    }
+
+    .photo {
+      grid-area: photo;
+    }
+
+    .text-wrapper {
+      grid-area: text;
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+    }
+
+    .text-1 {
+      order: 1;
+    }
+
+    .text-2 {
+      order: 2;
+    }
+  }
+
+  /* Мобильная версия - 1 колонка */
+  @media (max-width: 767px) {
+    .content-block {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "text1"
+        "photo"
+        "text2";
+    }
+
+    .photo {
+      grid-area: photo;
+    }
+
+    .text-1 {
+      grid-area: text1;
+    }
+
+    .text-2 {
+      grid-area: text2;
+    }
+
+    .text-wrapper {
+      display: contents;
+    }
+  }
+
+  .photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-1,
+  .text-2 {
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  @media (min-width: 768px) {
+    .text-1,
+    .text-2 {
+      font-size: 18px;
+    }
+  }
+
+  /* Дополнительные стили для демонстрации */
+  h2 {
+    margin-bottom: 30px;
+    text-align: center;
+    color: #2c3e50;
+  }
+
+  .demo-section {
+    margin-bottom: 60px;
+  }
+</style>

@@ -47,3 +47,6 @@ main {
     display: flex !important;
   }
 }
+.large {
+  height: 150vh;
+}
