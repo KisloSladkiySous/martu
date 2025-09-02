@@ -3,9 +3,10 @@ import Section from "../layouts/Section.astro";
 import SectionAware from "../components/SectionAware.astro";
 import AboutLeftSection from "./AboutLeftSection.astro";
 import AboutRightSection from "./AboutRightSection.astro";
+import AboutBackground from "../assets/images/about-section-background.png";
 const imageSources = [
   {
-    srcset: "/martu/images/about-section-background.png",
+    srcset: AboutBackground.src,
     media: "(max-width: 1440)",
     type: "image/png",
   },
@@ -16,7 +17,7 @@ const imageSources = [
   <SectionAware
     class="background-image"
     sources={imageSources}
-    src="/martu/images/about-section-background.png"
+    src={AboutBackground.src}
     alt="about-section-background"
     height="100%"
     width="100%"

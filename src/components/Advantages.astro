@@ -3,9 +3,10 @@ import SectionAware from "../components/SectionAware.astro";
 import Section from "../layouts/Section.astro";
 import AdvantagesLeftSection from "./AdvantagesLeftSection.astro";
 import AdvantagesRightSection from "./AdvantagesRightSection.astro";
+import AdvantagesBackground from "../assets/images/advantages-section-background.png";
 const imageSources = [
   {
-    srcset: "/martu/images/advantages-section-background.png",
+    srcset: AdvantagesBackground.src,
     media: "(max-width: 1440)",
     type: "image/png",
   },
@@ -16,7 +17,7 @@ const imageSources = [
   <SectionAware
     class="background-image"
     sources={imageSources}
-    src="/martu/images/advantages-section-background.png"
+    src={AdvantagesBackground.src}
     alt="Feature"
     height="100%"
     width="100%"

@@ -1,5 +1,6 @@
 ---
 import Circle from "./Circle.astro";
+import HeroCircle from "../assets/images/hero-circle.jpg";
 ---
 
 <p class="section__tagline">
@@ -10,7 +11,7 @@ import Circle from "./Circle.astro";
   Мы - заодно <br /> с <span class="brand-color italic underline"
     >Вами <span class="underline-draw">
       <svg
-        width="209"
+        width="inherit"
         height="14"
         viewBox="0 0 209 14"
         fill="none"
@@ -24,11 +25,7 @@ import Circle from "./Circle.astro";
   </span>
 </h1>
 <div class="hero-section__visual-element">
-  <Circle
-    borderColor="white"
-    size="lg"
-    imagePath="/martu/images/hero-circle.jpg"
-  />
+  <Circle borderColor="white" size="lg" imagePath={HeroCircle.src} />
 </div>
 <p class="hero-section__description">
   <span class="brand-color"> Martu</span> - мы свадебное агентство. Здесь каждый

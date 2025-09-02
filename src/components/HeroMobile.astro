@@ -3,9 +3,10 @@ import SectionMobile from "../layouts/SectionMobile.astro";
 import HeroLeftSection from "./HeroLeftSection.astro";
 import HeroRightSection from "./HeroRightSection.astro";
 import SectionAware from "../components/SectionAware.astro";
+import HeroBackground from "../assets/images/hero-section-background.jpg";
 const imageSources = [
   {
-    srcset: "/martu/images/hero-section-background.jpg",
+    srcset: HeroBackground.src,
     media: "(max-width: 1440)",
     type: "image/png",
   },
@@ -22,7 +23,7 @@ const imageSources = [
   <SectionAware
     class="background-image"
     sources={imageSources}
-    src="/martu/images/hero-section-background.jpg"
+    src={HeroBackground.src}
     alt="Feature"
     height="100%"
     width="100%"

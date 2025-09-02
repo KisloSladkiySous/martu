@@ -8,6 +8,7 @@ html {
   /* 1 */
   -webkit-text-size-adjust: 100%;
   /* 2 */
+  background-color: var(--background-color);
 }
 
 html,
@@ -526,6 +527,12 @@ main {
   display: inline-block;
   padding-bottom: 12px;
   /* место для SVG */
+}
+
+@media screen and (max-width: 400px) {
+  .underline-draw {
+    width: 143px;
+  }
 }
 
 .background-image {

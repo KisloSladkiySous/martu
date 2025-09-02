@@ -15,6 +15,11 @@ main {
   display: inline-block;
   padding-bottom: 12px; /* место для SVG */
 }
+@media screen and (max-width: 400px) {
+  .underline-draw {
+    width: 143px;
+  }
+}
 .background-image {
   position: absolute;
   object-fit: cover;

@@ -3,11 +3,11 @@ import SectionAware from "../components/SectionAware.astro";
 import Section from "../layouts/Section.astro";
 
 import ShowCase from "./ShowCase.astro";
-
+import WorkFlowBackground from "../assets/images/workflow-section-background.png";
 import WorkflowLeftSection from "./WorkflowLeftSection.astro";
 const imageSources = [
   {
-    srcset: "/martu/images/workflow-section-background.png",
+    srcset: WorkFlowBackground.src,
     media: "(max-width: 1440)",
     type: "image/png",
   },
@@ -25,7 +25,7 @@ const imageSources = [
     <SectionAware
       class="background-image"
       sources={imageSources}
-      src="/martu/images/workfkow-section-background.png"
+      src={WorkFlowBackground.src}
       alt="Feature"
       height="100%"
       width="100%"

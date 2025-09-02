@@ -3,10 +3,11 @@ import SectionAware from "../components/SectionAware.astro";
 import Section from "../layouts/Section.astro";
 
 import ShowCase from "./ShowCase.astro";
+import PriceBackground from "../assets/images/price-section-background.png";
 
 const imageSources = [
   {
-    srcset: "/martu/images/price-section-background.png",
+    srcset: PriceBackground.src,
     media: "(max-width: 1440)",
     type: "image/png",
   },
@@ -17,7 +18,7 @@ const imageSources = [
   <SectionAware
     class="background-image"
     sources={imageSources}
-    src="/martu/images/price-section-background.png"
+    src={PriceBackground.src}
     alt="Feature"
     height="100%"
     width="100%"

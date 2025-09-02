@@ -1,5 +1,6 @@
 ---
 import Circle from "./Circle.astro";
+import FounderImage from "../assets/images/founder.png";
 ---
 
 <p class="about-section__subtitle">
@@ -15,11 +16,7 @@ import Circle from "./Circle.astro";
   </div>
 
   <div class="founder__avatar">
-    <Circle
-      borderColor="white"
-      size="sm"
-      imagePath="/martu/images/founder.png"
-    />
+    <Circle borderColor="white" size="sm" imagePath={FounderImage.src} />
   </div>
   <div class="founder__fio">
     <span class="brand-color italic">Тутунару Марина</span>
