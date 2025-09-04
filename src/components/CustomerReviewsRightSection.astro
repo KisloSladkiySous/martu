@@ -1,0 +1,249 @@
+---
+import { Image } from "astro:assets";
+import Play from "../assets/play.svg";
+const mock = [
+  {
+    id: 1,
+    author: "Анна Петрова",
+
+    content:
+      "Отличный сервис! Команда профессионалов, которые действительно понимают потребности бизнеса.",
+    avatar: "/martu/images/review1.svg",
+  },
+  {
+    id: 2,
+    author: "Михаил Иванов",
+    role: "Дизайнер, Creative Studio",
+    content:
+      "Превосходное качество работы и внимание к деталям. Рекомендую всем!",
+    avatar: "/martu/images/review2.svg",
+  },
+  {
+    id: 3,
+    author: "Елена Сидорова",
+    role: "Маркетолог, Digital Agency",
+    content: "Результаты превзошли все ожидания. Спасибо за профессионализм!",
+    avatar: "/martu/images/review3.svg",
+  },
+  {
+    id: 4,
+    author: "Дмитрий Козлов",
+    role: "CTO, InnovateTech",
+    content: "Инновационный подход и отличная техническая реализация проектов.",
+    avatar: "/martu/images/review4.svg",
+  },
+  {
+    id: 5,
+    author: "Ольга Морозова",
+    role: "Product Manager, StartupHub",
+    content: "Быстро, качественно и в срок. Именно то, что нужно для стартапа!",
+    avatar: "/martu/images/review1.svg",
+  },
+  {
+    id: 6,
+    author: "Александр Волков",
+    role: "Founder, WebSolutions",
+    content:
+      "Профессиональная команда с глубоким пониманием современных технологий.",
+    avatar: "/martu/images/review2.svg",
+  },
+];
+
+const column1mock = [...mock, ...mock, ...mock];
+const column2mock = [...mock, ...mock, ...mock];
+---
+
+<div class="container">
+  <div class="column">
+    <div class="scroll-wrapper scroll-up" id="leftColumn">
+      {
+        column1mock.map((review) => (
+          <div class="review-card">
+            <div class="review-text">{review.content}</div>
+            <div class="review-author">
+              <Image
+                src={review.avatar}
+                class="author"
+                alt={review.author}
+                width="28"
+                height="28"
+              />
+              <div class="avatar">{review.author}</div>
+              <button>
+                <Play />
+              </button>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+  <div class="column">
+    <div class="scroll-wrapper scroll-down" id="rightColumn">
+      {
+        column2mock.map((review) => (
+          <div class="review-card">
+            <div class="review-text">{review.content}</div>
+            <div class="review-author">
+              <Image
+                src={review.avatar}
+                class="author"
+                alt={review.author}
+                width="28"
+                height="28"
+              />
+              <div class="avatar">{review.author}</div>
+              <button>
+                {" "}
+                <Play />
+              </button>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>
+<style>
+  button {
+    border: none;
+    background-color: rgba(247, 235, 215, 0.5);
+    border-radius: 999px;
+    padding: 7px 23px;
+    display: flex;
+    justify-content: center;
+  }
+  .container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 30px;
+  }
+
+  .column {
+    flex: 1;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+  }
+
+  .column::before,
+  .column::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 80px;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .column::before {
+    top: 0;
+    background: linear-gradient(
+      to bottom,
+      var(--background-color) 0%,
+      rgba(102, 126, 234, 0) 100%
+    );
+  }
+
+  .column::after {
+    bottom: 0;
+    background: linear-gradient(
+      to top,
+      var(--background-color) 0%,
+      rgba(118, 75, 162, 0) 100%
+    );
+  }
+
+  .scroll-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  .scroll-up {
+    animation: scrollUp 50s linear infinite;
+  }
+
+  .scroll-down {
+    animation: scrollDown 50s linear infinite;
+  }
+
+  @keyframes scrollUp {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-50%);
+    }
+  }
+
+  @keyframes scrollDown {
+    0% {
+      transform: translateY(-50%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  .review-card {
+    background: var(--card-color);
+    border-radius: 12px;
+    padding: 24px;
+    cursor: pointer;
+    border: 1px solid var(--card-border);
+  }
+
+  .review-author {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    font-size: var(--fs-14);
+    color: var(--text-color-tertiary);
+  }
+  .avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .review-info {
+    flex: 1;
+  }
+
+  .author {
+    font-size: var(--fs-14);
+    color: var(--text-color-tertiary);
+  }
+
+  .review-text {
+    font-size: var(--fs-14);
+    color: var(--text-color-tertiary);
+    margin-bottom: 1rem;
+  }
+
+  .column:hover .scroll-wrapper {
+    animation-play-state: paused;
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      height: 90vh;
+    }
+
+    .column {
+      height: 45vh;
+    }
+  }
+</style>

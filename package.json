@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev ",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
@@ -12,6 +12,7 @@
     "@astrojs/db": "^0.17.1",
     "astro": "^5.13.4",
     "bcrypt": "^6.0.0",
+    "sass": "^1.91.0",
     "motion": "^12.23.12"
   },
   "devDependencies": {

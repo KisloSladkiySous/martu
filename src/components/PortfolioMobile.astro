@@ -3,9 +3,10 @@ import SectionMobile from "../layouts/SectionMobile.astro";
 import SectionAware from "../components/SectionAware.astro";
 import PortfolioLeft from "./PortfolioLeft.astro";
 import ShowCase from "./ShowCase.astro";
+import PortfolioBackground from "../assets/images/portfolio-section-background.png";
 const imageSources = [
   {
-    srcset: "/martu/images/portfolio-section-full.png",
+    srcset: PortfolioBackground.src,
     media: "(max-width: 1440)",
     type: "image/png",
   },
@@ -14,7 +15,7 @@ const imageSources = [
 
 <SectionMobile id="portfolio" indexFirst={5} indexSecond={6}>
   <div
-    class="section__content-wrapper section__content-wrapper--bordered"
+    class="section__content-wrapper-mobile section__content-wrapper--bordered"
     slot="left-column"
   >
     <PortfolioLeft />
@@ -23,7 +24,7 @@ const imageSources = [
   <SectionAware
     class="background-image"
     sources={imageSources}
-    src="/martu/images/portfolio-section-full.png"
+    src={PortfolioBackground.src}
     alt="Feature"
     height="100%"
     width="100%"
@@ -32,7 +33,7 @@ const imageSources = [
     sectionSelector="[data-section]"
   />
   <div
-    class="section__content-wrapper section__content-wrapper--bordered-bottom"
+    class="section__content-wrapper-mobile section__content-wrapper--bordered-bottom"
     slot="right-column"
   >
     <ShowCase date="Лето 2023" names="Александр и Ирина">

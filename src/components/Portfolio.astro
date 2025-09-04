@@ -3,9 +3,10 @@ import SectionAware from "../components/SectionAware.astro";
 import Section from "../layouts/Section.astro";
 import PortfolioLeft from "./PortfolioLeft.astro";
 import ShowCase from "./ShowCase.astro";
+import PortfolioBackground from "../assets/images/portfolio-section-background.png";
 const imageSources = [
   {
-    srcset: "/martu/images/portfolio-section-full.png",
+    srcset: PortfolioBackground.src,
     media: "(max-width: 1440)",
     type: "image/webp",
   },
@@ -23,7 +24,7 @@ const imageSources = [
   <SectionAware
     class="background-image"
     sources={imageSources}
-    src="/martu/images/portfolio-section-full.png"
+    src={PortfolioBackground.src}
     alt="Feature"
     height="100%"
     width="100%"

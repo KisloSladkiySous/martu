@@ -1,9 +1,12 @@
+@import "_mixins.scss";
 .showcase {
   margin-top: auto;
+  z-index: 2;
 }
 .showcase__title {
   color: var(--text-color-white);
-  font-size: var(--fs-46);
+  /* font-size: var(--fs-46); */
+  @include fluid-text(32px, 46px, 400px, 1440px);
   margin-bottom: 1.25rem;
 }
 .showcase__description {

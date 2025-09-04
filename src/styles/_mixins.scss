@@ -1,0 +1,19 @@
+@mixin fluid-text(
+  $min-size: 16px,
+  $max-size: 24px,
+  $min-width: 320px,
+  $max-width: 1200px
+) {
+  font-size: $min-size;
+
+  @media (min-width: $min-width) {
+    font-size: calc(
+      #{$min-size} + (#{$max-size} - #{$min-size}) * ((100vw - #{$min-width}) /
+            (#{$max-width} - #{$min-width}))
+    );
+  }
+
+  @media (min-width: $max-width) {
+    font-size: $max-size;
+  }
+}

@@ -1,50 +1,26 @@
+---
+import Logo from "../assets/logo.svg";
+import Burger from "../assets/burger.svg";
+---
+
 <nav class="navigation" id="navigation">
   <div class="logo">
-    <!-- <img src="/public/Logo.svg" alt="" /> -->
-    <svg
-      width="66"
-      height="66"
-      viewBox="0 0 66 66"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M66 25.835H34.246V30.8222H35.1408C36.0568 28.7223 36.7947 26.524 41.8122 26.524C44.2589 26.524 45.6312 26.4435 48.0778 26.524V63.6348C48.0778 64.8675 47.7863 65.378 46.5001 65.9998H53.5321C52.1605 65.1511 51.9951 64.6595 51.9951 63.6348L52.1583 26.524C55.0252 26.5003 56.9681 26.3674 59.9134 26.524C63.5935 26.524 64.7629 29.1683 65.2665 30.8222H66V25.835Z"
-        fill="currentColor"></path>
-      <path
-        d="M4.85812 39.8457H0.185439C1.55777 38.2513 1.89677 36.9725 1.98056 34.2215V4.1823L0 0H4.7951L21.3347 35.5317L38.0134 0H43.8161C43.054 0.601989 42.7179 0.980271 42.4957 1.82305V37.3547C42.519 38.5104 42.7941 39.0553 43.7466 39.8457H36.8667C37.6853 38.9923 37.9574 38.4543 38.0134 37.3547V1.82305L21.5763 36.4993L23.4543 39.8457H18.7634L3.06692 6.46899V34.2215C3.28563 37.3026 3.72935 38.4382 4.85812 39.8457Z"
-        fill="currentColor"></path>
-      <path
-        d="M35.8854 53.8447V48.1665H36.7L36.6476 53.8447C36.6476 55.3918 37.6009 56.8591 39.6071 56.8591C41.6132 56.8591 42.4023 55.4179 42.4023 53.8099V48.1665H43.169V53.8447C43.169 55.7308 42.2649 57.592 39.6071 57.6314C36.9492 57.6708 35.8854 55.7316 35.8854 53.8447Z"
-        fill="currentColor"></path>
-      <path
-        d="M30.7656 57.5414H31.5963V48.8734H34.7769V48.0938H27.4338V48.8734H30.7656V57.5414Z"
-        fill="currentColor"></path>
-      <path
-        d="M23.4498 48.1572C25.1684 48.1205 26.9449 48.9747 26.9449 51.3398C26.9449 52.2576 27.0004 53.4131 25.0387 54.252L27.1793 57.5029H26.2614L24.2614 54.4746H20.8336V57.5029H20.069V48.1572H23.4498ZM20.859 48.8252V53.8066H23.6119C25.1347 53.8065 26.2688 53.007 26.2487 51.4346C26.2283 49.8618 25.2764 48.8254 23.6862 48.8252H20.859Z"
-        fill="currentColor"></path>
-      <path
-        d="M15.0625 48.1494L19.1768 57.4805H18.2588L17.1787 54.9258H12.0938L10.9922 57.4805H10.0527L14.2959 48.1494H15.0625ZM12.4062 54.2031H16.9092L14.6416 49.083L12.4062 54.2031Z"
-        fill="currentColor"></path>
-      <path
-        d="M0 48.1494V57.4803H0.723447V49.8267L4.29749 56.2806H4.80498L8.4978 49.6934V57.4803H9.23205V48.1494H8.4978L4.54584 55.1475L0.604672 48.1494H0Z"
-        fill="currentColor"></path>
-    </svg>
+    <Logo />
   </div>
   <div class="links desktop">
     <div class="column">
-      <a href="#main">О нас</a>
-      <a href="#about"> Портфолио </a>
+      <a href="#about">О нас</a>
+      <a href="#portfolio"> Портфолио </a>
     </div>
     <div class="divider"></div>
     <div class="column">
-      <a href="#section3">Почему мы</a>
-      <a href="#section3">Процесс</a>
+      <a href="#advantages">Почему мы</a>
+      <a href="#workflow">Процесс</a>
     </div>
     <div class="divider"></div>
     <div class="column">
-      <a href="#section4">Услуги</a>
-      <a href="#section4">Отзывы</a>
+      <a href="#price">Услуги</a>
+      <a href="#reviews">Отзывы</a>
     </div>
     <div class="divider"></div>
     <div class="column">
@@ -52,9 +28,9 @@
       <a href="#section4">Вконтакте</a>
     </div>
   </div>
-  <!-- <input type="checkbox" id="nav" class="hidden" />
-
-  <div class="nav"></div> -->
+  <div class="burger mobile">
+    <Burger />
+  </div>
 </nav>
 
 <style>
@@ -69,6 +45,24 @@
     width: calc(50vw - 100px);
     justify-content: space-between;
     align-items: center;
+  }
+  @media (max-width: 690px) {
+    .navigation {
+      backdrop-filter: blur(4px);
+      width: calc(100% - 40px);
+      top: 0;
+      left: 0;
+      padding: 20px 20px 12px 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .logo {
+      height: 45px;
+      width: 45px;
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
   a {
     color: var(--text-color-secondary);
@@ -104,5 +98,9 @@
     .nav {
       display: flex;
     }
+  }
+  .burger {
+    width: 40px;
+    height: 40px;
   }
 </style>

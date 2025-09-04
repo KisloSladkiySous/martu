@@ -9,6 +9,11 @@ import AboutMobile from "../components/AboutMobile.astro";
 import Portfolio from "../components/Portfolio.astro";
 import PortfolioMobile from "../components/PortfolioMobile.astro";
 import Advantages from "../components/Advantages.astro";
+import AdvantagesMobile from "../components/AdvantagesMobile.astro";
+import Workflow from "../components/Workflow.astro";
+import WorkflowMobile from "../components/WorkflowMobile.astro";
+import Price from "../components/Price.astro";
+import CustomerReviews from "../components/CustomerReviews.astro";
 ---
 
 <!doctype html>
@@ -16,7 +21,7 @@ import Advantages from "../components/Advantages.astro";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/martu/Logo.svg" />
+    <link rel="icon" type="image/svg+xml" href="src/assets/logo.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -31,21 +36,17 @@ import Advantages from "../components/Advantages.astro";
 
     <main>
       <Hero />
-      <HeroMobile />
       <About />
-      <AboutMobile />
       <Portfolio />
-      <PortfolioMobile />
       <Advantages />
-
-      <section data-nav-section data-section-index="3">
-        <div class="column">
-          <div class="wrapper">
-            <h1>Мы заодно с вами</h1>
-          </div>
-        </div>
-        <div class="column with-image"></div>
-      </section>
+      <Workflow />
+      <Price />
+      <CustomerReviews />
+      <HeroMobile />
+      <AboutMobile />
+      <PortfolioMobile />
+      <AdvantagesMobile />
+      <WorkflowMobile />
       <section data-nav-section data-section-index="4">
         <div class="column with-image">
           <div class="wrapper">
@@ -70,7 +71,7 @@ import Advantages from "../components/Advantages.astro";
       const sections = document.querySelectorAll("[data-nav-section]");
       const navLinks = document.querySelectorAll("#navigation a");
 
-      // Определяем, где будет nav (между секциями)
+      // Определяем текущую секцию
       let currentSectionIndex = 1;
 
       const observer = new IntersectionObserver(
@@ -80,25 +81,28 @@ import Advantages from "../components/Advantages.astro";
               const index = parseInt(
                 entry.target.getAttribute("data-section-index")
               );
+              const sectionId = entry.target.id; // Получаем ID секции
 
               currentSectionIndex = index;
 
-              // Определяем чётность
+              // Определяем чётность для стилизации навигации
               const isEven = index % 2 === 0;
 
               nav.style.color = isEven ? "white" : "black";
 
               navLinks.forEach((link) => {
-                link.classList.remove(isEven ? "black" : "white");
+                // Обновляем классы цвета
+                link.classList.remove("white", "black");
                 link.classList.add(isEven ? "white" : "black");
-                const sectionId = link.getAttribute("href").slice(1);
-                const targetSection = document.getElementById(sectionId);
-                const targetIndex = targetSection
-                  ? parseInt(targetSection.getAttribute("data-section-index"))
-                  : 0;
 
-                if (targetIndex === index) {
+                // Проверяем, соответствует ли ссылка текущей секции
+                const targetId = link.getAttribute("href").slice(1);
+                if (targetId === sectionId) {
                   link.classList.add("active");
+                  // Обновляем хеш только если он не совпадает
+                  if (window.location.hash !== `#${sectionId}`) {
+                    history.replaceState(null, null, `#${sectionId}`);
+                  }
                 } else {
                   link.classList.remove("active");
                 }
@@ -107,7 +111,7 @@ import Advantages from "../components/Advantages.astro";
           });
         },
         {
-          threshold: 0.9, // Секция видна на 50%
+          threshold: 0.5,
           rootMargin: "0px",
         }
       );
@@ -117,47 +121,35 @@ import Advantages from "../components/Advantages.astro";
         observer.observe(section);
       });
 
-      // Плавная прокрутка по клику
-      // navLinks.forEach((link) => {
-      //   link.addEventListener("click", (e) => {
-      //     e.preventDefault();
-      //     const targetId = link.getAttribute("href");
-      //     const targetSection = document.querySelector(targetId);
-      //     if (targetSection) {
-      //       window.scrollTo({
-      //         top: targetSection.offsetTop,
-      //         behavior: "smooth",
-      //       });
-      //     }
-      //   });
-      // });
+      // Плавная прокрутка + обновление хеша при клике
+      navLinks.forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute("href");
+          const targetSection = document.querySelector(targetId);
+
+          if (targetSection) {
+            // Прокручиваем
+            window.scrollTo({
+              top: targetSection.offsetTop,
+              behavior: "smooth",
+            });
+
+            // Обновляем хеш
+            history.replaceState(null, null, targetId);
+          }
+        });
+      });
+
+      // Дополнительно: при загрузке страницы, если есть хеш, проскролить к нему
+      if (window.location.hash) {
+        const targetSection = document.querySelector(window.location.hash);
+        if (targetSection) {
+          setTimeout(() => {
+            window.scrollTo(0, targetSection.offsetTop);
+          }, 100); // небольшая задержка, чтобы гарантировать рендер
+        }
+      }
     });
   </script>
-  <style>
-    .bordered {
-      border-top: 1px solid var(--border-color);
-      border-bottom: 1px solid var(--border-color);
-    }
-    .border-bottom {
-      border-bottom: 1px solid var(--border-color-white);
-    }
-
-    .underline {
-      position: relative;
-      display: inline-block;
-      padding-bottom: 12px; /* место для SVG */
-    }
-
-    .underline-draw {
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: auto;
-    }
-
-    .underline-draw svg {
-      display: block;
-    }
-  </style>
 </html>

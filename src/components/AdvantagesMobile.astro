@@ -1,23 +1,23 @@
 ---
 import SectionMobile from "../layouts/SectionMobile.astro";
-import AboutLeftSection from "./AboutLeftSection.astro";
-import AboutRightSection from "./AboutRightSection.astro";
+import AdvantagesLeftSection from "./AdvantagesLeftSection.astro";
+import AdvantagesRightSection from "./AdvantagesRightSection.astro";
 import SectionAware from "../components/SectionAware.astro";
-import AboutBackground from "../assets/images/about-section-background.png";
+import AdvantagesBackground from "../assets/images/advantages-section-background.png";
 const imageSources = [
   {
-    srcset: AboutBackground.src,
+    srcset: AdvantagesBackground.src,
     media: "(max-width: 1440)",
     type: "image/png",
   },
 ];
 ---
 
-<SectionMobile id="about" indexFirst={4} indexSecond={3}>
+<SectionMobile id="аdvantages" indexFirst={4} indexSecond={3}>
   <SectionAware
     class="background-image"
     sources={imageSources}
-    src={AboutBackground.src}
+    src={AdvantagesBackground.src}
     alt="about-section-background"
     height="100%"
     width="100%"
@@ -29,10 +29,10 @@ const imageSources = [
     class="section__content-wrapper-mobile section__content-wrapper--bordered"
     slot="left-column"
   >
-    <AboutLeftSection />
+    <AdvantagesLeftSection />
   </div>
 
   <div class="section__content-wrapper-mobile" slot="right-column">
-    <AboutRightSection />
+    <AdvantagesRightSection />
   </div>
 </SectionMobile>

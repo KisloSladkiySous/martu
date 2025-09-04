@@ -1,0 +1,59 @@
+---
+import SectionAware from "../components/SectionAware.astro";
+import Section from "../layouts/Section.astro";
+
+import ShowCase from "./ShowCase.astro";
+import WorkFlowBackground from "../assets/images/workflow-section-background.png";
+import WorkflowLeftSection from "./WorkflowLeftSection.astro";
+const imageSources = [
+  {
+    srcset: WorkFlowBackground.src,
+    media: "(max-width: 1440)",
+    type: "image/png",
+  },
+];
+---
+
+<Section id="workflow" index="5" cssClass="large">
+  <div
+    class="section__content-wrapper section__content-wrapper"
+    slot="left-column"
+  >
+    <WorkflowLeftSection />
+  </div>
+  <div class="sticky" slot="right-column">
+    <SectionAware
+      class="background-image"
+      sources={imageSources}
+      src={WorkFlowBackground.src}
+      alt="Feature"
+      height="100%"
+      width="100%"
+      preloadSections={1}
+      slot="right-column-background"
+      sectionSelector="[data-section]"
+    />
+    <div
+      class="section__content-wrapper section__content-wrapper--bordered-bottom"
+    >
+      <ShowCase date="Весна 2024" names="Ольга и Константин">
+        <div slot="showcase__title" class="showcase__title">
+          В день свадьбы мы ваш щит, ваш тыл и ваша <span class="italic"
+            >уверенность</span
+          >
+        </div>
+        <div slot="showcase__description" class="showcase__description">
+          Вы можете забыть о часах, телефонах и логистике, потому что всё будет
+          идти по плану — или лучше.
+        </div>
+      </ShowCase>
+    </div>
+  </div>
+</Section>
+<style>
+  .sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+  }
+</style>

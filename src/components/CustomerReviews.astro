@@ -1,0 +1,21 @@
+---
+import Section from "../layouts/Section.astro";
+import CustomerReviewLeftSection from "./CustomerReviewLeftSection.astro";
+import CustomerReviewsRightSection from "./CustomerReviewsRightSection.astro";
+---
+
+<Section id="reviews" index="7">
+  <div
+    class="section__content-wrapper section__content-wrapper--bordered"
+    slot="left-column"
+  >
+    <CustomerReviewLeftSection />
+  </div>
+
+  <div
+    class="section__content-wrapper section__content-wrapper"
+    slot="right-column"
+  >
+    <CustomerReviewsRightSection />
+  </div>
+</Section>

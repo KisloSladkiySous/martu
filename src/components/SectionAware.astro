@@ -1,5 +1,6 @@
 ---
-// SectionAwareLazyPicture.astro
+import { Image } from "astro:assets";
+
 export interface Props {
   sources: Array<{
     srcset: string;
@@ -384,10 +385,10 @@ const pictureId = `section-lazy-${Math.random().toString(36).substr(2, 9)}`;
   }
 
   .section-lazy-img {
-    position: absolute;
     width: 100%;
-
+    object-fit: cover;
     opacity: 0;
+
     transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   }
 

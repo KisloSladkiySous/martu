@@ -13,18 +13,33 @@ main {
 .underline {
   position: relative;
   display: inline-block;
-  padding-bottom: 12px; /* место для SVG */
+  padding-bottom: 6px; /* место для SVG */
+}
+@media screen and (max-width: 400px) {
+  .underline-draw {
+    width: 143px;
+  }
 }
 .background-image {
   position: absolute;
   object-fit: cover;
   inset: 0;
 }
-
+.acrive::after {
+  content: "";
+  background-image: url("../assets/images/nav-active.svg");
+}
 .underline-draw {
   position: absolute;
   left: 0;
   bottom: 0;
+  width: 100%;
+  height: auto;
+}
+.underline-draw-custom {
+  position: absolute;
+  left: 0;
+  bottom: -21px;
   width: 100%;
   height: auto;
 }
@@ -46,4 +61,7 @@ main {
   .mobile {
     display: flex !important;
   }
+}
+.large {
+  height: 150vh;
 }
