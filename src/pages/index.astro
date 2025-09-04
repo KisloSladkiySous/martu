@@ -1,8 +1,68 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import HeroLeftSection from "../components/HeroLeftSection.astro";
+import HeroRightSection from "../components/HeroRightSection.astro";
+
+const sections = [
+  [
+    { component: HeroLeftSection, props: { title: "Главная секция" } },
+    { component: HeroRightSection, props: { title: "Главная секция" } },
+  ],
+];
 ---
 
-<Layout />
+<Layout title="Martu - Свабедное агество">
+  <main class="scroll-container">
+    {
+      sections.map((section) => (
+        <section class="snap-section">
+          {section.map(({ component: Component, props }) => (
+            <div class="snap-column">
+              <div class="column-content">
+                <Component {...props} />
+              </div>
+            </div>
+          ))}
+        </section>
+      ))
+    }
+  </main>
+</Layout>
+
+<style>
+  .scroll-container {
+    height: 100vh;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+
+  .snap-section {
+    display: contents;
+  }
+
+  .snap-column {
+    min-height: 100vh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (min-width: 768px) {
+    .snap-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+      scroll-snap-align: start;
+    }
+
+    .snap-column {
+      min-height: 100vh;
+      scroll-snap-align: none;
+      scroll-snap-stop: normal;
+    }
+  }
+</style>
