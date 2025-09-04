@@ -1,0 +1,117 @@
+---
+import LogoLarge from "../assets/images/logo-large.svg";
+import VK from "../assets/images/vk.svg";
+import Inst from "../assets/images/inst.svg";
+import Whatsup from "../assets/images/whatsup.svg";
+import Telegramm from "../assets/images/telegramm.svg";
+---
+
+<section
+  class="video-section section"
+  data-nav-section
+  data-section-index="20"
+  data-section
+>
+  <video autoplay muted loop playsinline>
+    <source src="src/assets/videos/Video.webm" type="video/webm" />
+  </video>
+  <LogoLarge class="logo" />
+  <div class="creditionals">
+    <div class="media">
+      <div class="media-links">
+        <span class="link">
+          <VK />
+        </span>
+        <span class="link">
+          <Inst />
+        </span>
+        <span class="link">
+          <Whatsup />
+        </span>
+        <span class="link">
+          <Telegramm />
+        </span>
+      </div>
+      <span class="schedule">Доступны с 08:00 до 21:00</span>
+      <a class="phone" href="tel:+79994440404">+7 999 444-04-04</a>
+    </div>
+    <div class="contact-us">
+      <p class="text-white">
+        С удовольствием ответим на вопросы, <br /> подскажем формат и предложим идеи.
+      </p>
+      <p class="inst">@martu.agency</p>
+    </div>
+  </div>
+</section>
+<style lang="css">
+  .logo {
+    position: absolute;
+  }
+  .creditionals {
+    z-index: 2;
+    display: flex;
+    margin-top: auto;
+    width: 100%;
+    justify-content: space-between;
+    color: var(--text-color-white);
+  }
+  .contact-us {
+    color: var(--text-color-white);
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    place-items: end;
+  }
+  .text-white {
+    font-size: var(--fs-18);
+  }
+  .schedule {
+    font-size: var(--fs-18);
+    text-align: left;
+  }
+  .media {
+    display: flex;
+    flex-direction: column;
+  }
+  .media-links {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .link {
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.4);
+    height: 56px;
+    width: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .phone {
+    font-size: 4rem;
+    text-decoration: none;
+    color: var(--text-color-white);
+  }
+  .inst {
+    font-size: 4rem;
+  }
+  .video-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    padding: 50px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .video-section video {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+  }
+</style>

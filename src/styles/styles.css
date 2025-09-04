@@ -571,7 +571,7 @@ main {
 .underline-draw-custom {
   position: absolute;
   left: 0;
-  bottom: -2rem;
+  bottom: -2.7rem;
   width: 100%;
   height: auto;
 }
