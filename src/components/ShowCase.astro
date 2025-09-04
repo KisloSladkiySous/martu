@@ -1,8 +1,8 @@
 ---
-const { date, names } = Astro.props;
+const { date, names, cssClass } = Astro.props;
 ---
 
-<div class="showcase">
+<div class={`showcase ${cssClass}`}>
   <slot name="showcase__title" />
   <slot name="showcase__description" />
 
@@ -13,3 +13,11 @@ const { date, names } = Astro.props;
     <span class="border-bottom">Больше фото</span>
   </div>
 </div>
+<style>
+  .border-bottom {
+    border-bottom: 1px solid var(--border-color-white);
+  }
+  .border-top {
+    border-top: 1px solid var(--border-color-white);
+  }
+</style>

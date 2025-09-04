@@ -61,7 +61,12 @@ const imageSources = [
     display: grid;
     gap: 30px;
   }
-
+  .section_description {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
   @media (min-width: 768px) {
     .content-block {
       grid-template-columns: 1fr 1fr;
@@ -74,11 +79,13 @@ const imageSources = [
       grid-area: photo;
     }
 
-    .section-descriptionr {
+    .section-description {
       grid-area: text;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       gap: 50px;
+      height: 100%;
     }
 
     .text-1 {
@@ -132,7 +139,8 @@ const imageSources = [
   @media (min-width: 768px) {
     .text-1,
     .text-2 {
-      font-size: 18px;
+      font-size: var(--fs-18);
+      color: var(--text-color-secondary);
     }
   }
 </style>
