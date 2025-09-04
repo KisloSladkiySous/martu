@@ -4,9 +4,9 @@ import Burger from "../assets/burger.svg";
 ---
 
 <nav class="navigation" id="navigation">
-  <div class="logo">
+  <a class="logo" href="#hero">
     <Logo />
-  </div>
+  </a>
   <div class="links desktop">
     <div class="column">
       <a href="#about">О нас</a>
@@ -137,6 +137,9 @@ import Burger from "../assets/burger.svg";
 
               // Проверяем, соответствует ли ссылка текущей секции
               const targetId = link.getAttribute("href").slice(1);
+              if (targetId === "hero") {
+                return;
+              }
               if (targetId === sectionId) {
                 link.classList.add("active");
                 // Обновляем хеш только если он не совпадает
