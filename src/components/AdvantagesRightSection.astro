@@ -1,21 +1,43 @@
 ---
 import Copyright from "./Copyright.astro";
+import SectionAware from "./SectionAware.astro";
+import AdvantagesVisual from "../assets/images/advantages-visual.png";
+import AdvantagesSign from "../assets/images/advantages-sign.svg";
+const imageSources = [
+  {
+    srcset: AdvantagesVisual.src,
+    media: "(max-width: 1440)",
+    type: "image/png",
+  },
+];
 ---
 
-<div class="advantages-section__tagline">
-  Именно это отличает нас от остальных
+<div class="right-column__tagline">
+  Именно это отличает <br /> нас от остальных
 </div>
-<h2>Мы не делаем “просто красиво” — мы делаем по-настоящему</h2>
+<h2 class="section_title">
+  Мы не делаем <br /> “просто красиво” — <br /> мы делаем <br />
+  <span class="brand-color italic underline"
+    >по-настоящему<span class="underline-draw-custom">
+      <AdvantagesSign />
+    </span></span
+  >
+</h2>
 <div class="container">
   <div class="content-block">
     <div class="photo">
-      <img
-        src="https://via.placeholder.com/600x400/3498db/ffffff?text=Фото"
-        alt="Описание изображения"
+      <SectionAware
+        sources={imageSources}
+        src={AdvantagesVisual.src}
+        alt="Feature"
+        height="100%"
+        width="100%"
+        preloadSections={1}
+        sectionSelector="[data-section]"
       />
     </div>
 
-    <div class="text-wrapper">
+    <div class="section-description">
       <p class="text-1">
         Нам не нужно ничего навязывать — мы умеем слышать вас, считывать
         невысказанное, и именно поэтому результат всегда оказывается ближе к
@@ -33,16 +55,13 @@ import Copyright from "./Copyright.astro";
 
 <style>
   .container {
-    max-width: 1200px;
-    margin: 0 auto;
+    margin-top: auto;
   }
-
   .content-block {
     display: grid;
     gap: 30px;
   }
 
-  /* Десктоп версия - 2 колонки */
   @media (min-width: 768px) {
     .content-block {
       grid-template-columns: 1fr 1fr;
@@ -55,7 +74,7 @@ import Copyright from "./Copyright.astro";
       grid-area: photo;
     }
 
-    .text-wrapper {
+    .section-descriptionr {
       grid-area: text;
       display: flex;
       flex-direction: column;
@@ -71,7 +90,6 @@ import Copyright from "./Copyright.astro";
     }
   }
 
-  /* Мобильная версия - 1 колонка */
   @media (max-width: 767px) {
     .content-block {
       grid-template-columns: 1fr;
@@ -93,7 +111,7 @@ import Copyright from "./Copyright.astro";
       grid-area: text2;
     }
 
-    .text-wrapper {
+    .section_description {
       display: contents;
     }
   }
@@ -106,8 +124,7 @@ import Copyright from "./Copyright.astro";
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
-  .text-1,
-  .text-2 {
+  .text {
     font-size: 16px;
     line-height: 1.8;
   }
@@ -117,16 +134,5 @@ import Copyright from "./Copyright.astro";
     .text-2 {
       font-size: 18px;
     }
-  }
-
-  /* Дополнительные стили для демонстрации */
-  h2 {
-    margin-bottom: 30px;
-    text-align: center;
-    color: #2c3e50;
-  }
-
-  .demo-section {
-    margin-bottom: 60px;
   }
 </style>

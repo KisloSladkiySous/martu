@@ -14,6 +14,12 @@ const imageSources = [
 ---
 
 <SectionMobile id="workflow" indexFirst={4} indexSecond={3}>
+  <div
+    class="section__content-wrapper-mobile section__content-wrapper--bordered"
+    slot="left-column"
+  >
+    <WorkflowLeftSection />
+  </div>
   <SectionAware
     class="background-image"
     sources={imageSources}
@@ -22,17 +28,10 @@ const imageSources = [
     height="100%"
     width="100%"
     preloadSections={1}
-    slot="left-column-background"
+    slot="right-column-background"
     sectionSelector="[data-section]"
   />
-  <div
-    class="section__content-wrapper section__content-wrapper--bordered"
-    slot="left-column"
-  >
-    <WorkflowLeftSection />
-  </div>
-
-  <div class="section__content-wrapper" slot="right-column">
+  <div class="section__content-wrapper-mobile" slot="right-column">
     <ShowCase date="Весна 2024" names="Ольга и Константин">
       <div slot="showcase__title" class="showcase__title">
         В день свадьбы мы ваш щит, ваш тыл и ваша <span class="italic"

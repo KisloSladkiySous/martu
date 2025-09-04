@@ -1,13 +1,18 @@
 ---
 import Copyright from "./Copyright.astro";
+import AboutSign from "../assets/images/about-sign.svg";
 ---
 
-<div class="about-section__tagline">
+<div class="right-column__tagline">
   Мы — команда <span class="brand-color italic">Martu</span>, <br />и мы любим
   свадьбы.
 </div>
 <h2 class="about-section__title">
-  О тех, кто <span class="brand-color italic">влюблён</span>
+  О тех, кто <span class="brand-color italic underline"
+    >влюблён<span class="underline-draw">
+      <AboutSign />
+    </span></span
+  >
   <br /> в своё дело
 </h2>
 <div class="description">
@@ -51,13 +56,7 @@ import Copyright from "./Copyright.astro";
   .about-section__title {
     margin-bottom: 5.125rem;
   }
-  .about-section__tagline {
-    margin-top: 2.5rem;
-    margin-bottom: 2rem;
-    font-size: var(--fs-14);
-    text-align: center;
-    text-transform: uppercase;
-  }
+
   .description {
     display: flex;
   }
@@ -67,23 +66,7 @@ import Copyright from "./Copyright.astro";
     width: 50%;
     gap: 3.75rem;
   }
-  .underline {
-    position: relative;
-    display: inline-block;
-    padding-bottom: 0.75rem;
-  }
 
-  .underline-draw {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: auto;
-  }
-
-  .underline-draw svg {
-    display: block;
-  }
   ul {
     list-style: none;
     display: flex;

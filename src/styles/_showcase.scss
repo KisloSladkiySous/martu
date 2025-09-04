@@ -1,6 +1,7 @@
 @import "_mixins.scss";
 .showcase {
   margin-top: auto;
+  z-index: 2;
 }
 .showcase__title {
   color: var(--text-color-white);

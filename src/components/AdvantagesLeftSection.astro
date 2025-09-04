@@ -1,67 +1,88 @@
 <div class="advantages">
-  <ul class="advantages__list">
-    <li>
-      <div class="advantages__title">Сильная команда</div>
-      <div class="advantages__description">
-        Cобственный декор, координаторы, подрядчики
-      </div>
-    </li>
-    <li>
-      <div class="advantages__title">Персональный подход</div>
-      <div class="advantages__description">
-        Свадьба по вашему стилю и характеру
-      </div>
-    </li>
-    <li>
-      <div class="advantages__title">Полное сопровождение</div>
-      <div class="advantages__description">
-        От брифа до финального бокала шампанского
-      </div>
-    </li>
-    <li>
-      <div class="advantages__title">Опыт и надёжность</div>
-      <div class="advantages__description">
-        Мы знаем, как предвосхищать сложности
-      </div>
-    </li>
-  </ul>
+  <div class="list-container">
+    <ul class="list">
+      <li class="list-item">
+        <p class="list-item-title">Сильная команда</p>
+        <p class="list-item-description">
+          Cобственный декор, координаторы, подрядчики
+        </p>
+      </li>
+      <li class="list-item">
+        <p class="list-item-title">Персональный подход</p>
+        <p class="list-item-description">Свадьба по вашему стилю и характеру</p>
+      </li>
+      <li class="list-item">
+        <p class="list-item-title">Полное сопровождение</p>
+        <p class="list-item-description">
+          От брифа до финального бокала шампанского
+        </p>
+      </li>
+      <li class="list-item">
+        <p class="list-item-title">Опыт и надёжность</p>
+        <p class="list-item-description">
+          Мы знаем, как предвосхищать сложности
+        </p>
+      </li>
+    </ul>
+  </div>
 </div>
 
 <style>
+  .list-container {
+    display: flex;
+  }
+  .list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    justify-content: center;
+    row-gap: 42px;
+    gap: 100px;
+  }
+
+  @media (min-width: 768px) {
+    .list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .list {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .list-item {
+    color: var(--text-color-white);
+
+    padding-left: 35px;
+  }
+
+  .list-item-title {
+    font-size: var(--fs-16);
+    color: var(--text-color-white);
+    margin-bottom: 10px;
+  }
+
+  .list-item-description {
+    font-size: var(--fs-14);
+    color: var(--text-color-white);
+  }
   .advantages {
     margin-top: auto;
     z-index: 2;
   }
-  .advantages__list {
-    color: var(--text-color-white);
-  }
-  .advantages__title {
-    font-size: var(--fs-16);
-  }
-  .advantages__description {
-    font-size: var(--fs-14);
-  }
-  li {
-    gap: 0.5rem;
-    display: flex;
-    flex-direction: column;
-  }
-  li::before {
+
+  .list-item::before {
     content: "";
     width: 0.5rem;
     height: 0.5rem;
     background-color: var(--background-color-white);
     border-radius: 50%;
     position: relative;
+    display: block;
     left: -20px;
     top: 20px;
-  }
-  ul {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  ul > * {
-    flex: 1;
   }
 </style>

@@ -4,6 +4,7 @@ import Section from "../layouts/Section.astro";
 
 import ShowCase from "./ShowCase.astro";
 import PriceBackground from "../assets/images/price-section-background.png";
+import PriceRight from "./PriceRight.astro";
 
 const imageSources = [
   {
@@ -14,7 +15,7 @@ const imageSources = [
 ];
 ---
 
-<Section id="workfkow" index="4">
+<Section id="price" index="6">
   <SectionAware
     class="background-image"
     sources={imageSources}
@@ -28,24 +29,24 @@ const imageSources = [
   />
 
   <div
-    class="section__content-wrapper section__content-wrapper"
+    class="section__content-wrapper section__content-wrapper--bordered-top"
     slot="left-column"
   >
     <!-- <WorkflowLeftSection /> -->
     <ShowCase date="Сентябрь 2025" names="Вероника и Максим">
       <div slot="showcase__title" class="showcase__title">
-        Проверьте <span class="italic">свободную</span> дату
+        Проверьте <br />
+        <span class="italic">свободную</span> дату
       </div>
       <div slot="showcase__description" class="showcase__description">
-        Планируете свадьбу? Узнайте, доступна ли ваша дата — она может быть уже
-        почти вашей.
+        Планируете свадьбу? <br /> Узнайте, доступна ли ваша дата <br /> — она может
+        быть уже почти вашей.
       </div>
     </ShowCase>
   </div>
   <div class="sticky" slot="right-column">
-    <div
-      class="section__content-wrapper section__content-wrapper--bordered-bottom"
-    >
+    <div class="section__content-wrapper section__content-wrapper--bordered">
+      <PriceRight />
     </div>
   </div>
 </Section>

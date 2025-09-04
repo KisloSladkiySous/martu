@@ -15,7 +15,6 @@ html,
 body {
   block-size: 100%;
   font-size: var(--size-font);
-  background-color: var(--background-color);
 }
 
 /* Sections
@@ -377,10 +376,15 @@ template {
   --brand-color: #57718c;
   --border-color: #cbdae9;
   --border-color-white: #ffffff;
+  --text-color-tertiary: #222222;
   --text-color-primary: #333333;
   --text-color-secondary: #444444;
-  --text-color-tertiary: #222222;
+  --text-color-fourth: #666666;
   --text-color-white: #ffffff;
+  --card-color: #fff9f0;
+  --card-border: #f7eee0;
+  --play-button-background: rgba(247, 235, 215, 0.5);
+
   /* font tokens */
   --fs-12: 12px;
   --fs-14: 14px;
@@ -429,8 +433,10 @@ section {
   -ms-flex-pack: center;
   justify-content: center;
   height: 100vh;
-  /* height: 100dvh; */
+  height: 100dvh;
   background-color: var(--background-color);
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .section__column {
@@ -457,19 +463,50 @@ section {
   -ms-flex-direction: column;
   flex-direction: column;
   margin: 50px;
-  height: 100%;
+  height: calc(100% - 100px);
   z-index: 1;
 }
 
-.section__tagline {
-  margin-top: 9.125rem;
+.section__content-wrapper-mobile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  width: calc(100% - 40px);
+  /* 20px с каждой стороны */
+  height: 100%;
+  /* 20px сверху и снизу */
+  margin: 70px 20px 20px 20px;
+  position: relative;
+  overflow-y: auto;
+  z-index: 1;
+}
+
+.right-column__tagline {
+  margin-top: 2.5rem;
   text-align: center;
   color: var(--text-color-primary);
   font-size: var(--fs-16);
   text-transform: uppercase;
   margin-bottom: 2rem;
 }
-
+.left-column__tagline {
+  margin-top: 146px;
+  text-align: center;
+  color: var(--text-color-primary);
+  font-size: var(--fs-16);
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
 .section__title {
   color: var(--text-color-secondary);
   font-weight: 400;
@@ -479,11 +516,11 @@ section {
 
 @media (max-width: 690px) {
   .section__content-wrapper {
-    margin: 77px 20px 40px 20px;
+    margin: 77px 20px 20px 20px;
   }
   .section__tagline {
-    margin-top: 2rem;
-    margin-bottom: 2.26rem;
+    margin-top: 2.15rem;
+    margin-bottom: 2.4rem;
   }
   .section__title {
     margin-bottom: 3.55rem;
@@ -491,10 +528,13 @@ section {
 }
 
 .section__content-wrapper--bordered {
-  @media (min-width: 690px) {
+  border-bottom: 1px solid var(--border-color);
+}
+
+@media (min-width: 690px) {
+  .section__content-wrapper--bordered {
     border-top: 1px solid var(--border-color);
   }
-  border-bottom: 1px solid var(--border-color);
 }
 
 .section__content-wrapper--bordered-bottom,
@@ -525,10 +565,26 @@ main {
 .underline {
   position: relative;
   display: inline-block;
-  padding-bottom: 12px;
+  padding-bottom: 6px;
   /* место для SVG */
 }
+.underline-draw-custom {
+  position: absolute;
+  left: 0;
+  bottom: -2rem;
+  width: 100%;
+  height: auto;
+}
 
+.active::after {
+  content: "";
+  background-image: url("../assets/images/nav-active.svg");
+  position: relative;
+  display: block;
+  height: 5px;
+  background-repeat: no-repeat;
+  top: 0;
+}
 @media screen and (max-width: 400px) {
   .underline-draw {
     width: 143px;
@@ -581,6 +637,7 @@ main {
 
 .showcase {
   margin-top: auto;
+  z-index: 2;
 }
 
 .showcase__title {
