@@ -1,0 +1,34 @@
+---
+import WorkFlowBackground from "../assets/images/workflow-section-background.png";
+import SectionAware from "./SectionAware.astro";
+import ShowCase from "./ShowCase.astro";
+const imageSources = [
+  {
+    srcset: WorkFlowBackground.src,
+    media: "(max-width: 1440)",
+    type: "image/png",
+  },
+];
+---
+
+<SectionAware
+  class="background-image"
+  sources={imageSources}
+  src={WorkFlowBackground.src}
+  alt="Feature"
+  height="100%"
+  width="100%"
+  preloadSections={1}
+  sectionSelector="[data-section]"
+/>
+<ShowCase date="Весна 2024" names="Ольга и Константин">
+  <div slot="showcase__title" class="showcase__title">
+    В день свадьбы мы ваш щит, ваш тыл и ваша <span class="italic"
+      >уверенность</span
+    >
+  </div>
+  <div slot="showcase__description" class="showcase__description">
+    Вы можете забыть о часах, телефонах и логистике, потому что всё будет идти
+    по плану — или лучше.
+  </div>
+</ShowCase>

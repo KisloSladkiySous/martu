@@ -3,23 +3,149 @@ import Layout from "../layouts/Layout.astro";
 
 import HeroLeftSection from "../components/HeroLeftSection.astro";
 import HeroRightSection from "../components/HeroRightSection.astro";
+import AboutLeftSection from "../components/AboutLeftSection.astro";
+import AboutRightSection from "../components/AboutRightSection.astro";
+import PortfolioLeft from "../components/PortfolioLeft.astro";
+import PortfolioRight from "../components/PortfolioRight.astro";
+import AdvantagesLeftSection from "../components/AdvantagesLeftSection.astro";
+import AdvantagesRightSection from "../components/AdvantagesRightSection.astro";
+import WorkflowLeftSection from "../components/WorkflowLeftSection.astro";
+import WorkflowRight from "../components/WorkflowRight.astro";
+import PriceRight from "../components/PriceRight.astro";
+import PriceLeft from "../components/PriceLeft.astro";
+import CustomerReviewLeftSection from "../components/CustomerReviewLeftSection.astro";
+import CustomerReviewsRightSection from "../components/CustomerReviewsRightSection.astro";
 
 const sections = [
   [
-    { component: HeroLeftSection, props: { title: "Главная секция" } },
+    {
+      component: HeroLeftSection,
+      props: {
+        title: "Главная секция",
+        class: "column-content--bordered",
+      },
+    },
     { component: HeroRightSection, props: { title: "Главная секция" } },
   ],
+  [
+    {
+      component: AboutLeftSection,
+      props: {
+        title: "Секция о нас",
+      },
+    },
+    {
+      component: AboutRightSection,
+      props: {
+        title: "Секция о нас",
+        class: "column-content--bordered",
+      },
+    },
+  ],
+  [
+    {
+      component: PortfolioLeft,
+      props: {
+        title: "Секция портфолио",
+        class: "section__content-wrapper--bordered",
+      },
+    },
+    {
+      component: PortfolioRight,
+      props: {
+        title: "Секция портфолио",
+      },
+    },
+  ],
+  [
+    {
+      component: AdvantagesLeftSection,
+      props: {
+        title: "Секция преимущества",
+      },
+    },
+    {
+      component: AdvantagesRightSection,
+      props: {
+        title: "Секция преимущества",
+        class: "section__content-wrapper--bordered",
+      },
+    },
+  ],
+  [
+    {
+      component: WorkflowLeftSection,
+      props: {
+        title: "Секция процесс",
+        class: "section__content-wrapper--bordered",
+      },
+    },
+    {
+      component: WorkflowRight,
+      props: {
+        title: "Секция процесс",
+      },
+    },
+  ],
+  [
+    {
+      component: PriceLeft,
+      props: {
+        title: "Секция цен",
+      },
+    },
+    {
+      component: PriceRight,
+      props: {
+        title: "Секция цен",
+        class: "section__content-wrapper--bordered",
+      },
+    },
+  ],
+  [
+    {
+      component: CustomerReviewLeftSection,
+      props: {
+        title: "Секция цен",
+        class: "section__content-wrapper--bordered",
+      },
+    },
+    {
+      component: CustomerReviewsRightSection,
+      props: {
+        title: "Секция цен",
+      },
+    },
+  ],
 ];
+const idsMap: Record<number, string> = {
+  0: "hero",
+  1: "about",
+  2: "portfolio",
+  3: "advantages",
+  4: "workflow",
+  5: "price",
+  6: "reviews",
+};
+const classes: Record<number, string> = {
+  4: "large",
+};
 ---
 
 <Layout title="Martu - Свабедное агество">
   <main class="scroll-container">
     {
-      sections.map((section) => (
-        <section class="snap-section">
+      sections.map((section, index) => (
+        <section
+          class={`snap-section ${classes[index] ?? ""}`}
+          id={idsMap[index]}
+          data-nav-section
+          data-section-index={index}
+          data-section
+        >
           {section.map(({ component: Component, props }) => (
             <div class="snap-column">
-              <div class="column-content">
+              <div class={`column-content ${props.class ?? ""}`}>
                 <Component {...props} />
               </div>
             </div>
@@ -31,6 +157,17 @@ const sections = [
 </Layout>
 
 <style>
+  .column-content {
+    height: calc(100vh - 100px);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 50px;
+  }
+  .column-content--bordered {
+    border-top: 1px solid var(--brand-color);
+    border-bottom: 1px solid var(--brand-color);
+  }
   .scroll-container {
     height: 100vh;
     overflow-y: auto;
@@ -47,8 +184,7 @@ const sections = [
     scroll-snap-align: start;
     scroll-snap-stop: always;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative;
   }
 
   @media (min-width: 768px) {
@@ -57,6 +193,10 @@ const sections = [
       grid-template-columns: 1fr 1fr;
       min-height: 100vh;
       scroll-snap-align: start;
+    }
+
+    .snap-section:nth-of-type(even) {
+      direction: ltr; /* меняет порядок колонок */
     }
 
     .snap-column {

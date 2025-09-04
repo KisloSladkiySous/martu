@@ -1,3 +1,26 @@
+---
+import AdvantagesBackground from "../assets/images/advantages-section-background.png";
+import SectionAware from "../components/SectionAware.astro";
+const imageSources = [
+  {
+    srcset: AdvantagesBackground.src,
+    media: "(max-width: 1440)",
+    type: "image/png",
+  },
+];
+---
+
+<SectionAware
+  class="background-image"
+  sources={imageSources}
+  src={AdvantagesBackground.src}
+  alt="Feature"
+  height="100%"
+  width="100%"
+  preloadSections={1}
+  sectionSelector="[data-section]"
+/>
+
 <div class="advantages">
   <div class="list-container">
     <ul class="list">

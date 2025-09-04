@@ -1,29 +1,58 @@
 ---
 import Circle from "./Circle.astro";
 import FounderImage from "../assets/images/founder.png";
+import SectionAware from "../components/SectionAware.astro";
+
+import AboutBackground from "../assets/images/about-section-background.png";
+const imageSources = [
+  {
+    srcset: AboutBackground.src,
+    media: "(max-width: 1440)",
+    type: "image/png",
+  },
+];
 ---
 
-<p class="about-section__subtitle">
-  Красота в <br />
-  <span class="italic">каждой</span> детали
-</p>
-<div class="founder">
-  <div class="founder__quote">
-    <p class="founder__title">
-      «Для меня свадьба — это не про декор и тайминг. Это <br />про слёзы на
-      глазах, дрожащие руки и ощущение, что <br /> всё именно так, как должно быть.»
-    </p>
-  </div>
+<SectionAware
+  class="background-image"
+  sources={imageSources}
+  src={AboutBackground.src}
+  alt="about-section-background"
+  height="100%"
+  width="100%"
+  preloadSections={1}
+  slot="left-column-background"
+  sectionSelector="[data-section]"
+/>
+<div class="content">
+  <p class="about-section__subtitle">
+    Красота в <br />
+    <span class="italic">каждой</span> детали
+  </p>
+  <div class="founder">
+    <div class="founder__quote">
+      <p class="founder__title">
+        «Для меня свадьба — это не про декор и тайминг. Это <br />про слёзы на
+        глазах, дрожащие руки и ощущение, что <br /> всё именно так, как должно быть.»
+      </p>
+    </div>
 
-  <div class="founder__avatar">
-    <Circle borderColor="white" size="sm" imagePath={FounderImage.src} />
-  </div>
-  <div class="founder__fio">
-    <span class="brand-color italic">Тутунару Марина</span>
-    <span class="remark">Основатель</span>
+    <div class="founder__avatar">
+      <Circle borderColor="white" size="sm" imagePath={FounderImage.src} />
+    </div>
+    <div class="founder__fio">
+      <span class="brand-color italic">Тутунару Марина</span>
+      <span class="remark">Основатель</span>
+    </div>
   </div>
 </div>
 <style>
+  .content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    z-index: 2;
+  }
   .about-section__subtitle {
     margin-top: 12.3rem;
     text-align: center;

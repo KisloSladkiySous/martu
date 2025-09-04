@@ -632,7 +632,7 @@ main {
 }
 
 .large {
-  height: 150vh;
+  height: fit-content;
 }
 
 .showcase {

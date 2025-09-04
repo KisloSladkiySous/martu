@@ -1,7 +1,27 @@
 ---
 import ShowCase from "./ShowCase.astro";
+
+import SectionAware from "../components/SectionAware.astro";
+import HeroBackground from "../assets/images/hero-section-background.jpg";
+const imageSources = [
+  {
+    srcset: HeroBackground.src,
+    media: "(max-width: 1440)",
+    type: "image/jpg",
+  },
+];
 ---
 
+<SectionAware
+  class="background-image"
+  sources={imageSources}
+  src={HeroBackground.src}
+  alt="Feature"
+  height="100%"
+  width="100%"
+  preloadSections={1}
+  sectionSelector="[data-section]"
+/>
 <ShowCase date="Сентябрь 2025" names="Вероника и Максим">
   <div slot="showcase__title" class="showcase__title">
     <span class="italic">Бесплатная</span> консультация по вашему запросу!

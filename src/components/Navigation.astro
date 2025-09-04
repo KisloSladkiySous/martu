@@ -126,7 +126,7 @@ import Burger from "../assets/burger.svg";
             currentSectionIndex = index;
 
             // Определяем чётность для стилизации навигации
-            const isEven = index % 2 === 0;
+            const isEven = index % 2 !== 0;
 
             nav.style.color = isEven ? "white" : "black";
 
@@ -164,7 +164,6 @@ import Burger from "../assets/burger.svg";
     // Плавная прокрутка + обновление хеша при клике
     navLinks.forEach((link) => {
       link.addEventListener("click", (e) => {
-        e.preventDefault();
         const targetId = link.getAttribute("href");
         const targetSection = document.querySelector(targetId);
 

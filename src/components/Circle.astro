@@ -22,16 +22,6 @@ const innerSize = sizes[size].inner;
 const rootMargin = margin[size];
 ---
 
-<!-- <div
-  class="outer circle"
-  style={`width: ${outerSize}px; height: ${outerSize}px; background-image: url("${imagePath}")`}
->
-  <div
-    class="inner circle"
-    style={`width: ${innerSize}px; height: ${innerSize}px;`}
-  >
-  </div>
-</div> -->
 <div
   class="outer circle"
   data-size={size}
@@ -53,6 +43,8 @@ const rootMargin = margin[size];
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    z-index: 2;
+    position: relative;
   }
   .inner {
     margin: var(--rootMargin);
