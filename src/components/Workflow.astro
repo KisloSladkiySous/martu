@@ -14,14 +14,14 @@ const imageSources = [
 ];
 ---
 
-<Section id="workflow" index="5" cssClass="large">
+<Section id="workflow" index="5" cssClass="large" columnCss="column-sticky">
   <div
-    class="section__content-wrapper section__content-wrapper"
+    class="section__content-wrapper section__content-wrapper--bordered"
     slot="left-column"
   >
     <WorkflowLeftSection />
   </div>
-  <div class="sticky" slot="right-column">
+  <div class="wrapper" slot="right-column">
     <SectionAware
       class="background-image"
       sources={imageSources}
@@ -51,9 +51,7 @@ const imageSources = [
   </div>
 </Section>
 <style>
-  .sticky {
-    position: sticky;
-    top: 0;
+  .wrapper {
     height: 100vh;
   }
 </style>

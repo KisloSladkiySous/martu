@@ -428,7 +428,7 @@ section {
   display: flex;
   -webkit-box-align: center;
   -ms-flex-align: center;
-  align-items: center;
+
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
@@ -465,6 +465,10 @@ section {
   margin: 50px;
   height: calc(100% - 100px);
   z-index: 1;
+}
+.column-sticky {
+  position: sticky;
+  top: 0;
 }
 
 .section__content-wrapper-mobile {
@@ -632,7 +636,7 @@ main {
 }
 
 .large {
-  height: 150vh;
+  height: fit-content;
 }
 
 .showcase {

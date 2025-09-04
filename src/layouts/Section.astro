@@ -3,8 +3,9 @@ interface Props {
   id: string;
   index: string;
   cssClass?: string;
+  columnCss?: string;
 }
-const { id, index, cssClass = "section" } = Astro.props;
+const { id, index, cssClass = "section", columnCss = "" } = Astro.props;
 ---
 
 <section
@@ -19,7 +20,7 @@ const { id, index, cssClass = "section" } = Astro.props;
     <slot name="left-column" />
   </div>
 
-  <div class="section__column">
+  <div class={`section__column ${columnCss}`}>
     <slot name="right-column-background" />
     <slot name="right-column" />
   </div>
