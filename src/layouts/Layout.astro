@@ -1,8 +1,24 @@
 ---
 import "../styles/styles.css";
 import Navigation from "../components/Navigation.astro";
+<<<<<<< HEAD
 
 const { title } = Astro.props;
+=======
+import Hero from "../components/Hero.astro";
+import HeroMobile from "../components/HeroMobile.astro";
+import About from "../components/About.astro";
+import AboutMobile from "../components/AboutMobile.astro";
+import Portfolio from "../components/Portfolio.astro";
+import PortfolioMobile from "../components/PortfolioMobile.astro";
+import Advantages from "../components/Advantages.astro";
+import AdvantagesMobile from "../components/AdvantagesMobile.astro";
+import Workflow from "../components/Workflow.astro";
+import WorkflowMobile from "../components/WorkflowMobile.astro";
+import Price from "../components/Price.astro";
+import CustomerReviews from "../components/CustomerReviews.astro";
+import Contacts from "../components/Contacts.astro";
+>>>>>>> d47e05e (martu contacts section)
 ---
 
 <html lang="ru">
@@ -21,6 +37,41 @@ const { title } = Astro.props;
   </head>
   <body>
     <Navigation />
+<<<<<<< HEAD
     <slot />
+=======
+
+    <main>
+      <Hero />
+      <About />
+      <Portfolio />
+      <Advantages />
+      <Workflow />
+      <Price />
+      <CustomerReviews />
+      <Contacts />
+      <HeroMobile />
+      <AboutMobile />
+      <PortfolioMobile />
+      <AdvantagesMobile />
+      <WorkflowMobile />
+      <section data-nav-section data-section-index="4">
+        <div class="column with-image">
+          <div class="wrapper">
+            <h1>Мы заодно с вами</h1>
+          </div>
+        </div>
+        <div class="column"></div>
+      </section>
+      <section data-nav-section data-section-index="5">
+        <div class="column">
+          <div class="wrapper">
+            <h1>Мы заодно с вами</h1>
+          </div>
+        </div>
+        <div class="column with-image"></div>
+      </section>
+    </main>
+>>>>>>> d47e05e (martu contacts section)
   </body>
 </html>
