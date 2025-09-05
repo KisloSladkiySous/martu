@@ -1,5 +1,6 @@
 ---
 import WorkflowSign from "../assets/images/workflow-sign.svg";
+import WeddingUnderline from "../assets/images/wedding-day.svg";
 ---
 
 <div class="column-wrapper">
@@ -57,7 +58,12 @@ import WorkflowSign from "../assets/images/workflow-sign.svg";
       ваш день по ту сторону.
     </div>
     <li>
-      <div class="title">День вашей свадьбы</div>
+      <div class="title underline">
+        День вашей свадьбы
+        <span class="underline-draw">
+          <WeddingUnderline />
+        </span>
+      </div>
     </li>
     <div class="description">
       Команда организаторов будет контролировать весь процесс с самого раннего
@@ -81,9 +87,11 @@ import WorkflowSign from "../assets/images/workflow-sign.svg";
     margin-bottom: 100px;
   }
   .title {
-    font-size: var(--fs-16);
     text-align: center;
     width: fit-content;
+    text-transform: uppercase;
+    font-size: var(--fs-16);
+    color: var(--text-color-tertiary);
   }
   .description {
     font-size: var(--fs-14);
