@@ -12,47 +12,57 @@ const imageSources = [
 ];
 ---
 
-<h2>
-  Образы, <br />
-  <span class="brand-color italic underline"
-    >прикосновения, <span class="underline-draw">
-      <PortfolioSign />
-    </span></span
-  >
+<div class="column-wrapper">
+  <h2>
+    Образы, <br />
+    <span class="brand-color italic underline"
+      >прикосновения, <span class="underline-draw">
+        <PortfolioSign />
+      </span></span
+    >
 
-  <br /> свет и взгляды.
-</h2>
-<div class="portfolio__visual">
-  <SectionAware
-    sources={imageSources}
-    src={PortfolioVisual.src}
-    alt="Feature"
-    height="100%"
-    width="100%"
-    preloadSections={1}
-    sectionSelector="[data-section]"
-  />
-</div>
-<div class="description">
-  <p class="text">
-    Каждая свадьба — это диалог с парой, поиск <br /> визуального кода, который откликается
-    именно им.
-  </p>
-  <p class="text">
-    Именно поэтому фотографии с наших мероприятий <br /> живут долго и не теряют
-    актуальности. Они <br /> передают атмосферу, эмоции и то самое “что-то”,
-    <br />
-    что словами не опишешь.
-  </p>
-</div>
-<div class="show-portfolio">
-  <Circle size="md" borderColor="#57718C">
-    <span slot="text" class="circle-text">
-      Смотреть <br /> портфолио
-    </span>
-  </Circle>
+    <br /> свет и взгляды.
+  </h2>
+  <div class="portfolio__visual">
+    <SectionAware
+      sources={imageSources}
+      src={PortfolioVisual.src}
+      alt="Feature"
+      height="100%"
+      width="100%"
+      preloadSections={1}
+      sectionSelector="[data-section]"
+    />
+  </div>
+  <div class="description">
+    <p class="text">
+      Каждая свадьба — это диалог с парой, поиск <br /> визуального кода, который
+      откликается именно им.
+    </p>
+    <p class="text">
+      Именно поэтому фотографии с наших мероприятий <br /> живут долго и не теряют
+      актуальности. Они <br /> передают атмосферу, эмоции и то самое “что-то”,
+      <br />
+      что словами не опишешь.
+    </p>
+  </div>
+  <div class="show-portfolio">
+    <Circle size="md" borderColor="#57718C">
+      <span slot="text" class="circle-text">
+        Смотреть <br /> портфолио
+      </span>
+    </Circle>
+  </div>
 </div>
 <style>
+  .column-wrapper {
+    height: calc(100% - 100px);
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--brand-color);
+    border-bottom: 1px solid var(--brand-color);
+  }
   h2 {
     margin-top: 146px;
     margin-bottom: 32px;

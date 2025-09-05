@@ -1,12 +1,14 @@
 ---
 import Logo from "../assets/logo.svg";
 import Burger from "../assets/burger.svg";
+import { socialLinks } from "../social-links.ts";
+const links = socialLinks;
 ---
 
 <nav class="navigation" id="navigation">
-  <div class="logo">
+  <a class="logo" href="#hero">
     <Logo />
-  </div>
+  </a>
   <div class="links desktop">
     <div class="column">
       <a href="#about">О нас</a>
@@ -24,7 +26,7 @@ import Burger from "../assets/burger.svg";
     </div>
     <div class="divider"></div>
     <div class="column">
-      <a href="#section4">Instagram</a>
+      <a href={links.inst} target="_blank">Instagram</a>
       <a href="#section4">Вконтакте</a>
     </div>
   </div>
@@ -104,3 +106,96 @@ import Burger from "../assets/burger.svg";
     height: 40px;
   }
 </style>
+
+<script lang="js">
+  document.addEventListener("DOMContentLoaded", () => {
+    const nav = document.getElementById("navigation");
+    const sections = document.querySelectorAll("[data-nav-section]");
+    const navLinks = document.querySelectorAll("#navigation a");
+
+    // Определяем текущую секцию
+    let currentSectionIndex = 1;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = parseInt(
+              entry.target.getAttribute("data-section-index")
+            );
+            const sectionId = entry.target.id; // Получаем ID секции
+
+            currentSectionIndex = index;
+
+            // Определяем чётность для стилизации навигации
+            const isEven = index % 2 !== 0;
+
+            nav.style.color = isEven ? "white" : "black";
+
+            navLinks.forEach((link) => {
+              // Обновляем классы цвета
+              link.classList.remove("white", "black");
+              link.classList.add(isEven ? "white" : "black");
+
+              // Проверяем, соответствует ли ссылка текущей секции
+              const targetId = link.getAttribute("href").slice(1);
+              if (targetId === "hero") {
+                return;
+              }
+              if (targetId === sectionId) {
+                link.classList.add("active");
+                // Обновляем хеш только если он не совпадает
+                if (window.location.hash !== `#${sectionId}`) {
+                  history.replaceState(null, null, `#${sectionId}`);
+                }
+              } else {
+                link.classList.remove("active");
+              }
+            });
+          }
+        });
+      },
+      {
+        threshold: 0.5,
+        rootMargin: "0px",
+      }
+    );
+
+    // Наблюдаем за всеми секциями
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+
+    // Плавная прокрутка + обновление хеша при клике
+    navLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        const targetId = link.getAttribute("href");
+        const targetSection = document.querySelector(targetId);
+
+        if (targetSection) {
+          // Прокручиваем
+          window.scrollTo({
+            top: targetSection.offsetTop,
+            behavior: "smooth",
+          });
+
+          // Обновляем хеш
+          history.replaceState(null, null, targetId);
+        }
+      });
+    });
+
+    // Дополнительно: при загрузке страницы, если есть хеш, проскролить к нему
+    if (window.location.hash) {
+      const targetSection = document.querySelector(window.location.hash);
+      console.log(targetSection);
+      console.log(targetSection.offsetTop);
+
+      if (targetSection) {
+        setTimeout(() => {
+          window.scrollTo(0, targetSection.offsetTop);
+        }, 100); // небольшая задержка, чтобы гарантировать рендер
+      }
+    }
+  });
+</script>

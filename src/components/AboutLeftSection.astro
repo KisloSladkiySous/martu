@@ -1,29 +1,87 @@
 ---
 import Circle from "./Circle.astro";
 import FounderImage from "../assets/images/founder.png";
+import SectionAware from "../components/SectionAware.astro";
+import FounderSignature from "../assets/images/founder-signature.svg";
+import AboutBackground from "../assets/images/about-section-background.png";
+const imageSources = [
+  {
+    srcset: AboutBackground.src,
+    media: "(max-width: 1440)",
+    type: "image/png",
+  },
+];
 ---
 
-<p class="about-section__subtitle">
-  Красота в <br />
-  <span class="italic">каждой</span> детали
-</p>
-<div class="founder">
-  <div class="founder__quote">
-    <p class="founder__title">
-      «Для меня свадьба — это не про декор и тайминг. Это <br />про слёзы на
-      глазах, дрожащие руки и ощущение, что <br /> всё именно так, как должно быть.»
+<div class="column-showcase">
+  <div class="column-showcase__content">
+    <p class="about-section__subtitle">
+      Красота в <br />
+      <span class="italic">каждой</span> детали
     </p>
-  </div>
+    <div class="founder">
+      <div class="founder__quote">
+        <p class="founder__title">
+          «Для меня свадьба — это не про декор и тайминг. Это <br />про слёзы на
+          глазах, дрожащие руки и ощущение, что <br /> всё именно так, как должно
+          быть.»
+        </p>
+        <!-- <FounderSignature /> -->
+      </div>
 
-  <div class="founder__avatar">
-    <Circle borderColor="white" size="sm" imagePath={FounderImage.src} />
+      <div class="founder__avatar">
+        <Circle borderColor="white" size="sm" imagePath={FounderImage.src} />
+      </div>
+      <div class="founder__fio">
+        <span class="brand-color italic">Тутунару Марина</span>
+        <span class="remark">Основатель</span>
+      </div>
+    </div>
   </div>
-  <div class="founder__fio">
-    <span class="brand-color italic">Тутунару Марина</span>
-    <span class="remark">Основатель</span>
-  </div>
+  <SectionAware
+    class="background-image"
+    sources={imageSources}
+    src={AboutBackground.src}
+    alt="about-section-background"
+    height="100%"
+    width="100%"
+    preloadSections={1}
+    slot="left-column-background"
+    sectionSelector="[data-section]"
+  />
 </div>
+
 <style>
+  .founder__title {
+    position: relative;
+    color: var(--text-color-tertiary);
+  }
+  .founder__title::after {
+    content: "";
+    background-image: url(src/assets/images/founder-signature.svg);
+    position: absolute;
+    background-repeat: no-repeat;
+    right: 0;
+    bottom: -55px;
+    display: block;
+    width: 150px;
+    height: 70px;
+  }
+  .column-showcase {
+    height: 100vh;
+    position: sticky;
+    top: 0;
+  }
+  .column-showcase__content {
+    height: calc(100% - 100px);
+    display: flex;
+    flex-direction: column;
+    margin: 50px;
+    position: relative;
+    z-index: 2;
+    border-top: 1px solid var(--border-color-white);
+  }
+
   .about-section__subtitle {
     margin-top: 12.3rem;
     text-align: center;

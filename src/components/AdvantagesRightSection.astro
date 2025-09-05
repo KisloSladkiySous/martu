@@ -12,48 +12,58 @@ const imageSources = [
 ];
 ---
 
-<div class="right-column__tagline">
-  Именно это отличает <br /> нас от остальных
-</div>
-<h2 class="section_title">
-  Мы не делаем <br /> “просто красиво” — <br /> мы делаем <br />
-  <span class="brand-color italic underline"
-    >по-настоящему<span class="underline-draw-custom">
-      <AdvantagesSign />
-    </span></span
-  >
-</h2>
-<div class="container">
-  <div class="content-block">
-    <div class="photo">
-      <SectionAware
-        sources={imageSources}
-        src={AdvantagesVisual.src}
-        alt="Feature"
-        height="100%"
-        width="100%"
-        preloadSections={1}
-        sectionSelector="[data-section]"
-      />
-    </div>
+<div class="column-wrapper">
+  <div class="right-column__tagline">
+    Именно это отличает <br /> нас от остальных
+  </div>
+  <h2 class="section_title">
+    Мы не делаем <br /> “просто красиво” — <br /> мы делаем <br />
+    <span class="brand-color italic underline"
+      >по-настоящему<span class="underline-draw-custom">
+        <AdvantagesSign />
+      </span></span
+    >
+  </h2>
+  <div class="container">
+    <div class="content-block">
+      <div class="photo">
+        <SectionAware
+          sources={imageSources}
+          src={AdvantagesVisual.src}
+          alt="Feature"
+          height="100%"
+          width="100%"
+          preloadSections={1}
+          sectionSelector="[data-section]"
+        />
+      </div>
 
-    <div class="section-description">
-      <p class="text-1">
-        Нам не нужно ничего навязывать — мы умеем слышать вас, считывать
-        невысказанное, и именно поэтому результат всегда оказывается ближе к
-        мечте, чем вы сами могли сформулировать.
-      </p>
+      <div class="section-description">
+        <p class="text-1">
+          Нам не нужно ничего навязывать — мы умеем слышать вас, считывать
+          невысказанное, и именно поэтому результат всегда оказывается ближе к
+          мечте, чем вы сами могли сформулировать.
+        </p>
 
-      <p class="text-2">
-        Нас выбирают за чуткость, опыт и эстетику, которой можно доверять. И мы
-        отвечаем на это доверием в ответ.
-      </p>
+        <p class="text-2">
+          Нас выбирают за чуткость, опыт и эстетику, которой можно доверять. И
+          мы отвечаем на это доверием в ответ.
+        </p>
+      </div>
     </div>
   </div>
+  <Copyright />
 </div>
-<Copyright />
 
 <style>
+  .column-wrapper {
+    height: calc(100% - 100px);
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--brand-color);
+    border-bottom: 1px solid var(--brand-color);
+  }
   .container {
     margin-top: auto;
   }
@@ -61,7 +71,12 @@ const imageSources = [
     display: grid;
     gap: 30px;
   }
-
+  .section_description {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
   @media (min-width: 768px) {
     .content-block {
       grid-template-columns: 1fr 1fr;
@@ -74,11 +89,13 @@ const imageSources = [
       grid-area: photo;
     }
 
-    .section-descriptionr {
+    .section-description {
       grid-area: text;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       gap: 50px;
+      height: 100%;
     }
 
     .text-1 {
@@ -132,7 +149,8 @@ const imageSources = [
   @media (min-width: 768px) {
     .text-1,
     .text-2 {
-      font-size: 18px;
+      font-size: var(--fs-18);
+      color: var(--text-color-secondary);
     }
   }
 </style>

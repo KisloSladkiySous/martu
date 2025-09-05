@@ -1,11 +1,12 @@
 ---
-import ShowCase from "./ShowCase.astro";
 import SectionAware from "../components/SectionAware.astro";
-import HeroBackground from "../assets/images/hero-section-background.png";
 import ShowCaseSign from "../assets/images/show-case-underline.svg";
+import PriceBackground from "../assets/images/price-section-background.png";
+import ShowCase from "./ShowCase.astro";
+
 const imageSources = [
   {
-    srcset: HeroBackground.src,
+    srcset: PriceBackground.src,
     media: "(max-width: 1440)",
     type: "image/png",
   },
@@ -14,13 +15,10 @@ const imageSources = [
 
 <div class="column-showcase">
   <div class="column-showcase__content">
-    <ShowCase
-      date="Сентябрь 2025"
-      names="Вероника и Максим"
-      cssClass="border-bottom"
-    >
+    <ShowCase cssClass="border-top">
       <div slot="showcase__title" class="showcase__title">
-        <span class="italic">Бесплатная</span> консультация по вашему запросу!
+        Проверьте <br />
+        <span class="italic">свободную</span> дату
       </div>
       <div slot="showcase__contact-us" class="showcase__cta-button underline">
         Связаться с нами
@@ -29,8 +27,8 @@ const imageSources = [
         </span>
       </div>
       <div slot="showcase__description" class="showcase__description">
-        Расскажите нам свои идеи, и мы предложим<br /> концепцию, формат и ориентир
-        по бюджету <br /> — даже если вы ещё не выбрали агентство.
+        Планируете свадьбу? <br /> Узнайте, доступна ли ваша дата <br /> — она может
+        быть уже почти вашей.
       </div>
     </ShowCase>
   </div>
@@ -38,7 +36,7 @@ const imageSources = [
   <SectionAware
     class="background-image"
     sources={imageSources}
-    src={HeroBackground.src}
+    src={PriceBackground.src}
     alt="Feature"
     height="100%"
     width="100%"
