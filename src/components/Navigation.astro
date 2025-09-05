@@ -1,6 +1,8 @@
 ---
 import Logo from "../assets/logo.svg";
 import Burger from "../assets/burger.svg";
+import { socialLinks } from "../social-links.ts";
+const links = socialLinks;
 ---
 
 <nav class="navigation" id="navigation">
@@ -24,7 +26,7 @@ import Burger from "../assets/burger.svg";
     </div>
     <div class="divider"></div>
     <div class="column">
-      <a href="#section4">Instagram</a>
+      <a href={links.inst} target="_blank">Instagram</a>
       <a href="#section4">Вконтакте</a>
     </div>
   </div>
@@ -186,6 +188,9 @@ import Burger from "../assets/burger.svg";
     // Дополнительно: при загрузке страницы, если есть хеш, проскролить к нему
     if (window.location.hash) {
       const targetSection = document.querySelector(window.location.hash);
+      console.log(targetSection);
+      console.log(targetSection.offsetTop);
+
       if (targetSection) {
         setTimeout(() => {
           window.scrollTo(0, targetSection.offsetTop);

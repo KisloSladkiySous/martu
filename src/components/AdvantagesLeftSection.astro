@@ -10,47 +10,67 @@ const imageSources = [
 ];
 ---
 
-<SectionAware
-  class="background-image"
-  sources={imageSources}
-  src={AdvantagesBackground.src}
-  alt="Feature"
-  height="100%"
-  width="100%"
-  preloadSections={1}
-  sectionSelector="[data-section]"
-/>
-
-<div class="advantages">
-  <div class="list-container">
-    <ul class="list">
-      <li class="list-item">
-        <p class="list-item-title">Сильная команда</p>
-        <p class="list-item-description">
-          Cобственный декор, координаторы, подрядчики
-        </p>
-      </li>
-      <li class="list-item">
-        <p class="list-item-title">Персональный подход</p>
-        <p class="list-item-description">Свадьба по вашему стилю и характеру</p>
-      </li>
-      <li class="list-item">
-        <p class="list-item-title">Полное сопровождение</p>
-        <p class="list-item-description">
-          От брифа до финального бокала шампанского
-        </p>
-      </li>
-      <li class="list-item">
-        <p class="list-item-title">Опыт и надёжность</p>
-        <p class="list-item-description">
-          Мы знаем, как предвосхищать сложности
-        </p>
-      </li>
-    </ul>
+<div class="column-showcase">
+  <div class="column-showcase__content">
+    <div class="advantages">
+      <div class="list-container">
+        <ul class="list">
+          <li class="list-item">
+            <p class="list-item-title">Сильная команда</p>
+            <p class="list-item-description">
+              Cобственный декор, координаторы, подрядчики
+            </p>
+          </li>
+          <li class="list-item">
+            <p class="list-item-title">Персональный подход</p>
+            <p class="list-item-description">
+              Свадьба по вашему стилю и характеру
+            </p>
+          </li>
+          <li class="list-item">
+            <p class="list-item-title">Полное сопровождение</p>
+            <p class="list-item-description">
+              От брифа до финального бокала шампанского
+            </p>
+          </li>
+          <li class="list-item">
+            <p class="list-item-title">Опыт и надёжность</p>
+            <p class="list-item-description">
+              Мы знаем, как предвосхищать сложности
+            </p>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
+
+  <SectionAware
+    class="background-image"
+    sources={imageSources}
+    src={AdvantagesBackground.src}
+    alt="Feature"
+    height="100%"
+    width="100%"
+    preloadSections={1}
+    sectionSelector="[data-section]"
+  />
 </div>
 
 <style>
+  .column-showcase {
+    height: 100vh;
+    position: sticky;
+    top: 0;
+  }
+  .column-showcase__content {
+    height: calc(100% - 100px);
+    display: flex;
+    flex-direction: column;
+    margin: 50px;
+    position: relative;
+    z-index: 2;
+  }
+
   .list-container {
     display: flex;
   }

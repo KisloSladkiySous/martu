@@ -4,52 +4,65 @@ import FirstSign from "../assets/images/review-sign-1.svg";
 import SecondSign from "../assets/images/review-sign-2.svg";
 ---
 
-<div class="left-column__tagline">Отзывы тех, кто доверил нам самое важное</div>
-<h2 class="left-section__title">
-  То, что <span class="brand-color italic underline"
-    >невозможно <span class="underline-draw">
-      <FirstSign />
-    </span></span
-  >
-  <br />
-  <span class="brand-color italic underline"
-    >придумать<span class="underline-draw">
-      <SecondSign />
-    </span></span
-  > — только <br /> прожить
-</h2>
-<div class="review-description">
-  <p>
-    И когда спустя месяцы или даже годы нам пишут: <br /> «Мы до сих пор вспоминаем
-    тот день, как самый <br /> счастливый» — это больше, чем любая награда.
-  </p>
-  <p>
-    Мы знаем, что эмоции не подделаешь, что тепло не <br /> рисуется в фотошопе и
-    что искренность нельзя <br /> прописать в ТЗ. Поэтому всё, что вы прочтёте —
+<div class="column-wrapper">
+  <div class="left-column__tagline">
+    Отзывы тех, кто доверил нам самое важное
+  </div>
+  <h2 class="left-section__title">
+    То, что <span class="brand-color italic underline"
+      >невозможно <span class="underline-draw">
+        <FirstSign />
+      </span></span
+    >
     <br />
-    настоящее, написанное по зову сердца. Именно <br /> такие истории вдохновляют
-    нас снова и снова <br /> вкладывать душу в каждую деталь.
-  </p>
-</div>
+    <span class="brand-color italic underline"
+      >придумать<span class="underline-draw">
+        <SecondSign />
+      </span></span
+    > — только <br /> прожить
+  </h2>
+  <div class="review-description">
+    <p>
+      И когда спустя месяцы или даже годы нам пишут: <br /> «Мы до сих пор вспоминаем
+      тот день, как самый <br /> счастливый» — это больше, чем любая награда.
+    </p>
+    <p>
+      Мы знаем, что эмоции не подделаешь, что тепло не <br /> рисуется в фотошопе
+      и что искренность нельзя <br /> прописать в ТЗ. Поэтому всё, что вы прочтёте
+      —
+      <br />
+      настоящее, написанное по зову сердца. Именно <br /> такие истории вдохновляют
+      нас снова и снова <br /> вкладывать душу в каждую деталь.
+    </p>
+  </div>
 
-<div class="media">
-  <p class="media__title">Больше отзывов:</p>
-  <div class="media__links">
-    <span class="hover-text">
-      Яндекс
-      <Underline class="hover-svg" preserveAspectRatio="none" />
-    </span>
-    <span class="hover-text">
-      Instagramm
-      <Underline class="hover-svg" preserveAspectRatio="none" />
-    </span>
-    <span class="hover-text">
-      Вконтакте
-      <Underline class="hover-svg" preserveAspectRatio="none" />
-    </span>
+  <div class="media">
+    <p class="media__title">Больше отзывов:</p>
+    <div class="media__links">
+      <span class="hover-text">
+        Яндекс
+        <Underline class="hover-svg" preserveAspectRatio="none" />
+      </span>
+      <span class="hover-text">
+        Instagramm
+        <Underline class="hover-svg" preserveAspectRatio="none" />
+      </span>
+      <span class="hover-text">
+        Вконтакте
+        <Underline class="hover-svg" preserveAspectRatio="none" />
+      </span>
+    </div>
   </div>
 </div>
 <style is:global>
+  .column-wrapper {
+    height: calc(100% - 100px);
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--brand-color);
+    border-bottom: 1px solid var(--brand-color);
+  }
   .hover-text {
     display: inline-block;
     position: relative;

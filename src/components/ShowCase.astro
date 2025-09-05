@@ -5,13 +5,17 @@ const { date, names, cssClass } = Astro.props;
 <div class={`showcase ${cssClass}`}>
   <slot name="showcase__title" />
   <slot name="showcase__description" />
+  <slot name="showcase__contact-us" />
 
-  <div class="showcase__cta-button">Связаться с нами</div>
-  <div class="showcase__toolbar">
-    <span> {date}</span>
-    <span> {names}</span>
-    <span class="border-bottom">Больше фото</span>
-  </div>
+  {
+    names && (
+      <div class="showcase__toolbar">
+        {date && <span>{date}</span>}
+        <span>{names}</span>
+        <span class="border-bottom">Больше фото</span>
+      </div>
+    )
+  }
 </div>
 <style>
   .border-bottom {

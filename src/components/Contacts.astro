@@ -4,6 +4,8 @@ import VK from "../assets/images/vk.svg";
 import Inst from "../assets/images/inst.svg";
 import Whatsup from "../assets/images/whatsup.svg";
 import Telegramm from "../assets/images/telegramm.svg";
+import { socialLinks } from "../social-links.ts";
+const links = socialLinks;
 ---
 
 <section
@@ -22,9 +24,8 @@ import Telegramm from "../assets/images/telegramm.svg";
         <span class="link">
           <VK />
         </span>
-        <span class="link">
-          <Inst />
-        </span>
+
+        <a href={links.inst} target="_blank" class="link"> <Inst /></a>
         <span class="link">
           <Whatsup />
         </span>

@@ -1,6 +1,6 @@
 ---
 import SectionAware from "../components/SectionAware.astro";
-
+import ShowCaseSign from "../assets/images/show-case-underline.svg";
 import PriceBackground from "../assets/images/price-section-background.png";
 import ShowCase from "./ShowCase.astro";
 
@@ -13,23 +13,47 @@ const imageSources = [
 ];
 ---
 
-<SectionAware
-  class="background-image"
-  sources={imageSources}
-  src={PriceBackground.src}
-  alt="Feature"
-  height="100%"
-  width="100%"
-  preloadSections={1}
-  sectionSelector="[data-section]"
-/>
-<ShowCase date="Сентябрь 2025" names="Вероника и Максим" cssClass="border-top">
-  <div slot="showcase__title" class="showcase__title">
-    Проверьте <br />
-    <span class="italic">свободную</span> дату
+<div class="column-showcase">
+  <div class="column-showcase__content">
+    <ShowCase cssClass="border-top">
+      <div slot="showcase__title" class="showcase__title">
+        Проверьте <br />
+        <span class="italic">свободную</span> дату
+      </div>
+      <div slot="showcase__contact-us" class="showcase__cta-button underline">
+        Связаться с нами
+        <span class="underline-draw">
+          <ShowCaseSign />
+        </span>
+      </div>
+      <div slot="showcase__description" class="showcase__description">
+        Планируете свадьбу? <br /> Узнайте, доступна ли ваша дата <br /> — она может
+        быть уже почти вашей.
+      </div>
+    </ShowCase>
   </div>
-  <div slot="showcase__description" class="showcase__description">
-    Планируете свадьбу? <br /> Узнайте, доступна ли ваша дата <br /> — она может
-    быть уже почти вашей.
-  </div>
-</ShowCase>
+
+  <SectionAware
+    class="background-image"
+    sources={imageSources}
+    src={PriceBackground.src}
+    alt="Feature"
+    height="100%"
+    width="100%"
+    preloadSections={1}
+    sectionSelector="[data-section]"
+  />
+</div>
+<style>
+  .column-showcase {
+    height: 100vh;
+    position: sticky;
+    top: 0;
+  }
+  .column-showcase__content {
+    height: calc(100% - 100px);
+    display: flex;
+    flex-direction: column;
+    margin: 50px;
+  }
+</style>
