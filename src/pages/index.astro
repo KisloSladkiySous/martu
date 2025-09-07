@@ -147,13 +147,7 @@ const classes: Record<number, string> = {
   <main class="scroll-container">
     {
       sections.map((section, index) => (
-        <section
-          class={`snap-section ${classes[index] ?? ""}`}
-          id={idsMap[index]}
-          data-nav-section
-          data-section-index={index}
-          data-section
-        >
+        <section class={`snap-section ${classes[index] ?? ""}`}>
           {section.map(({ component: Component, props }) => (
             <div class="snap-column">
               <div class={`column-content ${props.class ?? ""}`}>
@@ -194,7 +188,7 @@ const classes: Record<number, string> = {
     position: relative;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 1025px) {
     .snap-section {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -202,8 +196,8 @@ const classes: Record<number, string> = {
       scroll-snap-align: start;
     }
 
-    .snap-section:nth-of-type(even) {
-      direction: ltr; /* меняет порядок колонок */
+    .snap-section:not(:nth-child(5)) {
+      max-height: 100vh;
     }
 
     .snap-column {

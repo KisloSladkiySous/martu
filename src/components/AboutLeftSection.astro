@@ -1,9 +1,8 @@
 ---
-import Circle from "./Circle.astro";
+import AboutBackground from "../assets/images/about-section-background.png";
 import FounderImage from "../assets/images/founder.png";
 import SectionAware from "../components/SectionAware.astro";
-import FounderSignature from "../assets/images/founder-signature.svg";
-import AboutBackground from "../assets/images/about-section-background.png";
+import Circle from "./Circle.astro";
 const imageSources = [
   {
     srcset: AboutBackground.src,
@@ -13,7 +12,13 @@ const imageSources = [
 ];
 ---
 
-<div class="column-showcase">
+<div
+  class="column-showcase"
+  id="about"
+  data-nav-section
+  data-section-index="3"
+  data-section
+>
   <div class="column-showcase__content">
     <p class="about-section__subtitle">
       Красота в <br />
@@ -67,20 +72,6 @@ const imageSources = [
     width: 150px;
     height: 70px;
   }
-  .column-showcase {
-    height: 100vh;
-    position: sticky;
-    top: 0;
-  }
-  .column-showcase__content {
-    height: calc(100% - 100px);
-    display: flex;
-    flex-direction: column;
-    margin: 50px;
-    position: relative;
-    z-index: 2;
-    border-top: 1px solid var(--border-color-white);
-  }
 
   .about-section__subtitle {
     margin-top: 12.3rem;
@@ -92,7 +83,6 @@ const imageSources = [
     margin-top: auto;
     background-color: var(--background-color);
     width: 100%;
-    height: 100%;
     max-height: 22.125rem;
     display: flex;
     flex-direction: column;
@@ -104,6 +94,7 @@ const imageSources = [
     margin: 4.375rem auto 2.1875rem;
     color: var(--text-color-tertiary);
   }
+
   .founder__signature {
     display: flex;
     justify-content: flex-end;
@@ -123,5 +114,16 @@ const imageSources = [
     flex-direction: column;
     gap: 2px;
     margin-bottom: 3.312rem;
+  }
+  @media (max-width: 1025px) {
+    .founder__quote {
+      margin: 2.18rem auto 2rem;
+    }
+    .founder__fio {
+      margin-bottom: 1.8rem;
+    }
+    .about-section__subtitle {
+      margin-top: 6.875rem;
+    }
   }
 </style>

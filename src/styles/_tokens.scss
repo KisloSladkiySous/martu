@@ -11,13 +11,14 @@
   --text-color-white: #ffffff;
   --card-color: #fff9f0;
   --card-border: #f7eee0;
-  --play-button-background:rgba(247, 235, 215, 0.5)
-  /* font tokens */
-  --fs-12: 12px;
-  --fs-14: 14px;
+  --play-button-background: rgba(247, 235, 215, 0.5) /* font tokens */
+    --fs-12: 12px;
+  --fs-14: 0.875rem;
   --fs-18: 18px;
   --fs-46: 46px;
+  --fs-54: 54px;
   --fs-64: 64px;
+
   --ff-main: "Playfair Display", "serif";
 }
 :root {

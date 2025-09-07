@@ -12,7 +12,13 @@ const imageSources = [
 ];
 ---
 
-<div class="column-wrapper">
+<div
+  class="column-wrapper"
+  id="advantages"
+  data-nav-section
+  data-section-index="8"
+  data-section
+>
   <div class="right-column__tagline">
     Именно это отличает <br /> нас от остальных
   </div>
@@ -56,14 +62,6 @@ const imageSources = [
 </div>
 
 <style>
-  .column-wrapper {
-    height: calc(100% - 100px);
-    margin: 50px;
-    display: flex;
-    flex-direction: column;
-    border-top: 1px solid var(--brand-color);
-    border-bottom: 1px solid var(--brand-color);
-  }
   .container {
     margin-top: auto;
   }

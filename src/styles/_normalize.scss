@@ -40,7 +40,7 @@ main {
    */
 
 h1 {
-  @include fluid-text(52px, 64px, 400, 1440);
+  font-size: 4rem;
   margin: 0;
 }
 

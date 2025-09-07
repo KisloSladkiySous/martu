@@ -12,7 +12,13 @@ const imageSources = [
 ];
 ---
 
-<div class="column-showcase">
+<div
+  class="column-showcase"
+  id="hero"
+  data-section-index="1"
+  data-nav-section
+  data-section
+>
   <div class="column-showcase__content">
     <ShowCase
       date="Сентябрь 2025"
@@ -46,16 +52,3 @@ const imageSources = [
     sectionSelector="[data-section]"
   />
 </div>
-<style>
-  .column-showcase {
-    height: 100vh;
-    position: sticky;
-    top: 0;
-  }
-  .column-showcase__content {
-    height: calc(100% - 100px);
-    display: flex;
-    flex-direction: column;
-    margin: 50px;
-  }
-</style>

@@ -10,7 +10,13 @@ const imageSources = [
 ];
 ---
 
-<div class="column-showcase">
+<div
+  class="column-showcase"
+  id="advantages"
+  data-nav-section
+  data-section-index="9"
+  data-section
+>
   <div class="column-showcase__content">
     <div class="advantages">
       <div class="list-container">
@@ -57,20 +63,6 @@ const imageSources = [
 </div>
 
 <style>
-  .column-showcase {
-    height: 100vh;
-    position: sticky;
-    top: 0;
-  }
-  .column-showcase__content {
-    height: calc(100% - 100px);
-    display: flex;
-    flex-direction: column;
-    margin: 50px;
-    position: relative;
-    z-index: 2;
-  }
-
   .list-container {
     display: flex;
   }

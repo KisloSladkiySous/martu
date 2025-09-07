@@ -33,14 +33,12 @@ main {
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 100%;
   height: auto;
 }
 .underline-draw-custom {
   position: absolute;
   left: 0;
   bottom: -21px;
-  width: 100%;
   height: auto;
 }
 
@@ -54,7 +52,7 @@ main {
   display: flex !important;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1025px) {
   .desktop {
     display: none !important;
   }

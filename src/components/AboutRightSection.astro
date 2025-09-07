@@ -3,7 +3,13 @@ import Copyright from "./Copyright.astro";
 import AboutSign from "../assets/images/about-sign.svg";
 ---
 
-<div class="column-wrapper">
+<div
+  class="column-wrapper"
+  id="about"
+  data-nav-section
+  data-section-index="4"
+  data-section
+>
   <div class="right-column__tagline">
     Мы — команда <span class="brand-color italic">Martu</span>, <br />и мы любим
     свадьбы.
@@ -56,15 +62,6 @@ import AboutSign from "../assets/images/about-sign.svg";
   <Copyright />
 </div>
 <style>
-  .column-wrapper {
-    height: calc(100% - 100px);
-    margin: 50px;
-    display: flex;
-    flex-direction: column;
-    border-top: 1px solid var(--brand-color);
-    border-bottom: 1px solid var(--brand-color);
-  }
-
   .about-section__title {
     margin-bottom: 5.125rem;
   }

@@ -74,6 +74,8 @@ const pictureId = `section-lazy-${Math.random().toString(36).substr(2, 9)}`;
 
     constructor() {
       this.pictures = document.querySelectorAll(".section-lazy-picture");
+      console.log(this.pictures);
+
       if (this.pictures.length > 0) {
         this.init();
       }
@@ -81,6 +83,8 @@ const pictureId = `section-lazy-${Math.random().toString(36).substr(2, 9)}`;
 
     private init() {
       if ("IntersectionObserver" in window) {
+        console.log("intersect");
+
         this.mapPicturesToSections();
         this.setupSectionObserver();
         this.setupFallbackObserver();
@@ -126,6 +130,8 @@ const pictureId = `section-lazy-${Math.random().toString(36).substr(2, 9)}`;
       this.sectionObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
+            console.log(entry);
+
             if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
               // Обновляем текущую видимую секцию
               this.currentVisibleSection = entry.target;
@@ -140,6 +146,8 @@ const pictureId = `section-lazy-${Math.random().toString(36).substr(2, 9)}`;
       );
 
       // Наблюдаем за всеми секциями
+      console.log(this.sections);
+
       this.sections.forEach((info, section) => {
         this.sectionObserver?.observe(section);
       });
@@ -356,7 +364,8 @@ const pictureId = `section-lazy-${Math.random().toString(36).substr(2, 9)}`;
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(
+    background:
+      linear-gradient(
         90deg,
         transparent,
         rgba(255, 255, 255, 0.5),

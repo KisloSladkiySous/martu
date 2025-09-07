@@ -48,7 +48,7 @@ const links = socialLinks;
     justify-content: space-between;
     align-items: center;
   }
-  @media (max-width: 690px) {
+  @media (max-width: 1025px) {
     .navigation {
       backdrop-filter: blur(4px);
       width: calc(100% - 40px);
@@ -119,6 +119,8 @@ const links = socialLinks;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
+          console.log(entry);
+
           if (entry.isIntersecting) {
             const index = parseInt(
               entry.target.getAttribute("data-section-index")
@@ -171,6 +173,8 @@ const links = socialLinks;
       link.addEventListener("click", (e) => {
         const targetId = link.getAttribute("href");
         const targetSection = document.querySelector(targetId);
+        console.log(targetSection);
+        console.log(targetId);
 
         if (targetSection) {
           // Прокручиваем
@@ -187,6 +191,8 @@ const links = socialLinks;
 
     // Дополнительно: при загрузке страницы, если есть хеш, проскролить к нему
     if (window.location.hash) {
+      console.log(window.location.hash);
+
       const targetSection = document.querySelector(window.location.hash);
       console.log(targetSection);
       console.log(targetSection.offsetTop);

@@ -12,7 +12,13 @@ const imageSources = [
 ];
 ---
 
-<div class="column-wrapper">
+<div
+  class="column-wrapper"
+  id="portfolio"
+  data-nav-section
+  data-section-index="6"
+  data-section
+>
   <h2>
     Образы, <br />
     <span class="brand-color italic underline"
@@ -55,14 +61,6 @@ const imageSources = [
   </div>
 </div>
 <style>
-  .column-wrapper {
-    height: calc(100% - 100px);
-    margin: 50px;
-    display: flex;
-    flex-direction: column;
-    border-top: 1px solid var(--brand-color);
-    border-bottom: 1px solid var(--brand-color);
-  }
   h2 {
     margin-top: 146px;
     margin-bottom: 32px;
