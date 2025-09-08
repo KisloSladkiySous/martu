@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import Play from "../assets/play.svg";
+
 const mock = [
   {
     id: 1,
@@ -8,7 +9,7 @@ const mock = [
 
     content:
       "Отличный сервис! Команда профессионалов, которые действительно понимают потребности бизнеса.",
-    avatar: "/images/review1.svg",
+    avatar: `${import.meta.env.BASE_URL}/images/review1.svg`,
   },
   {
     id: 2,
@@ -16,28 +17,28 @@ const mock = [
     role: "Дизайнер, Creative Studio",
     content:
       "Превосходное качество работы и внимание к деталям. Рекомендую всем!",
-    avatar: "/images/review2.svg",
+    avatar: `${import.meta.env.BASE_URL}/images/review2.svg`,
   },
   {
     id: 3,
     author: "Елена Сидорова",
     role: "Маркетолог, Digital Agency",
     content: "Результаты превзошли все ожидания. Спасибо за профессионализм!",
-    avatar: "/images/review3.svg",
+    avatar: `${import.meta.env.BASE_URL}/images/review3.svg`,
   },
   {
     id: 4,
     author: "Дмитрий Козлов",
     role: "CTO, InnovateTech",
     content: "Инновационный подход и отличная техническая реализация проектов.",
-    avatar: "/images/review4.svg",
+    avatar: `${import.meta.env.BASE_URL}/images/review4.svg`,
   },
   {
     id: 5,
     author: "Ольга Морозова",
     role: "Product Manager, StartupHub",
     content: "Быстро, качественно и в срок. Именно то, что нужно для стартапа!",
-    avatar: "/images/review1.svg",
+    avatar: `${import.meta.env.BASE_URL}/images/review5.svg`,
   },
   {
     id: 6,
@@ -45,7 +46,7 @@ const mock = [
     role: "Founder, WebSolutions",
     content:
       "Профессиональная команда с глубоким пониманием современных технологий.",
-    avatar: "/images/review2.svg",
+    avatar: `${import.meta.env.BASE_URL}/images/review6.svg`,
   },
 ];
 
