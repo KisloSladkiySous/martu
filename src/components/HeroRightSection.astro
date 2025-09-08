@@ -10,12 +10,14 @@ const imageSources = [
     type: "image/png",
   },
 ];
+
+const { index, id } = Astro.props;
 ---
 
 <div
   class="column-showcase"
-  id="hero"
-  data-section-index="1"
+  id={id}
+  data-section-index={index}
   data-nav-section
   data-section
 >

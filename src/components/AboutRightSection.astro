@@ -1,13 +1,15 @@
 ---
 import Copyright from "./Copyright.astro";
 import AboutSign from "../assets/images/about-sign.svg";
+
+const { index, id } = Astro.props;
 ---
 
 <div
   class="column-wrapper"
-  id="about"
+  id={id}
+  data-section-index={index}
   data-nav-section
-  data-section-index="4"
   data-section
 >
   <div class="right-column__tagline">

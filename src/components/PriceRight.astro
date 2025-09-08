@@ -1,9 +1,17 @@
 ---
 import Copyright from "./Copyright.astro";
 import PricesSign from "../assets/images/prices-sign.svg";
+
+const { index, id } = Astro.props;
 ---
 
-<div class="column-wrapper">
+<div
+  class="column-wrapper"
+  id={id}
+  data-section-index={index}
+  data-nav-section
+  data-section
+>
   <div class="right-column__tagline">
     Свадьба может быть идеальной <br /> и прозрачной по бюджету
   </div>

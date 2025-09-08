@@ -22,14 +22,14 @@ const sections = [
     {
       component: HeroLeftSection,
       props: {
-        title: "Главная секция",
+        id: "hero",
         class: "column-content--bordered",
       },
     },
     {
       component: HeroRightSection,
       props: {
-        title: "Главная секция",
+        id: "hero",
         class: "column-content--bordered-bottom",
       },
     },
@@ -38,14 +38,14 @@ const sections = [
     {
       component: AboutLeftSection,
       props: {
-        title: "Секция о нас",
+        id: "about",
         class: "column-content--bordered-top",
       },
     },
     {
       component: AboutRightSection,
       props: {
-        title: "Секция о нас",
+        id: "about",
         class: "column-content--bordered",
       },
     },
@@ -54,14 +54,14 @@ const sections = [
     {
       component: PortfolioLeft,
       props: {
-        title: "Секция портфолио",
+        id: "portfolio",
         class: "column-content--bordered",
       },
     },
     {
       component: PortfolioRight,
       props: {
-        title: "Секция портфолио",
+        id: "portfolio",
         class: "column-content--bordered-bottom",
       },
     },
@@ -70,13 +70,13 @@ const sections = [
     {
       component: AdvantagesLeftSection,
       props: {
-        title: "Секция преимущества",
+        id: "advantages",
       },
     },
     {
       component: AdvantagesRightSection,
       props: {
-        title: "Секция преимущества",
+        id: "advantages",
         class: "column-content--bordered",
       },
     },
@@ -85,14 +85,14 @@ const sections = [
     {
       component: WorkflowLeftSection,
       props: {
-        title: "Секция процесс",
+        id: "workflow",
         class: "column-content--bordered",
       },
     },
     {
       component: WorkflowRight,
       props: {
-        title: "Секция процесс",
+        id: "workflow",
         class: "column-content--bordered-bottom",
       },
     },
@@ -101,14 +101,14 @@ const sections = [
     {
       component: PriceLeft,
       props: {
-        title: "Секция цен",
+        id: "price",
         class: "column-content--bordered-top",
       },
     },
     {
       component: PriceRight,
       props: {
-        title: "Секция цен",
+        id: "price",
         class: "column-content--bordered",
       },
     },
@@ -117,14 +117,14 @@ const sections = [
     {
       component: CustomerReviewLeftSection,
       props: {
-        title: "Секция цен",
+        id: "reviews",
         class: "column-content--bordered",
       },
     },
     {
       component: CustomerReviewsRightSection,
       props: {
-        title: "Секция цен",
+        id: "reviews",
       },
     },
   ],
@@ -139,7 +139,7 @@ const sections = [
           {section.map(({ component: Component, props }, index) => (
             <div class={`snap-column snap-column-${parentIndex}-${index} `}>
               <div class={`column-content ${props.class ?? ""}`}>
-                <Component {...props} />
+                <Component {...props} index={parentIndex} id={props.id} />
               </div>
             </div>
           ))}

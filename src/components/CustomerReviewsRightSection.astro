@@ -52,9 +52,17 @@ const mock = [
 
 const column1mock = [...mock, ...mock, ...mock];
 const column2mock = [...mock, ...mock, ...mock];
+
+const { index, id } = Astro.props;
 ---
 
-<div class="column-wrapper-right">
+<div
+  class="column-wrapper-right"
+  id={id}
+  data-section-index={index}
+  data-nav-section
+  data-section
+>
   <div class="container">
     <div class="column">
       <div class="scroll-wrapper scroll-up" id="leftColumn">

@@ -2,13 +2,15 @@
 import Circle from "./Circle.astro";
 import HeroCircle from "../assets/images/hero-circle.jpg";
 import HeroSign from "../assets/images/hero-sign.svg";
+
+const { index, id } = Astro.props;
 ---
 
 <div
   class="column-wrapper"
-  id="hero"
+  id={id}
+  data-section-index={index}
   data-nav-section
-  data-section-index="1"
   data-section
 >
   <p class="left-column__tagline">

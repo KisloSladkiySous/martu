@@ -2,9 +2,17 @@
 import Underline from "../assets/images/hover-underline.svg";
 import FirstSign from "../assets/images/review-sign-1.svg";
 import SecondSign from "../assets/images/review-sign-2.svg";
+
+const { index, id } = Astro.props;
 ---
 
-<div class="column-wrapper">
+<div
+  class="column-wrapper"
+  id={id}
+  data-section-index={index}
+  data-nav-section
+  data-section
+>
   <div class="left-column__tagline">
     Отзывы тех, кто доверил нам самое важное
   </div>

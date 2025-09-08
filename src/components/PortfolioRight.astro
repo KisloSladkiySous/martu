@@ -9,13 +9,14 @@ const imageSources = [
     type: "image/webp",
   },
 ];
+const { index, id } = Astro.props;
 ---
 
 <div
   class="column-showcase"
-  id="portfolio"
+  id={id}
+  data-section-index={index}
   data-nav-section
-  data-section-index="7"
   data-section
 >
   <div class="column-showcase__content">

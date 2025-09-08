@@ -10,13 +10,15 @@ const imageSources = [
     type: "image/png",
   },
 ];
+
+const { index, id } = Astro.props;
 ---
 
 <div
   class="column-wrapper"
-  id="portfolio"
+  id={id}
+  data-section-index={index}
   data-nav-section
-  data-section-index="6"
   data-section
 >
   <h2>
