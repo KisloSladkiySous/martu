@@ -129,27 +129,15 @@ const sections = [
     },
   ],
 ];
-const idsMap: Record<number, string> = {
-  0: "hero",
-  1: "about",
-  2: "portfolio",
-  3: "advantages",
-  4: "workflow",
-  5: "price",
-  6: "reviews",
-};
-const classes: Record<number, string> = {
-  4: "large",
-};
 ---
 
 <Layout title="Martu - Свадебное агенство">
   <main class="scroll-container">
     {
-      sections.map((section, index) => (
-        <section class={`snap-section ${classes[index] ?? ""}`}>
-          {section.map(({ component: Component, props }) => (
-            <div class="snap-column">
+      sections.map((section, parentIndex) => (
+        <section class={`snap-section`}>
+          {section.map(({ component: Component, props }, index) => (
+            <div class={`snap-column snap-column-${parentIndex}-${index} `}>
               <div class={`column-content ${props.class ?? ""}`}>
                 <Component {...props} />
               </div>

@@ -404,10 +404,10 @@ h2 span {
 /* Tablet */
 @media screen and (max-width: 1025px) {
   :root {
-    --size-container-ideal: 1025 !important; /* screen-size in design - no px */
-    --size-container-min: 768px !important;
-    --size-container-max: 1025 !important;
-    --section-margin: 1.25rem !important;
+    --size-container-ideal: 834; /* screen-size in design - no px */
+    --size-container-min: 426px;
+    --size-container-max: 1025px;
+    --section-margin: 1.25rem;
   }
 }
 /* Mobile Landscape */
@@ -435,6 +435,15 @@ section {
   background-color: var(--background-color);
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+}
+@media (max-width: 1024px) {
+   .snap-column-0-0 { order: 1; }
+   .snap-column-0-1 { order: 2; }
+   .snap-column-1-0 { order: 4; }
+   .snap-column-1-1 { order: 3; }
+
+  
+ 
 }
 .column-wrapper {
   height: calc(100% - 2 * var(--section-margin));

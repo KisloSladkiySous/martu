@@ -74,8 +74,6 @@ const pictureId = `section-lazy-${Math.random().toString(36).substr(2, 9)}`;
 
     constructor() {
       this.pictures = document.querySelectorAll(".section-lazy-picture");
-      console.log(this.pictures);
-
       if (this.pictures.length > 0) {
         this.init();
       }
@@ -83,8 +81,6 @@ const pictureId = `section-lazy-${Math.random().toString(36).substr(2, 9)}`;
 
     private init() {
       if ("IntersectionObserver" in window) {
-        console.log("intersect");
-
         this.mapPicturesToSections();
         this.setupSectionObserver();
         this.setupFallbackObserver();
@@ -120,9 +116,6 @@ const pictureId = `section-lazy-${Math.random().toString(36).substr(2, 9)}`;
       });
 
       // Отладочная информация
-      console.log(
-        `Mapped ${this.sections.size} sections with ${this.pictures.length} total pictures`
-      );
     }
 
     private setupSectionObserver() {
@@ -130,8 +123,6 @@ const pictureId = `section-lazy-${Math.random().toString(36).substr(2, 9)}`;
       this.sectionObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            console.log(entry);
-
             if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
               // Обновляем текущую видимую секцию
               this.currentVisibleSection = entry.target;
@@ -146,7 +137,6 @@ const pictureId = `section-lazy-${Math.random().toString(36).substr(2, 9)}`;
       );
 
       // Наблюдаем за всеми секциями
-      console.log(this.sections);
 
       this.sections.forEach((info, section) => {
         this.sectionObserver?.observe(section);
@@ -156,8 +146,6 @@ const pictureId = `section-lazy-${Math.random().toString(36).substr(2, 9)}`;
     private handleSectionChange(visibleSection: Element) {
       const currentSectionInfo = this.sections.get(visibleSection);
       if (!currentSectionInfo) return;
-
-      console.log(`Currently in section ${currentSectionInfo.index}`);
 
       // Проходим по всем секциям и проверяем, какие картинки нужно загрузить
       this.sections.forEach((sectionInfo, section) => {
@@ -180,9 +168,6 @@ const pictureId = `section-lazy-${Math.random().toString(36).substr(2, 9)}`;
             !this.loadedPictures.has(picture) &&
             !this.loadingPictures.has(picture)
           ) {
-            console.log(
-              `Loading picture in section ${sectionInfo.index} (current section: ${currentSectionInfo.index}, preload: ${preloadCount})`
-            );
             this.loadPicture(picture);
           }
         });
@@ -202,7 +187,6 @@ const pictureId = `section-lazy-${Math.random().toString(36).substr(2, 9)}`;
                 !this.loadedPictures.has(picture) &&
                 !this.loadingPictures.has(picture)
               ) {
-                console.log("Loading picture via fallback observer");
                 this.loadPicture(picture);
               }
             }
@@ -224,7 +208,6 @@ const pictureId = `section-lazy-${Math.random().toString(36).substr(2, 9)}`;
         });
 
         if (!isInSection) {
-          console.log("Picture not in any section, using fallback observer");
           fallbackObserver.observe(picture);
         }
       });
@@ -268,10 +251,6 @@ const pictureId = `section-lazy-${Math.random().toString(36).substr(2, 9)}`;
 
           this.loadingPictures.delete(picture);
           this.loadedPictures.add(picture);
-
-          console.log(
-            `Successfully loaded picture ${picture.getAttribute("data-picture-id")}`
-          );
         };
 
         tempImg.onerror = () => {
@@ -280,9 +259,6 @@ const pictureId = `section-lazy-${Math.random().toString(36).substr(2, 9)}`;
           picture.classList.add("picture-error");
 
           this.loadingPictures.delete(picture);
-          console.error(
-            `Failed to load picture ${picture.getAttribute("data-picture-id")}`
-          );
         };
 
         // Определяем правильный источник на основе media queries

@@ -125,6 +125,8 @@ const links = socialLinks;
             const index = parseInt(
               entry.target.getAttribute("data-section-index")
             );
+            console.log(entry);
+
             const sectionId = entry.target.id; // Получаем ID секции
 
             currentSectionIndex = index;
@@ -141,11 +143,12 @@ const links = socialLinks;
 
               // Проверяем, соответствует ли ссылка текущей секции
               const targetId = link.getAttribute("href").slice(1);
-              if (targetId === "hero") {
-                return;
-              }
+
               if (targetId === sectionId) {
-                link.classList.add("active");
+                if (targetId !== "hero") {
+                  link.classList.add("active");
+                }
+
                 // Обновляем хеш только если он не совпадает
                 if (window.location.hash !== `#${sectionId}`) {
                   history.replaceState(null, null, `#${sectionId}`);
@@ -177,11 +180,14 @@ const links = socialLinks;
         console.log(targetId);
 
         if (targetSection) {
-          // Прокручиваем
-          window.scrollTo({
-            top: targetSection.offsetTop,
+          targetSection.scrollIntoView({
             behavior: "smooth",
           });
+          // Прокручиваем
+          // window.scrollTo({
+          //   top: targetSection.offsetTop,
+          //   behavior: "smooth",
+          // });
 
           // Обновляем хеш
           history.replaceState(null, null, targetId);
@@ -198,9 +204,9 @@ const links = socialLinks;
       console.log(targetSection.offsetTop);
 
       if (targetSection) {
-        setTimeout(() => {
-          window.scrollTo(0, targetSection.offsetTop);
-        }, 100); // небольшая задержка, чтобы гарантировать рендер
+        targetSection.scrollIntoView({
+          behavior: "smooth",
+        });
       }
     }
   });
