@@ -39,41 +39,50 @@ import { socialLinks } from "../social-links.ts";
 <style>
   .navigation {
     position: fixed;
-    top: 66px;
-    left: 50px;
+    top: 0;
+    left: 0;
+    margin: calc(var(--section-margin) + 1em) var(--section-margin) 0
+      var(--section-margin);
     z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 70px;
-    width: calc(50vw - 100px);
+    gap: 2.5em;
+    width: calc(50vw - calc(var(--section-margin) * 2));
   }
+
+  .logo {
+    height: 4.125rem;
+    width: 4.125rem;
+    position: relative;
+  }
+
   @media (max-width: 1025px) {
     .navigation {
       backdrop-filter: blur(4px);
       width: calc(100% - 40px);
       top: 0;
       left: 0;
+      margin: 0;
       padding: 20px 20px 12px 20px;
       border-bottom: 1px solid var(--border-color);
     }
+
     .logo {
       height: 45px;
       width: 45px;
-      svg {
-        width: 100%;
-        height: 100%;
-      }
+      position: relative;
     }
   }
-  a {
+  .links__item {
     color: var(--text-color-secondary);
     font-weight: 400;
-    font-size: var(--fs-12);
+    font-size: 0.75rem;
     font-family: var(--ff-main);
     text-decoration: none;
     font-style: normal;
     position: relative;
+    width: 5rem;
   }
   .black {
     color: var(--text-color-primary);
@@ -84,15 +93,14 @@ import { socialLinks } from "../social-links.ts";
   .column {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 0.625em;
   }
   .divider {
     width: 1px;
     background-color: var(--border-color);
   }
   .links {
-    display: flex;
-    gap: 35px;
+    gap: 2em;
   }
   .nav {
     display: none;

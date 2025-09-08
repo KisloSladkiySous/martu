@@ -49,12 +49,12 @@ main {
   display: none !important;
 }
 .desktop {
-  display: flex !important;
+  display: flex;
 }
 
 @media (max-width: 1025px) {
   .desktop {
-    display: none !important;
+    display: none;
   }
   .mobile {
     display: flex !important;
