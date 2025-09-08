@@ -10,57 +10,47 @@ const imageSources = [
     type: "image/png",
   },
 ];
-
-const { index, id } = Astro.props;
 ---
 
-<div
-  class="column-wrapper"
-  id={id}
-  data-section-index={index}
-  data-nav-section
-  data-section
->
-  <h2>
-    Образы, <br />
-    <span class="brand-color italic underline"
-      >прикосновения, <span class="underline-draw">
-        <PortfolioSign />
-      </span></span
-    >
+<h2>
+  Образы, <br />
+  <span class="brand-color italic underline"
+    >прикосновения, <span class="underline-draw">
+      <PortfolioSign />
+    </span></span
+  >
 
-    <br /> свет и взгляды.
-  </h2>
-  <div class="portfolio__visual">
-    <SectionAware
-      sources={imageSources}
-      src={PortfolioVisual.src}
-      alt="Feature"
-      height="100%"
-      width="100%"
-      preloadSections={1}
-      sectionSelector="[data-section]"
-    />
-  </div>
-  <div class="description">
-    <p class="text">
-      Каждая свадьба — это диалог с парой, поиск <br /> визуального кода, который
-      откликается именно им.
-    </p>
-    <p class="text">
-      Именно поэтому фотографии с наших мероприятий <br /> живут долго и не теряют
-      актуальности. Они <br /> передают атмосферу, эмоции и то самое “что-то”,
-      <br />
-      что словами не опишешь.
-    </p>
-  </div>
-  <div class="show-portfolio">
-    <Circle size="md" borderColor="#57718C">
-      <span slot="text" class="circle-text">
-        Смотреть <br /> портфолио
-      </span>
-    </Circle>
-  </div>
+  <br /> свет и взгляды.
+</h2>
+<div class="portfolio__visual">
+  <SectionAware
+    sources={imageSources}
+    src={PortfolioVisual.src}
+    alt="Feature"
+    height="100%"
+    width="100%"
+    preloadSections={1}
+    sectionSelector="[data-section]"
+  />
+</div>
+<div class="description">
+  <p class="text">
+    Каждая свадьба — это диалог с парой, поиск <br /> визуального кода, который откликается
+    именно им.
+  </p>
+  <p class="text">
+    Именно поэтому фотографии с наших мероприятий <br /> живут долго и не теряют
+    актуальности. Они <br /> передают атмосферу, эмоции и то самое “что-то”,
+    <br />
+    что словами не опишешь.
+  </p>
+</div>
+<div class="show-portfolio">
+  <Circle size="md" borderColor="#57718C">
+    <span slot="text" class="circle-text">
+      Смотреть <br /> портфолио
+    </span>
+  </Circle>
 </div>
 <style>
   h2 {

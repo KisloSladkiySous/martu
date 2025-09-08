@@ -1,52 +1,42 @@
 ---
 import Copyright from "./Copyright.astro";
 import PricesSign from "../assets/images/prices-sign.svg";
-
-const { index, id } = Astro.props;
 ---
 
-<div
-  class="column-wrapper"
-  id={id}
-  data-section-index={index}
-  data-nav-section
-  data-section
->
-  <div class="right-column__tagline">
-    Свадьба может быть идеальной <br /> и прозрачной по бюджету
-  </div>
-  <h2 class="section__title">
-    Гибкие пакеты и <span class="brand-color italic underline"
-      >индивидуальный<span class="underline-draw">
-        <PricesSign />
-      </span></span
-    > подход <br />к каждой паре
-  </h2>
-  <div class="content">
-    <p class="content__title">
-      От первого знакомства до последнего бокала шампанского <br /> в финале вечера
-      — мы берём на себя весь процесс: <br /> от идеи до реализации.
-    </p>
-    <div class="content__list">
-      <div class="content__column">
-        <span>Концепция и <br /> визуальное оформление</span>
-
-        <span> Подбор команды <br /> (ведущий, фотограф, и др.)</span>
-        <span>Поиск и бронирование <br />площадки</span>
-      </div>
-      <div class="content__column">
-        <span>Ведение переговоров с <br /> подрядчиками</span>
-        <span>Бюджетирование <br /> и финконтроль</span>
-        <span>Контроль исполнения <br /> и логистика</span>
-      </div>
-    </div>
-    <p class="content__budget">
-      10% от общего бюджета свадьбы, <br /> но не менее 100 000 ₽
-    </p>
-    <div class="content__contact brand-color">Узнайте подробнее</div>
-  </div>
-  <Copyright />
+<div class="right-column__tagline">
+  Свадьба может быть идеальной <br /> и прозрачной по бюджету
 </div>
+<h2 class="section__title">
+  Гибкие пакеты и <span class="brand-color italic underline"
+    >индивидуальный<span class="underline-draw">
+      <PricesSign />
+    </span></span
+  > подход <br />к каждой паре
+</h2>
+<div class="content">
+  <p class="content__title">
+    От первого знакомства до последнего бокала шампанского <br /> в финале вечера
+    — мы берём на себя весь процесс: <br /> от идеи до реализации.
+  </p>
+  <div class="content__list">
+    <div class="content__column">
+      <span>Концепция и <br /> визуальное оформление</span>
+
+      <span> Подбор команды <br /> (ведущий, фотограф, и др.)</span>
+      <span>Поиск и бронирование <br />площадки</span>
+    </div>
+    <div class="content__column">
+      <span>Ведение переговоров с <br /> подрядчиками</span>
+      <span>Бюджетирование <br /> и финконтроль</span>
+      <span>Контроль исполнения <br /> и логистика</span>
+    </div>
+  </div>
+  <p class="content__budget">
+    10% от общего бюджета свадьбы, <br /> но не менее 100 000 ₽
+  </p>
+  <div class="content__contact brand-color">Узнайте подробнее</div>
+</div>
+<Copyright />
 <style>
   .content {
     color: var(--text-color-secondary);

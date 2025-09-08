@@ -10,52 +10,42 @@ const imageSources = [
     type: "image/png",
   },
 ];
-const { index, id } = Astro.props;
 ---
 
-<div
-  class="column-showcase"
-  id={id}
-  data-section-index={index}
-  data-nav-section
-  data-section
->
-  <div class="column-showcase__content">
-    <p class="about-section__subtitle">
-      Красота в <br />
-      <span class="italic">каждой</span> детали
-    </p>
-    <div class="founder">
-      <div class="founder__quote">
-        <p class="founder__title">
-          «Для меня свадьба — это не про декор и тайминг. Это <br />про слёзы на
-          глазах, дрожащие руки и ощущение, что <br /> всё именно так, как должно
-          быть.»
-        </p>
-        <!-- <FounderSignature /> -->
-      </div>
+<div class="column-showcase__content">
+  <p class="about-section__subtitle">
+    Красота в <br />
+    <span class="italic">каждой</span> детали
+  </p>
+  <div class="founder">
+    <div class="founder__quote">
+      <p class="founder__title">
+        «Для меня свадьба — это не про декор и тайминг. Это <br />про слёзы на
+        глазах, дрожащие руки и ощущение, что <br /> всё именно так, как должно быть.»
+      </p>
+      <!-- <FounderSignature /> -->
+    </div>
 
-      <div class="founder__avatar">
-        <Circle borderColor="white" size="sm" imagePath={FounderImage.src} />
-      </div>
-      <div class="founder__fio">
-        <span class="brand-color italic">Тутунару Марина</span>
-        <span class="remark">Основатель</span>
-      </div>
+    <div class="founder__avatar">
+      <Circle borderColor="white" size="sm" imagePath={FounderImage.src} />
+    </div>
+    <div class="founder__fio">
+      <span class="brand-color italic">Тутунару Марина</span>
+      <span class="remark">Основатель</span>
     </div>
   </div>
-  <SectionAware
-    class="background-image"
-    sources={imageSources}
-    src={AboutBackground.src}
-    alt="about-section-background"
-    height="100%"
-    width="100%"
-    preloadSections={1}
-    slot="left-column-background"
-    sectionSelector="[data-section]"
-  />
 </div>
+<SectionAware
+  class="background-image"
+  sources={imageSources}
+  src={AboutBackground.src}
+  alt="about-section-background"
+  height="100%"
+  width="100%"
+  preloadSections={1}
+  slot="left-column-background"
+  sectionSelector="[data-section]"
+/>
 
 <style>
   .founder__title {

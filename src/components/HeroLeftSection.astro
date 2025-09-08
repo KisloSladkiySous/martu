@@ -1,25 +1,20 @@
 ---
-import Circle from "./Circle.astro";
+import Circle from "../components/Circle.astro";
+import Subtle from "../components/Subtle.astro";
+
 import HeroCircle from "../assets/images/hero-circle.jpg";
 import HeroSign from "../assets/images/hero-sign.svg";
 
-const { index, id } = Astro.props;
+const { className } = Astro.props;
 ---
 
-<div
-  class="column-wrapper"
-  id={id}
-  data-section-index={index}
-  data-nav-section
-  data-section
->
-  <p class="left-column__tagline">
-    <span class="line" id="line1">Создадим не только</span>
-    <span class="line" id="line2">праздник, но и повод</span>
-  </p>
+<div class:list={[className, "section-column__wrapper"]}>
+  <Subtle lines={["Создадим не только", "праздник, но и повод"]} />
   <h1 class="section__title">
-    Мы - заодно <br /> с <span class="brand-color italic underline"
-      >Вами <span class="underline-draw">
+    Мы - заодно <br /> с
+    <span class="brand-color italic underline">
+      Вами
+      <span class="underline-draw">
         <HeroSign />
       </span>
     </span>
@@ -27,27 +22,20 @@ const { index, id } = Astro.props;
   <div class="hero-section__visual-element">
     <Circle borderColor="white" size="lg" imagePath={HeroCircle.src} />
   </div>
-  <p class="hero-section__description">
-    <span class="brand-color"> Martu</span> - мы свадебное агентство. Здесь каждый
+  <p class="text hero-section__description">
+    <span class="brand-color">Martu</span> - мы свадебное агентство. Здесь каждый
     не случайно. Люди, которые любят свое дело и красиво воплощают любовь. Наша команда
     профессионалов готова реализовать любые задумки и пожелания!
   </p>
 </div>
-<style>
-  .line {
-    display: block;
-    /* opacity: 0; */
-  }
 
+<style>
   .hero-section__visual-element {
     display: flex;
     justify-content: center;
+    /* margin-bottom: 5.4375rem; */
   }
   .hero-section__description {
-    color: var(--text-color-secondary);
-    font-size: var(--fs-14);
     text-align: center;
-    margin-top: auto;
-    margin-bottom: 2rem;
   }
 </style>

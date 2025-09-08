@@ -1,0 +1,29 @@
+---
+interface Props {
+  lines: string[];
+}
+const { lines } = Astro.props;
+---
+
+<div class="subtle">
+  {
+    lines.map((line, index) => (
+      <p class="subtle__line" id={`line${index + 1}`}>
+        {line}
+      </p>
+    ))
+  }
+</div>
+
+<style>
+  .subtle {
+    text-align: center;
+    color: var(--text-color-primary);
+    font-size: var(--fs-14);
+    text-transform: uppercase;
+    /* margin-bottom: 2rem; */
+  }
+  .subtle__line {
+    display: block;
+  }
+</style>

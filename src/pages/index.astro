@@ -23,14 +23,14 @@ const sections = [
       component: HeroLeftSection,
       props: {
         id: "hero",
-        class: "column-content--bordered",
+        className: "pt-4",
       },
     },
     {
       component: HeroRightSection,
       props: {
         id: "hero",
-        class: "column-content--bordered-bottom",
+        className: "column-content--bordered-bottom",
       },
     },
   ],
@@ -39,14 +39,14 @@ const sections = [
       component: AboutLeftSection,
       props: {
         id: "about",
-        class: "column-content--bordered-top",
+        className: "column-content--bordered-top",
       },
     },
     {
       component: AboutRightSection,
       props: {
         id: "about",
-        class: "column-content--bordered",
+        className: "pt-25",
       },
     },
   ],
@@ -55,14 +55,14 @@ const sections = [
       component: PortfolioLeft,
       props: {
         id: "portfolio",
-        class: "column-content--bordered",
+        className: "column-content--bordered",
       },
     },
     {
       component: PortfolioRight,
       props: {
         id: "portfolio",
-        class: "column-content--bordered-bottom",
+        className: "column-content--bordered-bottom",
       },
     },
   ],
@@ -77,7 +77,7 @@ const sections = [
       component: AdvantagesRightSection,
       props: {
         id: "advantages",
-        class: "column-content--bordered",
+        className: "column-content--bordered",
       },
     },
   ],
@@ -86,14 +86,14 @@ const sections = [
       component: WorkflowLeftSection,
       props: {
         id: "workflow",
-        class: "column-content--bordered",
+        className: "column-content--bordered",
       },
     },
     {
       component: WorkflowRight,
       props: {
         id: "workflow",
-        class: "column-content--bordered-bottom",
+        className: "column-content--bordered-bottom",
       },
     },
   ],
@@ -102,14 +102,14 @@ const sections = [
       component: PriceLeft,
       props: {
         id: "price",
-        class: "column-content--bordered-top",
+        className: "column-content--bordered-top",
       },
     },
     {
       component: PriceRight,
       props: {
         id: "price",
-        class: "column-content--bordered",
+        className: "column-content--bordered",
       },
     },
   ],
@@ -118,7 +118,7 @@ const sections = [
       component: CustomerReviewLeftSection,
       props: {
         id: "reviews",
-        class: "column-content--bordered",
+        className: "column-content--bordered",
       },
     },
     {
@@ -138,8 +138,14 @@ const sections = [
         <section class={`snap-section`}>
           {section.map(({ component: Component, props }, index) => (
             <div class={`snap-column snap-column-${parentIndex}-${index} `}>
-              <div class={`column-content ${props.class ?? ""}`}>
-                <Component {...props} index={parentIndex} id={props.id} />
+              <div
+                class="section-column"
+                id={props.id}
+                data-section-index={parentIndex}
+                data-nav-section
+                data-section
+              >
+                <Component {...props} />
               </div>
             </div>
           ))}
@@ -174,6 +180,21 @@ const sections = [
     scroll-snap-stop: always;
     display: flex;
     position: relative;
+  }
+
+  @media (max-width: 1024px) {
+    .snap-column-0-0 {
+      order: 1;
+    }
+    .snap-column-0-1 {
+      order: 2;
+    }
+    .snap-column-1-0 {
+      order: 4;
+    }
+    .snap-column-1-1 {
+      order: 3;
+    }
   }
 
   @media (min-width: 1025px) {

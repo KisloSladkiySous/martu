@@ -169,6 +169,11 @@ textarea {
   margin: 0;
   /* 2 */
 }
+button {
+  all: unset;
+  cursor: pointer;
+  display: block;
+}
 
 /**
    * Show the overflow in IE.
@@ -347,16 +352,17 @@ template {
 }
 
 h1 {
-  font-size: 4rem;
+  font-size: var(--fs-64);
+  line-height: var(--lh-64);
   margin: 0;
 }
 
 h2 {
   margin: 0;
-  font-size: 3.375rem;
+  font-size: var(--fs-54);
   color: var(--text-color-secondary);
   font-weight: 400;
-  text-align: center;
+  /* text-align: center; */
 }
 h2 span {
   word-break: break-word;
@@ -384,47 +390,38 @@ h2 span {
   --fs-54: 3.375rem;
   --fs-64: 4rem;
   --ff-main: "Playfair Display", "serif";
-}
 
-:root {
-  --size-unit: 16; /* body font-size in design - no px */
-  --size-container-ideal: 1440; /* screen-size in design - no px */
-  --size-container-min: 992px;
-  --size-container-max: 1920px;
-  --size-container: clamp(
-    var(--size-container-min),
-    100vw,
-    var(--size-container-max)
-  );
-  --size-font: calc(
-    var(--size-container) / (var(--size-container-ideal) / var(--size-unit))
-  );
+  --lh-12: 1rem;
+  --lh-14: 1.1875rem;
+
+  --lh-64: 4rem;
+
+  /* margin tokens */
   --section-margin: 3.125rem;
-}
-/* Tablet */
-@media screen and (max-width: 1025px) {
-  :root {
-    --size-container-ideal: 834; /* screen-size in design - no px */
-    --size-container-min: 426px;
-    --size-container-max: 1025px;
+
+  @media (max-width: 1024px) {
     --section-margin: 1.25rem;
   }
 }
-/* Mobile Landscape */
-/* @media screen and (max-width: 767px) {
-  :root {
-    --size-container-ideal: 390; 
-    --size-container-min: 480px;
-    --size-container-max: 767px;
-  }
-} */
-/* Mobile Portrait */
-@media screen and (max-width: 426px) {
-  :root {
-    --size-container-ideal: 390; /* screen-size in design - no px */
-    --size-container-min: 0px;
-    --size-container-max: 426px;
-  }
+:root {
+  /* базовая "скейлинг" переменная: сумма 1vh + 1vw */
+  /* --size-font: 1rem; */
+
+  /* ограничения (опционально): минимальный и максимальный размер */
+  --size-font-min: 12px;
+  --size-font-max: 28px;
+
+  /* защищённый (clamped) вариант, который не уйдёт ниже/выше лимитов */
+  --size-font-clamped: clamp(
+    var(--size-font-min),
+    var(--size-font),
+    var(--size-font-max)
+  );
+
+  /* если хочется работать в rem: задаём базовый rem и переводим.
+     Обратите внимание — можно комбинировать rem и vh/vw в calc. */
+  --root-rem: 1rem; /* обычно 16px */
+  --size-font-rem: calc(0.5rem + (var(--size-font-clamped) * 0.25));
 }
 section {
   scroll-snap-align: start;
@@ -436,41 +433,41 @@ section {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-@media (max-width: 1024px) {
-  .snap-column-0-0 {
-    order: 1;
-  }
-  .snap-column-0-1 {
-    order: 2;
-  }
-  .snap-column-1-0 {
-    order: 4;
-  }
-  .snap-column-1-1 {
-    order: 3;
-  }
-}
-.column-wrapper {
+
+.section-column {
+  width: 100%;
   height: calc(100% - 2 * var(--section-margin));
   margin: var(--section-margin);
   display: flex;
   flex-direction: column;
-  border-top: 1px solid var(--brand-color);
-  border-bottom: 1px solid var(--brand-color);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+.section-column__wrapper {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.75rem;
+  margin-top: 5.125rem;
+  margin-bottom: 1rem;
 }
 .column-showcase {
   height: 100vh;
   position: sticky;
   top: 0;
 }
-.column-showcase__content {
+/* .column-showcase__content {
   height: calc(100% - 2 * var(--section-margin));
   display: flex;
   flex-direction: column;
   margin: var(--section-margin);
   z-index: 2;
   position: relative;
-}
+} */
 
 .right-column__tagline {
   margin-top: 2.5rem;
@@ -492,7 +489,7 @@ section {
   color: var(--text-color-secondary);
   font-weight: 400;
   text-align: center;
-  margin-bottom: 1em;
+  /* margin-bottom: 1em; */
 }
 
 main {
@@ -540,7 +537,7 @@ main {
   bottom: -4px;
   left: -10%;
   width: 0%;
-  transition: width 0.4s ease-out;
+  transition: width 0.4s ease-out 0.2s;
 }
 
 .active span::after {
@@ -559,6 +556,7 @@ main {
   left: 0;
   bottom: 0;
   height: auto;
+  width: 100%;
 }
 
 .underline-draw svg {
@@ -613,6 +611,7 @@ main {
 .showcase__description {
   color: var(--text-color-white);
   font-size: var(--fs-14);
+  line-height: var(--lh-14);
   margin-bottom: 1.25rem;
 }
 
@@ -620,6 +619,10 @@ main {
   color: var(--text-color-white);
   font-size: var(--fs-18);
   margin-bottom: 3.75rem;
+}
+
+.showcase__cta-button:hover .underline-draw {
+  width: 100%;
 }
 
 .showcase__toolbar {
@@ -634,3 +637,34 @@ main {
   margin-bottom: 1rem;
 }
 /*# sourceMappingURL=styles.css.map */
+
+.text {
+  color: var(--text-color-secondary);
+  font-size: var(--fs-14);
+  line-height: var(--lh-14);
+}
+
+/* Tailwind-like classes */
+.mt-4 {
+  margin-top: 4rem; /* 64px */
+}
+
+.mt-25 {
+  margin-top: 2.5rem; /* 40px */
+}
+
+.pb-4 {
+  padding-bottom: 4rem; /* 64px */
+}
+
+.pb-25 {
+  padding-bottom: 2.5rem; /* 40px */
+}
+
+.pt-4 {
+  padding-top: 4rem; /* 64px */
+}
+
+.pt-25 {
+  padding-top: 2.5rem; /* 40px */
+}

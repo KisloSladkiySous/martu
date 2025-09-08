@@ -9,38 +9,29 @@ const imageSources = [
     type: "image/png",
   },
 ];
-const { index, id } = Astro.props;
 ---
 
-<div
-  class="column-showcase"
-  id={id}
-  data-section-index={index}
-  data-nav-section
-  data-section
->
-  <div class="column-showcase__content">
-    <ShowCase date="Весна 2024" names="Ольга и Константин">
-      <div slot="showcase__title" class="showcase__title">
-        В день свадьбы мы ваш щит, ваш тыл и ваша <span class="italic"
-          >уверенность</span
-        >
-      </div>
-      <div slot="showcase__description" class="showcase__description">
-        Вы можете забыть о часах, телефонах и логистике, потому что всё будет
-        идти по плану — или лучше.
-      </div>
-    </ShowCase>
-  </div>
-
-  <SectionAware
-    class="background-image"
-    sources={imageSources}
-    src={WorkFlowBackground.src}
-    alt="Feature"
-    height="100%"
-    width="100%"
-    preloadSections={1}
-    sectionSelector="[data-section]"
-  />
+<div class="column-showcase__content">
+  <ShowCase date="Весна 2024" names="Ольга и Константин">
+    <div slot="showcase__title" class="showcase__title">
+      В день свадьбы мы ваш щит, ваш тыл и ваша <span class="italic"
+        >уверенность</span
+      >
+    </div>
+    <div slot="showcase__description" class="showcase__description">
+      Вы можете забыть о часах, телефонах и логистике, потому что всё будет идти
+      по плану — или лучше.
+    </div>
+  </ShowCase>
 </div>
+
+<SectionAware
+  class="background-image"
+  sources={imageSources}
+  src={WorkFlowBackground.src}
+  alt="Feature"
+  height="100%"
+  width="100%"
+  preloadSections={1}
+  sectionSelector="[data-section]"
+/>

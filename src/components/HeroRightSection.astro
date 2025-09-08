@@ -10,47 +10,36 @@ const imageSources = [
     type: "image/png",
   },
 ];
-
-const { index, id } = Astro.props;
 ---
 
-<div
-  class="column-showcase"
-  id={id}
-  data-section-index={index}
-  data-nav-section
-  data-section
+<ShowCase
+  date="Сентябрь 2025"
+  names="Вероника и Максим"
+  cssClass="border-bottom"
 >
-  <div class="column-showcase__content">
-    <ShowCase
-      date="Сентябрь 2025"
-      names="Вероника и Максим"
-      cssClass="border-bottom"
-    >
-      <div slot="showcase__title" class="showcase__title">
-        <span class="italic">Бесплатная</span> консультация по вашему запросу!
-      </div>
-      <div slot="showcase__contact-us" class="showcase__cta-button underline">
-        Связаться с нами
-        <span class="underline-draw">
-          <ShowCaseSign />
-        </span>
-      </div>
-      <div slot="showcase__description" class="showcase__description">
-        Расскажите нам свои идеи, и мы предложим<br /> концепцию, формат и ориентир
-        по бюджету <br /> — даже если вы ещё не выбрали агентство.
-      </div>
-    </ShowCase>
+  <h2 slot="showcase__title" class="showcase__title">
+    <span class="italic">Бесплатная</span> консультация <br class="desktop" /> по
+    вашему запросу!
+  </h2>
+  <div slot="showcase__contact-us">
+    <button class="showcase__cta-button underline" slot="showcase__contact-us">
+      Связаться с нами
+      <ShowCaseSign class="underline-draw" />
+    </button>
   </div>
+  <p slot="showcase__description" class="showcase__description">
+    Расскажите нам свои идеи, и мы предложим<br /> концепцию, формат и ориентир по
+    бюджету <br /> — даже если вы ещё не выбрали агентство.
+  </p>
+</ShowCase>
 
-  <SectionAware
-    class="background-image"
-    sources={imageSources}
-    src={HeroBackground.src}
-    alt="Feature"
-    height="100%"
-    width="100%"
-    preloadSections={1}
-    sectionSelector="[data-section]"
-  />
-</div>
+<SectionAware
+  class="background-image"
+  sources={imageSources}
+  src={HeroBackground.src}
+  alt="Feature"
+  height="100%"
+  width="100%"
+  preloadSections={1}
+  sectionSelector="[data-section]"
+/>

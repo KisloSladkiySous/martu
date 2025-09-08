@@ -12,39 +12,27 @@ const imageSources = [
 const { index, id } = Astro.props;
 ---
 
-<div
-  class="column-showcase"
-  id={id}
-  data-section-index={index}
-  data-nav-section
-  data-section
->
-  <div class="column-showcase__content">
-    <ShowCase
-      date="Лето 2023"
-      names="Александр и Ирина"
-      cssClass="border-bottom"
-    >
-      <div slot="showcase__title" class="showcase__title">
-        Не просто красивые <br /> картинки, а настоящие <span class="italic"
-          >истории</span
-        >.
-      </div>
-      <div slot="showcase__description" class="showcase__description">
-        Мы работаем с разными форматами: выездные церемонии, роскошные банкеты,
-        камерные семейные праздники.
-      </div>
-    </ShowCase>
-  </div>
-
-  <SectionAware
-    class="background-image"
-    sources={imageSources}
-    src={PortfolioBackground.src}
-    alt="Feature"
-    height="100%"
-    width="100%"
-    preloadSections={1}
-    sectionSelector="[data-section]"
-  />
+<div class="column-showcase__content">
+  <ShowCase date="Лето 2023" names="Александр и Ирина" cssClass="border-bottom">
+    <div slot="showcase__title" class="showcase__title">
+      Не просто красивые <br /> картинки, а настоящие <span class="italic"
+        >истории</span
+      >.
+    </div>
+    <div slot="showcase__description" class="showcase__description">
+      Мы работаем с разными форматами: выездные церемонии, роскошные банкеты,
+      камерные семейные праздники.
+    </div>
+  </ShowCase>
 </div>
+
+<SectionAware
+  class="background-image"
+  sources={imageSources}
+  src={PortfolioBackground.src}
+  alt="Feature"
+  height="100%"
+  width="100%"
+  preloadSections={1}
+  sectionSelector="[data-section]"
+/>
