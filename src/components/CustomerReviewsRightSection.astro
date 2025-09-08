@@ -8,7 +8,7 @@ const mock = [
 
     content:
       "Отличный сервис! Команда профессионалов, которые действительно понимают потребности бизнеса.",
-    avatar: "/martu/images/review1.svg",
+    avatar: "/images/review1.svg",
   },
   {
     id: 2,
@@ -16,28 +16,28 @@ const mock = [
     role: "Дизайнер, Creative Studio",
     content:
       "Превосходное качество работы и внимание к деталям. Рекомендую всем!",
-    avatar: "/martu/images/review2.svg",
+    avatar: "/images/review2.svg",
   },
   {
     id: 3,
     author: "Елена Сидорова",
     role: "Маркетолог, Digital Agency",
     content: "Результаты превзошли все ожидания. Спасибо за профессионализм!",
-    avatar: "/martu/images/review3.svg",
+    avatar: "/images/review3.svg",
   },
   {
     id: 4,
     author: "Дмитрий Козлов",
     role: "CTO, InnovateTech",
     content: "Инновационный подход и отличная техническая реализация проектов.",
-    avatar: "/martu/images/review4.svg",
+    avatar: "/images/review4.svg",
   },
   {
     id: 5,
     author: "Ольга Морозова",
     role: "Product Manager, StartupHub",
     content: "Быстро, качественно и в срок. Именно то, что нужно для стартапа!",
-    avatar: "/martu/images/review1.svg",
+    avatar: "/images/review1.svg",
   },
   {
     id: 6,
@@ -45,7 +45,7 @@ const mock = [
     role: "Founder, WebSolutions",
     content:
       "Профессиональная команда с глубоким пониманием современных технологий.",
-    avatar: "/martu/images/review2.svg",
+    avatar: "/images/review2.svg",
   },
 ];
 
@@ -53,58 +53,66 @@ const column1mock = [...mock, ...mock, ...mock];
 const column2mock = [...mock, ...mock, ...mock];
 ---
 
-<div class="container">
-  <div class="column">
-    <div class="scroll-wrapper scroll-up" id="leftColumn">
-      {
-        column1mock.map((review) => (
-          <div class="review-card">
-            <div class="review-text">{review.content}</div>
-            <div class="review-author">
-              <Image
-                src={review.avatar}
-                class="author"
-                alt={review.author}
-                width="28"
-                height="28"
-              />
-              <div class="avatar">{review.author}</div>
-              <button>
-                <Play />
-              </button>
+<div class="column-wrapper-right">
+  <div class="container">
+    <div class="column">
+      <div class="scroll-wrapper scroll-up" id="leftColumn">
+        {
+          column1mock.map((review) => (
+            <div class="review-card">
+              <div class="review-text">{review.content}</div>
+              <div class="review-author">
+                <Image
+                  src={review.avatar}
+                  class="author"
+                  alt={review.author}
+                  width="28"
+                  height="28"
+                />
+                <div class="avatar">{review.author}</div>
+                <button>
+                  <Play />
+                </button>
+              </div>
             </div>
-          </div>
-        ))
-      }
+          ))
+        }
+      </div>
     </div>
-  </div>
-  <div class="column">
-    <div class="scroll-wrapper scroll-down" id="rightColumn">
-      {
-        column2mock.map((review) => (
-          <div class="review-card">
-            <div class="review-text">{review.content}</div>
-            <div class="review-author">
-              <Image
-                src={review.avatar}
-                class="author"
-                alt={review.author}
-                width="28"
-                height="28"
-              />
-              <div class="avatar">{review.author}</div>
-              <button>
-                {" "}
-                <Play />
-              </button>
+    <div class="column">
+      <div class="scroll-wrapper scroll-down" id="rightColumn">
+        {
+          column2mock.map((review) => (
+            <div class="review-card">
+              <div class="review-text">{review.content}</div>
+              <div class="review-author">
+                <Image
+                  src={review.avatar}
+                  class="author"
+                  alt={review.author}
+                  width="28"
+                  height="28"
+                />
+                <div class="avatar">{review.author}</div>
+                <button>
+                  {" "}
+                  <Play />
+                </button>
+              </div>
             </div>
-          </div>
-        ))
-      }
+          ))
+        }
+      </div>
     </div>
   </div>
 </div>
 <style>
+  .column-wrapper-right {
+    height: calc(100% - 100px);
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+  }
   button {
     border: none;
     background-color: rgba(247, 235, 215, 0.5);

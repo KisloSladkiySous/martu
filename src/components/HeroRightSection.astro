@@ -1,13 +1,54 @@
 ---
 import ShowCase from "./ShowCase.astro";
+import SectionAware from "../components/SectionAware.astro";
+import HeroBackground from "../assets/images/hero-section-background.png";
+import ShowCaseSign from "../assets/images/show-case-underline.svg";
+const imageSources = [
+  {
+    srcset: HeroBackground.src,
+    media: "(max-width: 1440)",
+    type: "image/png",
+  },
+];
 ---
 
-<ShowCase date="Сентябрь 2025" names="Вероника и Максим">
-  <div slot="showcase__title" class="showcase__title">
-    <span class="italic">Бесплатная</span> консультация по вашему запросу!
+<div
+  class="column-showcase"
+  id="hero"
+  data-section-index="1"
+  data-nav-section
+  data-section
+>
+  <div class="column-showcase__content">
+    <ShowCase
+      date="Сентябрь 2025"
+      names="Вероника и Максим"
+      cssClass="border-bottom"
+    >
+      <div slot="showcase__title" class="showcase__title">
+        <span class="italic">Бесплатная</span> консультация по вашему запросу!
+      </div>
+      <div slot="showcase__contact-us" class="showcase__cta-button underline">
+        Связаться с нами
+        <span class="underline-draw">
+          <ShowCaseSign />
+        </span>
+      </div>
+      <div slot="showcase__description" class="showcase__description">
+        Расскажите нам свои идеи, и мы предложим<br /> концепцию, формат и ориентир
+        по бюджету <br /> — даже если вы ещё не выбрали агентство.
+      </div>
+    </ShowCase>
   </div>
-  <div slot="showcase__description" class="showcase__description">
-    Расскажите нам свои идеи, и мы предложим<br /> концепцию, формат и ориентир по
-    бюджету <br /> — даже если вы ещё не выбрали агентство.
-  </div>
-</ShowCase>
+
+  <SectionAware
+    class="background-image"
+    sources={imageSources}
+    src={HeroBackground.src}
+    alt="Feature"
+    height="100%"
+    width="100%"
+    preloadSections={1}
+    sectionSelector="[data-section]"
+  />
+</div>

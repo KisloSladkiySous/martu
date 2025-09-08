@@ -4,29 +4,37 @@ import HeroCircle from "../assets/images/hero-circle.jpg";
 import HeroSign from "../assets/images/hero-sign.svg";
 ---
 
-<p class="left-column__tagline">
-  <span class="line" id="line1">Создадим не только</span>
-  <span class="line" id="line2">праздник, но и повод</span>
-</p>
-<h1 class="section__title">
-  Мы - заодно <br /> с <span class="brand-color italic underline"
-    >Вами <span class="underline-draw">
-      <HeroSign />
+<div
+  class="column-wrapper"
+  id="hero"
+  data-nav-section
+  data-section-index="1"
+  data-section
+>
+  <p class="left-column__tagline">
+    <span class="line" id="line1">Создадим не только</span>
+    <span class="line" id="line2">праздник, но и повод</span>
+  </p>
+  <h1 class="section__title">
+    Мы - заодно <br /> с <span class="brand-color italic underline"
+      >Вами <span class="underline-draw">
+        <HeroSign />
+      </span>
     </span>
-  </span>
-</h1>
-<div class="hero-section__visual-element">
-  <Circle borderColor="white" size="lg" imagePath={HeroCircle.src} />
+  </h1>
+  <div class="hero-section__visual-element">
+    <Circle borderColor="white" size="lg" imagePath={HeroCircle.src} />
+  </div>
+  <p class="hero-section__description">
+    <span class="brand-color"> Martu</span> - мы свадебное агентство. Здесь каждый
+    не случайно. Люди, которые любят свое дело и красиво воплощают любовь. Наша команда
+    профессионалов готова реализовать любые задумки и пожелания!
+  </p>
 </div>
-<p class="hero-section__description">
-  <span class="brand-color"> Martu</span> - мы свадебное агентство. Здесь каждый
-  не случайно. Люди, которые любят свое дело и красиво воплощают любовь. Наша команда
-  профессионалов готова реализовать любые задумки и пожелания!
-</p>
 <style>
   .line {
     display: block;
-    opacity: 0;
+    /* opacity: 0; */
   }
 
   .hero-section__visual-element {
@@ -35,7 +43,7 @@ import HeroSign from "../assets/images/hero-sign.svg";
   }
   .hero-section__description {
     color: var(--text-color-secondary);
-    font-size: var(--size-font);
+    font-size: var(--fs-14);
     text-align: center;
     margin-top: auto;
     margin-bottom: 2rem;

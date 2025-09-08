@@ -1,8 +1,197 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import HeroLeftSection from "../components/HeroLeftSection.astro";
+import HeroRightSection from "../components/HeroRightSection.astro";
+import AboutLeftSection from "../components/AboutLeftSection.astro";
+import AboutRightSection from "../components/AboutRightSection.astro";
+import PortfolioLeft from "../components/PortfolioLeft.astro";
+import PortfolioRight from "../components/PortfolioRight.astro";
+import AdvantagesLeftSection from "../components/AdvantagesLeftSection.astro";
+import AdvantagesRightSection from "../components/AdvantagesRightSection.astro";
+import WorkflowLeftSection from "../components/WorkflowLeftSection.astro";
+import WorkflowRight from "../components/WorkflowRight.astro";
+import PriceRight from "../components/PriceRight.astro";
+import PriceLeft from "../components/PriceLeft.astro";
+import CustomerReviewLeftSection from "../components/CustomerReviewLeftSection.astro";
+import CustomerReviewsRightSection from "../components/CustomerReviewsRightSection.astro";
+import Contacts from "../components/Contacts.astro";
+
+const sections = [
+  [
+    {
+      component: HeroLeftSection,
+      props: {
+        title: "Главная секция",
+        class: "column-content--bordered",
+      },
+    },
+    {
+      component: HeroRightSection,
+      props: {
+        title: "Главная секция",
+        class: "column-content--bordered-bottom",
+      },
+    },
+  ],
+  [
+    {
+      component: AboutLeftSection,
+      props: {
+        title: "Секция о нас",
+        class: "column-content--bordered-top",
+      },
+    },
+    {
+      component: AboutRightSection,
+      props: {
+        title: "Секция о нас",
+        class: "column-content--bordered",
+      },
+    },
+  ],
+  [
+    {
+      component: PortfolioLeft,
+      props: {
+        title: "Секция портфолио",
+        class: "column-content--bordered",
+      },
+    },
+    {
+      component: PortfolioRight,
+      props: {
+        title: "Секция портфолио",
+        class: "column-content--bordered-bottom",
+      },
+    },
+  ],
+  [
+    {
+      component: AdvantagesLeftSection,
+      props: {
+        title: "Секция преимущества",
+      },
+    },
+    {
+      component: AdvantagesRightSection,
+      props: {
+        title: "Секция преимущества",
+        class: "column-content--bordered",
+      },
+    },
+  ],
+  [
+    {
+      component: WorkflowLeftSection,
+      props: {
+        title: "Секция процесс",
+        class: "column-content--bordered",
+      },
+    },
+    {
+      component: WorkflowRight,
+      props: {
+        title: "Секция процесс",
+        class: "column-content--bordered-bottom",
+      },
+    },
+  ],
+  [
+    {
+      component: PriceLeft,
+      props: {
+        title: "Секция цен",
+        class: "column-content--bordered-top",
+      },
+    },
+    {
+      component: PriceRight,
+      props: {
+        title: "Секция цен",
+        class: "column-content--bordered",
+      },
+    },
+  ],
+  [
+    {
+      component: CustomerReviewLeftSection,
+      props: {
+        title: "Секция цен",
+        class: "column-content--bordered",
+      },
+    },
+    {
+      component: CustomerReviewsRightSection,
+      props: {
+        title: "Секция цен",
+      },
+    },
+  ],
+];
 ---
 
-<Layout />
+<Layout title="Martu - Свадебное агенство">
+  <main class="scroll-container">
+    {
+      sections.map((section, parentIndex) => (
+        <section class={`snap-section`}>
+          {section.map(({ component: Component, props }, index) => (
+            <div class={`snap-column snap-column-${parentIndex}-${index} `}>
+              <div class={`column-content ${props.class ?? ""}`}>
+                <Component {...props} />
+              </div>
+            </div>
+          ))}
+        </section>
+      ))
+    }
+    <Contacts />
+  </main>
+</Layout>
+
+<style>
+  .column-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .scroll-container {
+    height: 100vh;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+
+  .snap-section {
+    display: contents;
+  }
+
+  .snap-column {
+    min-height: 100vh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    display: flex;
+    position: relative;
+  }
+
+  @media (min-width: 1025px) {
+    .snap-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+      scroll-snap-align: start;
+    }
+
+    .snap-section:not(:nth-child(5)) {
+      max-height: 100vh;
+    }
+
+    .snap-column {
+      min-height: 100vh;
+      scroll-snap-align: none;
+      scroll-snap-stop: normal;
+    }
+  }
+</style>

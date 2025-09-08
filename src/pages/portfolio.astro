@@ -1,0 +1,225 @@
+---
+import { db, Group, Media, eq } from "astro:db";
+
+const groups = await db.select().from(Group);
+
+// Группируем по годам
+const groupedByYear = groups.reduce((acc: Record<string, any[]>, group) => {
+  const year = new Date(group.date).getFullYear();
+  if (!acc[year]) acc[year] = [];
+  acc[year].push(group);
+  return acc;
+}, {});
+
+const years = Object.entries(groupedByYear)
+  .map(([year, groups]) => ({
+    year: Number(year),
+    groups,
+  }))
+  .sort((a, b) => b.year - a.year);
+
+// Загружаем медиа
+const mediaMap = new Map();
+for (const group of groups) {
+  const media = await db
+    .select()
+    .from(Media)
+    .where(eq(Media.groupId, group.id));
+  mediaMap.set(group.id, media);
+}
+---
+
+<html>
+  <head>
+    <title>Портфолио — Бенто с одинаковой высотой</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      :root {
+        --gap: 1rem;
+        --item-height: 200px; /* Фиксированная высота */
+        --border-radius: 12px;
+        --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background: #f8f9fa;
+        color: #1a1a1a;
+        margin: 0;
+        padding: 1rem;
+      }
+
+      .portfolio-container {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .year-title {
+        font-size: 2rem;
+        text-align: center;
+        margin: 2.5rem 0 1.5rem;
+        color: #222;
+        font-weight: 600;
+      }
+
+      .group-title {
+        font-size: 1.4rem;
+        margin: 0 0 1rem;
+        color: #333;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 0.5rem;
+      }
+
+      /* БЕНТО-СЕТКА: фиксированная высота, разная ширина */
+      .bento-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr); /* 6 колонок для гибкости */
+        grid-auto-rows: var(--item-height); /* Все строки одной высоты */
+        gap: var(--gap);
+        margin-bottom: 2rem;
+      }
+
+      .bento-item {
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        position: relative;
+        box-shadow: var(--shadow);
+        background: #eee;
+      }
+
+      .bento-item img,
+      .bento-item video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Обрезаем, чтобы заполнить блок */
+        display: block;
+      }
+
+      /* Ширина — через span колонок */
+      .bento-item.small {
+        grid-column: span 1;
+      }
+      .bento-item.medium {
+        grid-column: span 2;
+      }
+      .bento-item.large {
+        grid-column: span 3;
+      }
+
+      /* Дополнительные размеры */
+      .bento-item.wide {
+        grid-column: span 4;
+      }
+
+      /* Подсказка при наведении */
+      .bento-item::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          45deg,
+          transparent 30%,
+          rgba(0, 0, 0, 0.05)
+        );
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .bento-item:hover::after {
+        opacity: 1;
+      }
+
+      /* Адаптивность */
+      @media (max-width: 768px) {
+        .bento-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+        .bento-item.large,
+        .bento-item.wide {
+          grid-column: span 2;
+        }
+        .bento-item.medium {
+          grid-column: span 2;
+        }
+        :root {
+          --item-height: 160px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .bento-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .bento-item.large,
+        .bento-item.wide,
+        .bento-item.medium {
+          grid-column: span 2;
+        }
+        :root {
+          --item-height: 140px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="portfolio-container">
+      {
+        years.map((yearSection) => (
+          <section class="year-section">
+            <h2 class="year-title">{yearSection.year}</h2>
+            {yearSection.groups.map((group) => {
+              const media = mediaMap.get(group.id) || [];
+              if (media.length === 0) return null;
+
+              return (
+                <div class="group" key={group.id}>
+                  <h3 class="group-title">{group.title}</h3>
+                  <div class="bento-grid">
+                    {media.map((m, index) => {
+                      // Определяем ширину
+                      const size =
+                        index === 0
+                          ? "large"
+                          : index % 5 === 1
+                            ? "wide"
+                            : index % 3 === 2
+                              ? "medium"
+                              : "small";
+
+                      return (
+                        <figure
+                          key={m.id}
+                          class={`bento-item ${size} ${m.type}`}
+                        >
+                          {m.type === "image" ? (
+                            <img
+                              src={m.url}
+                              alt={m.alt || group.title}
+                              loading="lazy"
+                            />
+                          ) : (
+                            <video
+                              src={m.url}
+                              poster={m.poster || ""}
+                              controls
+                              preload="metadata"
+                            />
+                          )}
+                        </figure>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })}
+          </section>
+        ))
+      }
+    </div>
+  </body>
+</html>

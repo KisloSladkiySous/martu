@@ -1,0 +1,46 @@
+---
+import SectionAware from "../components/SectionAware.astro";
+import ShowCaseSign from "../assets/images/show-case-underline.svg";
+import PriceBackground from "../assets/images/price-section-background.png";
+import ShowCase from "./ShowCase.astro";
+
+const imageSources = [
+  {
+    srcset: PriceBackground.src,
+    media: "(max-width: 1440)",
+    type: "image/png",
+  },
+];
+---
+
+<div class="column-showcase">
+  <div class="column-showcase__content">
+    <ShowCase cssClass="border-top">
+      <div slot="showcase__title" class="showcase__title">
+        Проверьте <br />
+        <span class="italic">свободную</span> дату
+      </div>
+      <div slot="showcase__contact-us" class="showcase__cta-button underline">
+        Связаться с нами
+        <span class="underline-draw">
+          <ShowCaseSign />
+        </span>
+      </div>
+      <div slot="showcase__description" class="showcase__description">
+        Планируете свадьбу? <br /> Узнайте, доступна ли ваша дата <br /> — она может
+        быть уже почти вашей.
+      </div>
+    </ShowCase>
+  </div>
+
+  <SectionAware
+    class="background-image"
+    sources={imageSources}
+    src={PriceBackground.src}
+    alt="Feature"
+    height="100%"
+    width="100%"
+    preloadSections={1}
+    sectionSelector="[data-section]"
+  />
+</div>

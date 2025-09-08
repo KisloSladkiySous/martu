@@ -1,9 +1,9 @@
 {
-  "name": "adorable-azimuth",
+  "name": "martu",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev ",
+    "dev": "astro dev --force",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"

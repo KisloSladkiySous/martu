@@ -1,0 +1,49 @@
+---
+import SectionAware from "../components/SectionAware.astro";
+import ShowCase from "./ShowCase.astro";
+import PortfolioBackground from "../assets/images/portfolio-section-background.png";
+const imageSources = [
+  {
+    srcset: PortfolioBackground.src,
+    media: "(max-width: 1440)",
+    type: "image/webp",
+  },
+];
+---
+
+<div
+  class="column-showcase"
+  id="portfolio"
+  data-nav-section
+  data-section-index="7"
+  data-section
+>
+  <div class="column-showcase__content">
+    <ShowCase
+      date="Лето 2023"
+      names="Александр и Ирина"
+      cssClass="border-bottom"
+    >
+      <div slot="showcase__title" class="showcase__title">
+        Не просто красивые <br /> картинки, а настоящие <span class="italic"
+          >истории</span
+        >.
+      </div>
+      <div slot="showcase__description" class="showcase__description">
+        Мы работаем с разными форматами: выездные церемонии, роскошные банкеты,
+        камерные семейные праздники.
+      </div>
+    </ShowCase>
+  </div>
+
+  <SectionAware
+    class="background-image"
+    sources={imageSources}
+    src={PortfolioBackground.src}
+    alt="Feature"
+    height="100%"
+    width="100%"
+    preloadSections={1}
+    sectionSelector="[data-section]"
+  />
+</div>

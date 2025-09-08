@@ -1,29 +1,78 @@
 ---
-import Circle from "./Circle.astro";
+import AboutBackground from "../assets/images/about-section-background.png";
 import FounderImage from "../assets/images/founder.png";
+import SectionAware from "../components/SectionAware.astro";
+import Circle from "./Circle.astro";
+const imageSources = [
+  {
+    srcset: AboutBackground.src,
+    media: "(max-width: 1440)",
+    type: "image/png",
+  },
+];
 ---
 
-<p class="about-section__subtitle">
-  Красота в <br />
-  <span class="italic">каждой</span> детали
-</p>
-<div class="founder">
-  <div class="founder__quote">
-    <p class="founder__title">
-      «Для меня свадьба — это не про декор и тайминг. Это <br />про слёзы на
-      глазах, дрожащие руки и ощущение, что <br /> всё именно так, как должно быть.»
+<div
+  class="column-showcase"
+  id="about"
+  data-nav-section
+  data-section-index="3"
+  data-section
+>
+  <div class="column-showcase__content">
+    <p class="about-section__subtitle">
+      Красота в <br />
+      <span class="italic">каждой</span> детали
     </p>
-  </div>
+    <div class="founder">
+      <div class="founder__quote">
+        <p class="founder__title">
+          «Для меня свадьба — это не про декор и тайминг. Это <br />про слёзы на
+          глазах, дрожащие руки и ощущение, что <br /> всё именно так, как должно
+          быть.»
+        </p>
+        <!-- <FounderSignature /> -->
+      </div>
 
-  <div class="founder__avatar">
-    <Circle borderColor="white" size="sm" imagePath={FounderImage.src} />
+      <div class="founder__avatar">
+        <Circle borderColor="white" size="sm" imagePath={FounderImage.src} />
+      </div>
+      <div class="founder__fio">
+        <span class="brand-color italic">Тутунару Марина</span>
+        <span class="remark">Основатель</span>
+      </div>
+    </div>
   </div>
-  <div class="founder__fio">
-    <span class="brand-color italic">Тутунару Марина</span>
-    <span class="remark">Основатель</span>
-  </div>
+  <SectionAware
+    class="background-image"
+    sources={imageSources}
+    src={AboutBackground.src}
+    alt="about-section-background"
+    height="100%"
+    width="100%"
+    preloadSections={1}
+    slot="left-column-background"
+    sectionSelector="[data-section]"
+  />
 </div>
+
 <style>
+  .founder__title {
+    position: relative;
+    color: var(--text-color-tertiary);
+  }
+  .founder__title::after {
+    content: "";
+    background-image: url(src/assets/images/founder-signature.svg);
+    position: absolute;
+    background-repeat: no-repeat;
+    right: 0;
+    bottom: -55px;
+    display: block;
+    width: 150px;
+    height: 70px;
+  }
+
   .about-section__subtitle {
     margin-top: 12.3rem;
     text-align: center;
@@ -34,7 +83,6 @@ import FounderImage from "../assets/images/founder.png";
     margin-top: auto;
     background-color: var(--background-color);
     width: 100%;
-    height: 100%;
     max-height: 22.125rem;
     display: flex;
     flex-direction: column;
@@ -46,6 +94,7 @@ import FounderImage from "../assets/images/founder.png";
     margin: 4.375rem auto 2.1875rem;
     color: var(--text-color-tertiary);
   }
+
   .founder__signature {
     display: flex;
     justify-content: flex-end;
@@ -65,5 +114,16 @@ import FounderImage from "../assets/images/founder.png";
     flex-direction: column;
     gap: 2px;
     margin-bottom: 3.312rem;
+  }
+  @media (max-width: 1025px) {
+    .founder__quote {
+      margin: 2.18rem auto 2rem;
+    }
+    .founder__fio {
+      margin-bottom: 1.8rem;
+    }
+    .about-section__subtitle {
+      margin-top: 6.875rem;
+    }
   }
 </style>

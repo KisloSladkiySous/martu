@@ -7,9 +7,9 @@ interface Props {
 }
 const { borderColor = "white", size = "md", imagePath, text } = Astro.props;
 const sizes = {
-  sm: { outer: 86, inner: 76 },
-  md: { outer: 190, inner: 168 },
-  lg: { outer: 215, inner: 190 },
+  sm: { outer: 5.375, inner: 4.75 },
+  md: { outer: 11.875, inner: 10.5 },
+  lg: { outer: 13.43, inner: 11.6 },
 };
 const margin = {
   sm: "5px",
@@ -22,24 +22,14 @@ const innerSize = sizes[size].inner;
 const rootMargin = margin[size];
 ---
 
-<!-- <div
-  class="outer circle"
-  style={`width: ${outerSize}px; height: ${outerSize}px; background-image: url("${imagePath}")`}
->
-  <div
-    class="inner circle"
-    style={`width: ${innerSize}px; height: ${innerSize}px;`}
-  >
-  </div>
-</div> -->
 <div
   class="outer circle"
   data-size={size}
-  style={`width: ${outerSize}px; height: ${outerSize}px; ${imagePath ? `background-image: url("${imagePath}")` : ""}`}
+  style={`width: ${outerSize}rem; height: ${outerSize}rem; ${imagePath ? `background-image: url("${imagePath}")` : ""}`}
 >
   <div
     class="inner circle"
-    style={`width: ${innerSize}px; height: ${innerSize}px;`}
+    style={`width: ${innerSize}rem; height: ${innerSize}rem;`}
   >
     <slot name="text" />
   </div>
@@ -53,6 +43,8 @@ const rootMargin = margin[size];
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    z-index: 2;
+    position: relative;
   }
   .inner {
     margin: var(--rootMargin);
