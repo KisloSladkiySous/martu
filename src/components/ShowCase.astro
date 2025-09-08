@@ -1,18 +1,22 @@
 ---
-const { date, names, cssClass } = Astro.props;
+const { date, names, cssClass, hash } = Astro.props;
 ---
 
 <div class={`showcase ${cssClass}`}>
-  <slot name="showcase__title" />
-  <slot name="showcase__description" />
-  <slot name="showcase__contact-us" />
+  <div class="showcase__wrapper">
+    <slot name="showcase__title" />
+    <slot name="showcase__description" />
+    <slot name="showcase__contact-us" />
+  </div>
 
   {
     names && (
       <div class="showcase__toolbar">
         {date && <span>{date}</span>}
         <span>{names}</span>
-        <span class="border-bottom">Больше фото</span>
+        <a class="border-bottom" href={`/portfolio/#${hash}`}>
+          Больше фото
+        </a>
       </div>
     )
   }

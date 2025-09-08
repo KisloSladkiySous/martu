@@ -76,6 +76,8 @@ pre {
    */
 a {
   background-color: transparent;
+  text-decoration: none;
+  color: inherit;
 }
 
 /**
@@ -383,17 +385,20 @@ h2 span {
   --play-button-background: rgba(247, 235, 215, 0.5);
 
   /* font tokens */
+
+  --ff-main: "Playfair Display", "serif";
+
   --fs-12: 0.75rem;
   --fs-14: 0.875rem;
   --fs-18: 1.125rem;
   --fs-46: 2.875rem;
   --fs-54: 3.375rem;
   --fs-64: 4rem;
-  --ff-main: "Playfair Display", "serif";
 
   --lh-12: 1rem;
   --lh-14: 1.1875rem;
-
+  --lh-46: 3.1625rem;
+  --lh-54: 3.375rem;
   --lh-64: 4rem;
 
   /* margin tokens */
@@ -436,7 +441,6 @@ section {
 
 .section-column {
   width: 100%;
-  height: calc(100% - 2 * var(--section-margin));
   margin: var(--section-margin);
   display: flex;
   flex-direction: column;
@@ -444,30 +448,32 @@ section {
   border-bottom: 1px solid var(--border-color);
 }
 .section-column__wrapper {
-  max-width: 1200px;
+  max-width: 38.75rem;
   margin-left: auto;
   margin-right: auto;
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 1.75rem;
-  margin-top: 5.125rem;
+  justify-content: center;
+
   margin-bottom: 1rem;
+}
+
+.section-column__wrapper-inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.section-column__wrapper_menu {
+  margin-top: 5.125rem;
 }
 .column-showcase {
   height: 100vh;
   position: sticky;
   top: 0;
 }
-/* .column-showcase__content {
-  height: calc(100% - 2 * var(--section-margin));
-  display: flex;
-  flex-direction: column;
-  margin: var(--section-margin);
-  z-index: 2;
-  position: relative;
-} */
 
 .right-column__tagline {
   margin-top: 2.5rem;
@@ -489,6 +495,7 @@ section {
   color: var(--text-color-secondary);
   font-weight: 400;
   text-align: center;
+
   /* margin-bottom: 1em; */
 }
 
@@ -602,23 +609,28 @@ main {
   z-index: 2;
 }
 
+.showcase__wrapper {
+  margin-bottom: 4rem;
+}
+
 .showcase__title {
   color: var(--text-color-white);
   margin-bottom: 1.25rem;
-  font-size: var(--fs-54);
+  font-size: var(--fs-46);
+  line-height: var(--lh-46);
 }
 
 .showcase__description {
   color: var(--text-color-white);
   font-size: var(--fs-14);
   line-height: var(--lh-14);
-  margin-bottom: 1.25rem;
 }
 
 .showcase__cta-button {
+  margin-top: 1.25rem;
   color: var(--text-color-white);
   font-size: var(--fs-18);
-  margin-bottom: 3.75rem;
+  width: fit-content;
 }
 
 .showcase__cta-button:hover .underline-draw {

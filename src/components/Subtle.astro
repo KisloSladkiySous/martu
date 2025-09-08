@@ -8,9 +8,7 @@ const { lines } = Astro.props;
 <div class="subtle">
   {
     lines.map((line, index) => (
-      <p class="subtle__line" id={`line${index + 1}`}>
-        {line}
-      </p>
+      <p class="subtle__line" id={`line${index + 1}`} set:html={line} />
     ))
   }
 </div>
@@ -21,7 +19,7 @@ const { lines } = Astro.props;
     color: var(--text-color-primary);
     font-size: var(--fs-14);
     text-transform: uppercase;
-    /* margin-bottom: 2rem; */
+    margin-bottom: 2rem;
   }
   .subtle__line {
     display: block;
