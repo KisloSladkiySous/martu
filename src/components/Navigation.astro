@@ -2,7 +2,6 @@
 import Logo from "../assets/logo.svg";
 import Burger from "../assets/burger.svg";
 import { socialLinks } from "../social-links.ts";
-const links = socialLinks;
 ---
 
 <nav class="navigation" id="navigation">
@@ -11,23 +10,25 @@ const links = socialLinks;
   </a>
   <div class="links desktop">
     <div class="column">
-      <a href="#about">О нас</a>
-      <a href="#portfolio"> Портфолио </a>
+      <a class="links__item" href="#about"> <span>О нас</span></a>
+      <a class="links__item" href="#portfolio"> <span>Портфолио</span> </a>
     </div>
     <div class="divider"></div>
     <div class="column">
-      <a href="#advantages">Почему мы</a>
-      <a href="#workflow">Процесс</a>
+      <a class="links__item" href="#advantages"><span>Почему мы</span></a>
+      <a class="links__item" href="#workflow"><span>Процесс</span></a>
     </div>
     <div class="divider"></div>
     <div class="column">
-      <a href="#price">Услуги</a>
-      <a href="#reviews">Отзывы</a>
+      <a class="links__item" href="#price"><span>Услуги</span></a>
+      <a class="links__item" href="#reviews"><span>Отзывы</span></a>
     </div>
     <div class="divider"></div>
     <div class="column">
-      <a href={links.inst} target="_blank">Instagram</a>
-      <a href="#section4">Вконтакте</a>
+      <a class="links__item" href={socialLinks.inst} target="_blank"
+        >Instagram</a
+      >
+      <a class="links__item" href={socialLinks.vk} target="_blank">Вконтакте</a>
     </div>
   </div>
   <div class="burger mobile">
@@ -41,12 +42,11 @@ const links = socialLinks;
     top: 66px;
     left: 50px;
     z-index: 1000;
-    pointer-events: auto;
     display: flex;
-    gap: 70px;
-    width: calc(50vw - 100px);
     justify-content: space-between;
     align-items: center;
+    gap: 70px;
+    width: calc(50vw - 100px);
   }
   @media (max-width: 1025px) {
     .navigation {
@@ -73,6 +73,7 @@ const links = socialLinks;
     font-family: var(--ff-main);
     text-decoration: none;
     font-style: normal;
+    position: relative;
   }
   .black {
     color: var(--text-color-primary);
@@ -125,7 +126,7 @@ const links = socialLinks;
             const index = parseInt(
               entry.target.getAttribute("data-section-index")
             );
-            // console.log(entry);
+            console.log(entry);
 
             const sectionId = entry.target.id; // Получаем ID секции
 
