@@ -9,24 +9,26 @@ const { className } = Astro.props;
 ---
 
 <div class:list={[className, "section-column__wrapper"]}>
-  <Subtle lines={["Создадим не только", "праздник, но и повод"]} />
-  <h1 class="section__title">
-    Мы - заодно <br /> с
-    <span class="brand-color italic underline">
-      Вами
-      <span class="underline-draw">
-        <HeroSign />
+  <div class="section-column__wrapper-inner">
+    <Subtle lines={["Создадим не только", "праздник, но и повод"]} />
+    <h1 class="section__title">
+      Мы - заодно <br /> с
+      <span class="brand-color italic underline">
+        Вами
+        <span class="underline-draw">
+          <HeroSign />
+        </span>
       </span>
-    </span>
-  </h1>
-  <div class="hero-section__visual-element">
-    <Circle borderColor="white" size="lg" imagePath={HeroCircle.src} />
+    </h1>
+    <div class="hero-section__visual-element">
+      <Circle borderColor="white" size="lg" imagePath={HeroCircle.src} />
+    </div>
+    <p class="text hero-section__description">
+      <span class="brand-color">Martu</span> - мы свадебное агентство. Здесь каждый
+      не случайно. Люди, которые любят свое дело и красиво воплощают любовь. Наша
+      команда профессионалов готова реализовать любые задумки и пожелания!
+    </p>
   </div>
-  <p class="text hero-section__description">
-    <span class="brand-color">Martu</span> - мы свадебное агентство. Здесь каждый
-    не случайно. Люди, которые любят свое дело и красиво воплощают любовь. Наша команда
-    профессионалов готова реализовать любые задумки и пожелания!
-  </p>
 </div>
 
 <style>
