@@ -537,7 +537,7 @@ main {
 
 .links__item span::after {
   content: "";
-  background-image: url("../assets/images/nav-active.svg");
+  background-image: url("../assets/icons/sign/nav-active.svg");
   position: absolute;
   display: block;
   height: 5px;
