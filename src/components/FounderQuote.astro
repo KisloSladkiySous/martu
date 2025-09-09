@@ -1,0 +1,93 @@
+---
+import Circle from "../components/Circle.astro";
+import FounderImage from "../assets/images/founder.png";
+import FounderSignature from "../assets/images/founder-signature.svg";
+---
+
+<div class="founder__wrapper">
+  <div class="founder">
+    <div class="founder__quote">
+      <p class="founder__title">
+        «Для меня свадьба — это не про декор и тайминг. <br /> Это про слёзы на глазах,
+        дрожащие руки и ощущение, <br />что всё именно так, как должно быть.»
+      </p>
+      <FounderSignature class="founder__signature" />
+    </div>
+
+    <div class="founder__avatar">
+      <Circle borderColor="white" size="sm" imagePath={FounderImage.src} />
+    </div>
+    <div class="founder__fio">
+      <span class="brand-color italic">Тутунару Марина</span>
+      <span class="remark fs-12">Основатель</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .founder__wrapper {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+  }
+  .founder__title {
+    position: relative;
+    font-size: var(--fs-14);
+    line-height: var(--lh-14);
+    color: var(--text-color-tertiary);
+  }
+
+  .founder {
+    margin-top: auto;
+    background-color: var(--background-color);
+    max-height: 22.125rem;
+    max-width: 38.75rem;
+    width: 100%;
+    padding: 4rem 6rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .founder__quote {
+    position: relative;
+    text-align: center;
+    color: var(--text-color-tertiary);
+    margin-bottom: 2.25rem;
+    max-width: 22.6875rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .founder__signature {
+    width: 7.8125rem;
+    height: 4.375rem;
+    position: absolute;
+    right: -2rem;
+    top: 2.875rem;
+  }
+  .founder__avatar {
+    justify-content: center;
+    display: flex;
+    margin-bottom: 0.75rem;
+  }
+  .founder__fio {
+    font-size: var(--fs-16);
+    line-height: var(--lh-16);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2px;
+  }
+  @media (max-width: 1025px) {
+    .founder__quote {
+      margin: 2.18rem auto 2rem;
+    }
+    .founder__fio {
+      margin-bottom: 1.8rem;
+    }
+    .about-section__subtitle {
+      margin-top: 6.875rem;
+    }
+  }
+</style>

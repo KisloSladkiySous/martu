@@ -1,8 +1,9 @@
 ---
 import AboutBackground from "../assets/images/about-section-background.png";
-import FounderImage from "../assets/images/founder.png";
 import SectionAware from "../components/SectionAware.astro";
-import Circle from "./Circle.astro";
+import ShowCase from "../components/ShowCase.astro";
+
+import FounderQuote from "./FounderQuote.astro";
 const imageSources = [
   {
     srcset: AboutBackground.src,
@@ -12,29 +13,15 @@ const imageSources = [
 ];
 ---
 
-<div class="column-showcase__content">
-  <p class="about-section__subtitle">
-    Красота в <br />
+<ShowCase>
+  <h2 slot="showcase__title" class="showcase__title fs-64 text-center">
+    Красота в <br class="desktop" />
     <span class="italic">каждой</span> детали
-  </p>
-  <div class="founder">
-    <div class="founder__quote">
-      <p class="founder__title">
-        «Для меня свадьба — это не про декор и тайминг. Это <br />про слёзы на
-        глазах, дрожащие руки и ощущение, что <br /> всё именно так, как должно быть.»
-      </p>
-      <!-- <FounderSignature /> -->
-    </div>
+  </h2>
+</ShowCase>
 
-    <div class="founder__avatar">
-      <Circle borderColor="white" size="sm" imagePath={FounderImage.src} />
-    </div>
-    <div class="founder__fio">
-      <span class="brand-color italic">Тутунару Марина</span>
-      <span class="remark">Основатель</span>
-    </div>
-  </div>
-</div>
+<FounderQuote />
+
 <SectionAware
   class="background-image"
   sources={imageSources}
@@ -47,74 +34,4 @@ const imageSources = [
   sectionSelector="[data-section]"
 />
 
-<style>
-  .founder__title {
-    position: relative;
-    color: var(--text-color-tertiary);
-  }
-  .founder__title::after {
-    content: "";
-    background-image: url(src/assets/images/founder-signature.svg);
-    position: absolute;
-    background-repeat: no-repeat;
-    right: 0;
-    bottom: -55px;
-    display: block;
-    width: 150px;
-    height: 70px;
-  }
-
-  .about-section__subtitle {
-    margin-top: 12.3rem;
-    text-align: center;
-    color: var(--text-color-white);
-    font-size: var(--fs-64);
-  }
-  .founder {
-    margin-top: auto;
-    background-color: var(--background-color);
-    width: 100%;
-    max-height: 22.125rem;
-    display: flex;
-    flex-direction: column;
-  }
-  .founder__quote {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    margin: 4.375rem auto 2.1875rem;
-    color: var(--text-color-tertiary);
-  }
-
-  .founder__signature {
-    display: flex;
-    justify-content: flex-end;
-    position: relative;
-    right: -31px;
-    top: -12px;
-  }
-  .founder__avatar {
-    justify-content: center;
-    display: flex;
-    margin-bottom: 0.75rem;
-  }
-  .founder__fio {
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    gap: 2px;
-    margin-bottom: 3.312rem;
-  }
-  @media (max-width: 1025px) {
-    .founder__quote {
-      margin: 2.18rem auto 2rem;
-    }
-    .founder__fio {
-      margin-bottom: 1.8rem;
-    }
-    .about-section__subtitle {
-      margin-top: 6.875rem;
-    }
-  }
-</style>
+<style></style>

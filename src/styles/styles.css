@@ -390,6 +390,7 @@ h2 span {
 
   --fs-12: 0.75rem;
   --fs-14: 0.875rem;
+  --fs-16: 1rem;
   --fs-18: 1.125rem;
   --fs-46: 2.875rem;
   --fs-54: 3.375rem;
@@ -397,6 +398,7 @@ h2 span {
 
   --lh-12: 1rem;
   --lh-14: 1.1875rem;
+  --lh-16: 1.3125rem;
   --lh-46: 3.1625rem;
   --lh-54: 3.375rem;
   --lh-64: 4rem;
@@ -679,4 +681,18 @@ main {
 
 .pt-25 {
   padding-top: 2.5rem; /* 40px */
+}
+
+.fs-12 {
+  font-size: var(--fs-12);
+  line-height: var(--ls-12);
+}
+
+.fs-64 {
+  font-size: var(--fs-64);
+  line-height: var(--ls-64);
+}
+
+.text-center {
+  text-align: center;
 }
