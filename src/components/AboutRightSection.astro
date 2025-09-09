@@ -3,6 +3,7 @@ import Copyright from "../components/Copyright.astro";
 import Subtle from "../components/Subtle.astro";
 
 import AboutSign from "../assets/icons/sign/about-sign.svg";
+import SvgAnimation from "./SvgAnimation.astro";
 
 const { className } = Astro.props;
 ---
@@ -20,9 +21,10 @@ const { className } = Astro.props;
       О тех, кто
       <span class="brand-color italic underline">
         влюблён
-        <span class="underline-draw" style="bottom: -0.6rem;">
-          <AboutSign />
-        </span>
+
+        <SvgAnimation style="bottom: -0.6rem;">
+          <AboutSign style="width: 110%;" />
+        </SvgAnimation>
       </span>
       <br /> в своё дело
     </h2>

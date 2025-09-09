@@ -16,6 +16,7 @@ import PriceLeft from "../components/PriceLeft.astro";
 import CustomerReviewLeftSection from "../components/CustomerReviewLeftSection.astro";
 import CustomerReviewsRightSection from "../components/CustomerReviewsRightSection.astro";
 import Contacts from "../components/Contacts.astro";
+import StepAnimation from "../components/StepAnimation.astro";
 
 const sections = [
   [
@@ -30,6 +31,7 @@ const sections = [
       component: HeroRightSection,
       props: {
         id: "hero",
+        img: true,
         className: "column-content--bordered-bottom",
       },
     },
@@ -39,6 +41,7 @@ const sections = [
       component: AboutLeftSection,
       props: {
         id: "about",
+        img: true,
         className: "column-content--bordered-top",
       },
     },
@@ -137,6 +140,7 @@ const sections = [
         <section class={`snap-section`}>
           {section.map(({ component: Component, props }, index) => (
             <div class={`snap-column snap-column-${parentIndex}-${index} `}>
+              {props.img && <StepAnimation sectionId={props.id} />}
               <div
                 class="section-column"
                 id={props.id}

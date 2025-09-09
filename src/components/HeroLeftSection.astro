@@ -4,6 +4,8 @@ import Subtle from "../components/Subtle.astro";
 
 import HeroCircle from "../assets/images/hero-circle.jpg";
 import HeroSign from "../assets/icons/sign/hero-sign.svg";
+import Test from "../assets/icons/sign/Test.svg";
+import SvgAnimation from "../components/SvgAnimation.astro";
 
 const { className } = Astro.props;
 ---
@@ -15,9 +17,10 @@ const { className } = Astro.props;
       Мы - заодно <br /> с
       <span class="brand-color italic underline">
         Вами
-        <span class="underline-draw">
-          <HeroSign />
-        </span>
+        <SvgAnimation>
+          <HeroSign style="width: 120%;" />
+          <!-- <Test /> -->
+        </SvgAnimation>
       </span>
     </h1>
     <div class="hero-section__visual-element">

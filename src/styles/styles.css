@@ -535,6 +535,13 @@ main {
   position: relative;
 }
 
+.svg-item {
+  stroke: var(--brand-color);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
 .links__item span::after {
   content: "";
   background-image: url("../assets/icons/sign/nav-active.svg");
@@ -563,7 +570,7 @@ main {
 .underline-draw {
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: -0.5rem;
   height: auto;
   width: 100%;
 }
