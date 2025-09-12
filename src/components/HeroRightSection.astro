@@ -1,8 +1,9 @@
 ---
-import ShowCase from "./ShowCase.astro";
+import ShowCase from "../components/ShowCase.astro";
 import SectionAware from "../components/SectionAware.astro";
 import HeroBackground from "../assets/images/hero-section-background.png";
-import ShowCaseSign from "../assets/images/show-case-underline.svg";
+import ContactButton from "./ContactButton.astro";
+import { socialLinks } from "../social-links";
 const imageSources = [
   {
     srcset: HeroBackground.src,
@@ -12,50 +13,30 @@ const imageSources = [
 ];
 ---
 
-<div class="column-showcase">
-  <div class="column-showcase__content">
-    <ShowCase
-      date="Сентябрь 2025"
-      names="Вероника и Максим"
-      cssClass="border-bottom"
-    >
-      <div slot="showcase__title" class="showcase__title">
-        <span class="italic">Бесплатная</span> консультация по вашему запросу!
-      </div>
-      <div slot="showcase__contact-us" class="showcase__cta-button underline">
-        Связаться с нами
-        <span class="underline-draw">
-          <ShowCaseSign />
-        </span>
-      </div>
-      <div slot="showcase__description" class="showcase__description">
-        Расскажите нам свои идеи, и мы предложим<br /> концепцию, формат и ориентир
-        по бюджету <br /> — даже если вы ещё не выбрали агентство.
-      </div>
-    </ShowCase>
-  </div>
+<ShowCase
+  date="Сентябрь 2025"
+  names="Вероника и Максим"
+  hash="veronika-and-maksim"
+  cssClass="border-bottom"
+>
+  <h2 slot="showcase__title" class="showcase__title">
+    <span class="italic">Бесплатная</span> консультация <br class="desktop" /> по
+    вашему запросу!
+  </h2>
 
-  <SectionAware
-    class="background-image"
-    sources={imageSources}
-    src={HeroBackground.src}
-    alt="Feature"
-    height="100%"
-    width="100%"
-    preloadSections={1}
-    sectionSelector="[data-section]"
-  />
-</div>
-<style>
-  .column-showcase {
-    height: 100vh;
-    position: sticky;
-    top: 0;
-  }
-  .column-showcase__content {
-    height: calc(100% - 100px);
-    display: flex;
-    flex-direction: column;
-    margin: 50px;
-  }
-</style>
+  <ContactButton link={socialLinks.wu} backgroundColor="rgba(255, 255, 255, 0.2)" textColor="rgba(255, 255, 255, 1)" slot="showcase__contact-us"></ContactButton>
+  <p slot="showcase__description" class="showcase__description">
+    Расскажите ваши предпочтения и мы предложим вам <br> лучшие варианты по бюджету,концепции и формату.
+  </p>
+</ShowCase>
+
+<SectionAware
+  class="background-image"
+  sources={imageSources}
+  src={HeroBackground.src}
+  alt="Feature"
+  height="100%"
+  width="100%"
+  preloadSections={1}
+  sectionSelector="[data-section]"
+/>

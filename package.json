@@ -3,14 +3,20 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev ",
+    "dev": "astro dev --force --host=192.168.1.13 ",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/db": "^0.17.1",
     "astro": "^5.13.4",
-    "motion": "^12.23.12",
-    "sass": "^1.91.0"
+    "bcrypt": "^6.0.0",
+    "sass": "^1.91.0",
+    "motion": "^12.23.12"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/formidable": "^3.4.5"
   }
 }

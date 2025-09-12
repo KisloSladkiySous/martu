@@ -1,36 +1,39 @@
-# Astro Starter Kit: Basics
+# MARTU
 
-```sh
-npm create astro@latest -- --template basics
-```
+## TODO:
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### Важное
 
-## 🚀 Project Structure
+- [ ] Сломалась скроллящаяся секция
+- [ ] AboutRight сделать description гридом и изменять grid-area на адаптипе
 
-Inside of your Astro project, you'll see the following folders and files:
+### Анимации
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+- [-] Компонент SvgAnimation для отрисовки подчеркиваний
+- [x] Комопонент StepAnimation для секций с картинками
+- [x] Анимация в компоненте Subtle
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+### Оформление
+
+- [ ] Перескакивает подчеркивание у пунктов меню при возвращении на hero-секцию
+- [x] Копирайт и нижние элементы должны растягиваться по ширине
+- [x] Бордер у секций отличается цветом
+- [x] Изменен апскейл
+- [x] AboutRight переверстать, контент по центру, по аналогии с HeroLeft
+
+### Навигация
+
+- [ ] Придумать как менять цвет в зависимости от секции, с учетом двух на десктопе и одного на мобильной
+- [x] Перестайлил навигацию, теперь все ровно на всех разрешениях
+- [x] Динамический индекс в index.astro у секций
+- [x] Анимация подчеркивания у текущего элемента навигации
+
+### Прочее
+
+- [x] Иконки, svg и подчеркивания рассортировать по директориям assets/...
+- [x] Индексы и айди колонок вынесены в index.astro файл
 
 ## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
 
 | Command                   | Action                                           |
 | :------------------------ | :----------------------------------------------- |
@@ -40,7 +43,3 @@ All commands are run from the root of the project, from a terminal:
 | `npm run preview`         | Preview your build locally, before deploying     |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

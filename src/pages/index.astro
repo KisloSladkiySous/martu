@@ -16,21 +16,23 @@ import PriceLeft from "../components/PriceLeft.astro";
 import CustomerReviewLeftSection from "../components/CustomerReviewLeftSection.astro";
 import CustomerReviewsRightSection from "../components/CustomerReviewsRightSection.astro";
 import Contacts from "../components/Contacts.astro";
+import StepAnimation from "../components/StepAnimation.astro";
 
 const sections = [
   [
     {
       component: HeroLeftSection,
       props: {
-        title: "Главная секция",
-        class: "column-content--bordered",
+        id: "hero",
+        className: "pt-4 section-column__wrapper_menu",
       },
     },
     {
       component: HeroRightSection,
       props: {
-        title: "Главная секция",
-        class: "column-content--bordered-bottom",
+        id: "hero",
+        img: true,
+        className: "column-content--bordered-bottom",
       },
     },
   ],
@@ -38,15 +40,17 @@ const sections = [
     {
       component: AboutLeftSection,
       props: {
-        title: "Секция о нас",
-        class: "column-content--bordered-top",
+        id: "about",
+        img: true,
+        className: "column-content--bordered-top",
       },
     },
     {
       component: AboutRightSection,
       props: {
-        title: "Секция о нас",
-        class: "column-content--bordered",
+        id: "about",
+        className:'pt-25'
+
       },
     },
   ],
@@ -54,15 +58,16 @@ const sections = [
     {
       component: PortfolioLeft,
       props: {
-        title: "Секция портфолио",
-        class: "column-content--bordered",
+        id: "portfolio",
+        className: "pt-4 section-column__wrapper_menu",
       },
     },
     {
       component: PortfolioRight,
       props: {
-        title: "Секция портфолио",
-        class: "column-content--bordered-bottom",
+        id: "portfolio",
+        className: "column-content--bordered-bottom",
+        img: true,
       },
     },
   ],
@@ -70,14 +75,17 @@ const sections = [
     {
       component: AdvantagesLeftSection,
       props: {
-        title: "Секция преимущества",
+        id: "advantages",
+        className: "column-content--bordered-bottom",
+        img: true,
       },
     },
     {
       component: AdvantagesRightSection,
       props: {
-        title: "Секция преимущества",
-        class: "column-content--bordered",
+        id: "advantages",
+        className:'pt-25'
+
       },
     },
   ],
@@ -85,15 +93,16 @@ const sections = [
     {
       component: WorkflowLeftSection,
       props: {
-        title: "Секция процесс",
-        class: "column-content--bordered",
+        id: "workflow",
+        className: "pt-4 section-column__wrapper_menu",
       },
     },
     {
       component: WorkflowRight,
       props: {
-        title: "Секция процесс",
-        class: "column-content--bordered-bottom",
+        id: "workflow",
+        className: "column-content--bordered-bottom column-content--sticky",
+        img: true,
       },
     },
   ],
@@ -101,15 +110,16 @@ const sections = [
     {
       component: PriceLeft,
       props: {
-        title: "Секция цен",
-        class: "column-content--bordered-top",
+        id: "price",
+        className: "column-content--bordered-top",
+        img: true,
       },
     },
     {
       component: PriceRight,
       props: {
-        title: "Секция цен",
-        class: "column-content--bordered",
+        id: "price",
+          className:'pt-25'
       },
     },
   ],
@@ -117,46 +127,45 @@ const sections = [
     {
       component: CustomerReviewLeftSection,
       props: {
-        title: "Секция цен",
-        class: "column-content--bordered",
+        id: "reviews",
+        className: "pt-4 section-column__wrapper_menu",
       },
     },
     {
       component: CustomerReviewsRightSection,
       props: {
-        title: "Секция цен",
+        id: "reviews",
       },
     },
   ],
+  [
+    {
+      component: Contacts,
+      props: {
+        id: "contacts",
+     
+      },
+    },
+
+  ],
 ];
-const idsMap: Record<number, string> = {
-  0: "hero",
-  1: "about",
-  2: "portfolio",
-  3: "advantages",
-  4: "workflow",
-  5: "price",
-  6: "reviews",
-};
-const classes: Record<number, string> = {
-  4: "large",
-};
 ---
 
 <Layout title="Martu - Свадебное агенство">
   <main class="scroll-container">
     {
-      sections.map((section, index) => (
-        <section
-          class={`snap-section ${classes[index] ?? ""}`}
-          id={idsMap[index]}
-          data-nav-section
-          data-section-index={index}
-          data-section
-        >
-          {section.map(({ component: Component, props }) => (
-            <div class="snap-column">
-              <div class={`column-content ${props.class ?? ""}`}>
+      sections.map((section, parentIndex) => (
+        <section class:list={[parentIndex === 7 ? 'snap-section-full' : 'snap-section']}>
+          {section.map(({ component: Component, props }, index) => (
+            <div class={`snap-column snap-column-${parentIndex}-${index} `}>
+              {props.img && <StepAnimation sectionId={props.id} />}
+              <div
+                class={`${props.id !== 'contacts' ? 'section-column' : 'section-full'}`}
+                id={props.id}
+                data-section-index={parentIndex}
+                data-nav-section
+                data-section
+              >
                 <Component {...props} />
               </div>
             </div>
@@ -164,7 +173,7 @@ const classes: Record<number, string> = {
         </section>
       ))
     }
-    <Contacts />
+    <!-- <Contacts /> -->
   </main>
 </Layout>
 
@@ -194,17 +203,23 @@ const classes: Record<number, string> = {
     position: relative;
   }
 
-  @media (min-width: 768px) {
+
+
+  @media (min-width: 1025px) {
     .snap-section {
       display: grid;
       grid-template-columns: 1fr 1fr;
+
+      scroll-snap-align: start;
+    }
+    .snap-section-full {
+      display: grid;
+      grid-template-columns: 1fr;
       min-height: 100vh;
       scroll-snap-align: start;
     }
 
-    .snap-section:nth-of-type(even) {
-      direction: ltr; /* меняет порядок колонок */
-    }
+
 
     .snap-column {
       min-height: 100vh;

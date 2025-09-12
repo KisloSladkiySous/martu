@@ -23,4 +23,31 @@ const { title } = Astro.props;
     <Navigation />
     <slot />
   </body>
+  <script>
+    function updateScale() {
+      const baseWidth = 1440;
+      const baseHeight = 900;
+      const baseFont = 16; // px
+
+      if (window.innerWidth < 1025) {
+        // мобилка → фиксированное значение
+        document.documentElement.style.setProperty("--size-font", `16px`);
+        return;
+      }
+
+      const scale = Math.min(
+        window.innerWidth / baseWidth,
+        window.innerHeight / baseHeight
+      );
+
+      document.documentElement.style.setProperty(
+        "--size-font",
+        `${baseFont * scale}px`
+      );
+    }
+
+    // при загрузке и ресайзе
+    window.addEventListener("resize", updateScale);
+    window.addEventListener("load", updateScale);
+  </script>
 </html>

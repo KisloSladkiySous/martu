@@ -9,45 +9,28 @@ const imageSources = [
     type: "image/png",
   },
 ];
+const {className} = Astro.props
 ---
-
-<div class="column-showcase">
-  <div class="column-showcase__content">
+<div class:list={[className, "section-column__wrapper"]}>
     <ShowCase date="Весна 2024" names="Ольга и Константин">
-      <div slot="showcase__title" class="showcase__title">
-        В день свадьбы мы ваш щит, ваш тыл и ваша <span class="italic"
-          >уверенность</span
-        >
-      </div>
-      <div slot="showcase__description" class="showcase__description">
-        Вы можете забыть о часах, телефонах и логистике, потому что всё будет
-        идти по плану — или лучше.
-      </div>
-    </ShowCase>
-  </div>
+    <div slot="showcase__title" class="showcase__title">
+       В день вашей свадьбы забудьте обо всем,  <span class="italic"
+        >наслаждайтесь</span> моментом.
+    </div>
 
-  <SectionAware
-    class="background-image"
-    sources={imageSources}
-    src={WorkFlowBackground.src}
-    alt="Feature"
-    height="100%"
-    width="100%"
-    preloadSections={1}
-    sectionSelector="[data-section]"
-  />
+  </ShowCase>
+
+
+<SectionAware
+  class="background-image"
+  sources={imageSources}
+  src={WorkFlowBackground.src}
+  alt="Feature"
+  height="100%"
+  width="100%"
+  preloadSections={1}
+  sectionSelector="[data-section]"
+/>
 </div>
 
-<style>
-  .column-showcase {
-    height: 100vh;
-    position: sticky;
-    top: 0;
-  }
-  .column-showcase__content {
-    height: calc(100% - 100px);
-    display: flex;
-    flex-direction: column;
-    margin: 50px;
-  }
-</style>
+

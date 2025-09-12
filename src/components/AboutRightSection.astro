@@ -1,107 +1,156 @@
 ---
-import Copyright from "./Copyright.astro";
-import AboutSign from "../assets/images/about-sign.svg";
+import Copyright from "../components/Copyright.astro";
+import Subtle from "../components/Subtle.astro";
+
+import AboutSign from "../assets/icons/sign/about-sign.svg";
+import SvgAnimation from "./SvgAnimation.astro";
+
+const { className } = Astro.props;
 ---
 
-<div class="column-wrapper">
-  <div class="right-column__tagline">
-    Мы — команда <span class="brand-color italic">Martu</span>, <br />и мы любим
-    свадьбы.
+<div class:list={[className, "section-column__wrapper"]}>
+  <div class="section-column__wrapper-inner">
+    <Subtle
+      lines={[
+        `Мы — команда <span class="brand-color italic">Martu</span>, `,
+        `и мы любим свадьбы.`,
+      ]}
+      delay={300}
+    />
+
+    <h2 class="section__title">
+      О тех, кто
+      <span class="brand-color italic underline">
+        влюблён
+
+        <SvgAnimation style="bottom: -0.6rem;">
+          <AboutSign style="width: 110%;" />
+        </SvgAnimation>
+      </span>
+      <br /> в своё дело
+    </h2>
+
+<div class="description">
+  <div class="description__text-block-1 grid-area-text1">
+    <p class="text">
+      Ваша свадьба — это больше, чем просто праздник. Это день, где каждая
+      деталь должна быть наполнена смыслом и красотой. В
+      <span class="brand-color italic">Martu</span>
+      мы верим, что эмоции не поддаются шаблонам, и именно поэтому подходим к
+      каждой паре с теплом и вниманием.
+    </p>
   </div>
-  <h2 class="about-section__title">
-    О тех, кто <span class="brand-color italic underline"
-      >влюблён<span class="underline-draw">
-        <AboutSign />
-      </span></span
-    >
-    <br /> в своё дело
-  </h2>
-  <div class="description">
-    <div class="description__column">
-      <p class="descrition__text">
-        Ваша свадьба — это больше, чем просто праздник. Это день, где каждая
-        деталь должна быть наполнена смыслом и красотой. В <span
-          class="brand-color italic">Martu</span
-        > мы верим, что эмоции не поддаются шаблонам, и именно поэтому подходим к
-        каждой паре с теплом и вниманием.
-      </p>
-      <p class="descrition__text">
-        У нас нет случайных подрядчиков или дежурных решений. Каждая пара —
-        <span class="brand-color italic">отдельная история,</span> каждый день —
-        уникальный проект. Мы собрали вокруг себя людей, которым можно доверить праздник
-        своей жизни: координаторов, флористов, декораторов, стилистов. Наша задача
-        — не просто выполнить работу, а быть для вас поддержкой и опорой.
-      </p>
-    </div>
-    <div class="description__column">
-      <ul class="advantages">
-        <li>
-          Более <span class="brand-color italic">5 лет</span>
-          <br /> в индустрии
-        </li>
-        <li>
-          <span class="brand-color italic">100+</span> довольных <br /> и счастливых
-          пар
-        </li>
-        <li>
-          <span class="brand-color italic">0</span> стрессов <br /> у наших клиентов
-        </li>
-        <li>
-          <span class="brand-color italic">15</span> внимательных <br /> человек
-          в команде
-        </li>
-      </ul>
-    </div>
+
+  <div class="description__advantages grid-area-list">
+    <ul class="advantages">
+      <li>
+        Более <span class="brand-color italic">7 лет</span>
+        <br /> в индустрии
+      </li>
+      <li>
+        <span class="brand-color italic">100+</span> довольных <br /> и счастливых
+        пар
+      </li>
+      <li>
+     <span class="brand-color italic">Около 30%</span> экономии вашего  бюджета <br> 
+      </li>
+      <li>
+        <span class="brand-color italic">15</span> подготовленных<br/> сотрудников
+      </li>
+    </ul>
+  </div>
+
+  <div class="description__text-block-2 grid-area-text2">
+    <p class="text">
+      Каждая пара —
+      <span class="brand-color italic">отдельная история,</span>
+      каждый день — уникальный проект. Мы собрали вокруг себя людей, которым
+      можно доверить праздник своей жизни: координаторов, флористов, декораторов,
+      стилистов. Наша задача — не просто организовать мероприятие, а быть для вас главной точкой опоры и поддержки в самый главный день вашей жизни.
+    </p>
+  </div>
+</div>
   </div>
   <Copyright />
 </div>
+
 <style>
-  .column-wrapper {
-    height: calc(100% - 100px);
-    margin: 50px;
-    display: flex;
-    flex-direction: column;
-    border-top: 1px solid var(--brand-color);
-    border-bottom: 1px solid var(--brand-color);
-  }
 
-  .about-section__title {
-    margin-bottom: 5.125rem;
-  }
 
+.description {
+  display: grid;
+  gap: 3.75rem; 
+  grid-template-areas:
+    "text1 list"
+    "text2 list";
+  grid-template-columns: 1fr 1fr; 
+  align-items: start; 
+  margin-top: 5.125rem;
+}
+
+/* Присваиваем области */
+.grid-area-text1 { grid-area: text1; }
+.grid-area-text2 { grid-area: text2; }
+.grid-area-list  { grid-area: list; }
+
+/* Стили текста */
+.text {
+  font-size: var(--fs-14); /* или нужный размер */
+  line-height: var(--lh-14);
+  color: var(--text-color-primary);
+}
+
+/* Стили списка */
+.advantages {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3.625rem;
+  align-items: flex-end;
+}
+
+.advantages li {
+  color: var(--text-color-tertiary);
+  font-size: var(--fs-14);
+  line-height: var(--lh-14);
+  width: 9.1875rem;
+  position: relative;
+}
+
+.advantages li::after {
+  content: "";
+  display: block;
+  background-image: url("../assets/icons/sign/list-sign.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+
+@media (max-width: 1025px) {
   .description {
-    display: flex;
-  }
-  .descrition__text {
-    color: var(--text-color-secondary);
-  }
-  .description__column {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    gap: 3.75rem;
+    grid-template-areas:
+      "text1"
+      "list"
+      "text2";
+    grid-template-columns: 1fr; 
+    gap: 2.5rem; 
+    margin-top: 3.8125rem;
   }
 
-  ul {
-    list-style: none;
-    display: flex;
-    list-style: none;
-    gap: 4.125rem;
-    flex-direction: column;
-    align-items: flex-end;
-    margin: 0;
+  .advantages {
+   display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
   }
-  li {
-    color: var(--text-color-tertiary);
-    font-size: var(--fs-14);
-    width: 9.375rem;
+
+  .advantages li {
+    margin: 0 auto;
+    text-align: left;
   }
-  li::after {
-    content: "";
-    display: block;
-    background-image: url("../assets/images/list-sign.svg");
-    width: 9.375rem;
-    height: 0.5rem;
-    background-repeat: no-repeat;
-  }
+}
 </style>

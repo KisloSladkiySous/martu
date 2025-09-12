@@ -27,20 +27,18 @@ main {
 }
 .acrive::after {
   content: "";
-  background-image: url("../assets/images/nav-active.svg");
+  background-image: url("../assets/icons/sign/nav-active.svg");
 }
 .underline-draw {
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 100%;
   height: auto;
 }
 .underline-draw-custom {
   position: absolute;
   left: 0;
   bottom: -21px;
-  width: 100%;
   height: auto;
 }
 
@@ -51,12 +49,12 @@ main {
   display: none !important;
 }
 .desktop {
-  display: flex !important;
+  display: flex;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1025px) {
   .desktop {
-    display: none !important;
+    display: none;
   }
   .mobile {
     display: flex !important;

@@ -8,39 +8,39 @@ const imageSources = [
     type: "image/png",
   },
 ];
+
+
 ---
 
-<div class="column-showcase">
-  <div class="column-showcase__content">
-    <div class="advantages">
-      <div class="list-container">
-        <ul class="list">
-          <li class="list-item">
-            <p class="list-item-title">Сильная команда</p>
-            <p class="list-item-description">
-              Cобственный декор, координаторы, подрядчики
-            </p>
-          </li>
-          <li class="list-item">
-            <p class="list-item-title">Персональный подход</p>
-            <p class="list-item-description">
-              Свадьба по вашему стилю и характеру
-            </p>
-          </li>
-          <li class="list-item">
-            <p class="list-item-title">Полное сопровождение</p>
-            <p class="list-item-description">
-              От брифа до финального бокала шампанского
-            </p>
-          </li>
-          <li class="list-item">
-            <p class="list-item-title">Опыт и надёжность</p>
-            <p class="list-item-description">
-              Мы знаем, как предвосхищать сложности
-            </p>
-          </li>
-        </ul>
-      </div>
+
+  <div class="advantages ">
+    <div class="list-container">
+      <ul class="list">
+        <li class="list-item">
+          <p class="list-item-title">Сильная команда</p>
+          <p class="list-item-description">
+          Собственный декор, проверенные <br> фотографы/видеографы, топовые <br> ведущие, обученные координаторы и т.д
+          </p>
+        </li>
+        <li class="list-item">
+          <p class="list-item-title">Персональный подход</p>
+          <p class="list-item-description">
+           Концепция под ваш стиль и характер
+          </p>
+        </li>
+        <li class="list-item">
+          <p class="list-item-title">Полное сопровождение</p>
+          <p class="list-item-description">
+            От знакомства до ухода последнего гостя
+          </p>
+        </li>
+        <li class="list-item">
+          <p class="list-item-title">Опыт и надёжность</p>
+          <p class="list-item-description">
+           Предотвратим проблему до ее появления
+          </p>
+        </li>
+      </ul>
     </div>
   </div>
 
@@ -54,21 +54,12 @@ const imageSources = [
     preloadSections={1}
     sectionSelector="[data-section]"
   />
-</div>
+
 
 <style>
-  .column-showcase {
-    height: 100vh;
-    position: sticky;
-    top: 0;
-  }
-  .column-showcase__content {
-    height: calc(100% - 100px);
-    display: flex;
-    flex-direction: column;
-    margin: 50px;
-    position: relative;
-    z-index: 2;
+  .advantages {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color-white);
   }
 
   .list-container {
@@ -81,17 +72,19 @@ const imageSources = [
     display: grid;
     justify-content: center;
     row-gap: 42px;
-    gap: 100px;
+
   }
 
   @media (min-width: 768px) {
     .list {
+      width: 100%;
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
   @media (max-width: 767px) {
     .list {
+      width: 100%;
       grid-template-columns: 1fr;
     }
   }
@@ -106,6 +99,7 @@ const imageSources = [
     font-size: var(--fs-16);
     color: var(--text-color-white);
     margin-bottom: 10px;
+    text-transform: uppercase;
   }
 
   .list-item-description {

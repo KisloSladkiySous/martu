@@ -1,0 +1,26 @@
+---
+
+const {link, textColor, backgroundColor} =Astro.props
+---
+<a href={link} class="contact-us" target="_blank" aria-label="Связаться с нами">
+    Связаться с нами
+</a>
+
+ <style define:vars={{  textColor, backgroundColor }}>
+    .contact-us {
+    background-color: var(--backgroundColor);
+    color: var(--textColor);
+    font-size: var(--fs-18);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: none;
+    border-radius: 999px;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    padding: 0.7em 2em;
+}
+.contact-us:hover {
+    cursor: pointer;
+}
+ </style>

@@ -1,0 +1,79 @@
+---
+interface Props {
+  lines: string[];
+  delay?:number
+}
+const { lines, delay=200 } = Astro.props;
+---
+
+<script>
+  import { stagger, animate, inView } from "motion";
+
+  const transition = {
+    duration: 0.8,
+    delay: stagger(0.217, { startDelay: 0.2 }),
+    // ease: [0.5, 0, 0, 1],
+    type: "spring",
+  };
+
+  const keyframes = {
+    y: ["100%", "0%"],
+  };
+
+  // inView(
+  //   ".subtle",
+  //   (element, info) => {
+  //     const lines = Array.from(
+  //       element.querySelectorAll<HTMLElement>(".subtle__line")
+  //     );
+
+  //     const animation = animate(lines, keyframes, transition);
+  //     animation.play();
+
+  //     return () => animate(lines, { y: "100%" }, { instant: true });
+  //   },
+  //   { amount: 0.5 }
+  // );
+   inView(
+    ".subtle",
+    function (element) {
+
+      
+      // `element` — это текущий .subtle, в котором мы находимся
+      const lines = Array.from(element.querySelectorAll(".subtle__line"));
+      const animation = animate(lines, keyframes, transition);
+      animation.play();
+    return () => animate(lines, { y: "100%" }, { instant: true });
+    },
+    { amount: 0.5 }
+  );
+</script>
+
+<div class="subtle" data-delay={delay}>
+  {
+    lines.map((line, index) => (
+      <div class="subtle__row">
+        <p class="subtle__line" id={`line${index + 1}`} set:html={line} />
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .subtle {
+    text-align: center;
+    color: var(--text-color-primary);
+    font-size: var(--fs-14);
+    line-height: var(--lh-14);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+  .subtle__line {
+    display: inline-block;
+    transform: translateY(100%);
+    display: block;
+  }
+  .subtle__row {
+    overflow: hidden;
+  }
+</style>

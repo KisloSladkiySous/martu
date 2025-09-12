@@ -1,54 +1,47 @@
 ---
-import Circle from "./Circle.astro";
+import Circle from "../components/Circle.astro";
+import Subtle from "../components/Subtle.astro";
+
 import HeroCircle from "../assets/images/hero-circle.jpg";
-import HeroSign from "../assets/images/hero-sign.svg";
+import HeroSign from "../assets/icons/sign/hero-sign.svg";
+import Test from "../assets/icons/sign/Test.svg";
+import SvgAnimation from "../components/SvgAnimation.astro";
+
+const { className } = Astro.props;
 ---
 
-<div class="column-wrapper">
-  <p class="left-column__tagline">
-    <span class="line" id="line1">Создадим не только</span>
-    <span class="line" id="line2">праздник, но и повод</span>
-  </p>
-  <h1 class="section__title">
-    Мы - заодно <br /> с <span class="brand-color italic underline"
-      >Вами <span class="underline-draw">
-        <HeroSign />
+<div class:list={[className, "section-column__wrapper"]}>
+  <div class="section-column__wrapper-inner">
+    <Subtle lines={["Создадим не только", "праздник, но и повод"]}     delay={400}/>
+    <h1 class="section__title">
+      Мы - заодно <br /> с
+      <span class="brand-color italic underline">
+        Вами
+        <SvgAnimation>
+          <HeroSign style="width: 120%;" />
+          <!-- <Test /> -->
+        </SvgAnimation>
       </span>
-    </span>
-  </h1>
-  <div class="hero-section__visual-element">
-    <Circle borderColor="white" size="lg" imagePath={HeroCircle.src} />
+    </h1>
+    <div class="hero-section__visual-element">
+      <Circle borderColor="white" size="lg" imagePath={HeroCircle.src} />
+    </div>
+    <p class="text hero-section__description">
+      <span class="brand-color">Martu</span> - мы свадебное агентство. Здесь каждый
+      не случайно. Люди, которые любят свое дело и красиво воплощают любовь. Наша
+      команда профессионалов готова реализовать любые задумки и пожелания!
+    </p>
   </div>
-  <p class="hero-section__description">
-    <span class="brand-color"> Martu</span> - мы свадебное агентство. Здесь каждый
-    не случайно. Люди, которые любят свое дело и красиво воплощают любовь. Наша команда
-    профессионалов готова реализовать любые задумки и пожелания!
-  </p>
 </div>
+
 <style>
-  .column-wrapper {
-    height: calc(100% - 100px);
-    margin: 50px;
-    display: flex;
-    flex-direction: column;
-    border-top: 1px solid var(--brand-color);
-    border-bottom: 1px solid var(--brand-color);
-  }
-
-  .line {
-    display: block;
-    /* opacity: 0; */
-  }
-
   .hero-section__visual-element {
     display: flex;
     justify-content: center;
+    margin-top: 4.3125rem;
+    margin-bottom: 5.4375rem;
   }
   .hero-section__description {
-    color: var(--text-color-secondary);
-    font-size: var(--size-font);
     text-align: center;
-    margin-top: auto;
-    margin-bottom: 2rem;
   }
 </style>

@@ -1,150 +1,310 @@
 ---
 import Logo from "../assets/logo.svg";
-import Burger from "../assets/burger.svg";
+import Close from "../assets/icons/close.svg";
+import Burger from "../assets/icons/burger.svg";
 import { socialLinks } from "../social-links.ts";
-const links = socialLinks;
 ---
 
 <nav class="navigation" id="navigation">
   <a class="logo" href="#hero">
     <Logo />
   </a>
+
+  <!-- Desktop Menu -->
   <div class="links desktop">
     <div class="column">
-      <a href="#about">О нас</a>
-      <a href="#portfolio"> Портфолио </a>
+      <a class="links__item" href="#about"><span>О нас</span></a>
+      <a class="links__item" href="#portfolio"><span>Портфолио</span></a>
     </div>
     <div class="divider"></div>
     <div class="column">
-      <a href="#advantages">Почему мы</a>
-      <a href="#workflow">Процесс</a>
+      <a class="links__item" href="#advantages"><span>Почему мы</span></a>
+      <a class="links__item" href="#workflow"><span>Процесс</span></a>
     </div>
     <div class="divider"></div>
     <div class="column">
-      <a href="#price">Услуги</a>
-      <a href="#reviews">Отзывы</a>
+      <a class="links__item" href="#price"><span>Услуги</span></a>
+      <a class="links__item" href="#reviews"><span>Отзывы</span></a>
     </div>
     <div class="divider"></div>
     <div class="column">
-      <a href={links.inst} target="_blank">Instagram</a>
-      <a href="#section4">Вконтакте</a>
+      <a class="links__item" href={socialLinks.inst} target="_blank"
+        >Instagram</a
+      >
+      <a class="links__item" href={socialLinks.vk} target="_blank">Вконтакте</a>
     </div>
   </div>
-  <div class="burger mobile">
+
+  <!-- Mobile Burger -->
+  <div class="burger mobile" id="burger-icon">
     <Burger />
   </div>
+  
+  <div class="mobile-menu-overlay" id="mobile-menu">
+    <div class="mobile-menu-content">
+      <div class="mobile-header">
+        <a id="logo-mobile" href="#hero">
+          <Logo />
+        </a>
+        <div class="close mobile" id="close-icon">
+          <Close />
+        </div>
+      </div>
+       <div class="mobile-links">
+      <a class="mobile-link" href="#about"> <span>О нас</span> </a>
+      <a class="mobile-link" href="#portfolio"> <span>Портфолио</span></a>
+      <a class="mobile-link" href="#advantages"> <span>Почему мы</span></a>
+      <a class="mobile-link" href="#workflow"> <span>Процесс</span></a>
+      <a class="mobile-link" href="#price"> <span>Услуги</span></a>
+      <a class="mobile-link" href="#reviews"> <span>Отзывы</span></a>
+      <a class="mobile-link" href={socialLinks.inst} target="_blank"
+        >Instagram</a
+      >
+      <a class="mobile-link" href={socialLinks.vk} target="_blank">Вконтакте</a>
+    </div>
+    </div>
+
+   
+  </div>
 </nav>
+
+
 
 <style>
   .navigation {
     position: fixed;
-    top: 66px;
-    left: 50px;
+    top: 0;
+    left: 0;
+    margin: calc(var(--section-margin) + 1em) var(--section-margin) 0
+      var(--section-margin);
     z-index: 1000;
-    pointer-events: auto;
     display: flex;
-    gap: 70px;
-    width: calc(50vw - 100px);
     justify-content: space-between;
     align-items: center;
+    gap: 2.5em;
+    width: calc(50vw - calc(var(--section-margin) * 2));
   }
-  @media (max-width: 690px) {
+
+  .logo {
+    height: 4.125rem;
+    width: 4.125rem;
+    position: relative;
+  }
+  #logo-mobile {
+    color: black;
+    height: 45px;
+    width: 45px;
+  }
+
+  @media (max-width: 1025px) {
     .navigation {
       backdrop-filter: blur(4px);
       width: calc(100% - 40px);
       top: 0;
       left: 0;
+      margin: 0;
       padding: 20px 20px 12px 20px;
       border-bottom: 1px solid var(--border-color);
     }
+
     .logo {
       height: 45px;
       width: 45px;
-      svg {
-        width: 100%;
-        height: 100%;
-      }
+    }
+
+    .desktop {
+      display: none !important;
+    }
+
+    .mobile {
+      display: block;
+      cursor: pointer;
     }
   }
-  a {
+
+  .links__item {
     color: var(--text-color-secondary);
     font-weight: 400;
     font-size: var(--fs-12);
     font-family: var(--ff-main);
     text-decoration: none;
-    font-style: normal;
+    position: relative;
+    width: 5rem;
   }
+
   .black {
     color: var(--text-color-primary);
   }
+
   .white {
     color: var(--text-color-white);
   }
+
   .column {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 0.625em;
   }
+
   .divider {
     width: 1px;
     background-color: var(--border-color);
   }
+
   .links {
+    gap: 2em;
+  }
+
+
+  .mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.3s ease,
+      visibility 0.3s ease;
     display: flex;
-    gap: 35px;
+    flex-direction: column;
+  
+    background-color: var(--background-color);
   }
-  .nav {
-    display: none;
+
+  .mobile-menu-overlay.open {
+    opacity: 1;
+    visibility: visible;
   }
-  #navigation:has(:checked) {
-    .nav {
-      display: flex;
+  .mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+      padding: 20px 20px 12px 20px;
+  }
+  .mobile-menu-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .mobile-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+  .mobile-link {
+    color: var(--text-color-primary);
+    text-decoration: none;
+    text-align: center;
+    transition: color 0.2s;
+  }
+
+  /* Optional: animate burger */
+  .burger svg {
+    transition: transform 0.3s ease;
+  }
+
+  .burger.open svg {
+    transform: rotate(90deg);
+  }
+
+  @media (min-width: 1026px) {
+    .mobile-menu-overlay {
+      display: none !important;
     }
-  }
-  .burger {
-    width: 40px;
-    height: 40px;
   }
 </style>
 
-<script lang="js">
+<script>
+  // Только клиентский JS — Astro выполнит его в браузере
   document.addEventListener("DOMContentLoaded", () => {
+    const burgerIcon = document.getElementById("burger-icon");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const closeBtn = document.getElementById("close-icon");
+    const allLinks = document.querySelectorAll(".mobile-link, #navigation a");
+
+    // Функция открытия/закрытия меню
+    function toggleMenu() {
+      console.log("clicked");
+
+      const isOpen = mobileMenu.classList.contains("open");
+      if (isOpen) {
+        mobileMenu.classList.remove("open");
+        burgerIcon.classList.remove("open");
+        document.body.style.overflow = "";
+      } else {
+        mobileMenu.classList.add("open");
+        burgerIcon.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+    }
+
+    // Закрытие меню
+    function closeMenu() {
+      mobileMenu.classList.remove("open");
+      burgerIcon.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    if (burgerIcon) {
+      burgerIcon.addEventListener("click", toggleMenu);
+    }
+    if (closeBtn) {
+      closeBtn.addEventListener("click", toggleMenu);
+    }
+
+    allLinks.forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    document.addEventListener("click", (e) => {
+      if (
+        mobileMenu.classList.contains("open") &&
+        !mobileMenu.contains(e.target) &&
+        !burgerIcon.contains(e.target)
+      ) {
+        closeMenu();
+      }
+    });
+
     const nav = document.getElementById("navigation");
     const sections = document.querySelectorAll("[data-nav-section]");
-    const navLinks = document.querySelectorAll("#navigation a");
 
-    // Определяем текущую секцию
-    let currentSectionIndex = 1;
-
+    let currentSectionIndex = 'black';
+   
     const observer = new IntersectionObserver(
       (entries) => {
+        
         entries.forEach((entry) => {
+       
           if (entry.isIntersecting) {
-            const index = parseInt(
-              entry.target.getAttribute("data-section-index")
-            );
-            const sectionId = entry.target.id; // Получаем ID секции
-
+            const index =  entry.target.getAttribute("data-section-index")
+       
+            const sectionId = entry.target.id;
+                        
             currentSectionIndex = index;
 
-            // Определяем чётность для стилизации навигации
-            const isEven = index % 2 !== 0;
+            
+         console.log(currentSectionIndex);
+         
+            nav.style.color = currentSectionIndex;
 
-            nav.style.color = isEven ? "white" : "black";
+            allLinks.forEach((link) => {
+              // link.classList.remove("white", "black");
+              // link.classList.add(currentSectionIndex);
 
-            navLinks.forEach((link) => {
-              // Обновляем классы цвета
-              link.classList.remove("white", "black");
-              link.classList.add(isEven ? "white" : "black");
-
-              // Проверяем, соответствует ли ссылка текущей секции
-              const targetId = link.getAttribute("href").slice(1);
-              if (targetId === "hero") {
-                return;
-              }
+              const targetId = link.getAttribute("href")?.slice(1);
               if (targetId === sectionId) {
-                link.classList.add("active");
-                // Обновляем хеш только если он не совпадает
+                if (targetId !== "hero") {
+                  link.classList.add("active");
+                }
                 if (window.location.hash !== `#${sectionId}`) {
                   history.replaceState(null, null, `#${sectionId}`);
                 }
@@ -161,40 +321,30 @@ const links = socialLinks;
       }
     );
 
-    // Наблюдаем за всеми секциями
-    sections.forEach((section) => {
-      observer.observe(section);
-    });
+    sections.forEach((section) => observer.observe(section));
 
-    // Плавная прокрутка + обновление хеша при клике
-    navLinks.forEach((link) => {
+    // Плавная прокрутка при клике (заменена на instant для точности)
+    allLinks.forEach((link) => {
       link.addEventListener("click", (e) => {
         const targetId = link.getAttribute("href");
         const targetSection = document.querySelector(targetId);
 
         if (targetSection) {
-          // Прокручиваем
-          window.scrollTo({
-            top: targetSection.offsetTop,
-            behavior: "smooth",
+          targetSection.scrollIntoView({
+            behavior: "instant",
           });
-
-          // Обновляем хеш
           history.replaceState(null, null, targetId);
         }
       });
     });
 
-    // Дополнительно: при загрузке страницы, если есть хеш, проскролить к нему
+    // Прокрутка к хешу при загрузке
     if (window.location.hash) {
       const targetSection = document.querySelector(window.location.hash);
-      console.log(targetSection);
-      console.log(targetSection.offsetTop);
-
       if (targetSection) {
-        setTimeout(() => {
-          window.scrollTo(0, targetSection.offsetTop);
-        }, 100); // небольшая задержка, чтобы гарантировать рендер
+        targetSection.scrollIntoView({
+          behavior: "instant",
+        });
       }
     }
   });
