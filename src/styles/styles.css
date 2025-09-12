@@ -741,25 +741,29 @@ main {
     }
     .snap-column-1-1 {
       order: 2;
+       min-height: unset !important;
     }
     .snap-column-1-0 {
       order: 3;
     }
     .snap-column-2-0 {
       order: 4;
+       min-height: unset !important;
     }
     .snap-column-2-1 {
       order: 5;
     }
     .snap-column-3-1 {
       order: 6;
+
     }
     .snap-column-3-0 {
       order: 7;
     }
     .snap-column-4-0 {
       order: 8;
-      min-height: unset !important;
+       min-height: unset !important;
+    
     }
     .snap-column-4-1 {
       order: 9;
@@ -773,6 +777,7 @@ main {
     }
     .snap-column-6-0 {
       order: 12;
+       min-height: unset !important;
     }
     .snap-column-6-1 {
       order: 13;
