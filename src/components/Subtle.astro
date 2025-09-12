@@ -37,7 +37,7 @@ const { lines, delay=200 } = Astro.props;
    inView(
     ".subtle",
     function (element) {
-      console.log(element.getAttribute("data-delay"));
+
       
       // `element` — это текущий .subtle, в котором мы находимся
       const lines = Array.from(element.querySelectorAll(".subtle__line"));

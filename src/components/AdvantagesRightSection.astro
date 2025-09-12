@@ -4,6 +4,7 @@ import SectionAware from "./SectionAware.astro";
 import AdvantagesVisual from "../assets/images/advantages-visual.png";
 import AdvantagesSign from "../assets/icons/sign/advantages-sign.svg";
 import Subtle from "./Subtle.astro";
+import SvgAnimation from "./SvgAnimation.astro";
 const imageSources = [
   {
     srcset: AdvantagesVisual.src,
@@ -15,14 +16,17 @@ const { className } = Astro.props;
 ---
 
 <div class:list={[className, "section-column__wrapper"]}>
-    <!-- <div class="section-column__wrapper-inner"> -->
+  
         <Subtle lines={["  Именно это отличает", "нас от остальных"]}     delay={400}/>
 <h2 class="section__title">
   Мы не делаем <br /> “просто красиво”  <br />— мы делаем <br />
   <span class="brand-color italic underline"
-    >по-настоящему<span class="underline-draw-custom">
-      <AdvantagesSign />
-    </span></span
+    >по-настоящему
+      <SvgAnimation style="bottom: -3rem;">
+          <AdvantagesSign style="width: 110%;" />
+        </SvgAnimation>
+    
+</span
   >
 </h2>
 <div class="container">
@@ -44,7 +48,7 @@ const { className } = Astro.props;
 
   
   </div>
-<!-- </div> -->
+
 
     </div>
 <Copyright />

@@ -3,6 +3,7 @@ import Underline from "../assets/icons/sign/hover-underline.svg";
 import FirstSign from "../assets/icons/sign/review-sign-1.svg";
 import SecondSign from "../assets/icons/sign/review-sign-2.svg";
 import Subtle from "./Subtle.astro";
+import SvgAnimation from "./SvgAnimation.astro";
 const { className } = Astro.props;
 ---
 
@@ -10,15 +11,23 @@ const { className } = Astro.props;
   <Subtle lines={["Отзывы тех, кто доверил нам самое важное"]}     delay={400}/>
 <h2 class="section__title">
   То, что <span class="brand-color italic underline"
-    >невозможно <span class="underline-draw">
-      <FirstSign />
-    </span></span
+    >невозможно 
+    
+     <SvgAnimation >
+          <FirstSign style="width: 110%;" />
+      </SvgAnimation>
+
+    
+    </span
   >
   <br />
   <span class="brand-color italic underline"
-    >придумать<span class="underline-draw">
-      <SecondSign />
-    </span></span
+    >придумать
+     <SvgAnimation delay={0.6} >
+          <SecondSign style="width: 110%;" />
+      </SvgAnimation>
+
+    </span
   > — только <br /> прожить
 </h2>
 <div class="review-description">

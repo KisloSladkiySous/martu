@@ -4,6 +4,7 @@ import PricesSign from "../assets/icons/sign/prices-sign.svg";
 import Subtle from "./Subtle.astro";
 import { socialLinks } from "../social-links";
 import ContactButton from "./ContactButton.astro";
+import SvgAnimation from "./SvgAnimation.astro";
 
 const { className } = Astro.props;
 ---
@@ -13,9 +14,12 @@ const { className } = Astro.props;
       <Subtle lines={[" Свадьба может быть идеальной", "и прозрачной по бюджету"]}     delay={400}/>
 <h2 class="section__title"> 
   Гибкие пакеты и <span class="brand-color italic underline"
-    >индивидуальный<span class="underline-draw">
-      <PricesSign />
-    </span></span
+    >индивидуальный
+
+     <SvgAnimation >
+          <PricesSign style="width: 110%;" />
+      </SvgAnimation>
+    </span
   > подход <br />к каждой паре
 </h2>
 <div class="content">

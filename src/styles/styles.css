@@ -385,9 +385,6 @@ h2 span {
   --card-border: #f7eee0;
   --play-button-background: rgba(247, 235, 215, 0.5);
 
-
- 
-
   /* font tokens */
 
   --ff-main: "Playfair Display", "serif";
@@ -438,8 +435,6 @@ section {
   scroll-snap-align: start;
   scroll-snap-stop: always;
   display: -webkit-box;
-  height: 100vh;
-  height: 100dvh;
   background-color: var(--background-color);
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -466,7 +461,6 @@ section {
   max-width: 38.75rem;
   margin-left: auto;
   margin-right: auto;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -501,7 +495,6 @@ section {
   color: var(--text-color-secondary);
   font-weight: 400;
   text-align: center;
-
 }
 @media (max-width: 470px) {
   h2 {
@@ -510,13 +503,19 @@ section {
 }
 
 main {
-  -ms-scroll-snap-type: y mandatory;
-  scroll-snap-type: y mandatory;
+  -ms-scroll-snap-type: y proximity;
+  scroll-snap-type: y proximity;
   height: 100vh;
   overflow-y: scroll;
   scroll-behavior: smooth;
 }
-
+/* .section::before,
+.section::after {
+  content: '';
+  position: absolute;
+  height: 30%; 
+  scroll-snap-align: start;
+} */
 .brand-color {
   color: var(--brand-color);
 }
@@ -530,7 +529,6 @@ main {
   display: inline-block;
   padding-bottom: 6px;
   /* место для SVG */
-
 }
 .underline-draw-custom {
   position: absolute;
@@ -586,14 +584,6 @@ main {
   -o-object-fit: cover;
   object-fit: cover;
   inset: 0;
-}
-
-.underline-draw {
-  position: absolute;
-  left: 0;
-  bottom: -0.5rem;
-  height: auto;
-  width: 100%;
 }
 
 .underline-draw svg {
@@ -652,10 +642,9 @@ main {
 @media (max-width: 470px) {
   .showcase__title {
     font-size: 2rem;
-     line-height: 2.1rem;
+    line-height: 2.1rem;
   }
 }
-
 
 .showcase__description {
   margin-bottom: 1.5rem;
@@ -718,7 +707,11 @@ main {
 .pt-25 {
   padding-top: 2.5rem; /* 40px */
 }
-
+@media (max-width: 1024px) {
+  .pt-25 {
+  padding-top: 6.5rem; /* 40px */
+}
+}
 .fs-12 {
   font-size: var(--fs-12);
   line-height: var(--ls-12);
@@ -732,63 +725,82 @@ main {
 .text-center {
   text-align: center;
 }
-  @media (max-width: 1024px) {
-    .snap-column-0-0 {
-      order: 0;
-    }
-    .snap-column-0-1 {
-      order: 1;
-    }
-    .snap-column-1-1 {
-      order: 2;
-       min-height: unset !important;
-    }
-    .snap-column-1-0 {
-      order: 3;
-    }
-    .snap-column-2-0 {
-      order: 4;
-       min-height: unset !important;
-    }
-    .snap-column-2-1 {
-      order: 5;
-    }
-    .snap-column-3-1 {
-      order: 6;
-
-    }
-    .snap-column-3-0 {
-      order: 7;
-    }
-    .snap-column-4-0 {
-      order: 8;
-       min-height: unset !important;
-    
-    }
-    .snap-column-4-1 {
-      order: 9;
-    }
-    .snap-column-5-0 {
-      order: 11;
-    }
-    .snap-column-5-1 {
-      order: 10;
-      min-height: unset !important;
-    }
-    .snap-column-6-0 {
-      order: 12;
-       min-height: unset !important;
-    }
-    .snap-column-6-1 {
-      order: 13;
-    }
-    .snap-column-7-0 {
-       order: 14;
-    }
-    .snap-section-full {
-      display:contents;
-    }
-
-  
- 
+@media (max-width: 1024px) {
+  .snap-column-0-0 {
+    order: 0;
   }
+  .snap-column-0-1 {
+    order: 1;
+  }
+  .snap-column-1-1 {
+    order: 2;
+  }
+  .snap-column-1-0 {
+    order: 3;
+  }
+  .snap-column-2-0 {
+    order: 4;
+  }
+  .snap-column-2-1 {
+    order: 5;
+  }
+  .snap-column-3-1 {
+    order: 6;
+  }
+  .snap-column-3-0 {
+    order: 7;
+  }
+  .snap-column-4-0 {
+    order: 8;
+    min-height: unset !important;
+  }
+  .snap-column-4-1 {
+    order: 9;
+  }
+  .snap-column-5-0 {
+    order: 11;
+  }
+  .snap-column-5-1 {
+    order: 10;
+  }
+  .snap-column-6-0 {
+    order: 12;
+  }
+  .snap-column-6-1 {
+    order: 13;
+  }
+  .snap-column-7-0 {
+    order: 14;
+  }
+  .snap-section-full {
+    display: contents;
+  }
+}
+@media (max-width: 450px) {
+  .snap-column-1-1 {
+    order: 2;
+    min-height: 120vh !important;
+  }
+  .snap-column-2-0 {
+    order: 4;
+    min-height: 120vh !important;
+  }
+  .snap-column-5-1 {
+    order: 10;
+    min-height: 120vh !important;
+  }
+  .snap-column-6-0 {
+    order: 12;
+    min-height: 120vh !important;
+  }
+}
+.column-content--sticky {
+      position: sticky;
+    top: 0;
+    height: calc(100vh - 2*var(--section-margin));
+    padding: var(--section-margin);
+    margin-bottom: 0;
+}
+.snap-column-4-1 > .section-column {
+  margin: 0;
+}

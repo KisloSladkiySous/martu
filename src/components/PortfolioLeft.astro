@@ -3,6 +3,7 @@ import SectionAware from "../components/SectionAware.astro";
 import Circle from "../components/Circle.astro";
 import PortfolioVisual from "../assets/images/portfolio-section.png";
 import PortfolioSign from "../assets/icons/sign/portfolio-sign.svg";
+import SvgAnimation from "./SvgAnimation.astro";
 const imageSources = [
   {
     srcset: PortfolioVisual.src,
@@ -17,9 +18,12 @@ const { className } = Astro.props;
 <h2 class="section__title">
   Образы, <br />
   <span class="brand-color italic underline"
-    >прикосновения  <span class="underline-draw">
-      <PortfolioSign />
-    </span></span
+    >прикосновения  
+    
+        <SvgAnimation style="bottom: -0.6rem;">
+          <PortfolioSign style="width: 110%;" />
+        </SvgAnimation>
+    </span
   >
 
   <br /> и моменты
@@ -41,10 +45,7 @@ const { className } = Astro.props;
     именно им.
   </p>
   <p class="text">
-    <!-- Именно поэтому фотографии с наших мероприятий <br /> живут долго и не теряют
-    актуальности. Они <br /> передают атмосферу, эмоции и то самое “что-то”,
-    <br />
-    что словами не опишешь. -->
+ 
     Воспоминания о наших мероприятиях живут долго, сквозь года передают эмоции и заставляют проживать незабываемые моменты снова и снова.
   </p>
 </div>
@@ -71,6 +72,7 @@ const { className } = Astro.props;
   .portfolio__visual {
     display: flex;
     justify-content: center;
+    margin-top: 3.25;
   }
   .text {
     color: var(--text-color-secondary);
