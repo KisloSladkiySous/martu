@@ -10,17 +10,19 @@ const imageSources = [
     type: "image/png",
   },
 ];
+const { className } = Astro.props;
 ---
-
-<h2>
+<div class:list={[className, "section-column__wrapper"]}>
+    <div class="section-column__wrapper-inner">
+<h2 class="section__title">
   Образы, <br />
   <span class="brand-color italic underline"
-    >прикосновения, <span class="underline-draw">
+    >прикосновения  <span class="underline-draw">
       <PortfolioSign />
     </span></span
   >
 
-  <br /> свет и взгляды.
+  <br /> и моменты
 </h2>
 <div class="portfolio__visual">
   <SectionAware
@@ -39,10 +41,11 @@ const imageSources = [
     именно им.
   </p>
   <p class="text">
-    Именно поэтому фотографии с наших мероприятий <br /> живут долго и не теряют
+    <!-- Именно поэтому фотографии с наших мероприятий <br /> живут долго и не теряют
     актуальности. Они <br /> передают атмосферу, эмоции и то самое “что-то”,
     <br />
-    что словами не опишешь.
+    что словами не опишешь. -->
+    Воспоминания о наших мероприятиях живут долго, сквозь года передают эмоции и заставляют проживать незабываемые моменты снова и снова.
   </p>
 </div>
 <div class="show-portfolio">
@@ -52,16 +55,17 @@ const imageSources = [
     </span>
   </Circle>
 </div>
+    </div>
+</div>
+
+
 <style>
-  h2 {
-    margin-top: 146px;
-    margin-bottom: 32px;
-  }
+
   .circle-text {
     color: var(--brand-color);
     display: block;
     text-align: center;
-    margin: 62px 0;
+
   }
 
   .portfolio__visual {
@@ -84,9 +88,12 @@ const imageSources = [
     position: absolute;
     right: -100px;
     top: calc(50% - 100px);
-
-    @media (max-width: 690px) {
-      display: none;
+    z-index: 12;
+    @media (max-width: 1025px) {
+      display: flex;
+      justify-content: center;
+      margin: 1.5rem 0;
+      position:inherit;
     }
   }
 </style>

@@ -34,7 +34,8 @@ p {
    * Render the `main` element consistently in IE.
    */
 main {
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 
 /**
@@ -384,6 +385,9 @@ h2 span {
   --card-border: #f7eee0;
   --play-button-background: rgba(247, 235, 215, 0.5);
 
+
+ 
+
   /* font tokens */
 
   --ff-main: "Playfair Display", "serif";
@@ -498,7 +502,11 @@ section {
   font-weight: 400;
   text-align: center;
 
-  /* margin-bottom: 1em; */
+}
+@media (max-width: 470px) {
+  h2 {
+    font-size: 2.875rem;
+  }
 }
 
 main {
@@ -522,12 +530,12 @@ main {
   display: inline-block;
   padding-bottom: 6px;
   /* место для SVG */
+
 }
 .underline-draw-custom {
   position: absolute;
   left: 0;
   bottom: -2.7rem;
-
   height: auto;
 }
 
@@ -543,6 +551,19 @@ main {
 }
 
 .links__item span::after {
+  content: "";
+  background-image: url("../assets/icons/sign/nav-active.svg");
+  position: absolute;
+  display: block;
+  height: 5px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  bottom: -4px;
+  left: -10%;
+  width: 0%;
+  transition: width 0.4s ease-out 0.2s;
+}
+.mobile-link span::after {
   content: "";
   background-image: url("../assets/icons/sign/nav-active.svg");
   position: absolute;
@@ -628,8 +649,16 @@ main {
   font-size: var(--fs-46);
   line-height: var(--lh-46);
 }
+@media (max-width: 470px) {
+  .showcase__title {
+    font-size: 2rem;
+     line-height: 2.1rem;
+  }
+}
+
 
 .showcase__description {
+  margin-bottom: 1.5rem;
   color: var(--text-color-white);
   font-size: var(--fs-14);
   line-height: var(--lh-14);
@@ -703,3 +732,58 @@ main {
 .text-center {
   text-align: center;
 }
+  @media (max-width: 1024px) {
+    .snap-column-0-0 {
+      order: 0;
+    }
+    .snap-column-0-1 {
+      order: 1;
+    }
+    .snap-column-1-1 {
+      order: 2;
+    }
+    .snap-column-1-0 {
+      order: 3;
+    }
+    .snap-column-2-0 {
+      order: 4;
+    }
+    .snap-column-2-1 {
+      order: 5;
+    }
+    .snap-column-3-1 {
+      order: 6;
+    }
+    .snap-column-3-0 {
+      order: 7;
+    }
+    .snap-column-4-0 {
+      order: 8;
+      min-height: unset !important;
+    }
+    .snap-column-4-1 {
+      order: 9;
+    }
+    .snap-column-5-0 {
+      order: 11;
+    }
+    .snap-column-5-1 {
+      order: 10;
+      min-height: unset !important;
+    }
+    .snap-column-6-0 {
+      order: 12;
+    }
+    .snap-column-6-1 {
+      order: 13;
+    }
+    .snap-column-7-0 {
+       order: 14;
+    }
+    .snap-section-full {
+      display:contents;
+    }
+
+  
+ 
+  }

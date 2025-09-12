@@ -3,6 +3,7 @@ import Copyright from "./Copyright.astro";
 import SectionAware from "./SectionAware.astro";
 import AdvantagesVisual from "../assets/images/advantages-visual.png";
 import AdvantagesSign from "../assets/icons/sign/advantages-sign.svg";
+import Subtle from "./Subtle.astro";
 const imageSources = [
   {
     srcset: AdvantagesVisual.src,
@@ -10,13 +11,14 @@ const imageSources = [
     type: "image/png",
   },
 ];
+const { className } = Astro.props;
 ---
 
-<div class="right-column__tagline">
-  Именно это отличает <br /> нас от остальных
-</div>
-<h2 class="section_title">
-  Мы не делаем <br /> “просто красиво” — <br /> мы делаем <br />
+<div class:list={[className, "section-column__wrapper"]}>
+    <!-- <div class="section-column__wrapper-inner"> -->
+        <Subtle lines={["  Именно это отличает", "нас от остальных"]}     delay={400}/>
+<h2 class="section__title">
+  Мы не делаем <br /> “просто красиво”  <br />— мы делаем <br />
   <span class="brand-color italic underline"
     >по-настоящему<span class="underline-draw-custom">
       <AdvantagesSign />
@@ -36,92 +38,33 @@ const imageSources = [
         sectionSelector="[data-section]"
       />
     </div>
-
-    <div class="section-description">
-      <p class="text-1">
-        Нам не нужно ничего навязывать — мы умеем слышать вас, считывать
-        невысказанное, и именно поэтому результат всегда оказывается ближе к
-        мечте, чем вы сами могли сформулировать.
-      </p>
-
-      <p class="text-2">
-        Нас выбирают за чуткость, опыт и эстетику, которой можно доверять. И мы
-        отвечаем на это доверием в ответ.
-      </p>
+      <div class="text">
+Нас выбирают за надёжность, опыт и подход
     </div>
+
+  
   </div>
-</div>
+<!-- </div> -->
+
+    </div>
 <Copyright />
 
+</div>
+
 <style>
-  .container {
-    margin-top: auto;
-  }
+
   .content-block {
-    display: grid;
-    gap: 30px;
-  }
-  .section_description {
+    margin-top: 3.75rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-  }
-  @media (min-width: 768px) {
-    .content-block {
-      grid-template-columns: 1fr 1fr;
-      grid-template-areas: "photo text";
-      gap: 40px;
-      align-items: start;
-    }
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
 
-    .photo {
-      grid-area: photo;
-    }
-
-    .section-description {
-      grid-area: text;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 50px;
-      height: 100%;
-    }
-
-    .text-1 {
-      order: 1;
-    }
-
-    .text-2 {
-      order: 2;
-    }
   }
 
-  @media (max-width: 767px) {
-    .content-block {
-      grid-template-columns: 1fr;
-      grid-template-areas:
-        "text1"
-        "photo"
-        "text2";
-    }
 
-    .photo {
-      grid-area: photo;
-    }
 
-    .text-1 {
-      grid-area: text1;
-    }
-
-    .text-2 {
-      grid-area: text2;
-    }
-
-    .section_description {
-      display: contents;
-    }
-  }
 
   .photo img {
     width: 100%;
@@ -131,16 +74,7 @@ const imageSources = [
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
-  .text {
-    font-size: 16px;
-    line-height: 1.8;
-  }
 
-  @media (min-width: 768px) {
-    .text-1,
-    .text-2 {
-      font-size: var(--fs-18);
-      color: var(--text-color-secondary);
-    }
-  }
+
+
 </style>

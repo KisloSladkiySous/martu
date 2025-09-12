@@ -9,35 +9,35 @@ const imageSources = [
   },
 ];
 
-const { index, id } = Astro.props;
+
 ---
 
-<div class="column-showcase__content">
-  <div class="advantages">
+
+  <div class="advantages ">
     <div class="list-container">
       <ul class="list">
         <li class="list-item">
           <p class="list-item-title">Сильная команда</p>
           <p class="list-item-description">
-            Cобственный декор, координаторы, подрядчики
+          Собственный декор, проверенные <br> фотографы/видеографы, топовые <br> ведущие, обученные координаторы и т.д
           </p>
         </li>
         <li class="list-item">
           <p class="list-item-title">Персональный подход</p>
           <p class="list-item-description">
-            Свадьба по вашему стилю и характеру
+           Концепция под ваш стиль и характер
           </p>
         </li>
         <li class="list-item">
           <p class="list-item-title">Полное сопровождение</p>
           <p class="list-item-description">
-            От брифа до финального бокала шампанского
+            От знакомства до ухода последнего гостя
           </p>
         </li>
         <li class="list-item">
           <p class="list-item-title">Опыт и надёжность</p>
           <p class="list-item-description">
-            Мы знаем, как предвосхищать сложности
+           Предотвратим проблему до ее появления
           </p>
         </li>
       </ul>
@@ -54,9 +54,14 @@ const { index, id } = Astro.props;
     preloadSections={1}
     sectionSelector="[data-section]"
   />
-</div>
+
 
 <style>
+  .advantages {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color-white);
+  }
+
   .list-container {
     display: flex;
   }
@@ -67,17 +72,19 @@ const { index, id } = Astro.props;
     display: grid;
     justify-content: center;
     row-gap: 42px;
-    gap: 100px;
+
   }
 
   @media (min-width: 768px) {
     .list {
+      width: 100%;
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
   @media (max-width: 767px) {
     .list {
+      width: 100%;
       grid-template-columns: 1fr;
     }
   }

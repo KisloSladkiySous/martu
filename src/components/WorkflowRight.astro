@@ -9,21 +9,17 @@ const imageSources = [
     type: "image/png",
   },
 ];
+const {className} = Astro.props
 ---
-
-<div class="column-showcase__content">
-  <ShowCase date="Весна 2024" names="Ольга и Константин">
+<div class:list={[className, "section-column__wrapper"]}>
+    <ShowCase date="Весна 2024" names="Ольга и Константин">
     <div slot="showcase__title" class="showcase__title">
-      В день свадьбы мы ваш щит, ваш тыл и ваша <span class="italic"
-        >уверенность</span
-      >
+       В день вашей свадьбы забудьте обо всем,  <span class="italic"
+        >наслаждайтесь</span> моментом.
     </div>
-    <div slot="showcase__description" class="showcase__description">
-      Вы можете забыть о часах, телефонах и логистике, потому что всё будет идти
-      по плану — или лучше.
-    </div>
+
   </ShowCase>
-</div>
+
 
 <SectionAware
   class="background-image"
@@ -35,3 +31,6 @@ const imageSources = [
   preloadSections={1}
   sectionSelector="[data-section]"
 />
+</div>
+
+

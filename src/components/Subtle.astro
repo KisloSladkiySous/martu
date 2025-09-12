@@ -1,8 +1,9 @@
 ---
 interface Props {
   lines: string[];
+  delay?:number
 }
-const { lines } = Astro.props;
+const { lines, delay=200 } = Astro.props;
 ---
 
 <script>
@@ -19,23 +20,36 @@ const { lines } = Astro.props;
     y: ["100%", "0%"],
   };
 
-  inView(
-    ".subtle",
-    (element, info) => {
-      const lines = Array.from(
-        element.querySelectorAll<HTMLElement>(".subtle__line")
-      );
+  // inView(
+  //   ".subtle",
+  //   (element, info) => {
+  //     const lines = Array.from(
+  //       element.querySelectorAll<HTMLElement>(".subtle__line")
+  //     );
 
+  //     const animation = animate(lines, keyframes, transition);
+  //     animation.play();
+
+  //     return () => animate(lines, { y: "100%" }, { instant: true });
+  //   },
+  //   { amount: 0.5 }
+  // );
+   inView(
+    ".subtle",
+    function (element) {
+      console.log(element.getAttribute("data-delay"));
+      
+      // `element` — это текущий .subtle, в котором мы находимся
+      const lines = Array.from(element.querySelectorAll(".subtle__line"));
       const animation = animate(lines, keyframes, transition);
       animation.play();
-
-      return () => animate(lines, { y: "100%" }, { instant: true });
+    return () => animate(lines, { y: "100%" }, { instant: true });
     },
     { amount: 0.5 }
   );
 </script>
 
-<div class="subtle">
+<div class="subtle" data-delay={delay}>
   {
     lines.map((line, index) => (
       <div class="subtle__row">

@@ -49,6 +49,8 @@ const sections = [
       component: AboutRightSection,
       props: {
         id: "about",
+        className:'pt-25'
+
       },
     },
   ],
@@ -65,6 +67,7 @@ const sections = [
       props: {
         id: "portfolio",
         className: "column-content--bordered-bottom",
+        img: true,
       },
     },
   ],
@@ -73,13 +76,16 @@ const sections = [
       component: AdvantagesLeftSection,
       props: {
         id: "advantages",
+        className: "column-content--bordered-bottom",
+        img: true,
       },
     },
     {
       component: AdvantagesRightSection,
       props: {
         id: "advantages",
-        className: "column-content--bordered",
+        className:'pt-25'
+
       },
     },
   ],
@@ -95,7 +101,8 @@ const sections = [
       component: WorkflowRight,
       props: {
         id: "workflow",
-        className: "column-content--bordered-bottom",
+        className: "column-content--bordered-bottom column-content--sticky",
+        img: true,
       },
     },
   ],
@@ -105,13 +112,14 @@ const sections = [
       props: {
         id: "price",
         className: "column-content--bordered-top",
+        img: true,
       },
     },
     {
       component: PriceRight,
       props: {
         id: "price",
-        className: "column-content--bordered",
+          className:'pt-25'
       },
     },
   ],
@@ -130,6 +138,16 @@ const sections = [
       },
     },
   ],
+  [
+    {
+      component: Contacts,
+      props: {
+        id: "contacts",
+     
+      },
+    },
+
+  ],
 ];
 ---
 
@@ -137,12 +155,12 @@ const sections = [
   <main class="scroll-container">
     {
       sections.map((section, parentIndex) => (
-        <section class={`snap-section`}>
+        <section class:list={[parentIndex === 7 ? 'snap-section-full' : 'snap-section']}>
           {section.map(({ component: Component, props }, index) => (
             <div class={`snap-column snap-column-${parentIndex}-${index} `}>
               {props.img && <StepAnimation sectionId={props.id} />}
               <div
-                class="section-column"
+                class={`${props.id !== 'contacts' ? 'section-column' : 'section-full'}`}
                 id={props.id}
                 data-section-index={parentIndex}
                 data-nav-section
@@ -155,7 +173,7 @@ const sections = [
         </section>
       ))
     }
-    <Contacts />
+    <!-- <Contacts /> -->
   </main>
 </Layout>
 
@@ -185,32 +203,23 @@ const sections = [
     position: relative;
   }
 
-  @media (max-width: 1024px) {
-    .snap-column-0-0 {
-      order: 1;
-    }
-    .snap-column-0-1 {
-      order: 2;
-    }
-    .snap-column-1-0 {
-      order: 4;
-    }
-    .snap-column-1-1 {
-      order: 3;
-    }
-  }
+
 
   @media (min-width: 1025px) {
     .snap-section {
       display: grid;
       grid-template-columns: 1fr 1fr;
+
+      scroll-snap-align: start;
+    }
+    .snap-section-full {
+      display: grid;
+      grid-template-columns: 1fr;
       min-height: 100vh;
       scroll-snap-align: start;
     }
 
-    .snap-section:not(:nth-child(5)) {
-      max-height: 100vh;
-    }
+
 
     .snap-column {
       min-height: 100vh;

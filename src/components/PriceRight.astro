@@ -1,12 +1,17 @@
 ---
 import Copyright from "./Copyright.astro";
 import PricesSign from "../assets/icons/sign/prices-sign.svg";
+import Subtle from "./Subtle.astro";
+import { socialLinks } from "../social-links";
+import ContactButton from "./ContactButton.astro";
+
+const { className } = Astro.props;
 ---
 
-<div class="right-column__tagline">
-  Свадьба может быть идеальной <br /> и прозрачной по бюджету
-</div>
-<h2 class="section__title">
+<div class:list={[className, "section-column__wrapper"]}>
+  <div class="section-column__wrapper-inner">
+      <Subtle lines={[" Свадьба может быть идеальной", "и прозрачной по бюджету"]}     delay={400}/>
+<h2 class="section__title"> 
   Гибкие пакеты и <span class="brand-color italic underline"
     >индивидуальный<span class="underline-draw">
       <PricesSign />
@@ -27,19 +32,29 @@ import PricesSign from "../assets/icons/sign/prices-sign.svg";
     </div>
     <div class="content__column">
       <span>Ведение переговоров с <br /> подрядчиками</span>
-      <span>Бюджетирование <br /> и финконтроль</span>
-      <span>Контроль исполнения <br /> и логистика</span>
+      <span>Сметная документация <br/> и финконтроль</span>
+      <span>Приятные бонусы <br/> от агенства</span>
     </div>
   </div>
   <p class="content__budget">
     10% от общего бюджета свадьбы, <br /> но не менее 100 000 ₽
   </p>
-  <div class="content__contact brand-color">Узнайте подробнее</div>
+  
+  <div class="contact-button">
+     <ContactButton link={socialLinks.wu} class="content__contact" backgroundColor="rgba(255, 249, 240, 1)" textColor="rgba(85, 85, 85, 1)"></ContactButton>
+  </div>
 </div>
-<Copyright />
+  </div>
+  <Copyright />
+</div>
+  
+
+
 <style>
+
   .content {
     color: var(--text-color-secondary);
+    margin-top: 4.9rem;
   }
   .content__title {
     margin-bottom: 2rem;
@@ -48,24 +63,25 @@ import PricesSign from "../assets/icons/sign/prices-sign.svg";
   .content__list {
     display: flex;
     margin-bottom: 2rem;
+    justify-content: space-evenly;
   }
   .content__column {
     display: flex;
     flex-direction: column;
-    width: 50%;
+  
     gap: 35px;
   }
   .content__budget {
     text-align: center;
     margin-bottom: 1rem;
   }
-  .content__column:first-child {
-    margin-left: 108px;
-  }
+
   .content__column > span {
     flex: 1;
   }
-  .content__contact {
-    text-align: center;
+
+    .contact-button {
+    justify-content: center;
+    display: flex;
   }
 </style>

@@ -2,8 +2,8 @@
 import ShowCase from "../components/ShowCase.astro";
 import SectionAware from "../components/SectionAware.astro";
 import HeroBackground from "../assets/images/hero-section-background.png";
-import ShowCaseSign from "../assets/icons/sign/show-case-underline.svg";
-import StepAnimation from "./StepAnimation.astro";
+import ContactButton from "./ContactButton.astro";
+import { socialLinks } from "../social-links";
 const imageSources = [
   {
     srcset: HeroBackground.src,
@@ -24,14 +24,9 @@ const imageSources = [
     вашему запросу!
   </h2>
 
-  <button class="showcase__cta-button underline" slot="showcase__contact-us">
-    Связаться с нами
-    <ShowCaseSign class="underline-draw" />
-  </button>
-
+  <ContactButton link={socialLinks.wu} backgroundColor="rgba(255, 255, 255, 0.2)" textColor="rgba(255, 255, 255, 1)" slot="showcase__contact-us"></ContactButton>
   <p slot="showcase__description" class="showcase__description">
-    Расскажите нам свои идеи, и мы предложим<br /> концепцию, формат и ориентир по
-    бюджету <br /> — даже если вы ещё не выбрали агентство.
+    Расскажите ваши предпочтения и мы предложим вам <br> лучшие варианты по бюджету,концепции и формату.
   </p>
 </ShowCase>
 

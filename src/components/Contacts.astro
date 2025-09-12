@@ -8,14 +8,9 @@ import { socialLinks } from "../social-links.ts";
 const links = socialLinks;
 ---
 
-<section
-  class="video-section section"
-  data-nav-section
-  data-section-index="21"
-  data-section
->
-  <video autoplay muted loop playsinline>
-    <source src="src/assets/videos/Video.webm" type="video/webm" />
+  <div class="video-section">
+      <video autoplay muted loop playsinline>
+  <source src="src/assets/videos/Video.webm" type="video/webm" />
   </video>
   <LogoLarge class="logo" />
   <div class="creditionals">
@@ -43,10 +38,13 @@ const links = socialLinks;
       <p class="inst">@martu.agency</p>
     </div>
   </div>
-</section>
+  </div>
+
+
 <style lang="css">
   .logo {
-    position: absolute;
+    display: flex;
+    justify-content: center;
   }
   .creditionals {
     z-index: 2;
@@ -97,14 +95,15 @@ const links = socialLinks;
     font-size: 4rem;
   }
   .video-section {
-    position: relative;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     overflow: hidden;
     display: flex;
-    padding: 50px;
+    flex-direction: column;
+    padding: var(--section-margin);
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
   }
 
   .video-section video {
