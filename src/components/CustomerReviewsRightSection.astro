@@ -79,7 +79,7 @@ const column2mock = [...mock, ...mock, ...mock];
       }
     </div>
   </div>
-  <div class="column desktop" >
+  <div class="column desktop">
     <div class="scroll-wrapper scroll-down" id="rightColumn">
       {
         column2mock.map((review) => (
@@ -129,7 +129,7 @@ const column2mock = [...mock, ...mock, ...mock];
 
   .column {
     flex: 1;
-    height: 100%;
+    height: calc(100vh - 2 * var(--section-margin));
     overflow: hidden;
     position: relative;
     border-radius: 20px;

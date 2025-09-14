@@ -24,133 +24,138 @@ const { className } = Astro.props;
         влюблён
 
         <SvgAnimation style="bottom: -0.6rem;">
-          <AboutSign style="width: 110%;" />
+          <AboutSign />
         </SvgAnimation>
       </span>
       <br /> в своё дело
     </h2>
 
-<div class="description">
-  <div class="description__text-block-1 grid-area-text1">
-    <p class="text">
-      Ваша свадьба — это больше, чем просто праздник. Это день, где каждая
-      деталь должна быть наполнена смыслом и красотой. В
-      <span class="brand-color italic">Martu</span>
-      мы верим, что эмоции не поддаются шаблонам, и именно поэтому подходим к
-      каждой паре с теплом и вниманием.
-    </p>
-  </div>
+    <div class="description">
+      <div class="description__text-block-1 grid-area-text1">
+        <p class="text">
+          Ваша свадьба — это больше, чем просто праздник. Это день, где каждая
+          деталь должна быть наполнена смыслом и красотой. В
+          <span class="brand-color italic">Martu</span>
+          мы верим, что эмоции не поддаются шаблонам, и именно поэтому подходим к
+          каждой паре с теплом и вниманием.
+        </p>
+      </div>
 
-  <div class="description__advantages grid-area-list">
-    <ul class="advantages">
-      <li>
-        Более <span class="brand-color italic">7 лет</span>
-        <br /> в индустрии
-      </li>
-      <li>
-        <span class="brand-color italic">100+</span> довольных <br /> и счастливых
-        пар
-      </li>
-      <li>
-     <span class="brand-color italic">Около 30%</span> экономии вашего  бюджета <br> 
-      </li>
-      <li>
-        <span class="brand-color italic">15</span> подготовленных<br/> сотрудников
-      </li>
-    </ul>
-  </div>
+      <div class="description__advantages grid-area-list">
+        <ul class="advantages">
+          <li>
+            Более <span class="brand-color italic">7 лет</span>
+            <br /> в индустрии
+          </li>
+          <li>
+            <span class="brand-color italic">100+</span> довольных <br /> и счастливых
+            пар
+          </li>
+          <li>
+            <span class="brand-color italic">Около 30%</span> экономии вашего бюджета
+            <br />
+          </li>
+          <li>
+            <span class="brand-color italic">15</span> подготовленных<br /> сотрудников
+          </li>
+        </ul>
+      </div>
 
-  <div class="description__text-block-2 grid-area-text2">
-    <p class="text">
-      Каждая пара —
-      <span class="brand-color italic">отдельная история,</span>
-      каждый день — уникальный проект. Мы собрали вокруг себя людей, которым
-      можно доверить праздник своей жизни: координаторов, флористов, декораторов,
-      стилистов. Наша задача — не просто организовать мероприятие, а быть для вас главной точкой опоры и поддержки в самый главный день вашей жизни.
-    </p>
-  </div>
-</div>
+      <div class="description__text-block-2 grid-area-text2">
+        <p class="text">
+          Каждая пара —
+          <span class="brand-color italic">отдельная история,</span>
+          каждый день — уникальный проект. Мы собрали вокруг себя людей, которым
+          можно доверить праздник своей жизни: координаторов, флористов, декораторов,
+          стилистов. Наша задача — не просто организовать мероприятие, а быть для
+          вас главной точкой опоры и поддержки в самый главный день вашей жизни.
+        </p>
+      </div>
+    </div>
   </div>
   <Copyright />
 </div>
 
 <style>
-
-
-.description {
-  display: grid;
-  gap: 3.75rem; 
-  grid-template-areas:
-    "text1 list"
-    "text2 list";
-  grid-template-columns: 1fr 1fr; 
-  align-items: start; 
-  margin-top: 5.125rem;
-}
-
-/* Присваиваем области */
-.grid-area-text1 { grid-area: text1; }
-.grid-area-text2 { grid-area: text2; }
-.grid-area-list  { grid-area: list; }
-
-/* Стили текста */
-.text {
-  font-size: var(--fs-14); /* или нужный размер */
-  line-height: var(--lh-14);
-  color: var(--text-color-primary);
-}
-
-/* Стили списка */
-.advantages {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 3.625rem;
-  align-items: flex-end;
-}
-
-.advantages li {
-  color: var(--text-color-tertiary);
-  font-size: var(--fs-14);
-  line-height: var(--lh-14);
-  width: 9.1875rem;
-  position: relative;
-}
-
-.advantages li::after {
-  content: "";
-  display: block;
-  background-image: url("../assets/icons/sign/list-sign.svg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  width: 100%;
-  height: 0.5rem;
-  margin-top: 0.5rem;
-}
-
-
-@media (max-width: 1025px) {
   .description {
+    display: grid;
+    gap: 3.75rem;
     grid-template-areas:
-      "text1"
-      "list"
-      "text2";
-    grid-template-columns: 1fr; 
-    gap: 2.5rem; 
-    margin-top: 3.8125rem;
+      "text1 list"
+      "text2 list";
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    margin-top: 5.125rem;
   }
 
+  /* Присваиваем области */
+  .grid-area-text1 {
+    grid-area: text1;
+  }
+  .grid-area-text2 {
+    grid-area: text2;
+  }
+  .grid-area-list {
+    grid-area: list;
+  }
+
+  /* Стили текста */
+  .text {
+    font-size: var(--fs-14); /* или нужный размер */
+    line-height: var(--lh-14);
+    color: var(--text-color-primary);
+  }
+
+  /* Стили списка */
   .advantages {
-   display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3.625rem;
+    align-items: flex-end;
   }
 
   .advantages li {
-    margin: 0 auto;
-    text-align: left;
+    color: var(--text-color-tertiary);
+    font-size: var(--fs-14);
+    line-height: var(--lh-14);
+    /* width: 9.1875rem; */
+    position: relative;
   }
-}
+
+  .advantages li::after {
+    content: "";
+    display: block;
+    background-image: url("../assets/icons/sign/list-sign.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  @media (max-width: 1025px) {
+    .description {
+      grid-template-areas:
+        "text1"
+        "list"
+        "text2";
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      margin-top: 3.8125rem;
+    }
+
+    .advantages {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+
+    .advantages li {
+      margin: 0 auto;
+      text-align: left;
+    }
+  }
 </style>

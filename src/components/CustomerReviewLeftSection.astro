@@ -8,43 +8,38 @@ const { className } = Astro.props;
 ---
 
 <div class:list={[className, "section-column__wrapper"]}>
-  <Subtle lines={["Отзывы тех, кто доверил нам самое важное"]}     delay={400}/>
-<h2 class="section__title">
-  То, что <span class="brand-color italic underline"
-    >невозможно 
-    
-     <SvgAnimation >
-          <FirstSign style="width: 110%;" />
-      </SvgAnimation>
+  <Subtle lines={["Отзывы тех, кто доверил нам самое важное"]} delay={400} />
+  <h2 class="section__title">
+    То, что <span class="brand-color italic underline"
+      >невозможно
 
-    
-    </span
-  >
-  <br />
-  <span class="brand-color italic underline"
-    >придумать
-     <SvgAnimation delay={0.6} >
-          <SecondSign style="width: 110%;" />
+      <SvgAnimation>
+        <FirstSign />
       </SvgAnimation>
-
-    </span
-  > — только <br /> прожить
-</h2>
-<div class="review-description">
-  <p>
-    И когда спустя месяцы или даже годы нам пишут: <br /> «Мы до сих пор вспоминаем
-    тот день, как самый <br /> счастливый» — это больше, чем любая награда.
-  </p>
-  <p>
-    Мы знаем, что эмоции не подделаешь, что тепло не <br /> рисуется в фотошопе и
-    что искренность нельзя <br /> прописать в ТЗ. Поэтому всё, что вы прочтёте —
+    </span>
     <br />
-    настоящее, написанное по зову сердца. Именно <br /> такие истории вдохновляют
-    нас снова и снова <br /> вкладывать душу в каждую деталь.
-  </p>
+    <span class="brand-color italic underline"
+      >придумать
+      <SvgAnimation delay={0.6}>
+        <SecondSign />
+      </SvgAnimation>
+    </span> — только <br /> прожить
+  </h2>
+  <div class="review-description">
+    <p>
+      И когда спустя месяцы или даже годы нам пишут: <br /> «Мы до сих пор вспоминаем
+      тот день, как самый <br /> счастливый» — это больше, чем любая награда.
+    </p>
+    <p>
+      Мы знаем, что эмоции не подделаешь, что тепло не <br /> рисуется в фотошопе
+      и что искренность нельзя <br /> прописать в ТЗ. Поэтому всё, что вы прочтёте
+      —
+      <br />
+      настоящее, написанное по зову сердца. Именно <br /> такие истории вдохновляют
+      нас снова и снова <br /> вкладывать душу в каждую деталь.
+    </p>
+  </div>
 </div>
-</div>
-
 
 <div class="media">
   <p class="media__title">Больше отзывов:</p>

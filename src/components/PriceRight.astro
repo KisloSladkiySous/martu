@@ -11,51 +11,56 @@ const { className } = Astro.props;
 
 <div class:list={[className, "section-column__wrapper"]}>
   <div class="section-column__wrapper-inner">
-      <Subtle lines={[" Свадьба может быть идеальной", "и прозрачной по бюджету"]}     delay={400}/>
-<h2 class="section__title"> 
-  Гибкие пакеты и <span class="brand-color italic underline"
-    >индивидуальный
+    <Subtle
+      lines={[" Свадьба может быть идеальной", "и прозрачной по бюджету"]}
+      delay={400}
+    />
+    <h2 class="section__title">
+      Гибкие пакеты и <span class="brand-color italic underline"
+        >индивидуальный
 
-     <SvgAnimation >
-          <PricesSign style="width: 110%;" />
-      </SvgAnimation>
-    </span
-  > подход <br />к каждой паре
-</h2>
-<div class="content">
-  <p class="content__title">
-    От первого знакомства до последнего бокала шампанского <br /> в финале вечера
-    — мы берём на себя весь процесс: <br /> от идеи до реализации.
-  </p>
-  <div class="content__list">
-    <div class="content__column">
-      <span>Концепция и <br /> визуальное оформление</span>
+        <SvgAnimation>
+          <PricesSign />
+        </SvgAnimation>
+      </span> подход <br />к каждой паре
+    </h2>
+    <div class="content">
+      <p class="content__title">
+        От первого знакомства до последнего бокала шампанского <br /> в финале вечера
+        — мы берём на себя весь процесс: <br /> от идеи до реализации.
+      </p>
+      <div class="content__list">
+        <div class="content__column">
+          <span>Концепция и <br /> визуальное оформление</span>
 
-      <span> Подбор команды <br /> (ведущий, фотограф, и др.)</span>
-      <span>Поиск и бронирование <br />площадки</span>
+          <span> Подбор команды <br /> (ведущий, фотограф, и др.)</span>
+          <span>Поиск и бронирование <br />площадки</span>
+        </div>
+        <div class="content__column">
+          <span>Ведение переговоров с <br /> подрядчиками</span>
+          <span>Сметная документация <br /> и финконтроль</span>
+          <span>Приятные бонусы <br /> от агенства</span>
+        </div>
+      </div>
+      <p class="content__budget">
+        Стоимость услуг агентства составляет 10% от бюджета мероприятия.
+        Фиксированные тарифы обсуждаются в процессе подготовки.
+      </p>
+
+      <div class="contact-button">
+        <ContactButton
+          link={socialLinks.wu}
+          class="content__contact"
+          backgroundColor="rgba(255, 249, 240, 1)"
+          textColor="rgba(85, 85, 85, 1)"
+        />
+      </div>
     </div>
-    <div class="content__column">
-      <span>Ведение переговоров с <br /> подрядчиками</span>
-      <span>Сметная документация <br/> и финконтроль</span>
-      <span>Приятные бонусы <br/> от агенства</span>
-    </div>
-  </div>
-  <p class="content__budget">
-    10% от общего бюджета свадьбы, <br /> но не менее 100 000 ₽
-  </p>
-  
-  <div class="contact-button">
-     <ContactButton link={socialLinks.wu} class="content__contact" backgroundColor="rgba(255, 249, 240, 1)" textColor="rgba(85, 85, 85, 1)"></ContactButton>
-  </div>
-</div>
   </div>
   <Copyright />
 </div>
-  
-
 
 <style>
-
   .content {
     color: var(--text-color-secondary);
     margin-top: 4.9rem;
@@ -72,19 +77,22 @@ const { className } = Astro.props;
   .content__column {
     display: flex;
     flex-direction: column;
-  
+
     gap: 35px;
   }
   .content__budget {
     text-align: center;
     margin-bottom: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 272px;
   }
 
   .content__column > span {
     flex: 1;
   }
 
-    .contact-button {
+  .contact-button {
     justify-content: center;
     display: flex;
   }

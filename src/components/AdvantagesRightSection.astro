@@ -16,47 +16,36 @@ const { className } = Astro.props;
 ---
 
 <div class:list={[className, "section-column__wrapper"]}>
-  
-        <Subtle lines={["  Именно это отличает", "нас от остальных"]}     delay={400}/>
-<h2 class="section__title">
-  Мы не делаем <br /> “просто красиво”  <br />— мы делаем <br />
-  <span class="brand-color italic underline"
-    >по-настоящему
+  <Subtle lines={["  Именно это отличает", "нас от остальных"]} delay={400} />
+  <h2 class="section__title">
+    Мы не делаем <br /> “просто красиво” <br />— мы делаем <br />
+    <span class="brand-color italic underline"
+      >по-настоящему
       <SvgAnimation style="bottom: -3rem;">
-          <AdvantagesSign style="width: 110%;" />
-        </SvgAnimation>
-    
-</span
-  >
-</h2>
-<div class="container">
-  <div class="content-block">
-    <div class="photo">
-      <SectionAware
-        sources={imageSources}
-        src={AdvantagesVisual.src}
-        alt="Feature"
-        height="100%"
-        width="100%"
-        preloadSections={1}
-        sectionSelector="[data-section]"
-      />
+        <AdvantagesSign style="width: 100%;" />
+      </SvgAnimation>
+    </span>
+  </h2>
+  <div class="container">
+    <div class="content-block">
+      <div class="photo">
+        <SectionAware
+          sources={imageSources}
+          src={AdvantagesVisual.src}
+          alt="Feature"
+          height="100%"
+          width="100%"
+          preloadSections={1}
+          sectionSelector="[data-section]"
+        />
+      </div>
+      <div class="text">Нас выбирают за надёжность, опыт и подход</div>
     </div>
-      <div class="text">
-Нас выбирают за надёжность, опыт и подход
-    </div>
-
-  
   </div>
-
-
-    </div>
-<Copyright />
-
+  <Copyright />
 </div>
 
 <style>
-
   .content-block {
     margin-top: 3.75rem;
     display: flex;
@@ -64,11 +53,7 @@ const { className } = Astro.props;
     justify-content: center;
     align-items: center;
     gap: 2rem;
-
   }
-
-
-
 
   .photo img {
     width: 100%;
@@ -77,8 +62,4 @@ const { className } = Astro.props;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
-
-
-
-
 </style>

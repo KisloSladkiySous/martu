@@ -39,7 +39,7 @@ import { socialLinks } from "../social-links.ts";
   <div class="burger mobile" id="burger-icon">
     <Burger />
   </div>
-  
+
   <div class="mobile-menu-overlay" id="mobile-menu">
     <div class="mobile-menu-content">
       <div class="mobile-header">
@@ -50,25 +50,23 @@ import { socialLinks } from "../social-links.ts";
           <Close />
         </div>
       </div>
-       <div class="mobile-links">
-      <a class="mobile-link" href="#about"> <span>О нас</span> </a>
-      <a class="mobile-link" href="#portfolio"> <span>Портфолио</span></a>
-      <a class="mobile-link" href="#advantages"> <span>Почему мы</span></a>
-      <a class="mobile-link" href="#workflow"> <span>Процесс</span></a>
-      <a class="mobile-link" href="#price"> <span>Услуги</span></a>
-      <a class="mobile-link" href="#reviews"> <span>Отзывы</span></a>
-      <a class="mobile-link" href={socialLinks.inst} target="_blank"
-        >Instagram</a
-      >
-      <a class="mobile-link" href={socialLinks.vk} target="_blank">Вконтакте</a>
+      <div class="mobile-links">
+        <a class="mobile-link" href="#about"> <span>О нас</span> </a>
+        <a class="mobile-link" href="#portfolio"> <span>Портфолио</span></a>
+        <a class="mobile-link" href="#advantages"> <span>Почему мы</span></a>
+        <a class="mobile-link" href="#workflow"> <span>Процесс</span></a>
+        <a class="mobile-link" href="#price"> <span>Услуги</span></a>
+        <a class="mobile-link" href="#reviews"> <span>Отзывы</span></a>
+        <a class="mobile-link" href={socialLinks.inst} target="_blank"
+          >Instagram</a
+        >
+        <a class="mobile-link" href={socialLinks.vk} target="_blank"
+          >Вконтакте</a
+        >
+      </div>
     </div>
-    </div>
-
-   
   </div>
 </nav>
-
-
 
 <style>
   .navigation {
@@ -155,7 +153,6 @@ import { socialLinks } from "../social-links.ts";
     gap: 2em;
   }
 
-
   .mobile-menu-overlay {
     position: fixed;
     top: 0;
@@ -170,7 +167,7 @@ import { socialLinks } from "../social-links.ts";
       visibility 0.3s ease;
     display: flex;
     flex-direction: column;
-  
+
     background-color: var(--background-color);
   }
 
@@ -183,7 +180,7 @@ import { socialLinks } from "../social-links.ts";
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
-      padding: 20px 20px 12px 20px;
+    padding: 20px 20px 12px 20px;
   }
   .mobile-menu-content {
     display: flex;
@@ -277,28 +274,31 @@ import { socialLinks } from "../social-links.ts";
     const nav = document.getElementById("navigation");
     const sections = document.querySelectorAll("[data-nav-section]");
 
-    let currentSectionIndex = 'black';
-   
+    let currentSectionIndex = "black";
+
     const observer = new IntersectionObserver(
       (entries) => {
-        
         entries.forEach((entry) => {
-       
           if (entry.isIntersecting) {
-            const index =  entry.target.getAttribute("data-section-index")
-       
-            const sectionId = entry.target.id;
-                        
-            currentSectionIndex = index;
+            const index = entry.target.getAttribute("data-section-index");
 
-            
-         console.log(currentSectionIndex);
-         
-            nav.style.color = currentSectionIndex;
+            const sectionId = entry.target.id;
+
+            const isEven = index % 2 !== 0;
+
+            // console.log(isEven, index);
+
+            nav.style.color = isEven ? "white" : "black";
 
             allLinks.forEach((link) => {
-              // link.classList.remove("white", "black");
-              // link.classList.add(currentSectionIndex);
+              // Обновляем классы цвета
+
+              link.classList.remove("white", "black");
+              if (window.innerWidth < 1025) {
+                link.classList.add(isEven ? "white" : "black");
+              } else {
+                link.classList.add(!isEven ? "white" : "black");
+              }
 
               const targetId = link.getAttribute("href")?.slice(1);
               if (targetId === sectionId) {

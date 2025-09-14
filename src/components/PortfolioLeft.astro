@@ -13,66 +13,64 @@ const imageSources = [
 ];
 const { className } = Astro.props;
 ---
+
 <div class:list={[className, "section-column__wrapper"]}>
-    <div class="section-column__wrapper-inner">
-<h2 class="section__title">
-  Образы, <br />
-  <span class="brand-color italic underline"
-    >прикосновения  
-    
+  <div class="section-column__wrapper-inner">
+    <h2 class="section__title">
+      Образы, <br />
+      <span class="brand-color italic underline"
+        >прикосновения
+
         <SvgAnimation style="bottom: -0.6rem;">
-          <PortfolioSign style="width: 110%;" />
+          <PortfolioSign />
         </SvgAnimation>
-    </span
-  >
+      </span>
 
-  <br /> и моменты
-</h2>
-<div class="portfolio__visual">
-  <SectionAware
-    sources={imageSources}
-    src={PortfolioVisual.src}
-    alt="Feature"
-    height="100%"
-    width="100%"
-    preloadSections={1}
-    sectionSelector="[data-section]"
-  />
-</div>
-<div class="description">
-  <p class="text">
-    Каждая свадьба — это диалог с парой, поиск <br /> визуального кода, который откликается
-    именно им.
-  </p>
-  <p class="text">
- 
-    Воспоминания о наших мероприятиях живут долго, сквозь года передают эмоции и заставляют проживать незабываемые моменты снова и снова.
-  </p>
-</div>
-<div class="show-portfolio">
-  <Circle size="md" borderColor="#57718C">
-    <span slot="text" class="circle-text">
-      Смотреть <br /> портфолио
-    </span>
-  </Circle>
-</div>
+      <br /> и моменты
+    </h2>
+    <div class="portfolio__visual">
+      <SectionAware
+        sources={imageSources}
+        src={PortfolioVisual.src}
+        alt="Feature"
+        height="100%"
+        width="100%"
+        preloadSections={1}
+        sectionSelector="[data-section]"
+      />
     </div>
+    <div class="description">
+      <p class="text">
+        Каждая свадьба — это диалог с парой, поиск <br /> визуального кода, который
+        откликается именно им.
+      </p>
+      <p class="text">
+        Воспоминания о наших мероприятиях живут долго, сквозь года передают
+        эмоции и заставляют проживать незабываемые моменты снова и снова.
+      </p>
+    </div>
+    <div class="show-portfolio">
+      <Circle size="md" borderColor="#57718C">
+        <span slot="text" class="circle-text">
+          Смотреть <br /> портфолио
+        </span>
+      </Circle>
+    </div>
+  </div>
 </div>
-
 
 <style>
-
   .circle-text {
     color: var(--brand-color);
     display: block;
     text-align: center;
-
   }
 
   .portfolio__visual {
     display: flex;
     justify-content: center;
-    margin-top: 3.25;
+    margin-top: 3.25rem;
+    margin-bottom: 3.75rem;
   }
   .text {
     color: var(--text-color-secondary);
@@ -95,7 +93,7 @@ const { className } = Astro.props;
       display: flex;
       justify-content: center;
       margin: 1.5rem 0;
-      position:inherit;
+      position: inherit;
     }
   }
 </style>

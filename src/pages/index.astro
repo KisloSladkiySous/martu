@@ -49,8 +49,7 @@ const sections = [
       component: AboutRightSection,
       props: {
         id: "about",
-        className:'pt-25'
-
+        className: "pt-25",
       },
     },
   ],
@@ -84,8 +83,7 @@ const sections = [
       component: AdvantagesRightSection,
       props: {
         id: "advantages",
-        className:'pt-25'
-
+        className: "pt-25",
       },
     },
   ],
@@ -119,7 +117,7 @@ const sections = [
       component: PriceRight,
       props: {
         id: "price",
-          className:'pt-25'
+        className: "pt-25",
       },
     },
   ],
@@ -143,10 +141,8 @@ const sections = [
       component: Contacts,
       props: {
         id: "contacts",
-     
       },
     },
-
   ],
 ];
 ---
@@ -155,14 +151,18 @@ const sections = [
   <main class="scroll-container">
     {
       sections.map((section, parentIndex) => (
-        <section class:list={[parentIndex === 7 ? 'snap-section-full' : 'snap-section']}>
+        <section
+          class:list={[
+            parentIndex === 7 ? "snap-section-full" : "snap-section",
+          ]}
+        >
           {section.map(({ component: Component, props }, index) => (
             <div class={`snap-column snap-column-${parentIndex}-${index} `}>
               {props.img && <StepAnimation sectionId={props.id} />}
               <div
-                class={`${props.id !== 'contacts' ? 'section-column' : 'section-full'}`}
+                class={`${props.id !== "contacts" ? "section-column" : "section-full"}`}
                 id={props.id}
-                data-section-index={parentIndex}
+                data-section-index={parentIndex + index}
                 data-nav-section
                 data-section
               >
@@ -196,14 +196,13 @@ const sections = [
   }
 
   .snap-column {
-    min-height: 100vh;
+    min-height: 100dvh;
     scroll-snap-align: start;
     scroll-snap-stop: always;
     display: flex;
     position: relative;
+    flex: 1 0 auto;
   }
-
-
 
   @media (min-width: 1025px) {
     .snap-section {
@@ -219,12 +218,13 @@ const sections = [
       scroll-snap-align: start;
     }
 
-
-
     .snap-column {
-      min-height: 100vh;
+      min-height: 100dvh;
       scroll-snap-align: none;
       scroll-snap-stop: normal;
+    }
+    .section-full {
+      width: 100%;
     }
   }
 </style>
