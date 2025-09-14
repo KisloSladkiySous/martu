@@ -5,6 +5,7 @@ import Inst from "../assets/icons/inst.svg";
 import Whatsup from "../assets/icons/whatsup.svg";
 import Telegramm from "../assets/icons/telegramm.svg";
 import { socialLinks } from "../social-links.ts";
+
 const links = socialLinks;
 ---
 
@@ -19,8 +20,9 @@ const links = socialLinks;
         <span class="link">
           <VK />
         </span>
-
-        <a href={links.inst} target="_blank" class="link"> <Inst /></a>
+        <a href={links.inst} target="_blank" class="link">
+          <Inst />
+        </a>
         <span class="link">
           <Whatsup />
         </span>
@@ -45,6 +47,7 @@ const links = socialLinks;
     display: flex;
     justify-content: center;
   }
+
   .creditionals {
     z-index: 2;
     display: flex;
@@ -53,6 +56,7 @@ const links = socialLinks;
     justify-content: space-between;
     color: var(--text-color-white);
   }
+
   .contact-us {
     color: var(--text-color-white);
     display: flex;
@@ -60,22 +64,27 @@ const links = socialLinks;
     justify-content: end;
     place-items: end;
   }
+
   .text-white {
     font-size: var(--fs-18);
   }
+
   .schedule {
     font-size: var(--fs-18);
     text-align: left;
   }
+
   .media {
     display: flex;
     flex-direction: column;
   }
+
   .media-links {
     display: flex;
     gap: 1rem;
     margin-bottom: 1.5rem;
   }
+
   .link {
     border-radius: 50%;
     background-color: rgba(0, 0, 0, 0.4);
@@ -85,14 +94,17 @@ const links = socialLinks;
     justify-content: center;
     align-items: center;
   }
+
   .phone {
     font-size: 4rem;
     text-decoration: none;
     color: var(--text-color-white);
   }
+
   .inst {
     font-size: 4rem;
   }
+
   .video-section {
     height: 100vh;
     width: 100%;
@@ -112,5 +124,153 @@ const links = socialLinks;
     height: 100%;
     position: absolute;
     object-fit: cover;
+  }
+
+  /* Планшеты (768px и меньше) */
+  @media (max-width: 768px) {
+    .creditionals {
+      flex-direction: column;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .contact-us {
+      order: -1;
+      align-items: center;
+      text-align: center;
+    }
+
+    .media {
+      align-items: center;
+    }
+
+    .phone {
+      font-size: 3rem;
+    }
+
+    .inst {
+      font-size: 3rem;
+    }
+
+    .text-white {
+      font-size: 16px;
+    }
+
+    .schedule {
+      font-size: 16px;
+      text-align: center;
+    }
+  }
+
+  /* Мобильные устройства (480px и меньше) */
+  @media (max-width: 480px) {
+    .creditionals {
+      gap: 1.5rem;
+    }
+
+    .media-links {
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .link {
+      height: 48px;
+      width: 48px;
+    }
+
+    .phone {
+      font-size: 2.5rem;
+      word-break: break-all;
+    }
+
+    .inst {
+      font-size: 2.5rem;
+    }
+
+    .text-white {
+      font-size: 14px;
+    }
+
+    .schedule {
+      font-size: 14px;
+    }
+
+    .text-white br {
+      display: none;
+    }
+  }
+
+  /* Очень маленькие экраны (360px и меньше) */
+  @media (max-width: 360px) {
+    .phone {
+      font-size: 2rem;
+    }
+
+    .inst {
+      font-size: 2rem;
+    }
+
+    .media-links {
+      gap: 0.5rem;
+    }
+
+    .link {
+      height: 44px;
+      width: 44px;
+    }
+
+    .text-white {
+      font-size: 13px;
+    }
+
+    .schedule {
+      font-size: 13px;
+    }
+  }
+
+  /* Альбомная ориентация на мобильных */
+  @media (max-height: 500px) and (orientation: landscape) {
+    .video-section {
+      justify-content: space-between;
+    }
+
+    .creditionals {
+      flex-direction: row;
+      gap: 1rem;
+    }
+
+    .contact-us {
+      order: 0;
+      align-items: flex-end;
+      text-align: right;
+    }
+
+    .phone {
+      font-size: 2rem;
+    }
+
+    .inst {
+      font-size: 2rem;
+    }
+
+    .text-white {
+      font-size: 12px;
+    }
+
+    .schedule {
+      font-size: 12px;
+    }
+
+    .media-links {
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .link {
+      height: 40px;
+      width: 40px;
+    }
   }
 </style>

@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev --force --host=192.168.1.4",
+    "dev": "astro dev --force ",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
