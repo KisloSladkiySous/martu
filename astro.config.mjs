@@ -8,5 +8,5 @@ export default defineConfig({
   site: "https://kislosladkiysous.github.io",
   base: "/martu",
   devToolbar: { enabled: false },
-  integrations: [db()],
+  // integrations: [db()],
 });
