@@ -162,7 +162,7 @@ const sections = [
               <div
                 class={`${props.id !== "contacts" ? "section-column" : "section-full"}`}
                 id={props.id}
-                data-section-index={parentIndex + index}
+                data-section-index={`${props.id !== "contacts" ? `${parentIndex + index}` : 22}`}  
                 data-nav-section
                 data-section
               >

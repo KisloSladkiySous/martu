@@ -2,8 +2,13 @@
 import Underline from "../assets/icons/sign/hover-underline.svg";
 import FirstSign from "../assets/icons/sign/review-sign-1.svg";
 import SecondSign from "../assets/icons/sign/review-sign-2.svg";
+import IconButton from "./IconButton.astro";
 import Subtle from "./Subtle.astro";
 import SvgAnimation from "./SvgAnimation.astro";
+import Yandex from '../assets/icons/yandex.svg'
+import  Instagramm from '../assets/icons/inst.svg'
+import Vk from '../assets/icons/vk.svg'
+import { socialLinks } from "../social-links";
 const { className } = Astro.props;
 ---
 
@@ -44,17 +49,24 @@ const { className } = Astro.props;
 <div class="media">
   <p class="media__title">Больше отзывов:</p>
   <div class="media__links">
-    <span class="hover-text">
-      Яндекс
-      <Underline class="hover-svg" preserveAspectRatio="none" />
+    <span>
+ 
+
+      <IconButton areaLabel="отзывы Яндекс" link={socialLinks.vk}>
+       <Yandex/>
+      </IconButton>
     </span>
-    <span class="hover-text">
-      Instagramm
-      <Underline class="hover-svg" preserveAspectRatio="none" />
+    <span>
+  
+      <IconButton areaLabel="отзывы Инстаграмм" link={socialLinks.inst}>
+          <Instagramm/>
+      </IconButton>
     </span>
-    <span class="hover-text">
-      Вконтакте
-      <Underline class="hover-svg" preserveAspectRatio="none" />
+    <span>
+    
+      <IconButton areaLabel="отзывы Вконтакте" link={socialLinks.vk}>
+        <Vk/>
+      </IconButton>
     </span>
   </div>
 </div>

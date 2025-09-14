@@ -52,8 +52,7 @@ const { className } = Astro.props;
             пар
           </li>
           <li>
-            <span class="brand-color italic">Около 30%</span> экономии вашего бюджета
-            <br />
+            <span class="brand-color italic">Около 30%</span> экономии <br> вашего бюджета
           </li>
           <li>
             <span class="brand-color italic">15</span> подготовленных<br /> сотрудников
@@ -97,6 +96,8 @@ const { className } = Astro.props;
   }
   .grid-area-list {
     grid-area: list;
+    justify-content: flex-end;
+    display: flex;
   }
 
   /* Стили текста */
@@ -114,7 +115,7 @@ const { className } = Astro.props;
     display: flex;
     flex-direction: column;
     gap: 3.625rem;
-    align-items: flex-end;
+    
   }
 
   .advantages li {

@@ -13,27 +13,43 @@ const links = socialLinks;
   <video autoplay muted loop playsinline>
     <source src="src/assets/videos/Video.webm" type="video/webm" />
   </video>
-  <LogoLarge class="logo" />
+  <div class="logo">
+    <LogoLarge  />
+  </div>
   <div class="creditionals">
     <div class="media">
-      <div class="media-links">
-        <span class="link">
+      <div class="media-links hide-on-mobile">
+        <a href={links.vk} target="_blank" class="link">
           <VK />
-        </span>
+        </a>
         <a href={links.inst} target="_blank" class="link">
           <Inst />
         </a>
-        <span class="link">
+        <a href={links.wu} target="_blank" class="link">
           <Whatsup />
-        </span>
-        <span class="link">
+        </a>
+        <a href={links.inst} target="_blank" class="link">
           <Telegramm />
-        </span>
+        </a>
       </div>
       <span class="schedule">Доступны с 08:00 до 21:00</span>
       <a class="phone" href="tel:+79994440404">+7 999 444-04-04</a>
     </div>
     <div class="contact-us">
+        <div class="media-links show-on-mobile">
+        <a href={links.vk} target="_blank" class="link">
+          <VK />
+        </a>
+        <a href={links.inst} target="_blank" class="link">
+          <Inst />
+        </a>
+        <a href={links.wu} target="_blank" class="link">
+          <Whatsup />
+        </a>
+        <a href={links.inst} target="_blank" class="link">
+          <Telegramm />
+        </a>
+      </div>
       <p class="text-white">
         С удовольствием ответим на вопросы, <br /> подскажем формат и предложим идеи.
       </p>
@@ -46,6 +62,10 @@ const links = socialLinks;
   .logo {
     display: flex;
     justify-content: center;
+    z-index: 10;
+    color: var(--text-color-white);
+    align-items: center;
+    position: absolute;
   }
 
   .creditionals {
@@ -87,22 +107,25 @@ const links = socialLinks;
 
   .link {
     border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.4);
-    height: 56px;
-    width: 56px;
+    background-color: #FFFFFF33;
+    height: 3.5rem;
+    width: 3.5rem;
     display: flex;
+    color: var(--text-color-white);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     justify-content: center;
     align-items: center;
   }
 
   .phone {
-    font-size: 4rem;
+    font-size: var(--fs-64);
     text-decoration: none;
     color: var(--text-color-white);
   }
 
   .inst {
-    font-size: 4rem;
+    font-size: var(--fs-64);
   }
 
   .video-section {
@@ -126,83 +149,57 @@ const links = socialLinks;
     object-fit: cover;
   }
 
-  /* Планшеты (768px и меньше) */
-  @media (max-width: 768px) {
-    .creditionals {
-      flex-direction: column;
-      gap: 2rem;
-      align-items: center;
+  .show-on-mobile {
+      display: none;
+    }
+  @media (max-width: 1025px) {
+    .phone {
+      font-size: 3rem;
     }
 
-    .contact-us {
-      order: -1;
-      align-items: center;
-      text-align: center;
+    .inst {
+      font-size: 3rem;
+    }
+
+  }
+ 
+
+  @media (max-width: 755px) {
+    .creditionals {
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    color: var(--text-color-white);
+    text-align: center;
+    align-items: center;
     }
 
     .media {
-      align-items: center;
+      margin-top: 6rem;
     }
-
-    .phone {
-      font-size: 3rem;
-    }
-
-    .inst {
-      font-size: 3rem;
-    }
-
-    .text-white {
-      font-size: 16px;
-    }
-
     .schedule {
-      font-size: 16px;
       text-align: center;
     }
-  }
-
-  /* Мобильные устройства (480px и меньше) */
-  @media (max-width: 480px) {
-    .creditionals {
-      gap: 1.5rem;
-    }
-
-    .media-links {
-      gap: 0.75rem;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .link {
-      height: 48px;
-      width: 48px;
-    }
-
-    .phone {
-      font-size: 2.5rem;
-      word-break: break-all;
-    }
-
-    .inst {
-      font-size: 2.5rem;
-    }
-
-    .text-white {
-      font-size: 14px;
-    }
-
-    .schedule {
-      font-size: 14px;
-    }
-
-    .text-white br {
+    .hide-on-mobile {
       display: none;
     }
+    
+    .show-on-mobile {
+      display: flex;
+    }
+    .contact-us {
+      place-items: center;
+    }
+    .logo {
+      width: 226px;
+      height: 218px;
+    }
   }
 
-  /* Очень маленькие экраны (360px и меньше) */
+ 
   @media (max-width: 360px) {
     .phone {
       font-size: 2rem;
@@ -229,48 +226,15 @@ const links = socialLinks;
       font-size: 13px;
     }
   }
+.video-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1; 
+}
 
-  /* Альбомная ориентация на мобильных */
-  @media (max-height: 500px) and (orientation: landscape) {
-    .video-section {
-      justify-content: space-between;
-    }
-
-    .creditionals {
-      flex-direction: row;
-      gap: 1rem;
-    }
-
-    .contact-us {
-      order: 0;
-      align-items: flex-end;
-      text-align: right;
-    }
-
-    .phone {
-      font-size: 2rem;
-    }
-
-    .inst {
-      font-size: 2rem;
-    }
-
-    .text-white {
-      font-size: 12px;
-    }
-
-    .schedule {
-      font-size: 12px;
-    }
-
-    .media-links {
-      gap: 0.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .link {
-      height: 40px;
-      width: 40px;
-    }
-  }
 </style>

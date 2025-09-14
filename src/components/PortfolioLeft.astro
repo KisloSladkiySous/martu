@@ -52,7 +52,8 @@ const { className } = Astro.props;
     <div class="show-portfolio">
       <Circle size="md" borderColor="#57718C">
         <span slot="text" class="circle-text">
-          Смотреть <br /> портфолио
+         
+          <a href={`${import.meta.env.BASE_URL}/portfolio`} class="portfolio" target="_blank" aria-label="Сиотреть портфолио"> Смотреть <br /> портфолио</a>
         </span>
       </Circle>
     </div>

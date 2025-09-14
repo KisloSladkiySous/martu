@@ -11,10 +11,6 @@ const { className } = Astro.props;
 
 <div class:list={[className, "section-column__wrapper"]}>
   <div class="section-column__wrapper-inner">
-    <Subtle
-      lines={[" Свадьба может быть идеальной", "и прозрачной по бюджету"]}
-      delay={400}
-    />
     <h2 class="section__title">
       Гибкие пакеты и <span class="brand-color italic underline"
         >индивидуальный
@@ -43,9 +39,13 @@ const { className } = Astro.props;
         </div>
       </div>
       <p class="content__budget">
-        Стоимость услуг агентства составляет 10% от бюджета мероприятия.
-        Фиксированные тарифы обсуждаются в процессе подготовки.
+        Стоимость услуг агентства составляет <br> 10% от бюджета мероприятия.
       </p>
+      
+      <p class="content__budget">
+        Фиксированные тарифы обсуждаются <br> в процессе подготовки.
+      </p>
+
 
       <div class="contact-button">
         <ContactButton
@@ -85,7 +85,7 @@ const { className } = Astro.props;
     margin-bottom: 1rem;
     margin-left: auto;
     margin-right: auto;
-    max-width: 272px;
+  
   }
 
   .content__column > span {

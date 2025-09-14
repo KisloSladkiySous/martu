@@ -2,12 +2,20 @@
 import Copyright from "./Copyright.astro";
 import SectionAware from "./SectionAware.astro";
 import AdvantagesVisual from "../assets/images/advantages-visual.png";
+import AdvantagesVisualSecond from "../assets/images/AdvantagesTeam.jpg";
 import AdvantagesSign from "../assets/icons/sign/advantages-sign.svg";
 import Subtle from "./Subtle.astro";
 import SvgAnimation from "./SvgAnimation.astro";
 const imageSources = [
   {
     srcset: AdvantagesVisual.src,
+    media: "(max-width: 1440)",
+    type: "image/png",
+  },
+];
+const imageSourcesSecond = [
+  {
+    srcset: AdvantagesVisualSecond.src,
     media: "(max-width: 1440)",
     type: "image/png",
   },
@@ -28,13 +36,22 @@ const { className } = Astro.props;
   </h2>
   <div class="container">
     <div class="content-block">
-      <div class="photo">
+      <div class="photos">
         <SectionAware
           sources={imageSources}
           src={AdvantagesVisual.src}
           alt="Feature"
-          height="100%"
-          width="100%"
+          height="260px"
+          width="288px"
+          preloadSections={1}
+          sectionSelector="[data-section]"
+        />
+        <SectionAware
+          sources={imageSourcesSecond}
+          src={AdvantagesVisualSecond.src}
+          alt="Feature"
+          height="260px"
+          width="288px"
           preloadSections={1}
           sectionSelector="[data-section]"
         />
@@ -55,11 +72,16 @@ const { className } = Astro.props;
     gap: 2rem;
   }
 
-  .photo img {
-    width: 100%;
+  .photos img {
+    width: 288px;
     height: auto;
     display: block;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .photos {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
   }
 </style>

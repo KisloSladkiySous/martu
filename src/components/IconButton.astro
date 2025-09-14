@@ -1,0 +1,25 @@
+---
+const {link, areaLabel} = Astro.props
+---
+<a href={link} class="social" target="_blank" aria-label={areaLabel} rel="noopener noreferrer">
+  <slot></slot>
+</a>
+
+ <style >
+    .social {
+    background-color: #FFF9F0;
+    color: #666666;
+    font-size: var(--fs-18);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: none;
+    border-radius: 999px;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    padding: 0.7em 2em;
+}
+    .social:hover {
+    cursor: pointer;
+    }
+ </style>
