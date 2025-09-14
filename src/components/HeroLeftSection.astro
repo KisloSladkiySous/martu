@@ -1,10 +1,8 @@
 ---
 import Circle from "../components/Circle.astro";
 import Subtle from "../components/Subtle.astro";
-
 import HeroCircle from "../assets/images/hero-circle.jpg";
 import HeroSign from "../assets/icons/sign/hero-sign.svg";
-import Test from "../assets/icons/sign/Test.svg";
 import SvgAnimation from "../components/SvgAnimation.astro";
 
 const { className } = Astro.props;
@@ -46,5 +44,11 @@ const { className } = Astro.props;
   }
   .hero-section__description {
     text-align: center;
+  }
+  @media (max-width: 455px) {
+    .section__title {
+      font-size: var(--fs-52);
+      line-height: var(--lh-52);
+    }
   }
 </style>

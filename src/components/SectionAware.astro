@@ -1,6 +1,4 @@
 ---
-import { Image } from "astro:assets";
-
 export interface Props {
   sources: Array<{
     srcset: string;
@@ -294,64 +292,11 @@ const pictureId = `section-lazy-${Math.random().toString(36).substr(2, 9)}`;
   document.addEventListener("DOMContentLoaded", () => {
     new SectionAwareLazyLoader();
   });
-
-  // Добавляем визуальный индикатор для отладки (можно удалить в продакшене)
-  if (import.meta.env.DEV) {
-    document.addEventListener("DOMContentLoaded", () => {
-      const debugStyle = document.createElement("style");
-      debugStyle.textContent = `
-        .section-lazy-picture[data-picture-id]::after {
-          content: attr(data-picture-id);
-          position: absolute;
-          top: 10px;
-          left: 10px;
-          background: rgba(0, 0, 0, 0.7);
-          color: white;
-          padding: 4px 8px;
-          font-size: 10px;
-          border-radius: 4px;
-          z-index: 10;
-          pointer-events: none;
-        }
-        
-        .section-lazy-picture.picture-loaded::after {
-          background: rgba(0, 128, 0, 0.7);
-        }
-        
-        .section-lazy-picture.is-loading::after {
-          background: rgba(255, 165, 0, 0.7);
-        }
-      `;
-      document.head.appendChild(debugStyle);
-    });
-  }
 </script>
 
 <style>
   .section-lazy-picture {
     background: linear-gradient(135deg, #f0f0f0 0%, #e5e5e5 100%);
-  }
-
-  /* Индикатор загрузки */
-  .section-lazy-picture.is-loading::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.5),
-        transparent
-      ),
-      linear-gradient(135deg, #f0f0f0 0%, #e5e5e5 100%);
-    background-size:
-      200% 100%,
-      100% 100%;
-    animation: loading 1.5s linear infinite;
-    z-index: 1;
   }
 
   @keyframes loading {
@@ -394,23 +339,5 @@ const pictureId = `section-lazy-${Math.random().toString(36).substr(2, 9)}`;
       /* transform: translateY(0); */
       opacity: 1;
     }
-  }
-
-  /* Состояние ошибки */
-  .section-lazy-picture.picture-error {
-    background: linear-gradient(135deg, #ffe0e0 0%, #ffc0c0 100%);
-    min-height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .section-lazy-picture.picture-error::after {
-    content: "❌ Изображение не загружено";
-    color: #d32f2f;
-    font-size: 14px;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 4px;
   }
 </style>

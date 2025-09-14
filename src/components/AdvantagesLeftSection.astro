@@ -8,53 +8,48 @@ const imageSources = [
     type: "image/png",
   },
 ];
-
-
 ---
 
-
-  <div class="advantages ">
-    <div class="list-container">
-      <ul class="list">
-        <li class="list-item">
-          <p class="list-item-title">Сильная команда</p>
-          <p class="list-item-description">
-          Собственный декор, проверенные <br> фотографы/видеографы, топовые <br> ведущие, обученные координаторы и т.д
-          </p>
-        </li>
-        <li class="list-item">
-          <p class="list-item-title">Персональный подход</p>
-          <p class="list-item-description">
-           Концепция под ваш стиль и характер
-          </p>
-        </li>
-        <li class="list-item">
-          <p class="list-item-title">Полное сопровождение</p>
-          <p class="list-item-description">
-            От знакомства до ухода последнего гостя
-          </p>
-        </li>
-        <li class="list-item">
-          <p class="list-item-title">Опыт и надёжность</p>
-          <p class="list-item-description">
-           Предотвратим проблему до ее появления
-          </p>
-        </li>
-      </ul>
-    </div>
+<div class="advantages">
+  <div class="list-container">
+    <ul class="list">
+      <li class="list-item">
+        <p class="list-item-title">Сильная команда</p>
+        <p class="list-item-description">
+          Собственный декор, проверенные <br /> фотографы/видеографы, топовые <br
+          /> ведущие, обученные координаторы и т.д
+        </p>
+      </li>
+      <li class="list-item">
+        <p class="list-item-title">Персональный подход</p>
+        <p class="list-item-description">Концепция под ваш стиль и характер</p>
+      </li>
+      <li class="list-item">
+        <p class="list-item-title">Полное сопровождение</p>
+        <p class="list-item-description">
+          От знакомства до ухода последнего гостя
+        </p>
+      </li>
+      <li class="list-item">
+        <p class="list-item-title">Опыт и надёжность</p>
+        <p class="list-item-description">
+          Предотвратим проблему до ее появления
+        </p>
+      </li>
+    </ul>
   </div>
+</div>
 
-  <SectionAware
-    class="background-image"
-    sources={imageSources}
-    src={AdvantagesBackground.src}
-    alt="Feature"
-    height="100%"
-    width="100%"
-    preloadSections={1}
-    sectionSelector="[data-section]"
-  />
-
+<SectionAware
+  class="background-image"
+  sources={imageSources}
+  src={AdvantagesBackground.src}
+  alt="Feature"
+  height="100%"
+  width="100%"
+  preloadSections={1}
+  sectionSelector="[data-section]"
+/>
 
 <style>
   .advantages {
@@ -72,7 +67,6 @@ const imageSources = [
     display: grid;
     justify-content: center;
     row-gap: 42px;
-
   }
 
   @media (min-width: 768px) {

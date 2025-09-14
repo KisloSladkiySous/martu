@@ -52,7 +52,8 @@ const { className } = Astro.props;
             пар
           </li>
           <li>
-            <span class="brand-color italic">Около 30%</span> экономии <br> вашего бюджета
+            <span class="brand-color italic">Около 30%</span> экономии <br /> вашего
+            бюджета
           </li>
           <li>
             <span class="brand-color italic">15</span> подготовленных<br /> сотрудников
@@ -85,6 +86,7 @@ const { className } = Astro.props;
     grid-template-columns: 1fr 1fr;
     align-items: start;
     margin-top: 5.125rem;
+    margin-bottom: 1rem;
   }
 
   /* Присваиваем области */
@@ -115,7 +117,6 @@ const { className } = Astro.props;
     display: flex;
     flex-direction: column;
     gap: 3.625rem;
-    
   }
 
   .advantages li {
@@ -157,6 +158,15 @@ const { className } = Astro.props;
     .advantages li {
       margin: 0 auto;
       text-align: left;
+    }
+  }
+  @media (max-width: 455px) {
+    .section__title {
+      font-size: var(--fs-46);
+      line-height: var(--lh-46);
+    }
+    .advantages li {
+      margin: 0;
     }
   }
 </style>

@@ -393,14 +393,20 @@ h2 span {
   --fs-14: 0.875rem;
   --fs-16: 1rem;
   --fs-18: 1.125rem;
+  --fs-32: 2rem;
+  --fs-42: 2.625rem;
   --fs-46: 2.875rem;
+  --fs-52: 3.25rem;
   --fs-54: 3.375rem;
   --fs-64: 4rem;
 
   --lh-12: 1rem;
   --lh-14: 1.1875rem;
   --lh-16: 1.3125rem;
+  --lh-32: 2rem;
+  --lh-42: 2.625rem;
   --lh-46: 3.1625rem;
+  --lh-52: 3.25rem;
   --lh-54: 3.375rem;
   --lh-64: 4rem;
 
@@ -432,7 +438,6 @@ h2 span {
   --size-font-rem: calc(0.5rem + (var(--size-font-clamped) * 0.25));
 }
 section {
-
   display: -webkit-box;
   background-color: var(--background-color);
   -webkit-box-sizing: border-box;
@@ -473,7 +478,6 @@ section {
   position: sticky;
   top: 0;
 }
-
 
 .section__title {
   color: var(--text-color-secondary);
@@ -652,7 +656,14 @@ main {
   font-size: var(--fs-14);
   margin-bottom: 1rem;
 }
-/*# sourceMappingURL=styles.css.map */
+@media (max-width: 455px) {
+  .showcase__toolbar {
+    font-size: var(--fs-14);
+    line-height: var(--lh-14);
+    letter-spacing: 0;
+    font-weight: 400;
+  }
+}
 
 .text {
   color: var(--text-color-secondary);
@@ -754,8 +765,8 @@ main {
   }
 }
 .section-full {
-      width: 100%;
-    }
+  width: 100%;
+}
 /* @media (max-width: 450px) {
   .snap-column-1-1 {
     order: 2;

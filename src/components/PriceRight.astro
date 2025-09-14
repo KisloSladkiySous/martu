@@ -22,8 +22,8 @@ const { className } = Astro.props;
     </h2>
     <div class="content">
       <p class="content__title">
-        От первого знакомства до последнего бокала шампанского <br /> в финале вечера
-        — мы берём на себя весь процесс: <br /> от идеи до реализации.
+        От первого знакомства до последнего бокала шампанского в финале вечера —
+        мы берём на себя весь процесс: <br /> от идеи до реализации.
       </p>
       <div class="content__list">
         <div class="content__column">
@@ -33,19 +33,18 @@ const { className } = Astro.props;
           <span>Поиск и бронирование <br />площадки</span>
         </div>
         <div class="content__column">
-          <span>Ведение переговоров с <br /> подрядчиками</span>
+          <span>Ведение переговоров <br /> с подрядчиками</span>
           <span>Сметная документация <br /> и финконтроль</span>
           <span>Приятные бонусы <br /> от агенства</span>
         </div>
       </div>
       <p class="content__budget">
-        Стоимость услуг агентства составляет <br> 10% от бюджета мероприятия.
-      </p>
-      
-      <p class="content__budget">
-        Фиксированные тарифы обсуждаются <br> в процессе подготовки.
+        Стоимость услуг агентства составляет <br /> 10% от бюджета мероприятия.
       </p>
 
+      <p class="content__budget">
+        Фиксированные тарифы обсуждаются <br /> в процессе подготовки.
+      </p>
 
       <div class="contact-button">
         <ContactButton
@@ -64,28 +63,37 @@ const { className } = Astro.props;
   .content {
     color: var(--text-color-secondary);
     margin-top: 4.9rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   .content__title {
     margin-bottom: 2rem;
     text-align: center;
+    font-size: var(--fs-14);
+    line-height: var(--lh-14);
+    max-width: 25.8125rem;
   }
   .content__list {
     display: flex;
     margin-bottom: 2rem;
     justify-content: space-evenly;
+    gap: 1rem;
+    width: 100%;
   }
   .content__column {
     display: flex;
     flex-direction: column;
-
-    gap: 35px;
+    gap: 2rem;
   }
   .content__budget {
     text-align: center;
     margin-bottom: 1rem;
     margin-left: auto;
     margin-right: auto;
-  
+    font-size: var(--fs-14);
+    line-height: var(--lh-14);
   }
 
   .content__column > span {
@@ -95,5 +103,18 @@ const { className } = Astro.props;
   .contact-button {
     justify-content: center;
     display: flex;
+    margin-bottom: 1rem;
+  }
+  .content__column {
+    font-size: var(--fs-14);
+    line-height: var(--lh-14);
+  }
+  @media (max-width: 455px) {
+    .section__title {
+      font-size: var(--fs-42);
+      line-height: var(--lh-42);
+      letter-spacing: 0;
+      font-weight: 400;
+    }
   }
 </style>

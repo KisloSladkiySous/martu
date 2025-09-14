@@ -5,7 +5,6 @@ const { delay = 0.2 } = Astro.props;
 <script>
   import { animate, inView } from "motion";
 
-
   const keyframes = {
     pathLength: [0, 1],
     fill: ["rgba(87, 113, 140, 0)", "rgba(87, 113, 140, 1)"],
@@ -18,14 +17,14 @@ const { delay = 0.2 } = Astro.props;
       const item = element.querySelectorAll("path");
       const delay = element?.getAttribute("data-delay");
       console.log(delay);
-      
+
       item[0].classList.add("svg-item");
 
       const animation = animate(item[0], keyframes, {
-    duration: 0.8,
-    ease: [0.5, 0, 0, 1], // почему-то ошибка из-за этой строки
-    delay: Number(delay),
-  });
+        duration: 0.8,
+        ease: [0.5, 0, 0, 1], // почему-то ошибка из-за этой строки
+        delay: Number(delay),
+      });
       animation.play();
       return () => {
         animate(item[0], { pathLength: [1, 0] }, { instant: true });
@@ -37,3 +36,11 @@ const { delay = 0.2 } = Astro.props;
 <span class="svg-animation underline-draw" data-delay={delay}>
   <slot />
 </span>
+
+<style is:global>
+  @media (max-width: 755px) {
+    .svg-animation > svg {
+      width: 90%;
+    }
+  }
+</style>

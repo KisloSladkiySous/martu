@@ -28,7 +28,7 @@ const links = socialLinks;
         <a href={links.wu} target="_blank" class="link">
           <Whatsup />
         </a>
-        <a href={links.inst} target="_blank" class="link">
+        <a href={links.tg} target="_blank" class="link">
           <Telegramm />
         </a>
       </div>
@@ -46,7 +46,7 @@ const links = socialLinks;
         <a href={links.wu} target="_blank" class="link">
           <Whatsup />
         </a>
-        <a href={links.inst} target="_blank" class="link">
+        <a href={links.tg} target="_blank" class="link">
           <Telegramm />
         </a>
       </div>
@@ -198,13 +198,15 @@ const links = socialLinks;
     }
   }
 
-  @media (max-width: 360px) {
+  @media (max-width: 455px) {
     .phone {
-      font-size: 2rem;
+      font-size: var(--fs-32);
+      font-size: var(--lh-32);
     }
 
     .inst {
-      font-size: 2rem;
+      font-size: var(--fs-32);
+      font-size: var(--lh-32);
     }
 
     .media-links {
@@ -216,12 +218,9 @@ const links = socialLinks;
       width: 44px;
     }
 
-    .text-white {
-      font-size: 13px;
-    }
-
     .schedule {
-      font-size: 13px;
+      font-size: var(--fs-14);
+      font-size: var(--lh-14);
     }
   }
   .video-section::before {

@@ -8,8 +8,8 @@ import FounderSignature from "../assets/images/founder-signature.svg";
   <div class="founder">
     <div class="founder__quote">
       <p class="founder__title">
-        «Для меня свадьба — это не про декор и тайминг. <br /> Это про слёзы на глазах,
-        дрожащие руки и ощущение, <br />что всё именно так, как должно быть.»
+        «Для меня свадьба — это не про декор и тайминг. Это про слёзы на глазах,
+        дрожащие руки и ощущение, что всё именно так, как должно быть.»
       </p>
       <FounderSignature class="founder__signature" />
     </div>
@@ -89,5 +89,22 @@ import FounderSignature from "../assets/images/founder-signature.svg";
     .about-section__subtitle {
       margin-top: 6.875rem;
     }
+  }
+  @media (max-width: 455px) {
+    .founder {
+      padding: 1rem 1.1875rem;
+      font-size: var(--fs-14);
+      line-height: var(--lh-14);
+    }
+    .founder__quote {
+      margin: 0 0 1rem 0;
+    }
+    /* .founder__signature {
+      width: 7.8125rem;
+      height: 4.375rem;
+      position: absolute;
+      right: -2rem;
+      top: 4.875rem;
+    } */
   }
 </style>

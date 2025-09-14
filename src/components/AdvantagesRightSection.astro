@@ -34,31 +34,31 @@ const { className } = Astro.props;
       </SvgAnimation>
     </span>
   </h2>
-  <div class="container">
-    <div class="content-block">
-      <div class="photos">
-        <SectionAware
-          sources={imageSources}
-          src={AdvantagesVisual.src}
-          alt="Feature"
-          height="260px"
-          width="288px"
-          preloadSections={1}
-          sectionSelector="[data-section]"
-        />
-        <SectionAware
-          sources={imageSourcesSecond}
-          src={AdvantagesVisualSecond.src}
-          alt="Feature"
-          height="260px"
-          width="288px"
-          preloadSections={1}
-          sectionSelector="[data-section]"
-        />
-      </div>
-      <div class="text">Нас выбирают за надёжность, опыт и подход</div>
+
+  <div class="content-block">
+    <div class="photos">
+      <SectionAware
+        sources={imageSources}
+        src={AdvantagesVisual.src}
+        alt="Feature"
+        height="260px"
+        width="288px"
+        preloadSections={1}
+        sectionSelector="[data-section]"
+      />
+      <SectionAware
+        sources={imageSourcesSecond}
+        src={AdvantagesVisualSecond.src}
+        alt="Feature"
+        height="260px"
+        width="288px"
+        preloadSections={1}
+        sectionSelector="[data-section]"
+      />
     </div>
+    <div class="text">Нас выбирают за надёжность, опыт и подход</div>
   </div>
+
   <Copyright />
 </div>
 
@@ -70,6 +70,7 @@ const { className } = Astro.props;
     justify-content: center;
     align-items: center;
     gap: 2rem;
+    margin-bottom: 1rem;
   }
 
   .photos img {
@@ -83,5 +84,20 @@ const { className } = Astro.props;
     display: flex;
     width: 100%;
     justify-content: space-evenly;
+  }
+  @media (max-width: 1025px) {
+    .photos {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+    }
+  }
+  @media (max-width: 455px) {
+    .section__title {
+      font-size: var(--fs-42);
+      line-height: var(--lh-42);
+      letter-spacing: 0;
+    }
   }
 </style>

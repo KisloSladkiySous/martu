@@ -190,13 +190,20 @@ const sections = [
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
   }
-
+  @media (max-width: 455px) {
+    .scroll-container {
+      height: fit-content;
+      overflow-y: auto;
+      scroll-snap-type: unset;
+      scroll-behavior: smooth;
+    }
+  }
   .snap-section {
     display: contents;
   }
 
   .snap-column {
-    min-height: 100dvh;
+    min-height: 100vh;
     scroll-snap-align: start;
     scroll-snap-stop: always;
     display: flex;

@@ -70,8 +70,8 @@ import SvgAnimation from "./SvgAnimation.astro";
 
 <style>
   h2 {
-    margin-top: 146px;
-    margin-bottom: 100px;
+    margin-top: 9.125rem;
+    margin-bottom: 6.25rem;
   }
   .title {
     text-align: center;
@@ -112,5 +112,12 @@ import SvgAnimation from "./SvgAnimation.astro";
     left: 0;
     font-weight: 600;
     color: var(--brand-color);
+  }
+  @media (max-width: 455px) {
+    .section__title {
+      font-size: var(--fs-46);
+      line-height: var(--lh-46);
+      letter-spacing: 0;
+    }
   }
 </style>

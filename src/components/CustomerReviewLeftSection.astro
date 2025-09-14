@@ -5,9 +5,9 @@ import SecondSign from "../assets/icons/sign/review-sign-2.svg";
 import IconButton from "./IconButton.astro";
 import Subtle from "./Subtle.astro";
 import SvgAnimation from "./SvgAnimation.astro";
-import Yandex from '../assets/icons/yandex.svg'
-import  Instagramm from '../assets/icons/inst.svg'
-import Vk from '../assets/icons/vk.svg'
+import Yandex from "../assets/icons/yandex.svg";
+import Instagramm from "../assets/icons/inst.svg";
+import Vk from "../assets/icons/vk.svg";
 import { socialLinks } from "../social-links";
 const { className } = Astro.props;
 ---
@@ -28,20 +28,18 @@ const { className } = Astro.props;
       <SvgAnimation delay={0.6}>
         <SecondSign />
       </SvgAnimation>
-    </span> — только <br /> прожить
+    </span> — только прожить
   </h2>
   <div class="review-description">
-    <p>
-      И когда спустя месяцы или даже годы нам пишут: <br /> «Мы до сих пор вспоминаем
-      тот день, как самый <br /> счастливый» — это больше, чем любая награда.
+    <p class="text">
+      И когда спустя месяцы или даже годы нам пишут: «Мы до сих пор вспоминаем
+      тот день, как самый счастливый» — это больше, чем любая награда.
     </p>
-    <p>
-      Мы знаем, что эмоции не подделаешь, что тепло не <br /> рисуется в фотошопе
-      и что искренность нельзя <br /> прописать в ТЗ. Поэтому всё, что вы прочтёте
-      —
-      <br />
-      настоящее, написанное по зову сердца. Именно <br /> такие истории вдохновляют
-      нас снова и снова <br /> вкладывать душу в каждую деталь.
+    <p class="text">
+      Мы знаем, что эмоции не подделаешь, что тепло не рисуется в фотошопе и что
+      искренность нельзя прописать в ТЗ. Поэтому всё, что вы прочтёте —
+      настоящее, написанное по зову сердца. Именно такие истории вдохновляют нас
+      снова и снова вкладывать душу в каждую деталь.
     </p>
   </div>
 </div>
@@ -49,112 +47,61 @@ const { className } = Astro.props;
 <div class="media">
   <p class="media__title">Больше отзывов:</p>
   <div class="media__links">
-    <span>
- 
+    <IconButton areaLabel="отзывы Яндекс" link={socialLinks.vk}>
+      <Yandex />
 
-      <IconButton areaLabel="отзывы Яндекс" link={socialLinks.vk}>
-       <Yandex/>
-      </IconButton>
-    </span>
-    <span>
-  
       <IconButton areaLabel="отзывы Инстаграмм" link={socialLinks.inst}>
-          <Instagramm/>
+        <Instagramm />
+
+        <IconButton areaLabel="отзывы Вконтакте" link={socialLinks.vk}>
+          <Vk />
+        </IconButton>
       </IconButton>
-    </span>
-    <span>
-    
-      <IconButton areaLabel="отзывы Вконтакте" link={socialLinks.vk}>
-        <Vk/>
-      </IconButton>
-    </span>
+      <style is:global>
+        .review-description {
+          margin-top: 4rem;
+          display: flex;
+          flex-direction: column;
+          text-align: center;
+          gap: 2rem;
+          color: var(--text-color-secondary);
+          justify-content: center;
+          align-items: center;
+        }
+        .text {
+          max-width: 23.125rem;
+        }
+        .media {
+          margin-top: auto;
+          display: flex;
+          flex-direction: column;
+          text-align: center;
+          gap: 1rem;
+          margin-bottom: 1rem;
+        }
+        .media__title {
+          color: var(--text-color-fourth);
+          margin-bottom: 1rem;
+        }
+        .media__links {
+          color: var(--brand-color);
+          display: flex;
+          gap: 3rem;
+          justify-content: center;
+        }
+        @media (max-width: 455px) {
+          .section__title {
+            font-size: var(--fs-42);
+            line-height: var(--lh-42);
+            letter-spacing: 0;
+            font-weight: 400;
+          }
+          .review-description {
+            font-size: var(--fs-14);
+            line-height: var(--lh-14);
+          }
+        }
+      </style>
+    </IconButton>
   </div>
 </div>
-<style is:global>
-  .hover-text {
-    display: inline-block;
-    position: relative;
-  }
-
-  /* SVG подчеркивание */
-  .hover-svg {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    height: 2px;
-    pointer-events: none;
-    overflow: visible;
-  }
-
-  /* Анимация для path */
-  .hover-path {
-    fill: none;
-    stroke: #57718c;
-    stroke-width: 1;
-    stroke-dasharray: 1000;
-    stroke-dashoffset: 1000;
-    transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  /* При наведении активируем анимацию */
-  .hover-text:hover .hover-path {
-    stroke-dashoffset: 0;
-  }
-
-  /* Альтернативный вариант с заливкой */
-  .hover-text.fill-variant .hover-path {
-    fill: #57718c;
-    stroke: none;
-    opacity: 0;
-    transition: opacity 0.6s ease-in-out;
-  }
-
-  .hover-text.fill-variant:hover .hover-path {
-    opacity: 1;
-  }
-
-  /* Вариант с анимацией рисования слева направо */
-  .hover-text.left-to-right .hover-path {
-    stroke-dasharray: 1000;
-    stroke-dashoffset: 1000;
-    animation: none;
-  }
-
-  .hover-text.left-to-right:hover .hover-path {
-    animation: drawLine 1s ease-in-out forwards;
-  }
-
-  @keyframes drawLine {
-    to {
-      stroke-dashoffset: 0;
-    }
-  }
-
-  .review-description {
-    margin-top: 4rem;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    gap: 2rem;
-    color: var(--text-color-tertiary);
-  }
-  .media {
-    margin-top: auto;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
-  .media__title {
-    color: var(--text-color-fourth);
-  }
-  .media__links {
-    color: var(--brand-color);
-    display: flex;
-    gap: 3rem;
-    justify-content: center;
-  }
-</style>

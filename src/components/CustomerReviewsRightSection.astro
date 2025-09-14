@@ -38,7 +38,7 @@ const mock = [
     author: "Ольга Морозова",
     role: "Product Manager, StartupHub",
     content: "Быстро, качественно и в срок. Именно то, что нужно для стартапа!",
-    avatar: `${import.meta.env.BASE_URL}/images/review5.svg`,
+    avatar: `${import.meta.env.BASE_URL}/images/review3.svg`,
   },
   {
     id: 6,
@@ -46,7 +46,7 @@ const mock = [
     role: "Founder, WebSolutions",
     content:
       "Профессиональная команда с глубоким пониманием современных технологий.",
-    avatar: `${import.meta.env.BASE_URL}/images/review6.svg`,
+    avatar: `${import.meta.env.BASE_URL}/images/review2.svg`,
   },
 ];
 
@@ -95,7 +95,6 @@ const column2mock = [...mock, ...mock, ...mock];
               />
               <div class="avatar">{review.author}</div>
               <button>
-                {" "}
                 <Play />
               </button>
             </div>
@@ -118,7 +117,9 @@ const column2mock = [...mock, ...mock, ...mock];
     border-radius: 999px;
     padding: 7px 23px;
     display: flex;
+    color:;
     justify-content: center;
+    color: #f0d8b5;
   }
   .container {
     width: 100%;

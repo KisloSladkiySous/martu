@@ -2,6 +2,10 @@
 import Logo from "../assets/logo.svg";
 import Close from "../assets/icons/close.svg";
 import Burger from "../assets/icons/burger.svg";
+import VK from "../assets/icons/vk.svg";
+import Inst from "../assets/icons/inst.svg";
+import Whatsup from "../assets/icons/whatsup.svg";
+import Telegramm from "../assets/icons/telegramm.svg";
 import { socialLinks } from "../social-links.ts";
 ---
 
@@ -40,6 +44,8 @@ import { socialLinks } from "../social-links.ts";
     <Burger />
   </div>
 
+  <div class="mobile-backdrop" id="mobile-backdrop"></div>
+
   <div class="mobile-menu-overlay" id="mobile-menu">
     <div class="mobile-menu-content">
       <div class="mobile-header">
@@ -57,12 +63,20 @@ import { socialLinks } from "../social-links.ts";
         <a class="mobile-link" href="#workflow"> <span>Процесс</span></a>
         <a class="mobile-link" href="#price"> <span>Услуги</span></a>
         <a class="mobile-link" href="#reviews"> <span>Отзывы</span></a>
-        <a class="mobile-link" href={socialLinks.inst} target="_blank"
-          >Instagram</a
-        >
-        <a class="mobile-link" href={socialLinks.vk} target="_blank"
-          >Вконтакте</a
-        >
+      </div>
+      <div class="media-links">
+        <a href={socialLinks.vk} target="_blank" class="link">
+          <VK />
+        </a>
+        <a href={socialLinks.inst} target="_blank" class="link">
+          <Inst />
+        </a>
+        <a href={socialLinks.wu} target="_blank" class="link">
+          <Whatsup />
+        </a>
+        <a href={socialLinks.tg} target="_blank" class="link">
+          <Telegramm />
+        </a>
       </div>
     </div>
   </div>
@@ -158,7 +172,7 @@ import { socialLinks } from "../social-links.ts";
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 80vh;
     z-index: 2000;
     opacity: 0;
     visibility: hidden;
@@ -175,6 +189,33 @@ import { socialLinks } from "../social-links.ts";
     opacity: 1;
     visibility: visible;
   }
+
+  /* НОВЫЙ СТИЛЬ: БЕКДРОП */
+  .mobile-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1999;
+    background-color: rgba(
+      0,
+      0,
+      0,
+      0.5
+    ); /* тёмный бэкдроп — можно менять цвет */
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.3s ease,
+      visibility 0.3s ease;
+  }
+
+  .mobile-backdrop.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
   .mobile-header {
     display: flex;
     justify-content: space-between;
@@ -192,7 +233,7 @@ import { socialLinks } from "../social-links.ts";
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 500;
   }
 
@@ -216,6 +257,30 @@ import { socialLinks } from "../social-links.ts";
     .mobile-menu-overlay {
       display: none !important;
     }
+    .mobile-backdrop {
+      display: none !important;
+    }
+  }
+
+  .media-links {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    justify-content: center;
+    margin-top: auto;
+  }
+
+  .link {
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.4);
+    height: 3.5rem;
+    width: 3.5rem;
+    display: flex;
+    color: var(--text-color-white);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    justify-content: center;
+    align-items: center;
   }
 </style>
 
@@ -225,6 +290,7 @@ import { socialLinks } from "../social-links.ts";
     const burgerIcon = document.getElementById("burger-icon");
     const mobileMenu = document.getElementById("mobile-menu");
     const closeBtn = document.getElementById("close-icon");
+    const mobileBackdrop = document.getElementById("mobile-backdrop"); // ← НОВАЯ СТРОКА
     const allLinks = document.querySelectorAll(".mobile-link, #navigation a");
 
     // Функция открытия/закрытия меню
@@ -234,10 +300,12 @@ import { socialLinks } from "../social-links.ts";
       const isOpen = mobileMenu.classList.contains("open");
       if (isOpen) {
         mobileMenu.classList.remove("open");
+        mobileBackdrop.classList.remove("open"); // ← НОВАЯ СТРОКА
         burgerIcon.classList.remove("open");
         document.body.style.overflow = "";
       } else {
         mobileMenu.classList.add("open");
+        mobileBackdrop.classList.add("open"); // ← НОВАЯ СТРОКА
         burgerIcon.classList.add("open");
         document.body.style.overflow = "hidden";
       }
@@ -246,6 +314,7 @@ import { socialLinks } from "../social-links.ts";
     // Закрытие меню
     function closeMenu() {
       mobileMenu.classList.remove("open");
+      mobileBackdrop.classList.remove("open"); // ← НОВАЯ СТРОКА
       burgerIcon.classList.remove("open");
       document.body.style.overflow = "";
     }
@@ -283,18 +352,33 @@ import { socialLinks } from "../social-links.ts";
             const index = entry.target.getAttribute("data-section-index");
 
             const sectionId = entry.target.id;
+            console.log(index);
 
             const isEven = index % 2 !== 0;
 
             // console.log(isEven, index);
+            console.log(sectionId);
 
-            nav.style.color = isEven ? "white" : "black";
-
+            if (sectionId === "contacts") {
+              nav.style.color = "white";
+            } else if (sectionId === "reviews") {
+              nav.style.color = "black";
+            } else {
+              nav.style.color = isEven ? "white" : "black";
+            }
             allLinks.forEach((link) => {
               // Обновляем классы цвета
 
               link.classList.remove("white", "black");
               if (window.innerWidth < 1025) {
+                if (sectionId === "contacts") {
+                  link.classList.add("white");
+                  return;
+                }
+                if (sectionId === "reviews") {
+                  link.classList.add("black");
+                  return;
+                }
                 link.classList.add(isEven ? "white" : "black");
               } else {
                 link.classList.add(!isEven ? "white" : "black");
@@ -316,10 +400,11 @@ import { socialLinks } from "../social-links.ts";
         });
       },
       {
-        threshold: 0.5,
+        threshold: 0.3,
         rootMargin: "0px",
       }
     );
+    console.log(sections);
 
     sections.forEach((section) => observer.observe(section));
 

@@ -1,31 +1,46 @@
 <script>
   import { stagger, animate, inView } from "motion";
 
-  const transition = {
-    duration: 0.8,
-    ease: [0.5, 0, 0, 1], // почему-то ошибка из-за этой строки
-    delay: stagger(0.05, { startDelay: 1 }),
-  };
+  // Определяем, мобильное ли устройство
+  const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
 
-  const keyframes = {
-  scaleY: [1, 0],
-  transformOrigin: "top", // если нужно сворачивать сверху
-};
+  // Только если НЕ мобильное устройство — запускаем анимацию
+  if (!isMobile) {
+    const transition = {
+      duration: 1.5,
+      ease: [0.5, 0, 0, 1],
+    };
 
-  inView(
-    ".step-animation",
-    (element, info) => {
-      const lines = Array.from(
-        element.querySelectorAll<HTMLElement>(".step-animation__line")
-      ).reverse();
+    const keyframes = {
+      scaleY: [1, 0],
+      transformOrigin: "top",
+    };
 
-      const animation = animate(lines, keyframes, transition);
-      animation.play();
+    inView(
+      ".step-animation",
+      (element, info) => {
+        const lines = Array.from(
+          element.querySelectorAll<HTMLElement>(".step-animation__line")
+        ).reverse();
 
-      return () => animate(lines, { y: "0%" }, { instant: true });
-    },
-    { amount: 0.5 }
-  );
+        const animation = animate(lines, keyframes, transition);
+
+        // После завершения анимации — скрываем элементы через display: none
+        animation.then(() => {
+          lines.forEach((line) => {
+            line.style.display = "none";
+          });
+        });
+
+        // При выходе из области — сбрасываем (если нужно)
+        return () => {
+          // Можно добавить сброс, если анимация должна повторяться при скролле
+          // Но по условию — один раз, поэтому просто ничего не делаем
+        };
+      },
+      { amount: 0.5 }
+    );
+  }
 </script>
 
 <div class="step-animation">
@@ -45,27 +60,33 @@
     <div class="step-animation__line"></div>
   </div>
 </div>
+
 <style>
-  /* .step-animation__line {
+  /* На мобильных — просто скрываем всю анимацию */
+  @media (max-width: 768px) {
+    .step-animation {
+      display: none !important;
+    }
+  }
+
+  /* На десктопе — анимируем */
+  .step-animation__line {
+    transform-origin: top;
     background-color: var(--background-color);
     width: 100%;
     height: 100%;
-    transform: translateY("-100%");
-    
-  } */
-.step-animation__line {
-  transform-origin: top;
-  background-color: var(--background-color);
-  transform: scaleY(1);
-     width: 100%;
-    height: 100%;
-}
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
   .step-animation__raw {
     width: 100%;
     height: 100%;
     position: relative;
-    z-index: 10;
     overflow: hidden;
+    z-index: 10;
   }
 
   .step-animation {
@@ -75,6 +96,6 @@
     display: flex;
     flex-direction: column;
     z-index: 10;
-    pointer-events: none
+    pointer-events: none;
   }
 </style>
