@@ -5,5 +5,5 @@ export const socialLinks = {
     text: "+7 (999) 985-10-83",
     url: "tel:+79999851083",
   },
-  wu:"https://wa.me/79999851083"
+  wu: "https://wa.me/79999851083?text=Привет!%20У меня вопрос по услугам.",
 };

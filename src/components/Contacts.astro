@@ -14,7 +14,7 @@ const links = socialLinks;
     <source src="src/assets/videos/Video.webm" type="video/webm" />
   </video>
   <div class="logo">
-    <LogoLarge  />
+    <LogoLarge />
   </div>
   <div class="creditionals">
     <div class="media">
@@ -36,7 +36,7 @@ const links = socialLinks;
       <a class="phone" href="tel:+79994440404">+7 999 444-04-04</a>
     </div>
     <div class="contact-us">
-        <div class="media-links show-on-mobile">
+      <div class="media-links show-on-mobile">
         <a href={links.vk} target="_blank" class="link">
           <VK />
         </a>
@@ -66,6 +66,7 @@ const links = socialLinks;
     color: var(--text-color-white);
     align-items: center;
     position: absolute;
+    pointer-events: none;
   }
 
   .creditionals {
@@ -107,7 +108,7 @@ const links = socialLinks;
 
   .link {
     border-radius: 50%;
-    background-color: #FFFFFF33;
+    background-color: #ffffff33;
     height: 3.5rem;
     width: 3.5rem;
     display: flex;
@@ -150,8 +151,8 @@ const links = socialLinks;
   }
 
   .show-on-mobile {
-      display: none;
-    }
+    display: none;
+  }
   @media (max-width: 1025px) {
     .phone {
       font-size: 3rem;
@@ -160,21 +161,19 @@ const links = socialLinks;
     .inst {
       font-size: 3rem;
     }
-
   }
- 
 
   @media (max-width: 755px) {
     .creditionals {
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    justify-content: space-between;
-    color: var(--text-color-white);
-    text-align: center;
-    align-items: center;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      justify-content: space-between;
+      color: var(--text-color-white);
+      text-align: center;
+      align-items: center;
     }
 
     .media {
@@ -186,7 +185,7 @@ const links = socialLinks;
     .hide-on-mobile {
       display: none;
     }
-    
+
     .show-on-mobile {
       display: flex;
     }
@@ -199,7 +198,6 @@ const links = socialLinks;
     }
   }
 
- 
   @media (max-width: 360px) {
     .phone {
       font-size: 2rem;
@@ -226,15 +224,14 @@ const links = socialLinks;
       font-size: 13px;
     }
   }
-.video-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 1; 
-}
-
+  .video-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+  }
 </style>
