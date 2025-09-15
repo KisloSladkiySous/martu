@@ -828,6 +828,5 @@ html {
 @media (max-width: 1024px) {
   html {
     scroll-padding-top: 50px;
-    scroll-snap-type: y proximity;
   }
 }
