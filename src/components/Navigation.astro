@@ -110,13 +110,12 @@ import { socialLinks } from "../social-links.ts";
 
   @media (max-width: 1025px) {
     .navigation {
-      backdrop-filter: blur(4px);
+      background-color: var(--background-color);
       width: calc(100% - 40px);
       top: 0;
       left: 0;
       margin: 0;
-      padding: 20px 20px 12px 20px;
-      border-bottom: 1px solid var(--border-color);
+      padding: 12px 20px 12px 20px;
     }
 
     .logo {
@@ -221,7 +220,7 @@ import { socialLinks } from "../social-links.ts";
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
-    padding: 20px 20px 12px 20px;
+    padding: 12px 20px 12px 20px;
   }
   .mobile-menu-content {
     display: flex;
@@ -345,6 +344,8 @@ import { socialLinks } from "../social-links.ts";
 
     let currentSectionIndex = "black";
 
+    const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -404,9 +405,10 @@ import { socialLinks } from "../social-links.ts";
         rootMargin: "0px",
       }
     );
-    console.log(sections);
 
-    sections.forEach((section) => observer.observe(section));
+    if (!isMobile) {
+      sections.forEach((section) => observer.observe(section));
+    }
 
     // Плавная прокрутка при клике (заменена на instant для точности)
     allLinks.forEach((link) => {

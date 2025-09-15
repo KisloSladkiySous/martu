@@ -5,42 +5,45 @@
   const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
 
   // Только если НЕ мобильное устройство — запускаем анимацию
-  if (!isMobile) {
-    const transition = {
-      duration: 1.5,
-      ease: [0.5, 0, 0, 1],
-    };
 
-    const keyframes = {
-      scaleY: [1, 0],
-      transformOrigin: "top",
-    };
+  const transition = {
+    duration: 1.5,
+    ease: [0.5, 0, 0, 1],
+  };
 
-    inView(
-      ".step-animation",
-      (element, info) => {
-        const lines = Array.from(
-          element.querySelectorAll<HTMLElement>(".step-animation__line")
-        ).reverse();
+  const keyframes = {
+    scaleY: [1, 0],
+    transformOrigin: "top",
+  };
 
-        const animation = animate(lines, keyframes, transition);
+  const keyframesForwards = {
+    scaleY: [0, 1],
+    transformOrigin: "top",
+  };
 
-        // После завершения анимации — скрываем элементы через display: none
-        animation.then(() => {
-          lines.forEach((line) => {
-            line.style.display = "none";
-          });
+  inView(
+    ".step-animation",
+    (element, info) => {
+      const lines = Array.from(
+        element.querySelectorAll<HTMLElement>(".step-animation__line")
+      ).reverse();
+
+      const animation = animate(lines, keyframes, transition);
+
+      // После завершения анимации — скрываем элементы через display: none
+      animation.then(() => {
+        lines.forEach((line) => {
+          // line.style.display = "none";
         });
+      });
 
-        // При выходе из области — сбрасываем (если нужно)
-        return () => {
-          // Можно добавить сброс, если анимация должна повторяться при скролле
-          // Но по условию — один раз, поэтому просто ничего не делаем
-        };
-      },
-      { amount: 0.5 }
-    );
-  }
+      // При выходе из области — сбрасываем (если нужно)
+      return () => {
+        animate(lines, keyframesForwards, transition);
+      };
+    },
+    { amount: 0.9 }
+  );
 </script>
 
 <div class="step-animation">
@@ -62,14 +65,6 @@
 </div>
 
 <style>
-  /* На мобильных — просто скрываем всю анимацию */
-  @media (max-width: 768px) {
-    .step-animation {
-      display: none !important;
-    }
-  }
-
-  /* На десктопе — анимируем */
   .step-animation__line {
     transform-origin: top;
     background-color: var(--background-color);

@@ -184,20 +184,6 @@ const sections = [
     flex-direction: column;
   }
 
-  .scroll-container {
-    height: 100vh;
-    overflow-y: auto;
-    scroll-snap-type: y mandatory;
-    scroll-behavior: smooth;
-  }
-  @media (max-width: 455px) {
-    .scroll-container {
-      height: fit-content;
-      overflow-y: auto;
-      scroll-snap-type: unset;
-      scroll-behavior: smooth;
-    }
-  }
   .snap-section {
     display: contents;
   }
@@ -221,14 +207,14 @@ const sections = [
     .snap-section-full {
       display: grid;
       grid-template-columns: 1fr;
-      min-height: 100vh;
+      /* min-height: 100vh; */
       scroll-snap-align: start;
     }
 
     .snap-column {
-      min-height: 100dvh;
-      scroll-snap-align: none;
-      scroll-snap-stop: normal;
+      /* min-height: 100dvh; */
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
     }
     .section-full {
       width: 100%;
