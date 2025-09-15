@@ -4,6 +4,7 @@ import VK from "../assets/icons/vk.svg";
 import Inst from "../assets/icons/inst.svg";
 import Whatsup from "../assets/icons/whatsup.svg";
 import Telegramm from "../assets/icons/telegramm.svg";
+import ContactButton from "../components/ContactButton.astro";
 import { socialLinks } from "../social-links.ts";
 
 const links = socialLinks;
@@ -53,7 +54,7 @@ const links = socialLinks;
       <p class="text-white">
         С удовольствием ответим на вопросы, <br /> подскажем формат и предложим идеи.
       </p>
-      <p class="inst">@martu.agency</p>
+      <a href={links.inst} class="inst">@martu.agency</a>
     </div>
   </div>
 </div>
