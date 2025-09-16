@@ -15,6 +15,7 @@ h1 {
 
 h2 {
   font-size: var(--fs-54);
+  line-height: var(--lh-54);
   /* color: var(--text-color-secondary); */
   font-weight: 400;
   /* text-align: center; */
@@ -70,12 +71,14 @@ h2 span {
     --section-margin: 1.25rem;
   }
 }
-@media (max-width: 475px) {
+@media (max-width: 400px) {
   :root {
     --fs-46: 2rem;
+    --fs-54: 2.3rem;
     --fs-64: 3.25rem;
 
     --lh-46: 2.2rem;
+    --lh-54: 2.3rem;
     --lh-64: 3.25rem;
   }
 }
@@ -147,11 +150,11 @@ section {
   font-weight: 400;
   text-align: center;
 }
-@media (max-width: 470px) {
+/* @media (max-width: 475px) {
   h2 {
-    font-size: 2.875rem;
+    font-size: 2.3rem;
   }
-}
+} */
 
 .brand-color {
   color: var(--brand-color);

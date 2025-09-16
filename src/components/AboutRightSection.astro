@@ -102,28 +102,30 @@ const { className } = Astro.props;
     display: flex;
   }
 
-  /* Стили текста */
-  /* .text {
-    font-size: var(--fs-14);
-    line-height: var(--lh-14);
-    color: var(--text-color-primary);
-  } */
-
-  /* Стили списка */
   .advantages {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 3.625rem;
+  }
+
+  @media (max-width: 1024px) {
+    .advantages {
+      margin: 0 auto;
+      gap: 0;
+      column-gap: 4rem;
+      row-gap: 1.2rem;
+    }
   }
 
   .advantages li {
     color: var(--text-color-tertiary);
     font-size: var(--fs-14);
     line-height: var(--lh-14);
-    /* width: 9.1875rem; */
+    min-width: 140px;
     position: relative;
   }
 
@@ -154,19 +156,12 @@ const { className } = Astro.props;
       grid-template-columns: 1fr 1fr;
       align-items: center;
     }
-
-    .advantages li {
-      margin: 0 auto;
-      text-align: left;
-    }
   }
-  @media (max-width: 455px) {
-    /* .section__title {
-      font-size: var(--fs-46);
-      line-height: var(--lh-46);
-    } */
-    .advantages li {
-      margin: 0;
+
+  @media (max-width: 475px) {
+    .description {
+      margin-top: min(max(0.75rem, 4vh), 2rem);
+      gap: 1.75rem;
     }
   }
 </style>
