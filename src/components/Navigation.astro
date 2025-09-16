@@ -47,15 +47,15 @@ import { socialLinks } from "../social-links.ts";
   <div class="mobile-backdrop" id="mobile-backdrop"></div>
 
   <div class="mobile-menu-overlay" id="mobile-menu">
-    <div class="mobile-menu-content">
-      <div class="mobile-header">
-        <a id="logo-mobile" href="#hero">
-          <Logo />
-        </a>
-        <div class="close mobile" id="close-icon">
-          <Close />
-        </div>
+    <div class="mobile-header">
+      <a id="logo-mobile" href="#hero">
+        <Logo />
+      </a>
+      <div class="close mobile" id="close-icon">
+        <Close />
       </div>
+    </div>
+    <div class="mobile-menu-content">
       <div class="mobile-links">
         <a class="mobile-link" href="#about"> <span>О нас</span> </a>
         <a class="mobile-link" href="#portfolio"> <span>Портфолио</span></a>
@@ -64,20 +64,20 @@ import { socialLinks } from "../social-links.ts";
         <a class="mobile-link" href="#price"> <span>Услуги</span></a>
         <a class="mobile-link" href="#reviews"> <span>Отзывы</span></a>
       </div>
-      <div class="media-links">
-        <a href={socialLinks.vk} target="_blank" class="link">
-          <VK />
-        </a>
-        <a href={socialLinks.inst} target="_blank" class="link">
-          <Inst />
-        </a>
-        <a href={socialLinks.wu} target="_blank" class="link">
-          <Whatsup />
-        </a>
-        <a href={socialLinks.tg} target="_blank" class="link">
-          <Telegramm />
-        </a>
-      </div>
+    </div>
+    <div class="media-links">
+      <a href={socialLinks.vk} target="_blank" class="link">
+        <VK />
+      </a>
+      <a href={socialLinks.inst} target="_blank" class="link">
+        <Inst />
+      </a>
+      <a href={socialLinks.wu} target="_blank" class="link">
+        <Whatsup />
+      </a>
+      <a href={socialLinks.tg} target="_blank" class="link">
+        <Telegramm />
+      </a>
     </div>
   </div>
 </nav>
@@ -171,13 +171,11 @@ import { socialLinks } from "../social-links.ts";
     top: 0;
     left: 0;
     width: 100%;
-    height: 80vh;
+    min-height: 90vh;
     z-index: 2000;
     opacity: 0;
     visibility: hidden;
-    transition:
-      opacity 0.3s ease,
-      visibility 0.3s ease;
+    transition: all 0.3s ease-out;
     display: flex;
     flex-direction: column;
 
@@ -219,28 +217,38 @@ import { socialLinks } from "../social-links.ts";
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
     padding: 12px 20px 12px 20px;
-  }
-  .mobile-menu-content {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
   }
 
   .mobile-links {
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    font-size: 2rem;
-    font-weight: 500;
+    gap: 1rem;
+    font-size: var(--fs-32);
+    line-height: var(--lh-32);
+  }
+
+  .mobile-menu-content {
+    margin-top: -69px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  @media (max-height: 700px) {
+    .mobile-menu-content {
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
   }
 
   .mobile-link {
+    padding: 0.5rem 0;
     color: var(--text-color-primary);
     text-decoration: none;
     text-align: center;
-    transition: color 0.2s;
   }
 
   /* Optional: animate burger */
@@ -267,6 +275,7 @@ import { socialLinks } from "../social-links.ts";
     margin-bottom: 1.5rem;
     justify-content: center;
     margin-top: auto;
+    bottom: 0;
   }
 
   .link {
