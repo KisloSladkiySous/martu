@@ -26,7 +26,7 @@ h1 {
 h2 {
   margin: 0;
   font-size: var(--fs-54);
-  color: var(--text-color-secondary);
+  /* color: var(--text-color-secondary); */
   font-weight: 400;
   /* text-align: center; */
 }
@@ -83,7 +83,10 @@ h2 span {
 }
 @media (max-width: 475px) {
   :root {
+    --fs-46: 2rem;
     --fs-64: 3.25rem;
+
+    --lh-46: 2.2rem;
     --lh-64: 3.25rem;
   }
 }
@@ -291,70 +294,6 @@ section {
   height: fit-content;
 }
 
-.showcase {
-  /* margin-top: auto; */
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  z-index: 2;
-}
-
-.showcase__wrapper {
-  margin-bottom: 4rem;
-}
-
-.showcase__title {
-  color: var(--text-color-white);
-  margin-bottom: 1.25rem;
-  font-size: var(--fs-46);
-  line-height: var(--lh-46);
-}
-@media (max-width: 470px) {
-  .showcase__title {
-    font-size: 2rem;
-    line-height: 2.1rem;
-  }
-}
-
-.showcase__description {
-  margin-bottom: 1.5rem;
-  color: var(--text-color-white);
-  font-size: var(--fs-14);
-  line-height: var(--lh-14);
-}
-
-.showcase__cta-button {
-  margin-top: 1.25rem;
-  color: var(--text-color-white);
-  font-size: var(--fs-18);
-  width: fit-content;
-}
-
-.showcase__cta-button:hover .underline-draw {
-  width: 100%;
-}
-
-.showcase__toolbar {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  color: var(--text-color-white);
-  font-size: var(--fs-14);
-  margin-bottom: 1rem;
-}
-@media (max-width: 455px) {
-  .showcase__toolbar {
-    font-size: var(--fs-14);
-    line-height: var(--lh-14);
-    letter-spacing: 0;
-    font-weight: 400;
-  }
-}
-
 .text {
   color: var(--text-color-secondary);
   font-size: var(--fs-14);
@@ -505,6 +444,6 @@ html {
 
 @media (max-width: 1024px) {
   html {
-    scroll-padding-top: 50px;
+    /* scroll-padding-top: 69px; */
   }
 }
