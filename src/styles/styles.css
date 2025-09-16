@@ -397,9 +397,6 @@ section {
   padding: var(--section-margin);
   margin-bottom: 0;
 }
-.snap-column-4-1 > .section-column {
-  margin: 0;
-}
 
 @media (max-width: 1024px) {
   html {

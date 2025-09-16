@@ -1,7 +1,7 @@
 ---
 import WorkFlowBackground from "../assets/images/workflow-section-background.png";
-import SectionAware from "./SectionAware.astro";
-import ShowCase from "./ShowCase.astro";
+import SectionAware from "../components/SectionAware.astro";
+import ShowCase from "../components/ShowCase.astro";
 const imageSources = [
   {
     srcset: WorkFlowBackground.src,
@@ -9,17 +9,19 @@ const imageSources = [
     type: "image/png",
   },
 ];
-const {className} = Astro.props
 ---
-<div class:list={[className, "section-column__wrapper"]}>
-    <ShowCase date="Весна 2024" names="Ольга и Константин">
-    <div slot="showcase__title" class="showcase__title">
-       В день вашей свадьбы забудьте обо всем,  <span class="italic"
-        >наслаждайтесь</span> моментом.
-    </div>
 
-  </ShowCase>
-
+<ShowCase
+  date="Весна 2024"
+  names="Ольга и Константин"
+  hash="olga-and-konstantin"
+>
+  <div slot="showcase__title" class="showcase__title">
+    В день вашей свадьбы забудьте обо всем, <span class="italic"
+      >наслаждайтесь</span
+    > моментом.
+  </div>
+</ShowCase>
 
 <SectionAware
   class="background-image"
@@ -31,6 +33,3 @@ const {className} = Astro.props
   preloadSections={1}
   sectionSelector="[data-section]"
 />
-</div>
-
-
