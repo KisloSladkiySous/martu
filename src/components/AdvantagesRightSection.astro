@@ -29,31 +29,20 @@ const { className } = Astro.props;
     Мы не делаем <br /> “просто красиво” <br />— мы делаем <br />
     <span class="brand-color italic underline"
       >по-настоящему
-      <SvgAnimation style="bottom: -3rem;">
-        <AdvantagesSign style="width: 100%;" />
+      <SvgAnimation bottom="-1rem">
+        <AdvantagesSign style="width: 100%" />
       </SvgAnimation>
     </span>
   </h2>
 
   <div class="content-block">
     <div class="photos">
-      <SectionAware
-        sources={imageSources}
-        src={AdvantagesVisual.src}
-        alt="Feature"
-        height="260px"
-        width="288px"
-        preloadSections={1}
-        sectionSelector="[data-section]"
-      />
-      <SectionAware
-        sources={imageSourcesSecond}
+      <img src={AdvantagesVisual.src} alt="team" height="260px" width="288px" />
+      <img
         src={AdvantagesVisualSecond.src}
-        alt="Feature"
+        alt="team"
         height="260px"
         width="288px"
-        preloadSections={1}
-        sectionSelector="[data-section]"
       />
     </div>
     <div class="text">Нас выбирают за надёжность, опыт и подход</div>
@@ -74,7 +63,7 @@ const { className } = Astro.props;
   }
 
   .photos img {
-    width: 288px;
+    width: 18rem;
     height: auto;
     display: block;
     border-radius: 8px;

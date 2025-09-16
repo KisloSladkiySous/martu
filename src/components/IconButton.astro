@@ -13,6 +13,15 @@ const { link, areaLabel } = Astro.props;
 </a>
 
 <style>
+  @media (hover: hover) {
+    .social:hover {
+      transform: scale(1.02) translateY(-5%);
+      box-shadow: 0 4px 40px 20px rgb(255, 255, 255, 0.05);
+    }
+  }
+  .social:active {
+    transform: scale(1.04) translateY(-5%);
+  }
   .social {
     background-color: #fff9f0;
     color: #666666;

@@ -11,15 +11,17 @@ import FounderSignature from "../assets/images/founder-signature.svg";
         «Для меня свадьба — это не про декор и тайминг. Это про слёзы на глазах,
         дрожащие руки и ощущение, что всё именно так, как должно быть.»
       </p>
-      <FounderSignature class="founder__signature" />
     </div>
 
     <div class="founder__avatar">
       <Circle borderColor="white" size="sm" imagePath={FounderImage.src} />
     </div>
-    <div class="founder__fio">
-      <span class="brand-color italic">Тутунару Марина</span>
-      <span class="remark fs-12">Основатель</span>
+    <div class="founder__description">
+      <div class="founder__fio">
+        <span class="brand-color italic">Тутунару Марина</span>
+        <span class="remark fs-12">Основатель</span>
+      </div>
+      <FounderSignature class="founder__signature" />
     </div>
   </div>
 </div>
@@ -37,7 +39,11 @@ import FounderSignature from "../assets/images/founder-signature.svg";
     line-height: var(--lh-14);
     color: var(--text-color-tertiary);
   }
-
+  .founder__description {
+    gap: 100px;
+    justify-content: center;
+    display: flex;
+  }
   .founder {
     margin-top: auto;
     background-color: var(--background-color);
@@ -59,11 +65,8 @@ import FounderSignature from "../assets/images/founder-signature.svg";
   }
 
   .founder__signature {
-    width: 7.8125rem;
-    height: 4.375rem;
     position: absolute;
-    right: -2rem;
-    top: 2.875rem;
+    right: 20%;
   }
   .founder__avatar {
     justify-content: center;

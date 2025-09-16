@@ -60,6 +60,17 @@ const links = socialLinks;
 </div>
 
 <style lang="css">
+  @media (hover: hover) {
+    .link:hover {
+      transform: scale(1.02) translateY(-5%);
+      background-color: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 4px 40px 20px rgb(255, 255, 255, 0.05);
+    }
+  }
+  .link:active {
+    transform: scale(1.04) translateY(-5%);
+    background-color: rgba(255, 255, 255, 0.25);
+  }
   .logo {
     display: flex;
     justify-content: center;

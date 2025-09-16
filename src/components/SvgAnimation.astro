@@ -1,5 +1,5 @@
 ---
-const { delay = 0.2 } = Astro.props;
+const { delay = 0.2, bottom = "0px" } = Astro.props;
 ---
 
 <script>
@@ -8,7 +8,6 @@ const { delay = 0.2 } = Astro.props;
   const keyframes = {
     pathLength: [0, 1],
     fill: ["rgba(87, 113, 140, 0)", "rgba(87, 113, 140, 1)"],
-    // opacity: [0, 1],
   };
 
   inView(
@@ -16,7 +15,6 @@ const { delay = 0.2 } = Astro.props;
     (element, info) => {
       const item = element.querySelectorAll("path");
       const delay = element?.getAttribute("data-delay");
-      console.log(delay);
 
       item[0].classList.add("svg-item");
 
@@ -33,11 +31,14 @@ const { delay = 0.2 } = Astro.props;
     { amount: 0.5 }
   );
 </script>
-<span class="svg-animation underline-draw" data-delay={delay}>
+<span class="svg-animation underline-draw" data-delay={{ delay }}>
   <slot />
 </span>
 
-<style is:global>
+<style is:global define:vars={{ bottom: bottom }}>
+  .underline-draw {
+    bottom: var(--bottom);
+  }
   @media (max-width: 755px) {
     .svg-animation > svg {
       width: 90%;
