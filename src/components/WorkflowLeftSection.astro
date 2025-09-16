@@ -3,6 +3,7 @@ import WorkflowSign from "../assets/icons/sign/workflow-sign.svg";
 import SvgAnimation from "./SvgAnimation.astro";
 ---
 
+<div class="gradient-header"></div>
 <h2 class="section__title">
   Простая и <span class="brand-color italic underline">
     прозрачная
@@ -69,6 +70,21 @@ import SvgAnimation from "./SvgAnimation.astro";
 </ol>
 
 <style>
+  @media (min-width: 1025px) {
+    .gradient-header {
+      width: 43%;
+      height: 290px;
+      z-index: 2;
+      position: fixed;
+      top: 0;
+      background: linear-gradient(
+        to bottom,
+        var(--background-color) 80%,
+        #ffffff00 100%
+      );
+    }
+  }
+
   h2 {
     margin-top: 9.125rem;
     margin-bottom: 6.25rem;
