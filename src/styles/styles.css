@@ -180,13 +180,6 @@ section {
   }
 }
 
-/* main {
-  -ms-scroll-snap-type: y proximity;
-  scroll-snap-type: y proximity;
-  overflow-y: scroll;
-  scroll-behavior: smooth;
-} */
-
 .brand-color {
   color: var(--brand-color);
 }
