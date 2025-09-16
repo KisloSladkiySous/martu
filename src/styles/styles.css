@@ -299,12 +299,12 @@ section {
 
 .fs-12 {
   font-size: var(--fs-12);
-  line-height: var(--ls-12);
+  line-height: var(--lh-12);
 }
 
 .fs-64 {
   font-size: var(--fs-64);
-  line-height: var(--ls-64);
+  line-height: var(--lh-64);
 }
 
 .text-center {

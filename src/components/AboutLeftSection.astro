@@ -14,7 +14,7 @@ const imageSources = [
 ---
 
 <ShowCase>
-  <h2 slot="showcase__title" class="showcase__title fs-64 text-center">
+  <h2 slot="showcase__title" class="fs-64 text-center about-left-title">
     Красота в <br />
     <span class="italic">каждой</span> детали
   </h2>
@@ -35,10 +35,12 @@ const imageSources = [
 />
 
 <style>
+  .about-left-title {
+    margin-bottom: 3.5rem;
+  }
   @media (max-width: 455px) {
-    .showcase__title {
-      font-size: var(--fs-46);
-      line-height: var(--lh-46);
+    .about-left-title {
+      margin-bottom: auto;
     }
   }
 </style>

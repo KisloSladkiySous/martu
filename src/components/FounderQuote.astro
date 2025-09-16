@@ -52,6 +52,7 @@ import FounderSignature from "../assets/images/founder-signature.svg";
     position: relative;
     text-align: center;
     color: var(--text-color-tertiary);
+    margin-top: 2.25rem;
     margin-bottom: 2.25rem;
     max-width: 22.6875rem;
     margin-left: auto;
@@ -79,7 +80,7 @@ import FounderSignature from "../assets/images/founder-signature.svg";
     flex-direction: column;
     gap: 2px;
   }
-  @media (max-width: 1025px) {
+  @media (max-width: 1024px) {
     .founder__quote {
       margin: 2.18rem auto 2rem;
     }
@@ -92,19 +93,19 @@ import FounderSignature from "../assets/images/founder-signature.svg";
   }
   @media (max-width: 455px) {
     .founder {
-      padding: 1rem 1.1875rem;
+      padding: 2rem 1.1875rem;
       font-size: var(--fs-14);
       line-height: var(--lh-14);
     }
     .founder__quote {
       margin: 0 0 1rem 0;
     }
-    /* .founder__signature {
-      width: 7.8125rem;
-      height: 4.375rem;
-      position: absolute;
-      right: -2rem;
-      top: 4.875rem;
-    } */
+
+    .founder__fio {
+      margin-bottom: 0;
+    }
+    .about-section__subtitle {
+      margin-top: 0;
+    }
   }
 </style>
