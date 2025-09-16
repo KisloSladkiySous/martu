@@ -21,6 +21,24 @@ const { date, names, cssClass, hash } = Astro.props;
     )
   }
 </div>
+<script>
+  import { animate, inView } from "motion";
+
+  inView(".showcase__title", (target) => {
+    return animate(
+      target,
+      {
+        opacity: [0, 1],
+        y: [30, 0],
+      },
+      {
+        duration: 2,
+        easing: "ease-out",
+        delay: 0.5,
+      }
+    );
+  });
+</script>
 <style is:global>
   .showcase {
     height: 100%;
