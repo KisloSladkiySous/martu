@@ -16,6 +16,14 @@ p {
    * `article` contexts in Chrome, Firefox, and Safari.
    */
 
+h1 {
+  margin: 0;
+}
+
+h2 {
+  margin: 0;
+}
+
 /* Grouping content
      ========================================================================== */
 /**
@@ -325,4 +333,12 @@ template {
    */
 [hidden] {
   display: none;
+}
+
+/** 
+* Add the current color to SVG elements
+**/
+
+path {
+  fill: currentColor;
 }

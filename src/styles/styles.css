@@ -4,27 +4,16 @@
 }
 
 html {
-  line-height: 1.15;
-  /* 1 */
-  -webkit-text-size-adjust: 100%;
-  /* 2 */
   background-color: var(--background-color);
-}
-
-html,
-body {
-  block-size: 100%;
   font-size: var(--size-font);
 }
 
 h1 {
   font-size: var(--fs-64);
   line-height: var(--lh-64);
-  margin: 0;
 }
 
 h2 {
-  margin: 0;
   font-size: var(--fs-54);
   /* color: var(--text-color-secondary); */
   font-weight: 400;
@@ -96,26 +85,7 @@ h2 span {
     --lh-64: 2.5rem;
   }
 }
-:root {
-  /* базовая "скейлинг" переменная: сумма 1vh + 1vw */
-  /* --size-font: 1rem; */
 
-  /* ограничения (опционально): минимальный и максимальный размер */
-  --size-font-min: 12px;
-  --size-font-max: 28px;
-
-  /* защищённый (clamped) вариант, который не уйдёт ниже/выше лимитов */
-  --size-font-clamped: clamp(
-    var(--size-font-min),
-    var(--size-font),
-    var(--size-font-max)
-  );
-
-  /* если хочется работать в rem: задаём базовый rem и переводим.
-     Обратите внимание — можно комбинировать rem и vh/vw в calc. */
-  --root-rem: 1rem; /* обычно 16px */
-  --size-font-rem: calc(0.5rem + (var(--size-font-clamped) * 0.25));
-}
 section {
   display: -webkit-box;
   background-color: var(--background-color);
@@ -185,10 +155,6 @@ section {
 
 .brand-color {
   color: var(--brand-color);
-}
-
-.italic {
-  font-style: italic;
 }
 
 .underline {
@@ -302,6 +268,10 @@ section {
 }
 
 /* Tailwind-like classes */
+
+.italic {
+  font-style: italic;
+}
 
 .mt-4 {
   margin-top: 4rem; /* 64px */
@@ -429,17 +399,6 @@ section {
 }
 .snap-column-4-1 > .section-column {
   margin: 0;
-}
-path {
-  fill: currentColor;
-}
-
-html {
-  scroll-snap-type: y mandatory;
-
-  height: 100vh;
-  overflow-y: scroll;
-  box-sizing: border-box;
 }
 
 @media (max-width: 1024px) {
