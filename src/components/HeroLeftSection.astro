@@ -4,6 +4,7 @@ import Subtle from "../components/Subtle.astro";
 import HeroCircle from "../assets/images/hero-circle.jpg";
 import HeroSign from "../assets/icons/sign/hero-sign.svg";
 import SvgAnimation from "../components/SvgAnimation.astro";
+import CircleAlt from "./CircleAlt.astro";
 
 const { className } = Astro.props;
 ---
@@ -19,13 +20,13 @@ const { className } = Astro.props;
       <span class="brand-color italic underline">
         Вами
         <SvgAnimation>
-          <HeroSign style="width: 120%;" />
+          <HeroSign />
           <!-- <Test /> -->
         </SvgAnimation>
       </span>
     </h1>
     <div class="hero-section__visual-element">
-      <Circle borderColor="white" size="lg" imagePath={HeroCircle.src} />
+      <CircleAlt borderColor="white" imagePath={HeroCircle.src} />
     </div>
     <p class="text hero-section__description">
       <span class="brand-color">Martu</span> - мы свадебное агентство. Здесь каждый
@@ -45,10 +46,16 @@ const { className } = Astro.props;
   .hero-section__description {
     text-align: center;
   }
-  @media (max-width: 455px) {
-    .section__title {
-      font-size: var(--fs-52);
-      line-height: var(--lh-52);
+  @media (max-width: 475px) {
+    .hero-section__visual-element {
+      margin-top: 3.25rem;
+      margin-bottom: 2.25rem;
+    }
+  }
+  @media (max-width: 375px) {
+    .hero-section__visual-element {
+      margin-top: 1.25rem;
+      margin-bottom: 1.25rem;
     }
   }
 </style>

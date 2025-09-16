@@ -52,8 +52,14 @@ const { className } = Astro.props;
     <div class="show-portfolio">
       <Circle size="md" borderColor="#57718C">
         <span slot="text" class="circle-text">
-         
-          <a href={`${import.meta.env.BASE_URL}/portfolio`} class="portfolio" target="_blank" aria-label="Сиотреть портфолио"> Смотреть <br /> портфолио</a>
+          <a
+            href={`${import.meta.env.BASE_URL}/portfolio`}
+            class="portfolio"
+            target="_blank"
+            aria-label="Сиотреть портфолио"
+          >
+            Смотреть <br /> портфолио</a
+          >
         </span>
       </Circle>
     </div>
@@ -73,10 +79,10 @@ const { className } = Astro.props;
     margin-top: 3.25rem;
     margin-bottom: 3.75rem;
   }
-  .text {
+  /* .text {
     color: var(--text-color-secondary);
     font-size: var(--fs-14);
-  }
+  } */
   .description {
     display: flex;
     flex-direction: column;

@@ -1,0 +1,50 @@
+---
+interface Props {
+  borderColor: string;
+  imagePath?: string;
+  text?: string;
+}
+const { borderColor = "white", imagePath, text } = Astro.props;
+---
+
+<div
+  class="outer circle"
+  style={` ${imagePath ? `background-image: url("${imagePath}")` : ""}`}
+>
+  <div class="inner circle">
+    <slot name="text" />
+  </div>
+</div>
+
+<style define:vars={{ borderColor }}>
+  .outer {
+    height: 13.43rem;
+
+    aspect-ratio: 1;
+    background-color: var(--background-color-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 2;
+    position: relative;
+  }
+  @media (max-width: 455px) {
+    .outer {
+      height: min(30vh, 13.43rem);
+    }
+  }
+  .inner {
+    width: 85%;
+    aspect-ratio: 1;
+    border: 1px solid var(--borderColor);
+  }
+  .circle {
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>

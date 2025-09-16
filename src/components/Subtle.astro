@@ -1,9 +1,9 @@
 ---
 interface Props {
   lines: string[];
-  delay?:number
+  delay?: number;
 }
-const { lines, delay=200 } = Astro.props;
+const { lines, delay = 200 } = Astro.props;
 ---
 
 <script>
@@ -34,16 +34,14 @@ const { lines, delay=200 } = Astro.props;
   //   },
   //   { amount: 0.5 }
   // );
-   inView(
+  inView(
     ".subtle",
     function (element) {
-
-      
       // `element` — это текущий .subtle, в котором мы находимся
       const lines = Array.from(element.querySelectorAll(".subtle__line"));
       const animation = animate(lines, keyframes, transition);
       animation.play();
-    return () => animate(lines, { y: "100%" }, { instant: true });
+      return () => animate(lines, { y: "100%" }, { instant: true });
     },
     { amount: 0.5 }
   );
@@ -75,5 +73,11 @@ const { lines, delay=200 } = Astro.props;
   }
   .subtle__row {
     overflow: hidden;
+  }
+
+  @media (max-width: 475px) {
+    .subtle {
+      margin-bottom: min(max(0.75rem, 4vh), 2rem);
+    }
   }
 </style>
