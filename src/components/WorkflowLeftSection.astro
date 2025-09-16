@@ -72,10 +72,10 @@ import SvgAnimation from "./SvgAnimation.astro";
 <style>
   @media (min-width: 1025px) {
     .gradient-header {
-      width: 43%;
+      width: 100%;
       height: 290px;
       z-index: 2;
-      position: fixed;
+      position: sticky;
       top: 0;
       background: linear-gradient(
         to bottom,
@@ -86,7 +86,6 @@ import SvgAnimation from "./SvgAnimation.astro";
   }
 
   h2 {
-    margin-top: 9.125rem;
     margin-bottom: 6.25rem;
   }
   .title {
