@@ -6,8 +6,8 @@ import db from "@astrojs/db";
 // https://astro.build/config
 export default defineConfig({
   site: "https://kislosladkiysous.github.io",
-  base: "/martu",
+  // base: "/martu",
   devToolbar: { enabled: false },
-  output: "static",
+  // output: "static",
   // integrations: [db()],
 });
