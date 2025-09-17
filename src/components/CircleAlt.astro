@@ -2,9 +2,9 @@
 interface Props {
   borderColor: string;
   imagePath?: string;
-  text?: string;
+  height?: string;
 }
-const { borderColor = "white", imagePath, text } = Astro.props;
+const { borderColor = "white", imagePath, height } = Astro.props;
 ---
 
 <div
@@ -16,9 +16,9 @@ const { borderColor = "white", imagePath, text } = Astro.props;
   </div>
 </div>
 
-<style define:vars={{ borderColor }}>
+<style define:vars={{ borderColor, height }}>
   .outer {
-    height: 13.43rem;
+    height: var(--height);
 
     aspect-ratio: 1;
     background-color: var(--background-color-white);
@@ -33,7 +33,7 @@ const { borderColor = "white", imagePath, text } = Astro.props;
   }
   @media (max-width: 455px) {
     .outer {
-      height: min(30vh, 13.43rem);
+      height: min(30vh, var(--height));
     }
   }
   .inner {

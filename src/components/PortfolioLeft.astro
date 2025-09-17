@@ -1,9 +1,10 @@
 ---
 import SectionAware from "../components/SectionAware.astro";
-import Circle from "../components/Circle.astro";
+import CircleAlt from "../components/CircleAlt.astro";
 import PortfolioVisual from "../assets/images/portfolio-section.png";
 import PortfolioSign from "../assets/icons/sign/portfolio-sign.svg";
 import SvgAnimation from "./SvgAnimation.astro";
+import ContactButton from "../components/ContactButton.astro";
 const imageSources = [
   {
     srcset: PortfolioVisual.src,
@@ -49,20 +50,29 @@ const { className } = Astro.props;
         эмоции и заставляют проживать незабываемые моменты снова и снова.
       </p>
     </div>
-    <div class="show-portfolio">
-      <Circle size="md" borderColor="#57718C">
-        <span slot="text" class="circle-text">
-          <a
-            href={`${import.meta.env.BASE_URL}/portfolio`}
-            class="portfolio"
-            target="_blank"
-            aria-label="Сиотреть портфолио"
-          >
-            Смотреть <br /> портфолио</a
-          >
-        </span>
-      </Circle>
+    <div class="show-portfolio_mobile">
+      <ContactButton
+        link={`${import.meta.env.BASE_URL}/portfolio`}
+        backgroundColor="240, 216, 181"
+        alpha="1"
+        textColor="rgba(85, 85, 85, 1)"
+      >
+        Смотреть портфолио
+      </ContactButton>
     </div>
+
+    <a
+      class="show-portfolio"
+      href={`${import.meta.env.BASE_URL}/portfolio`}
+      target="_blank"
+      aria-label="Смотреть портфолио"
+    >
+      <CircleAlt height="11.875rem" borderColor="#57718C">
+        <span slot="text" class="circle-text">
+          <p class="portfolio">Смотреть <br /> портфолио</p>
+        </span>
+      </CircleAlt>
+    </a>
   </div>
 </div>
 
@@ -79,28 +89,51 @@ const { className } = Astro.props;
     margin-top: 3.25rem;
     margin-bottom: 3.75rem;
   }
-  /* .text {
-    color: var(--text-color-secondary);
-    font-size: var(--fs-14);
-  } */
+
   .description {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 2rem;
     text-align: center;
     margin-top: auto;
     margin-bottom: 1rem;
   }
   .show-portfolio {
     position: absolute;
-    right: -100px;
-    top: calc(50% - 100px);
+    right: 0;
+    top: 50%;
+    transform: translate(calc(11.875rem - 50%), -70%);
     z-index: 12;
-    @media (max-width: 1025px) {
-      display: flex;
-      justify-content: center;
-      margin: 1.5rem 0;
-      position: inherit;
+  }
+
+  .show-portfolio_mobile {
+    display: none;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 1025px) {
+    .show-portfolio {
+      display: none;
+    }
+    .show-portfolio_mobile {
+      display: block;
+    }
+  }
+
+  @media (max-width: 475px) {
+    .description {
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .portfolio__visual {
+      margin-top: 2rem;
+      margin-bottom: 1.5rem;
+    }
+  }
+  @media (max-width: 375px) {
+    .portfolio__visual {
+      margin-top: 1.25rem;
+      margin-bottom: 1rem;
     }
   }
 </style>
