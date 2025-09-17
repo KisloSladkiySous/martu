@@ -63,6 +63,16 @@ const { className } = Astro.props;
 </div>
 
 <style>
+  .content__column span::after {
+    content: "";
+    display: block;
+    background-image: url("../assets/icons/sign/list-sign.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 0.5rem;
+    margin-top: 0.5rem;
+  }
   .content {
     color: var(--text-color-secondary);
     margin-top: 4.9rem;

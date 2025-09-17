@@ -22,19 +22,28 @@ const { date, names, cssClass, hash } = Astro.props;
   }
 </div>
 <script>
-  import { animate, inView } from "motion";
+  import { animate, inView, stagger } from "motion";
 
-  inView(".showcase__title", (target) => {
+  inView(".showcase", (target) => {
+    const elementsToAnimate = [
+      ...target.querySelectorAll(
+        ".showcase__wrapper > *, .showcase__toolbar > *"
+      ),
+    ];
+
+    if (elementsToAnimate.length === 0) return;
+
     return animate(
-      target,
+      elementsToAnimate,
       {
         opacity: [0, 1],
-        y: [30, 0],
+        y: [50, 0],
+        filter: ["blur(8px)", "blur(0px)"],
       },
       {
         duration: 2,
-        easing: "ease-out",
-        delay: 0.5,
+        easing: [0.16, 1, 0.3, 1],
+        delay: stagger(0.3, { start: 0.7 }),
       }
     );
   });
