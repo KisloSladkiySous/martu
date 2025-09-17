@@ -356,6 +356,7 @@ import { socialLinks } from "../social-links.ts";
     });
 
     const nav = document.getElementById("navigation");
+    if (!nav) return;
     const sections = document.querySelectorAll("[data-nav-section]");
 
     let currentSectionIndex = "black";
@@ -367,14 +368,15 @@ import { socialLinks } from "../social-links.ts";
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const index = entry.target.getAttribute("data-section-index");
+            if (!index) return;
 
             const sectionId = entry.target.id;
-            console.log(index);
+            // console.log(index);
 
-            const isEven = index % 2 !== 0;
+            const isEven = Number(index) % 2 !== 0;
 
             // console.log(isEven, index);
-            console.log(sectionId);
+            // console.log(sectionId);
 
             if (sectionId === "contacts") {
               nav.style.color = "white";

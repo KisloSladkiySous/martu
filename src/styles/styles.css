@@ -314,6 +314,11 @@ section {
   text-align: center;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+}
+
 @media (max-width: 1024px) {
   .snap-column-0-0 {
     order: 0;
@@ -347,10 +352,10 @@ section {
     order: 9;
   }
   .snap-column-5-0 {
-    order: 10;
+    order: 11;
   }
   .snap-column-5-1 {
-    order: 11;
+    order: 10;
   }
   .snap-column-6-0 {
     order: 12;
