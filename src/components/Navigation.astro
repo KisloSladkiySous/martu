@@ -358,10 +358,11 @@ import { socialLinks } from "../social-links.ts";
     const nav = document.getElementById("navigation");
     if (!nav) return;
     const sections = document.querySelectorAll("[data-nav-section]");
+    console.log(sections);
 
     let currentSectionIndex = "black";
 
-    const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
+    let isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -371,23 +372,21 @@ import { socialLinks } from "../social-links.ts";
             if (!index) return;
 
             const sectionId = entry.target.id;
-            // console.log(index);
-
             const isEven = Number(index) % 2 !== 0;
-
-            // console.log(isEven, index);
-            // console.log(sectionId);
-
+            if (isMobile) {
+              nav.style.color = "black";
+              return;
+            }
             if (sectionId === "contacts") {
               nav.style.color = "white";
             } else if (sectionId === "reviews") {
+              nav.style.color = "black";
+            } else if (sectionId === "workflow") {
               nav.style.color = "black";
             } else {
               nav.style.color = isEven ? "white" : "black";
             }
             allLinks.forEach((link) => {
-              // Обновляем классы цвета
-
               link.classList.remove("white", "black");
               if (window.innerWidth < 1025) {
                 if (sectionId === "contacts") {
@@ -400,6 +399,10 @@ import { socialLinks } from "../social-links.ts";
                 }
                 link.classList.add(isEven ? "white" : "black");
               } else {
+                if (sectionId === "workflow") {
+                  link.classList.add("black");
+                  return;
+                }
                 link.classList.add(!isEven ? "white" : "black");
               }
 
@@ -452,5 +455,13 @@ import { socialLinks } from "../social-links.ts";
         });
       }
     }
+    window.addEventListener("resize", () => {
+      if (window.innerWidth < 1025) {
+        isMobile = true;
+      }
+      if (window.innerWidth > 1025) {
+        isMobile = false;
+      }
+    });
   });
 </script>
