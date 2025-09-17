@@ -25,27 +25,48 @@ const { date, names, cssClass, hash } = Astro.props;
   import { animate, inView, stagger } from "motion";
 
   inView(".showcase", (target) => {
+    // , .showcase__toolbar > *
     const elementsToAnimate = [
-      ...target.querySelectorAll(
-        ".showcase__wrapper > *, .showcase__toolbar > *"
-      ),
+      ...target.querySelectorAll(".showcase__wrapper > *"),
     ];
 
-    if (elementsToAnimate.length === 0) return;
+    const footerElements = target.querySelectorAll(".showcase__toolbar > *");
 
-    return animate(
-      elementsToAnimate,
-      {
-        opacity: [0, 1],
-        y: [50, 0],
-        filter: ["blur(8px)", "blur(0px)"],
-      },
-      {
-        duration: 2,
-        easing: [0.16, 1, 0.3, 1],
-        delay: stagger(0.3, { start: 0.7 }),
-      }
-    );
+    if (footerElements.length === 0 || elementsToAnimate.length === 0) return;
+
+    const sequence = [
+      [
+        elementsToAnimate,
+        {
+          opacity: [0, 1],
+          y: [50, 0],
+          filter: ["blur(8px)", "blur(0px)"],
+        },
+        {
+          duration: 0.6,
+          easing: "ease-out",
+          delay: stagger(0.1),
+        },
+      ],
+      [
+        footerElements,
+        {
+          opacity: [0, 1],
+          filter: ["blur(8px)", "blur(0px)"],
+        },
+        {
+          duration: 0.6,
+          easing: [0.16, 1, 0.3, 1],
+        },
+      ],
+    ];
+
+    animate(sequence);
+
+    return () => {
+      animate(footerElements, { opacity: 0, filter: "blur(8px)" });
+      animate(elementsToAnimate, { opacity: 0, y: 50, filter: "blur(8px)" });
+    };
   });
 </script>
 <style is:global>
