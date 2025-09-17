@@ -6,22 +6,25 @@ import FounderSignature from "../assets/images/founder-signature.svg";
 
 <div class="founder__wrapper">
   <div class="founder">
-    <div class="founder__quote">
-      <p class="founder__title">
-        «Для меня свадьба — это не про декор и тайминг. Это про слёзы на глазах,
-        дрожащие руки и ощущение, что всё именно так, как должно быть.»
-      </p>
-    </div>
-
-    <div class="founder__avatar">
-      <Circle borderColor="white" size="sm" imagePath={FounderImage.src} />
-    </div>
-    <div class="founder__description">
-      <div class="founder__fio">
-        <span class="brand-color italic">Тутунару Марина</span>
-        <span class="remark fs-12">Основатель</span>
+    <div class="founder__inner">
+      <div class="founder__quote">
+        <p class="founder__title">
+          «Для меня свадьба — это не про декор и тайминг. Это про слёзы на
+          глазах, дрожащие руки и ощущение, что всё именно так, как должно
+          быть.»
+        </p>
       </div>
-      <FounderSignature class="founder__signature" />
+
+      <div class="founder__avatar">
+        <Circle borderColor="white" size="sm" imagePath={FounderImage.src} />
+      </div>
+      <div class="founder__description">
+        <div class="founder__fio">
+          <span class="brand-color italic">Тутунару Марина</span>
+          <span class="remark fs-12">Основатель</span>
+        </div>
+        <FounderSignature class="founder__signature" />
+      </div>
     </div>
   </div>
 </div>
@@ -40,7 +43,6 @@ import FounderSignature from "../assets/images/founder-signature.svg";
     color: var(--text-color-tertiary);
   }
   .founder__description {
-    gap: 100px;
     justify-content: center;
     display: flex;
   }
@@ -51,22 +53,28 @@ import FounderSignature from "../assets/images/founder-signature.svg";
     max-width: 38.75rem;
     width: 100%;
     padding: 4rem 6rem;
-    display: flex;
-    flex-direction: column;
+  }
+  .founder__inner {
+    max-width: 22.6875rem;
+    width: 100%;
+    position: relative;
+    margin: 0 auto;
   }
   .founder__quote {
     position: relative;
     text-align: center;
     color: var(--text-color-tertiary);
     margin-bottom: 2.25rem;
-    max-width: 22.6875rem;
+
     margin-left: auto;
     margin-right: auto;
   }
 
   .founder__signature {
     position: absolute;
-    right: 20%;
+
+    bottom: -5%;
+    right: -10%;
   }
   .founder__avatar {
     justify-content: center;
@@ -82,6 +90,12 @@ import FounderSignature from "../assets/images/founder-signature.svg";
     flex-direction: column;
     gap: 2px;
   }
+  @media (min-width: 455px) {
+    .founder__signature {
+      width: 7.8125rem;
+      height: 4.375rem;
+    }
+  }
   @media (max-width: 1024px) {
     .founder__quote {
       margin: 2.18rem auto 2rem;
@@ -91,6 +105,11 @@ import FounderSignature from "../assets/images/founder-signature.svg";
     }
     .about-section__subtitle {
       margin-top: 6.875rem;
+    }
+    .founder__signature {
+      width: 7rem;
+      bottom: 1rem;
+      right: -6%;
     }
   }
   @media (max-width: 455px) {
@@ -108,6 +127,11 @@ import FounderSignature from "../assets/images/founder-signature.svg";
     }
     .about-section__subtitle {
       margin-top: 0;
+    }
+    .founder__signature {
+      width: 5rem;
+      bottom: -40%;
+      right: 0%;
     }
   }
 </style>
