@@ -1,52 +1,47 @@
 ---
-import { Image } from "astro:assets";
-import Play from "../assets/icons/play.svg";
+import ReviewCard from "./ReviewCard.astro";
 
 const mock = [
   {
     id: 1,
-    author: "Анна Петрова",
-
+    author: "Анна и Алексей",
     content:
-      "Отличный сервис! Команда профессионалов, которые действительно понимают потребности бизнеса.",
-    avatar: `${import.meta.env.BASE_URL}/images/review1.svg`,
+      "«Я до сих пор не могу поверить, что это было про нас. Martu воплотили в реальность картинку, которую я боялась даже мечтать...»",
+    avatar: `/src/assets/uploads/reviews/review1.png`,
   },
   {
     id: 2,
-    author: "Михаил Иванов",
-    role: "Дизайнер, Creative Studio",
+    author: "Вероника и Максим",
     content:
-      "Превосходное качество работы и внимание к деталям. Рекомендую всем!",
-    avatar: `${import.meta.env.BASE_URL}/images/review2.svg`,
+      "«Когда ты приходишь на встречу и тебе говорят: “Мы будем рядом, даже когда вы забудете, что вас что-то может волновать” — это не маркетинг, это правда...»",
+    avatar: `/src/assets/uploads/reviews/review2.png`,
   },
   {
     id: 3,
-    author: "Елена Сидорова",
-    role: "Маркетолог, Digital Agency",
-    content: "Результаты превзошли все ожидания. Спасибо за профессионализм!",
-    avatar: `${import.meta.env.BASE_URL}/images/review3.svg`,
+    author: "Елена и Егор",
+    content:
+      "«Мы хотели что-то очень личное, тихое и без пафоса. Martu прочувствовали нас с полуслова...»",
+    avatar: `/src/assets/uploads/reviews/review3.png`,
   },
   {
     id: 4,
-    author: "Дмитрий Козлов",
-    role: "CTO, InnovateTech",
-    content: "Инновационный подход и отличная техническая реализация проектов.",
-    avatar: `${import.meta.env.BASE_URL}/images/review4.svg`,
+    author: "Дмитрий и Валентина",
+    content:
+      "«Мы думали, что свадьба за границей — это стресс, логистика, языковой барьер. Оказалось, это невероятное приключение, в котором Martu — как волшебники за кулисами...»",
+    avatar: `/src/assets/uploads/reviews/review4.png`,
   },
   {
     id: 5,
     author: "Ольга Морозова",
-    role: "Product Manager, StartupHub",
     content: "Быстро, качественно и в срок. Именно то, что нужно для стартапа!",
-    avatar: `${import.meta.env.BASE_URL}/images/review3.svg`,
+    avatar: `/src/assets/uploads/reviews/review3.png`,
   },
   {
     id: 6,
     author: "Александр Волков",
-    role: "Founder, WebSolutions",
     content:
       "Профессиональная команда с глубоким пониманием современных технологий.",
-    avatar: `${import.meta.env.BASE_URL}/images/review2.svg`,
+    avatar: `/src/assets/uploads/reviews/review2.png`,
   },
 ];
 
@@ -57,75 +52,19 @@ const column2mock = [...mock, ...mock, ...mock];
 <div class="container">
   <div class="column">
     <div class="scroll-wrapper scroll-up" id="leftColumn">
-      {
-        column1mock.map((review) => (
-          <div class="review-card">
-            <div class="review-text">{review.content}</div>
-            <div class="review-author">
-              <Image
-                src={review.avatar}
-                class="author"
-                alt={review.author}
-                width="28"
-                height="28"
-              />
-              <div class="avatar">{review.author}</div>
-              <button>
-                <Play />
-              </button>
-            </div>
-          </div>
-        ))
-      }
+      {column1mock.map((review) => <ReviewCard review={review} />)}
     </div>
   </div>
-  <div class="column desktop">
+  <div class="column hide-on-mobile">
     <div class="scroll-wrapper scroll-down" id="rightColumn">
-      {
-        column2mock.map((review) => (
-          <div class="review-card">
-            <div class="review-text">{review.content}</div>
-            <div class="review-author">
-              <Image
-                src={review.avatar}
-                class="author"
-                alt={review.author}
-                width="28"
-                height="28"
-              />
-              <div class="avatar">{review.author}</div>
-              <button>
-                <Play />
-              </button>
-            </div>
-          </div>
-        ))
-      }
+      {column2mock.map((review) => <ReviewCard review={review} />)}
     </div>
   </div>
 </div>
 <style>
-  .column-wrapper-right {
-    height: calc(100% - 100px);
-    margin: 50px;
-    display: flex;
-    flex-direction: column;
-  }
-  button {
-    border: none;
-    background-color: rgba(247, 235, 215, 0.5);
-    border-radius: 999px;
-    padding: 7px 23px;
-    display: flex;
-    color:;
-    justify-content: center;
-    color: #f0d8b5;
-  }
   .container {
-    width: 100%;
-    height: 100%;
     display: flex;
-    gap: 30px;
+    gap: 1rem;
   }
 
   .column {
@@ -133,8 +72,6 @@ const column2mock = [...mock, ...mock, ...mock];
     height: calc(100vh - 2 * var(--section-margin));
     overflow: hidden;
     position: relative;
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
   }
 
   .column::before,
@@ -143,7 +80,7 @@ const column2mock = [...mock, ...mock, ...mock];
     position: absolute;
     left: 0;
     right: 0;
-    height: 80px;
+    height: 5rem;
     z-index: 10;
     pointer-events: none;
   }
@@ -169,13 +106,13 @@ const column2mock = [...mock, ...mock, ...mock];
   .scroll-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1rem;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
   }
 
   .scroll-up {
-    animation: scrollUp 50s linear infinite;
+    animation: scrollUp 70s linear infinite;
   }
 
   .scroll-down {
@@ -200,51 +137,14 @@ const column2mock = [...mock, ...mock, ...mock];
     }
   }
 
-  .review-card {
-    background: var(--card-color);
-    border-radius: 12px;
-    padding: 24px;
-    cursor: pointer;
-    border: 1px solid var(--card-border);
-  }
-
-  .review-author {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    align-items: center;
-    font-size: var(--fs-14);
-    color: var(--text-color-tertiary);
-  }
-  .avatar {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-  }
-
-  .review-info {
-    flex: 1;
-  }
-
-  .author {
-    font-size: var(--fs-14);
-    color: var(--text-color-tertiary);
-  }
-
-  .review-text {
-    font-size: var(--fs-14);
-    color: var(--text-color-tertiary);
-    margin-bottom: 1rem;
-  }
-
   .column:hover .scroll-wrapper {
     animation-play-state: paused;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 700px) {
+    .hide-on-mobile {
+      display: none;
+    }
     .container {
       flex-direction: column;
       height: 90vh;

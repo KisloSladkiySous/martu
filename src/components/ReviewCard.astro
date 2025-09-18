@@ -1,0 +1,82 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import Play from "../assets/icons/play.svg";
+const { review } = Astro.props;
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/uploads/reviews/*.{jpeg,jpg,png,gif}"
+);
+
+if (!images[review.avatar])
+  throw new Error(
+    `"${review.avatar}" does not exist in glob: "src/assets/uploads/reviews/*.{jpeg,jpg,png,gif}"`
+  );
+---
+
+<div class="review-card">
+  <div class="review-text">{review.content}</div>
+  <div class="review_bottom">
+    <div class="review-author">
+      <Image
+        src={images[review.avatar]()}
+        class="avatar"
+        alt={review.author}
+        width="28"
+        height="28"
+      />
+      <div class="author">{review.author}</div>
+    </div>
+    <!-- <button>
+      <Play />
+    </button> -->
+  </div>
+</div>
+<style>
+  .review-card {
+    background: var(--card-color);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    border: 1px solid var(--card-border);
+
+    font-size: var(--fs-14);
+    line-height: var(--lh-14);
+    color: var(--text-color-tertiary);
+
+    /* cursor: pointer; */
+  }
+  .review_bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .review-author {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .avatar {
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .review-text {
+    margin-bottom: 1rem;
+  }
+
+  button {
+    border: none;
+    background-color: rgba(247, 235, 215, 0.5);
+    border-radius: 999px;
+    padding: 7px 23px;
+    display: flex;
+    color:;
+    justify-content: center;
+    color: #f0d8b5;
+  }
+</style>
