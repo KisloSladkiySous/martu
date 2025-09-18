@@ -107,6 +107,10 @@ section {
   box-sizing: border-box;
 }
 
+.relative {
+  position: relative;
+}
+
 .section-column {
   width: 100%;
   margin: var(--section-margin);
@@ -162,11 +166,6 @@ section {
   font-weight: 400;
   text-align: center;
 }
-/* @media (max-width: 475px) {
-  h2 {
-    font-size: 2.3rem;
-  }
-} */
 
 .brand-color {
   color: var(--brand-color);

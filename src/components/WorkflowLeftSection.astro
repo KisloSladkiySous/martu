@@ -1,113 +1,129 @@
 ---
 import WorkflowSign from "../assets/icons/sign/workflow-sign.svg";
 import SvgAnimation from "./SvgAnimation.astro";
+
+const { className } = Astro.props;
 ---
 
-<div class="gradient-header"></div>
-<h2 class="section__title">
-  Простая и <span class="brand-color italic underline">
-    прозрачная
-    <SvgAnimation style="bottom: -0.6rem;">
-      <WorkflowSign />
-    </SvgAnimation></span
-  > организация
-</h2>
-<ol class="custom-list">
-  <li>
-    <div class="title">Живая встреча</div>
-  </li>
-  <div class="description">
-    Первая встреча решает все! Важно понять образовалось ли между нами доверие и
-    понимание процесса работы, ведь впереди нас ждет увлекательная подготовка к
-    вашему главному дню!
+<div class="gradient-header">
+  <div class="gradient-header-inner"></div>
+</div>
+<div class:list={[className, "section-column__wrapper relative"]}>
+  <div class="section-column__wrapper-inner">
+    <h2 class="section__title">
+      Простая и <span class="brand-color italic underline">
+        прозрачная
+        <SvgAnimation style="bottom: -0.6rem;">
+          <WorkflowSign />
+        </SvgAnimation></span
+      > организация
+    </h2>
+    <ol class="custom-list">
+      <li>
+        <div class="custom-list__title">Живая встреча</div>
+      </li>
+      <div class="custom-list__description">
+        Первая встреча решает все! Важно понять образовалось ли между нами
+        доверие и понимание процесса работы, ведь впереди нас ждет увлекательная
+        подготовка к вашему главному дню!
+      </div>
+      <li>
+        <div class="custom-list__title">Заключение договора и анкета</div>
+      </li>
+      <div class="custom-list__description">
+        После заключения договора переходим к заполнению анкеты. Нам интересно
+        все, что вам нравится и не нравится. Подробная информация о вас поможет
+        качественно подготовиться к свадьбе.
+      </div>
+      <li>
+        <div class="custom-list__title">Свадебный сюжет</div>
+      </li>
+      <div class="custom-list__description">
+        Обсуждаются ваши пожелания и наши безумные идеи. Определяем вместе
+        концепцию и стилистику свадьбы. Детально изучаем самые важные моменты и
+        сокровенные желания, которые объединяют вас.
+      </div>
+      <li>
+        <div class="custom-list__title">Подбор пространства</div>
+      </li>
+      <div class="custom-list__description">
+        Поиск той самой подходящей площадки. Да-да, из ваших рассказов и даже
+        скринов из свадебных порталов.
+      </div>
+      <li>
+        <div class="custom-list__title">Подбор команды</div>
+      </li>
+      <div class="custom-list__description">
+        Подбирается команда подрядчиков под бюджет проекта, которая будет
+        созидать ваш день по ту сторону.
+      </div>
+      <li>
+        <div class="custom-list__title">Визуализация свадьбы</div>
+      </li>
+      <div class="custom-list__description">
+        Вместе согласовываем итоговый макет свадьбы, составляем тайминг до
+        секунд и учитываем непредвиденные ситуации!
+      </div>
+      <li>
+        <div class="custom-list__title">День вашей свадьбы</div>
+      </li>
+      <div class="custom-list__description">
+        Команда организаторов будет контролировать весь процесс с самого раннего
+        часа монтажа оборудования до ухода последнего гостя. Мы несем
+        ответственность за красоту и качество вашей свадьбы.
+      </div>
+    </ol>
   </div>
-  <li>
-    <div class="title">Заключение договора и анкета</div>
-  </li>
-  <div class="description">
-    После заключения договора переходим к заполнению анкеты. Нам интересно все,
-    что вам нравится и не нравится. Подробная информация о вас поможет
-    качественно подготовиться к свадьбе.
-  </div>
-  <li>
-    <div class="title">Свадебный сюжет</div>
-  </li>
-  <div class="description">
-    Обсуждаются ваши пожелания и наши безумные идеи. Определяем вместе концепцию
-    и стилистику свадьбы. Детально изучаем самые важные моменты и сокровенные
-    желания, которые объединяют вас.
-  </div>
-  <li>
-    <div class="title">Подбор пространства</div>
-  </li>
-  <div class="description">
-    Поиск той самой подходящей площадки. Да-да, из ваших рассказов и даже
-    скринов из свадебных порталов.
-  </div>
-  <li>
-    <div class="title">Подбор команды</div>
-  </li>
-  <div class="description">
-    Подбирается команда подрядчиков под бюджет проекта, которая будет созидать
-    ваш день по ту сторону.
-  </div>
-  <li>
-    <div class="title">Визуализация свадьбы</div>
-  </li>
-  <div class="description">
-    Вместе согласовываем итоговый макет свадьбы, составляем тайминг до секунд и
-    учитываем непредвиденные ситуации!
-  </div>
-  <li>
-    <div class="title">День вашей свадьбы</div>
-  </li>
-  <div class="description">
-    Команда организаторов будет контролировать весь процесс с самого раннего
-    часа монтажа оборудования до ухода последнего гостя. Мы несем
-    ответственность за красоту и качество вашей свадьбы.
-  </div>
-</ol>
+</div>
 
 <style>
   @media (min-width: 1025px) {
     .gradient-header {
+      pointer-events: none;
       width: 100%;
-      height: 290px;
+      height: 100%;
       z-index: 2;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .gradient-header-inner {
       position: sticky;
       top: 0;
+      left: 0;
+      height: 9rem;
       background: linear-gradient(
         to bottom,
-        var(--background-color) 80%,
+        var(--background-color) 90%,
         #ffffff00 100%
       );
     }
-  }
-
-  h2 {
-    margin-bottom: 6.25rem;
-  }
-  .title {
-    text-align: center;
-    width: fit-content;
-    text-transform: uppercase;
-    font-size: var(--fs-16);
-    color: var(--text-color-tertiary);
-  }
-  .description {
-    font-size: var(--fs-14);
-    color: var(--text-color-secondary);
-    text-align: center;
-    margin-bottom: 4rem;
   }
 
   .custom-list {
     counter-reset: list-counter;
     list-style: none;
     padding-left: 0;
-    margin: 20px 0;
     text-align: center;
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 12rem;
+    margin-top: 3.875rem;
+    max-width: 30.625rem;
+  }
+
+  .custom-list__title {
+    text-align: center;
+    width: fit-content;
+    text-transform: uppercase;
+    font-size: var(--fs-16);
+    color: var(--text-color-tertiary);
+  }
+  .custom-list__description {
+    font-size: var(--fs-14);
+    color: var(--text-color-secondary);
+    text-align: center;
+    margin-bottom: 4rem;
   }
 
   .custom-list li {
