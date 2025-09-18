@@ -13,91 +13,104 @@ const { className } = Astro.props;
 ---
 
 <div class:list={[className, "section-column__wrapper"]}>
-  <Subtle lines={["Отзывы тех, кто доверил", "нам самое важное"]} delay={400} />
-  <h2 class="section__title">
-    То, что <span class="brand-color italic underline"
-      >невозможно
+  <div class="section-column__wrapper-inner">
+    <Subtle
+      lines={["Отзывы тех, кто доверил", "нам самое важное"]}
+      delay={400}
+    />
+    <h2 class="section__title">
+      То, что <span class="brand-color italic underline"
+        >невозможно
 
-      <SvgAnimation>
-        <FirstSign />
-      </SvgAnimation>
-    </span>
-    <br />
-    <span class="brand-color italic underline"
-      >придумать
-      <SvgAnimation delay={0.6}>
-        <SecondSign />
-      </SvgAnimation>
-    </span> — только прожить
-  </h2>
-  <div class="review-description">
-    <p class="text">
-      И когда спустя месяцы или даже годы нам пишут: «Мы до сих пор вспоминаем
-      тот день, как самый счастливый» — это больше, чем любая награда.
-    </p>
-    <p class="text">
-      Мы знаем, что эмоции не подделаешь, что тепло не рисуется в фотошопе и что
-      искренность нельзя прописать в ТЗ. Поэтому всё, что вы прочтёте —
-      настоящее, написанное по зову сердца. Именно такие истории вдохновляют нас
-      снова и снова вкладывать душу в каждую деталь.
-    </p>
+        <SvgAnimation>
+          <FirstSign />
+        </SvgAnimation>
+      </span>
+      <br />
+      <span class="brand-color italic underline"
+        >придумать
+        <SvgAnimation delay={0.6}>
+          <SecondSign />
+        </SvgAnimation>
+      </span> — только прожить
+    </h2>
+    <div class="review-description">
+      <p class="text">
+        И когда спустя месяцы или даже годы нам пишут: «Мы до сих пор вспоминаем
+        тот день, как самый счастливый» — это больше, чем любая награда.
+      </p>
+      <p class="text">
+        Мы знаем, что эмоции не подделаешь, что тепло не рисуется в фотошопе и
+        что искренность нельзя прописать в ТЗ. Поэтому всё, что вы прочтёте —
+        настоящее, написанное по зову сердца. Именно такие истории вдохновляют
+        нас снова и снова вкладывать душу в каждую деталь.
+      </p>
+    </div>
   </div>
-</div>
-
-<div class="media">
-  <p class="media__title">Больше отзывов:</p>
-  <div class="media__links">
-    <IconButton areaLabel="отзывы Яндекс" link={socialLinks.vk}>
-      <Yandex />
-
+  <div class="media">
+    <p class="media__title">Больше отзывов:</p>
+    <div class="media__links">
+      <IconButton areaLabel="отзывы Яндекс" link={socialLinks.vk}>
+        <Yandex />
+      </IconButton>
       <IconButton areaLabel="отзывы Инстаграмм" link={socialLinks.inst}>
         <Instagramm />
-
-        <IconButton areaLabel="отзывы Вконтакте" link={socialLinks.vk}>
-          <Vk />
-        </IconButton>
       </IconButton>
-      <style is:global>
-        .review-description {
-          margin-top: 4rem;
-          display: flex;
-          flex-direction: column;
-          text-align: center;
-          gap: 2rem;
-          color: var(--text-color-secondary);
-          justify-content: center;
-          align-items: center;
-        }
-
-        .media {
-          margin-top: auto;
-          display: flex;
-          flex-direction: column;
-          text-align: center;
-          gap: 1rem;
-          margin-bottom: 1rem;
-        }
-        .media__title {
-          color: var(--text-color-fourth);
-          margin-bottom: 1rem;
-        }
-        .media__links {
-          color: var(--brand-color);
-          display: flex;
-          gap: 3rem;
-          justify-content: center;
-        }
-        .media__links svg {
-          width: 1.5rem;
-          height: 1.5rem;
-        }
-        @media (max-width: 455px) {
-          .review-description {
-            font-size: var(--fs-14);
-            line-height: var(--lh-14);
-          }
-        }
-      </style>
-    </IconButton>
+      <IconButton areaLabel="отзывы Вконтакте" link={socialLinks.vk}>
+        <Vk />
+      </IconButton>
+    </div>
   </div>
 </div>
+<style is:global>
+  .review-description {
+    margin-top: clamp(1.5rem, 3vw, 4rem);
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+    color: var(--text-color-secondary);
+    justify-content: center;
+    align-items: center;
+    max-width: 22.375rem;
+    margin-bottom: 1rem;
+  }
+
+  .media {
+    margin-top: auto;
+    margin-bottom: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 23.125rem;
+  }
+  .media__title {
+    font-size: var(--fs-14);
+    line-height: var(--lh-14);
+    color: var(--text-color-fourth);
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  .media__links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  @media (max-width: 455px) {
+    .media__links {
+      gap: 0.5625rem;
+    }
+    .review-description {
+      font-size: var(--fs-14);
+      line-height: var(--lh-14);
+    }
+  }
+
+  @media (max-width: 375px) {
+    .review-description {
+      gap: 1.5rem;
+    }
+  }
+</style>
