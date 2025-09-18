@@ -126,6 +126,7 @@ section {
 }
 
 .section-column__wrapper-inner {
+  height: 100%;
   max-width: 38.75rem;
   margin-left: auto;
   margin-right: auto;
