@@ -1,7 +1,7 @@
 ---
 import ShowCase from "../components/ShowCase.astro";
 import SectionAware from "../components/SectionAware.astro";
-import HeroBackground from "../assets/images/hero-section-background.png";
+import HeroBackground from "../assets/images/hero-section-background.webp";
 import ContactButton from "./ContactButton.astro";
 import { socialLinks } from "../social-links";
 const imageSources = [
@@ -14,9 +14,9 @@ const imageSources = [
 ---
 
 <ShowCase
-  date="Сентябрь 2025"
-  names="Вероника и Максим"
-  hash="veronika-and-maksim"
+  date="Сентябрь 2024"
+  names="Тимофей и Валерия"
+  hash="timofey-and-valeriya"
   cssClass="border-bottom"
 >
   <h2 slot="showcase__title" class="showcase__title">
@@ -32,7 +32,7 @@ const imageSources = [
 </ShowCase>
 
 <SectionAware
-  class="background-image"
+  class="background-image hero-aware-image"
   sources={imageSources}
   src={HeroBackground.src}
   alt="Feature"
