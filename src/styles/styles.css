@@ -71,7 +71,18 @@ h2 span {
     --section-margin: 1.25rem;
   }
 }
-@media (max-width: 400px) {
+
+@media (max-width: 630px) {
+  :root {
+    --fs-46: 2.5rem;
+    --fs-54: 2.8rem;
+
+    --lh-46: 2.75rem;
+    --lh-54: 2.8rem;
+  }
+}
+
+@media (max-width: 425px) {
   :root {
     --fs-46: 2rem;
     --fs-54: 2.3rem;
@@ -392,5 +403,32 @@ main {
 @media (max-width: 1024px) {
   html {
     /* scroll-padding-top: 69px; */
+  }
+}
+
+.advantages-image {
+  flex: 1;
+}
+.advantages-image img {
+  aspect-ratio: 1;
+  width: 100%;
+  display: block;
+}
+
+@media (max-width: 1025px) {
+  .advantages-image {
+    width: 80%;
+  }
+
+  .advantages-image img {
+    aspect-ratio: 18 / 9;
+  }
+
+  .advantages-image:first-child img {
+    object-position: 0% 10%;
+  }
+
+  .advantages-image:last-child img {
+    object-position: 0% 80%;
   }
 }
