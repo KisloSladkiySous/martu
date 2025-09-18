@@ -10,8 +10,8 @@ const imageSources = [
 ];
 ---
 
-<div class="advantages">
-  <div class="list-container">
+<div class="showcase border-bottom">
+  <div class="showcase__wrapper">
     <ul class="list">
       <li class="list-item">
         <p class="list-item-title">Сильная команда</p>
@@ -39,7 +39,7 @@ const imageSources = [
     </ul>
   </div>
 </div>
-
+<div class="backdrop-adventages"></div>
 <SectionAware
   class="background-image"
   sources={imageSources}
@@ -53,52 +53,65 @@ const imageSources = [
 <script>
   import { animate, inView, stagger } from "motion";
 
-  inView(".advantages", (target) => {
-    const elementsToAnimate = [...target.querySelectorAll(".list")];
+  // inView(".advantages", (target) => {
+  //   const elementsToAnimate = [...target.querySelectorAll(".list")];
 
-    if (elementsToAnimate.length === 0) return;
+  //   if (elementsToAnimate.length === 0) return;
 
-    return animate(
-      elementsToAnimate,
-      {
-        opacity: [0, 1],
-        y: [50, 0],
-        filter: ["blur(8px)", "blur(0px)"],
-      },
-      {
-        duration: 2,
-        easing: [0.16, 1, 0.3, 1],
-        delay: stagger(0.3, { start: 0.7 }),
-      }
-    );
-  });
+  //   return animate(
+  //     elementsToAnimate,
+  //     {
+  //       opacity: [0, 1],
+  //       y: [50, 0],
+  //       filter: ["blur(8px)", "blur(0px)"],
+  //     },
+  //     {
+  //       duration: 2,
+  //       easing: [0.16, 1, 0.3, 1],
+  //       delay: stagger(0.3, { start: 0.7 }),
+  //     }
+  //   );
+  // });
 </script>
 <style>
-  .advantages {
-    padding-bottom: 1rem;
+  .backdrop-adventages {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-image: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.7) 25%,
+      transparent 100%
+    );
+  }
+  .border-bottom {
     border-bottom: 1px solid var(--border-color-white);
   }
 
-  .list-container {
-    display: flex;
-  }
   .list {
     list-style: none;
     padding: 0;
     margin: 0;
     display: grid;
     justify-content: center;
-    row-gap: 42px;
-  }
-
-  @media (min-width: 768px) {
-    .list {
-      width: 100%;
-      grid-template-columns: repeat(2, 1fr);
-    }
+    row-gap: 1.5rem;
+    column-gap: 4rem;
+    /* width: 100%; */
+    grid-template-columns: repeat(2, 1fr);
+    color: var(--text-color-white);
   }
 
   @media (max-width: 767px) {
+    .backdrop-adventages {
+      background-image: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.7) 50%,
+        transparent 100%
+      );
+    }
     .list {
       width: 100%;
       grid-template-columns: 1fr;
@@ -106,25 +119,20 @@ const imageSources = [
   }
 
   .list-item {
-    color: var(--text-color-white);
-
-    padding-left: 35px;
+    max-width: 15rem;
+    padding-left: 2.1875rem;
+    position: relative;
   }
 
   .list-item-title {
     font-size: var(--fs-16);
-    color: var(--text-color-white);
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;
     text-transform: uppercase;
   }
 
   .list-item-description {
     font-size: var(--fs-14);
     color: var(--text-color-white);
-  }
-  .advantages {
-    margin-top: auto;
-    z-index: 2;
   }
 
   .list-item::before {
@@ -135,7 +143,7 @@ const imageSources = [
     border-radius: 50%;
     position: relative;
     display: block;
-    left: -20px;
-    top: 20px;
+    left: -1.25rem;
+    top: 1rem;
   }
 </style>
