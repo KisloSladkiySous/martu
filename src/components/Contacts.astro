@@ -133,6 +133,8 @@ const links = socialLinks;
     -webkit-backdrop-filter: blur(8px);
     justify-content: center;
     align-items: center;
+
+    transition: all 0.2s ease-out;
   }
 
   .phone {
@@ -215,14 +217,10 @@ const links = socialLinks;
   }
 
   @media (max-width: 455px) {
-    .phone {
-      font-size: var(--fs-32);
-      font-size: var(--lh-32);
-    }
-
+    .phone,
     .inst {
       font-size: var(--fs-32);
-      font-size: var(--lh-32);
+      line-height: var(--lh-32);
     }
 
     .media-links {
@@ -230,13 +228,15 @@ const links = socialLinks;
     }
 
     .link {
-      height: 44px;
-      width: 44px;
+      height: 56px;
+      width: 56px;
     }
 
-    .schedule {
+    .schedule,
+    .text-white {
+      margin-bottom: 0.5rem;
       font-size: var(--fs-14);
-      font-size: var(--lh-14);
+      line-height: var(--lh-14);
     }
   }
   .video-section::before {
