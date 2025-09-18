@@ -56,6 +56,7 @@ h2 span {
   --lh-12: 1rem;
   --lh-14: 1.1875rem;
   --lh-16: 1.3125rem;
+  --lh-18: 1.125rem;
   --lh-32: 2rem;
   --lh-42: 2.625rem;
   --lh-46: 3.1625rem;
@@ -312,13 +313,18 @@ section {
 }
 
 .fs-12 {
-  font-size: var(--fs-12);
-  line-height: var(--lh-12);
+  font-size: var(--fs-12) !important;
+  line-height: var(--lh-12) !important;
+}
+
+.fs-54 {
+  font-size: var(--fs-54) !important;
+  line-height: var(--lh-54) !important;
 }
 
 .fs-64 {
-  font-size: var(--fs-64);
-  line-height: var(--lh-64);
+  font-size: var(--fs-64) !important;
+  line-height: var(--lh-64) !important;
 }
 
 .text-center {
