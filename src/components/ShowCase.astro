@@ -2,7 +2,7 @@
 const { date, names, cssClass, hash } = Astro.props;
 ---
 
-<div class={`showcase ${cssClass} border-bottom`}>
+<div class={`showcase ${cssClass}`}>
   <div class="showcase__wrapper">
     <slot name="showcase__title" />
     <slot name="showcase__description" />
@@ -117,11 +117,12 @@ const { date, names, cssClass, hash } = Astro.props;
       margin-bottom: 1rem;
     }
   }
-
-  .showcase:has(.border-bottom) {
+</style>
+<style>
+  .border-bottom {
     border-bottom: 1px solid var(--border-color-white);
   }
-  .showcase:has(.border-top) {
+  .border-top {
     border-top: 1px solid var(--border-color-white);
   }
 </style>
