@@ -10,25 +10,25 @@ import { socialLinks } from "../social-links.ts";
 ---
 
 <nav class="navigation" id="navigation">
-  <a class="logo" href="#hero">
+  <a class="logo logo-link" href="#hero">
     <Logo />
   </a>
 
   <!-- Desktop Menu -->
   <div class="links desktop">
     <div class="column">
-      <a class="links__item" href="#about"><span>О нас</span></a>
-      <a class="links__item" href="#portfolio"><span>Портфолио</span></a>
+      <a class="links__item" href="/#about"><span>О нас</span></a>
+      <a class="links__item" href="/#portfolio"><span>Портфолио</span></a>
     </div>
     <div class="divider"></div>
     <div class="column">
-      <a class="links__item" href="#advantages"><span>Почему мы</span></a>
-      <a class="links__item" href="#workflow"><span>Процесс</span></a>
+      <a class="links__item" href="/#advantages"><span>Почему мы</span></a>
+      <a class="links__item" href="/#workflow"><span>Процесс</span></a>
     </div>
     <div class="divider"></div>
     <div class="column">
-      <a class="links__item" href="#price"><span>Услуги</span></a>
-      <a class="links__item" href="#reviews"><span>Отзывы</span></a>
+      <a class="links__item" href="/#price"><span>Услуги</span></a>
+      <a class="links__item" href="/#reviews"><span>Отзывы</span></a>
     </div>
     <div class="divider"></div>
     <div class="column">
@@ -57,12 +57,12 @@ import { socialLinks } from "../social-links.ts";
     </div>
     <div class="mobile-menu-content">
       <div class="mobile-links">
-        <a class="mobile-link" href="#about"> <span>О нас</span> </a>
-        <a class="mobile-link" href="#portfolio"> <span>Портфолио</span></a>
-        <a class="mobile-link" href="#advantages"> <span>Почему мы</span></a>
-        <a class="mobile-link" href="#workflow"> <span>Процесс</span></a>
-        <a class="mobile-link" href="#price"> <span>Услуги</span></a>
-        <a class="mobile-link" href="#reviews"> <span>Отзывы</span></a>
+        <a class="mobile-link" href="/#about"> <span>О нас</span> </a>
+        <a class="mobile-link" href="/#portfolio"> <span>Портфолио</span></a>
+        <a class="mobile-link" href="/#advantages"> <span>Почему мы</span></a>
+        <a class="mobile-link" href="/#workflow"> <span>Процесс</span></a>
+        <a class="mobile-link" href="/#price"> <span>Услуги</span></a>
+        <a class="mobile-link" href="/#reviews"> <span>Отзывы</span></a>
       </div>
     </div>
     <div class="media-links">
@@ -306,7 +306,9 @@ import { socialLinks } from "../social-links.ts";
     const mobileMenu = document.getElementById("mobile-menu");
     const closeBtn = document.getElementById("close-icon");
     const mobileBackdrop = document.getElementById("mobile-backdrop"); // ← НОВАЯ СТРОКА
-    const allLinks = document.querySelectorAll(".mobile-link, #navigation a");
+    const allLinks = document.querySelectorAll(
+      ".mobile-link, .links__item, .logo-link"
+    );
 
     // Функция открытия/закрытия меню
     function toggleMenu() {
@@ -407,7 +409,8 @@ import { socialLinks } from "../social-links.ts";
               }
 
               const targetId = link.getAttribute("href")?.slice(1);
-              if (targetId === sectionId) {
+
+              if (targetId?.includes(sectionId)) {
                 if (targetId !== "hero") {
                   link.classList.add("active");
                 }
@@ -434,7 +437,9 @@ import { socialLinks } from "../social-links.ts";
     // Плавная прокрутка при клике (заменена на instant для точности)
     allLinks.forEach((link) => {
       link.addEventListener("click", (e) => {
-        const targetId = link.getAttribute("href");
+        const targetId = link.getAttribute("href")?.replace("/", "");
+        console.log(targetId);
+
         const targetSection = document.querySelector(targetId);
 
         if (targetSection) {

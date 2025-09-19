@@ -1,0 +1,77 @@
+---
+import PortfolioCase from "../components/PortfolioCase.astro";
+import Layout from "../layouts/Layout.astro";
+const pavel2023 = import.meta.glob<{ default: ImageMetadata }>(
+  `/src/assets/uploads/pavel2023/*.{jpeg,jpg,png,gif}`
+);
+const nikita2023 = import.meta.glob<{ default: ImageMetadata }>(
+  `/src/assets/uploads/nikita2023/*.{jpeg,jpg,png,gif,JPG}`
+);
+const grisha2024 = import.meta.glob<{ default: ImageMetadata }>(
+  `/src/assets/uploads/grisha2024/*.{jpeg,jpg,png,gif,JPG}`
+);
+const dmitriy2024 = import.meta.glob<{ default: ImageMetadata }>(
+  `/src/assets/uploads/dmitriy2024/*.{jpeg,jpg,png,gif,JPG}`
+);
+const timofey2024 = import.meta.glob<{ default: ImageMetadata }>(
+  `/src/assets/uploads/timofey2024/*.{jpeg,jpg,png,gif,JPG}`
+);
+---
+
+<Layout title="Martu - Портфолио">
+  <div class="cases">
+    <PortfolioCase
+      folder="pavel2023"
+      year="2023"
+      names="Павел и Елизавета"
+      images={pavel2023}
+      length={24}
+    />
+    <PortfolioCase
+      folder="nikita2023"
+      year="2023"
+      names="Никита и Елизавета"
+      length={25}
+      format="JPG"
+      images={nikita2023}
+    />
+    <PortfolioCase
+      folder="grisha2024"
+      year="2024"
+      names="Григорий и Полина"
+      length={28}
+      format="JPG"
+      images={grisha2024}
+    />
+    <PortfolioCase
+      folder="dmitriy2024"
+      year="2024"
+      names="Дмитрий и Анастасия"
+      length={31}
+      format="JPG"
+      images={dmitriy2024}
+    />
+    <PortfolioCase
+      folder="timofey2024"
+      year="2024"
+      names="Тимофей и Валерия"
+      length={41}
+      format="jpg"
+      images={timofey2024}
+    />
+  </div>
+</Layout>
+<style>
+  .cases {
+    display: flex;
+    flex-direction: column;
+    padding: 13.25rem 10.25rem;
+  }
+  @media (max-width: 1025px) {
+    .cases {
+      display: flex;
+      flex-direction: column;
+      padding: 5rem 1.25rem;
+    }
+  }
+</style>

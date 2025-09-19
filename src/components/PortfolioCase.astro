@@ -1,0 +1,254 @@
+---
+import { Image } from "astro:assets";
+
+const {
+  year,
+  names,
+  folder,
+  images,
+  length = 24,
+  format = "jpg",
+} = Astro.props;
+const weddingPhotos = Array.from(
+  { length: length },
+  (_, i) => `/src/assets/uploads/${folder}/${i + 1}.${format}`
+);
+console.log(weddingPhotos);
+console.log(images);
+
+const initialCount = 12;
+---
+
+<div class="case-wrapper">
+  <div class="case-year">{year}</div>
+  <h3 class="case-couple">{names}</h3>
+  <div class="content">
+    <div class="photo-grid" grid-section={folder}>
+      {
+        weddingPhotos.map((src, index) => {
+          const isHidden = index >= initialCount;
+          console.log(src);
+
+          return (
+            <div
+              class="photo-grid-item"
+              data-hidden={isHidden ? "true" : undefined}
+              style={isHidden ? "display: none;" : undefined}
+            >
+              <Image
+                src={images[src]()}
+                alt={`Фото ${index + 1}`}
+                loading="lazy"
+                width={800}
+                height={600}
+                sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
+                class="photo-grid-img"
+              />
+            </div>
+          );
+        })
+      }
+    </div>
+    <!-- <div class="photo-grid-gradient"></div> -->
+  </div>
+
+  {
+    weddingPhotos.length > initialCount && (
+      <div class="gallery-actions">
+        <button
+          id="load-more-btn"
+          class="action-btn load-more"
+          data-section={folder}
+        >
+          Загрузить ещё
+        </button>
+
+        <button
+          id="hide-btn"
+          class="action-btn hide"
+          data-section={folder}
+          style="display: none;"
+        >
+          Скрыть
+        </button>
+      </div>
+    )
+  }
+  <div class="divider"></div>
+</div>
+
+<style>
+  .divider {
+    width: 50%;
+    height: 1px;
+    justify-content: center;
+    display: flex;
+    background-color: var(--border-color);
+    margin: 0 auto;
+  }
+  .case-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  .case-year {
+    text-align: center;
+    color: var(--text-color-secondary);
+    margin-bottom: 1rem;
+  }
+  .case-couple {
+    text-align: center;
+    color: var(--text-color-secondary);
+    margin: 0;
+    font-size: var(--fs-46);
+    font-weight: 400;
+    margin-bottom: 4.4375rem;
+  }
+  .photo-grid {
+    display: grid;
+    gap: 1.125rem;
+  }
+  .gradient {
+    height: 300px;
+    content: "";
+    position: absolute;
+    top: 0;
+    background: linear-gradient(
+      to top,
+      var(--background-color) 0%,
+      rgba(102, 126, 234, 0) 100%
+    );
+
+    pointer-events: none;
+  }
+  /* .photo-grid-gradient {
+  } */
+
+  .photo-grid-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .gallery-actions {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+  }
+  .load-more {
+    color: var(--text-color-fifth);
+    font-size: var(--fs-14);
+    padding: 1em 3em;
+    background: var(--card-color);
+    border: 1px solid #f7eee0;
+    border-radius: 999px;
+  }
+  @media (max-width: 600px) {
+    .photo-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+
+  @media (min-width: 601px) and (max-width: 900px) {
+    .photo-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .photo-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+  }
+</style>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const loadBtns = document.querySelectorAll(".load-more");
+    const hideBtn = document.querySelector('[data-on-click="hideExtraPhotos"]');
+    console.log(loadBtns);
+
+    if (loadBtns) {
+      loadBtns.forEach((button) => {
+        button.addEventListener("click", (event) => {
+          const sectionName = button.getAttribute("data-section");
+          loadMorePhotos(String(sectionName));
+        });
+      });
+    }
+
+    if (hideBtn) {
+      hideBtn.addEventListener("click", (event) => {
+        const sectionName = hideBtn.getAttribute(" data-section");
+        hideExtraPhotos(sectionName);
+      });
+    }
+  });
+
+  function loadMorePhotos(sectionName: string) {
+    console.log(sectionName);
+
+    const targetGrid = document.querySelector(
+      `.photo-grid[grid-section=${sectionName}]`
+    );
+    const hiddenItems = targetGrid.querySelectorAll(
+      `.photo-grid-item[data-hidden="true"]`
+    );
+    console.log(hiddenItems);
+    let shownCount = 0;
+    const batchSize = 20;
+
+    for (const item of hiddenItems) {
+      if (shownCount >= batchSize) break;
+      item.style.display = "block";
+      item.removeAttribute("data-hidden");
+      shownCount++;
+    }
+    //не работает )
+    // if (shownCount > 0) {
+    //   const hideBtn = document.querySelector(
+    //     `[data-section-name="${sectionName}"]`
+    //   );
+    //   if (hideBtn) hideBtn.style.display = "inline-block";
+    // }
+    console.log(
+      targetGrid.querySelectorAll(`.photo-grid-item[data-hidden="true"]`)
+    );
+
+    if (
+      targetGrid.querySelectorAll(`.photo-grid-item[data-hidden="true"]`)
+        .length === 0
+    ) {
+      const loadBtn = document.querySelector(`[data-section="${sectionName}"]`);
+      if (loadBtn) loadBtn.style.display = "none";
+    }
+  }
+
+  function hideExtraPhotos(sectionName) {
+    console.log("Скрываем фото для секции:", sectionName);
+
+    const allItems = document.querySelectorAll(
+      `.photo-grid-item[data-section="${sectionName}"]`
+    );
+    allItems.forEach((item, index) => {
+      // Здесь можно задать initialCount динамически, если нужно
+      const initialCount = 12; // или брать из dataset
+      if (index >= initialCount) {
+        item.style.display = "none";
+        item.setAttribute("data-hidden", "true");
+      }
+    });
+
+    const loadBtn = document.querySelector(
+      `[data-section-name="${sectionName}"]`
+    );
+    const hideBtn = document.querySelector(
+      `[data-section-name="${sectionName}"]`
+    );
+
+    if (loadBtn) loadBtn.style.display = "inline-block";
+    if (hideBtn) hideBtn.style.display = "none";
+  }
+</script>
