@@ -1,6 +1,8 @@
 ---
 import WorkflowSign from "../assets/icons/sign/workflow-sign.svg";
 import SvgAnimation from "./SvgAnimation.astro";
+import ContactButton from "./ContactButton.astro";
+import { socialLinks } from "../social-links";
 
 const { className } = Astro.props;
 ---
@@ -72,6 +74,15 @@ const { className } = Astro.props;
         часа монтажа оборудования до ухода последнего гостя. Мы несем
         ответственность за красоту и качество вашей свадьбы.
       </div>
+      <ContactButton
+        link={socialLinks.wu}
+        backgroundColor="240, 216, 181"
+        alpha="1"
+        textColor="rgba(85, 85, 85, 1)"
+        target=""
+      >
+        Оставить заявку
+      </ContactButton>
     </ol>
   </div>
 </div>
