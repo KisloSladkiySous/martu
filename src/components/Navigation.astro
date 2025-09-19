@@ -307,13 +307,11 @@ import { socialLinks } from "../social-links.ts";
     const closeBtn = document.getElementById("close-icon");
     const mobileBackdrop = document.getElementById("mobile-backdrop"); // ← НОВАЯ СТРОКА
     const allLinks = document.querySelectorAll(
-      ".mobile-link, .links__item, .logo-link"
+      ".mobile-link, .links__item, .logo-link, .logo-mobile"
     );
 
     // Функция открытия/закрытия меню
     function toggleMenu() {
-      console.log("clicked");
-
       const isOpen = mobileMenu.classList.contains("open");
       if (isOpen) {
         mobileMenu.classList.remove("open");
@@ -414,9 +412,9 @@ import { socialLinks } from "../social-links.ts";
                 if (targetId !== "hero") {
                   link.classList.add("active");
                 }
-                if (window.location.hash !== `#${sectionId}`) {
-                  history.replaceState(null, null, `#${sectionId}`);
-                }
+                // if (window.location.hash !== `#${sectionId}`) {
+                //   history.replaceState(null, null, `#${sectionId}`);
+                // }
               } else {
                 link.classList.remove("active");
               }
@@ -438,7 +436,6 @@ import { socialLinks } from "../social-links.ts";
     allLinks.forEach((link) => {
       link.addEventListener("click", (e) => {
         const targetId = link.getAttribute("href")?.replace("/", "");
-        console.log(targetId);
 
         const targetSection = document.querySelector(targetId);
 
@@ -446,20 +443,11 @@ import { socialLinks } from "../social-links.ts";
           targetSection.scrollIntoView({
             behavior: "instant",
           });
-          history.replaceState(null, null, targetId);
+          // history.replaceState(null, null, targetId);
         }
       });
     });
 
-    // Прокрутка к хешу при загрузке
-    if (window.location.hash) {
-      const targetSection = document.querySelector(window.location.hash);
-      if (targetSection) {
-        targetSection.scrollIntoView({
-          behavior: "instant",
-        });
-      }
-    }
     window.addEventListener("resize", () => {
       if (window.innerWidth < 1025) {
         isMobile = true;
