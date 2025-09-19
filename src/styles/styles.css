@@ -426,13 +426,17 @@ main {
   .advantages-image {
     width: 80%;
   }
+  .advantages-image:last-child {
+    display: none !important;
+  }
 
   .advantages-image img {
-    aspect-ratio: 18 / 9;
+    /* aspect-ratio: 18 / 9; */
   }
 
   .advantages-image:first-child img {
     object-position: 0% 10%;
+    aspect-ratio: unset;
   }
 
   .advantages-image:last-child img {
