@@ -54,12 +54,24 @@ import { socialLinks } from "../social-links.ts";
     </div>
     <div class="mobile-menu-content">
       <div class="mobile-links">
-        <a class="mobile-link" href="/#about"> <span>О нас</span> </a>
-        <a class="mobile-link" href="/#portfolio"> <span>Портфолио</span></a>
-        <a class="mobile-link" href="/#advantages"> <span>Почему мы</span></a>
-        <a class="mobile-link" href="/#workflow"> <span>Процесс</span></a>
-        <a class="mobile-link" href="/#price"> <span>Услуги</span></a>
-        <a class="mobile-link" href="/#reviews"> <span>Отзывы</span></a>
+        <a class="mobile-link" data-scroll-section="about">
+          <span>О нас</span>
+        </a>
+        <a class="mobile-link" data-scroll-section="portfolio">
+          <span>Портфолио</span></a
+        >
+        <a class="mobile-link" data-scroll-section="advantages">
+          <span>Почему мы</span></a
+        >
+        <a class="mobile-link" data-scroll-section="workflow">
+          <span>Процесс</span></a
+        >
+        <a class="mobile-link" data-scroll-section="price">
+          <span>Услуги</span></a
+        >
+        <a class="mobile-link" data-scroll-section="reviews">
+          <span>Отзывы</span></a
+        >
       </div>
     </div>
     <div class="media-links">
@@ -378,7 +390,8 @@ import { socialLinks } from "../social-links.ts";
             const index = Number(entry.target.getAttribute("data-page-index"));
             const sectionId = entry.target.getAttribute("data-page-id");
 
-            if (!index && !sectionId) return;
+            if (!index) return;
+            if (!sectionId) return;
 
             changeColor(index);
 
@@ -407,11 +420,11 @@ import { socialLinks } from "../social-links.ts";
     // Плавная прокрутка при клике (заменена на instant для точности)
     allLinks.forEach((link) => {
       link.addEventListener("click", (e) => {
-        const targetId = link.getAttribute("href")?.replace("/", "");
+        // const targetId = link.getAttribute("href")?.replace("/", "");
+        const targetId = link.getAttribute("data-scroll-section");
         console.log(targetId);
-
-        const targetSection = document.querySelector(targetId);
-
+        const targetSection = document.getElementById(targetId);
+        console.log(targetSection);
         if (targetSection) {
           targetSection.scrollIntoView({
             behavior: "instant",
