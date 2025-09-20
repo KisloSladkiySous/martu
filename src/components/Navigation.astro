@@ -48,9 +48,6 @@ import { socialLinks } from "../social-links.ts";
 
   <div class="mobile-menu-overlay" id="mobile-menu">
     <div class="mobile-header">
-      <a id="logo-mobile" href="/#hero">
-        <Logo />
-      </a>
       <div class="close mobile" id="close-icon">
         <Close />
       </div>
@@ -104,7 +101,7 @@ import { socialLinks } from "../social-links.ts";
     height: 4.125rem;
     width: 4.125rem;
     position: relative;
-    z-index: 2;
+    z-index: 2001;
   }
   #logo-mobile {
     color: black;
@@ -138,7 +135,6 @@ import { socialLinks } from "../social-links.ts";
   }
 
   .links__item {
-    color: var(--text-color-secondary);
     font-weight: 400;
     font-size: var(--fs-12);
     font-family: var(--ff-main);
@@ -222,7 +218,7 @@ import { socialLinks } from "../social-links.ts";
   .mobile-header {
     z-index: 4000;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     padding: 12px 20px 12px 20px;
   }
@@ -357,64 +353,40 @@ import { socialLinks } from "../social-links.ts";
 
     const nav = document.getElementById("navigation");
     if (!nav) return;
-    const sections = document.querySelectorAll("[data-nav-section]");
-    console.log(sections);
-
-    let currentSectionIndex = "black";
 
     let isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
+
+    const sections = document.querySelectorAll("[data-page-index]");
+
+    const changeColor = (index: number) => {
+      if (isMobile) {
+        nav.style.color = "black";
+        return;
+      }
+
+      if (index % 2 !== 0) {
+        nav.style.color = "black";
+      } else {
+        nav.style.color = "white";
+      }
+    };
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const index = entry.target.getAttribute("data-section-index");
-            if (!index) return;
+            const index = Number(entry.target.getAttribute("data-page-index"));
+            const sectionId = entry.target.getAttribute("data-page-id");
 
-            const sectionId = entry.target.id;
-            const isEven = Number(index) % 2 !== 0;
-            if (isMobile) {
-              nav.style.color = "black";
-              return;
-            }
-            if (sectionId === "contacts") {
-              nav.style.color = "white";
-            } else if (sectionId === "reviews") {
-              nav.style.color = "black";
-            } else if (sectionId === "workflow") {
-              nav.style.color = "black";
-            } else {
-              nav.style.color = isEven ? "white" : "black";
-            }
+            if (!index && !sectionId) return;
+
+            changeColor(index);
+
             allLinks.forEach((link) => {
-              link.classList.remove("white", "black");
-              if (window.innerWidth < 1025) {
-                if (sectionId === "contacts") {
-                  link.classList.add("white");
-                  return;
-                }
-                if (sectionId === "reviews") {
-                  link.classList.add("black");
-                  return;
-                }
-                link.classList.add(isEven ? "white" : "black");
-              } else {
-                if (sectionId === "workflow") {
-                  link.classList.add("black");
-                  return;
-                }
-                link.classList.add(!isEven ? "white" : "black");
-              }
-
               const targetId = link.getAttribute("href")?.slice(1);
 
               if (targetId?.includes(sectionId)) {
-                if (targetId !== "hero") {
-                  link.classList.add("active");
-                }
-                // if (window.location.hash !== `#${sectionId}`) {
-                //   history.replaceState(null, null, `#${sectionId}`);
-                // }
+                link.classList.add("active");
               } else {
                 link.classList.remove("active");
               }
@@ -436,6 +408,7 @@ import { socialLinks } from "../social-links.ts";
     allLinks.forEach((link) => {
       link.addEventListener("click", (e) => {
         const targetId = link.getAttribute("href")?.replace("/", "");
+        console.log(targetId);
 
         const targetSection = document.querySelector(targetId);
 

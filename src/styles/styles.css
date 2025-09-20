@@ -187,15 +187,16 @@ section {
   height: auto;
 }
 
-.active span {
-  position: relative;
-}
-
 .svg-item {
   stroke: var(--brand-color);
   stroke-width: 2;
   stroke-linejoin: round;
   stroke-linecap: round;
+}
+
+.links__item span {
+  display: inline-block;
+  position: relative;
 }
 
 .links__item span::after {
@@ -405,12 +406,6 @@ main {
   height: calc(100vh - 2 * var(--section-margin));
   padding: var(--section-margin);
   margin-bottom: 0;
-}
-
-@media (max-width: 1024px) {
-  html {
-    /* scroll-padding-top: 69px; */
-  }
 }
 
 .advantages-image {
