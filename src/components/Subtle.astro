@@ -11,37 +11,23 @@ const { lines, delay = 200 } = Astro.props;
 
   const transition = {
     duration: 0.8,
-    delay: stagger(0.217, { startDelay: 0.2 }),
-    // ease: [0.5, 0, 0, 1],
-    type: "spring",
+    delay: stagger(0.2),
+    easing: "ease-out",
   };
 
   const keyframes = {
-    y: ["100%", "0%"],
+    y: [50, 0],
+    opacity: [0, 1],
+    filter: ["blur(8px)", "blur(0px)"],
   };
 
-  // inView(
-  //   ".subtle",
-  //   (element, info) => {
-  //     const lines = Array.from(
-  //       element.querySelectorAll<HTMLElement>(".subtle__line")
-  //     );
-
-  //     const animation = animate(lines, keyframes, transition);
-  //     animation.play();
-
-  //     return () => animate(lines, { y: "100%" }, { instant: true });
-  //   },
-  //   { amount: 0.5 }
-  // );
   inView(
     ".subtle",
-    function (element) {
-      // `element` — это текущий .subtle, в котором мы находимся
+    (element) => {
       const lines = Array.from(element.querySelectorAll(".subtle__line"));
       const animation = animate(lines, keyframes, transition);
       animation.play();
-      return () => animate(lines, { y: "100%" }, { instant: true });
+      return () => animate(lines, { y: 50 }, { instant: true });
     },
     { amount: 0.5 }
   );

@@ -39,6 +39,71 @@ const { className } = Astro.props;
   </div>
 </div>
 
+<script>
+  import { animate, inView, scale, stagger } from "motion";
+
+  inView("#hero-0", (target) => {
+    const elementsToAnimate = [
+      ...target.querySelectorAll(".hero-section__visual-element > *"),
+    ];
+
+    const sectionTitle = target.querySelector(".section__title");
+    const sectionDescription = target.querySelector(
+      ".hero-section__description"
+    );
+
+    if (elementsToAnimate.length === 0) return;
+
+    const sequence = [
+      [
+        sectionTitle,
+        {
+          opacity: [0, 1],
+          y: [25, 0],
+          filter: ["blur(8px)", "blur(0px)"],
+        },
+        {
+          duration: 0.6,
+          easing: "ease-out",
+          delay: stagger(0.1, { startDelay: 0.3 }),
+        },
+      ],
+      [
+        [elementsToAnimate, elementsToAnimate[0].children[0]],
+        {
+          scale: [0.9, 1],
+          opacity: [0, 1],
+          filter: ["blur(8px)", "blur(0px)"],
+        },
+        {
+          duration: 0.6,
+          easing: "ease-out",
+          delay: stagger(0.1),
+          at: 0.3,
+        },
+      ],
+      [
+        sectionDescription,
+        {
+          opacity: [0, 1],
+          filter: ["blur(8px)", "blur(0px)"],
+        },
+        {
+          duration: 0.6,
+          easing: "ease-out",
+          delay: stagger(0.1),
+        },
+      ],
+    ];
+
+    animate(sequence);
+
+    return () => {
+      animate(elementsToAnimate, { opacity: 0, y: 50, filter: "blur(8px)" });
+    };
+  });
+</script>
+
 <style>
   .hero-section__visual-element {
     display: flex;

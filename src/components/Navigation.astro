@@ -308,6 +308,23 @@ import { socialLinks } from "../social-links.ts";
 </style>
 
 <script>
+  import { animate, inView, stagger } from "motion";
+
+  animate(
+    "#navigation",
+    {
+      opacity: [0, 1],
+      filter: ["blur(8px)", "blur(0px)"],
+    },
+    {
+      duration: 0.6,
+      easing: "ease-out",
+      delay: 1,
+    }
+  );
+</script>
+
+<script>
   // Только клиентский JS — Astro выполнит его в браузере
   document.addEventListener("DOMContentLoaded", () => {
     const burgerIcon = document.getElementById("burger-icon");
