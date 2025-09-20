@@ -1,60 +1,11 @@
 ---
 import ReviewCard from "./ReviewCard.astro";
+import reviews from "../data/reviews.json";
 
-const mock = [
-  {
-    id: 1,
-    author: "Анна и Алексей",
-    content:
-      "Я до сих пор не могу поверить, что это было про нас. Martu воплотили в реальность картинку, которую я боялась даже мечтать...»",
-    avatar: `/src/assets/uploads/reviews/review1.png`,
-  },
-  {
-    id: 2,
-    author: "Вероника и Максим",
-    content:
-      "Когда ты приходишь на встречу и тебе говорят: “Мы будем рядом, даже когда вы забудете, что вас что-то может волновать” — это не маркетинг, это правда...»",
-    avatar: `/src/assets/uploads/reviews/review2.png`,
-  },
-  {
-    id: 3,
-    author: "Елена и Егор",
-    content:
-      "«Марин, без тебя, без твоей огромной работы у нас было бы не так интересно и было бы иначе. Мы невероятно как ценим то, что именно ты с нами! У нас будет конфетка, а не просто свадьба.»",
-    avatar: `/src/assets/uploads/reviews/review3.png`,
-  },
-  {
-    id: 4,
-    author: "Марина",
-    content:
-      "«Мы очень рады, что именно ты стала нашим организатором. Мы ОТ и ДО были на одной волне. Ты всегда нас поддерживала, направляла. Познакомила нас с этим удивительным и новым для нас свадебным миром.»",
-    avatar: `/src/assets/uploads/reviews/review4.png`,
-  },
-  {
-    id: 5,
-    author: "Анастасия",
-    content:
-      "«Марина! Хотим сказать огромнейшее спасибо за праздник, который ты организовала для нас! С ноября ты была на связи, советовала, помогала, договаривалась и сделала много того, о чем мы даже не задумывались, о тех мелочах, которые сделали наш праздник еще лучше, круче и масштабнее!»",
-    avatar: `/src/assets/uploads/reviews/review3.png`,
-  },
-  {
-    id: 6,
-    author: "Александра",
-    content:
-      "«Спасибо за то, что позволила нам расслабиться в самый важный для нас день и ни за что не переживать. Хоть я и контролер по натуре :) но ты с лёгкостью смогла развеять мои тревоги и решить все мои проблемы...»",
-    avatar: `/src/assets/uploads/reviews/review2.png`,
-  },
-  {
-    id: 7,
-    author: "Валерия",
-    content:
-      "«Я хочу выразить еще раз огромную благодарность от нас с Тимом тебе, твоей команде. Мне 100 раз подошли и сказали, что праздник организован на уровне просто, что все очень очень круто, красиво и замечательно!»",
-    avatar: `/src/assets/uploads/reviews/review4.png`,
-  },
-];
+const mid = Math.ceil(reviews.length / 2);
 
-const column1mock = [...mock, ...mock, ...mock];
-const column2mock = [...mock, ...mock, ...mock];
+const column1mock = reviews.slice(0, mid);
+const column2mock = reviews.slice(mid);
 ---
 
 <div class="container">
@@ -120,11 +71,11 @@ const column2mock = [...mock, ...mock, ...mock];
   }
 
   .scroll-up {
-    animation: scrollUp 100s linear infinite;
+    animation: scrollUp 50s linear infinite;
   }
 
   .scroll-down {
-    animation: scrollDown 100s linear infinite;
+    animation: scrollDown 50s linear infinite;
   }
 
   @keyframes scrollUp {
@@ -138,7 +89,7 @@ const column2mock = [...mock, ...mock, ...mock];
 
   @keyframes scrollDown {
     0% {
-      transform: translateY(-50%);
+      transform: translateY(-20%);
     }
     100% {
       transform: translateY(0);
