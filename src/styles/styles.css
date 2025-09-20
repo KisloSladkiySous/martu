@@ -593,3 +593,9 @@ main {
   object-position: 50% 20%;
   width: 23.125rem;
 }
+
+@media (max-width: 1024px) {
+  .portfolio-small-aware-image img {
+    width: 100%;
+  }
+}
