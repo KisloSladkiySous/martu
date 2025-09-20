@@ -428,12 +428,9 @@ import { socialLinks } from "../social-links.ts";
         console.log(targetSection.offsetTop);
 
         if (targetSection) {
-          setTimeout(() => {
-            targetSection.scrollIntoView({
-              behavior: "instant",
-            });
-          }, 10);
-
+          targetSection.scrollIntoView({
+            behavior: "instant",
+          });
           // history.replaceState(null, null, targetId);
         }
       });
