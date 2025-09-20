@@ -587,3 +587,9 @@ main {
 .price-aware-image img {
   object-position: 40% 80%;
 }
+
+.portfolio-small-aware-image img {
+  aspect-ratio: 16 / 11;
+  object-position: 50% 20%;
+  width: 23.125rem;
+}
