@@ -1,7 +1,7 @@
 ---
 import SectionAware from "../components/SectionAware.astro";
 import ShowCase from "./ShowCase.astro";
-import PortfolioBackground from "../assets/images/portfolio-section-background.png";
+import PortfolioBackground from "../assets/images/portfolio-section-background.webp";
 const imageSources = [
   {
     srcset: PortfolioBackground.src,
@@ -23,7 +23,7 @@ const imageSources = [
 </ShowCase>
 
 <SectionAware
-  class="background-image"
+  class="background-image portfolio-aware-image"
   sources={imageSources}
   src={PortfolioBackground.src}
   alt="Feature"

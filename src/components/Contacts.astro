@@ -5,13 +5,20 @@ import Inst from "../assets/icons/inst.svg";
 import Whatsup from "../assets/icons/whatsup.svg";
 import Telegramm from "../assets/icons/telegramm.svg";
 import ContactButton from "../components/ContactButton.astro";
+import VideoPlaceholder from "../assets/images/video-placeholder.webp";
 import { socialLinks } from "../social-links.ts";
 
 const links = socialLinks;
 ---
 
 <div class="video-section">
-  <video autoplay muted loop playsinline>
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
+    poster="/videos/video-placeholder.webp"
+  >
     <source src="/videos/Video.webm" type="video/webm" />
   </video>
   <div class="logo">

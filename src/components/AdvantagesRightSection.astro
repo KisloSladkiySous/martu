@@ -1,8 +1,8 @@
 ---
 import Copyright from "./Copyright.astro";
 import SectionAware from "./SectionAware.astro";
-import AdvantagesVisual from "../assets/images/advantages-visual.png";
-import AdvantagesVisualSecond from "../assets/images/advantages-team.jpg";
+import AdvantagesVisual from "../assets/images/advantages-visual.webp";
+import AdvantagesVisualSecond from "../assets/images/advantages-team.webp";
 import AdvantagesSign from "../assets/icons/sign/advantages-sign.svg";
 import Subtle from "./Subtle.astro";
 import SvgAnimation from "./SvgAnimation.astro";
@@ -39,7 +39,7 @@ const { className } = Astro.props;
     <div class="content-block">
       <div class="advantages-photos">
         <SectionAware
-          class="advantages-image"
+          class="advantages-image advantages-image-first"
           sources={imageSources}
           src={AdvantagesVisual.src}
           alt="Team"
@@ -47,7 +47,7 @@ const { className } = Astro.props;
           sectionSelector="[data-section]"
         />
         <SectionAware
-          class="advantages-image"
+          class="advantages-image advantages-image-second"
           sources={imageSourcesSecond}
           src={AdvantagesVisualSecond.src}
           alt="Team"
@@ -63,7 +63,9 @@ const { className } = Astro.props;
         width="288px"
       /> -->
       </div>
-      <div class="text">Нас выбирают за надёжность, опыт и подход</div>
+      <div class="text text-center">
+        Нас выбирают за надёжность,<br />опыт и подход
+      </div>
     </div>
   </div>
 
