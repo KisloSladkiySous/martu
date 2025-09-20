@@ -16,6 +16,21 @@ const dmitriy2024 = import.meta.glob<{ default: ImageMetadata }>(
 const timofey2024 = import.meta.glob<{ default: ImageMetadata }>(
   `/src/assets/uploads/timofey2024/*.{jpeg,jpg,png,gif,JPG}`
 );
+const inna2025 = import.meta.glob<{ default: ImageMetadata }>(
+  `/src/assets/uploads/inna2025/*.{jpeg,jpg,png,gif,JPG}`
+);
+const maksimvasilisa2025 = import.meta.glob<{ default: ImageMetadata }>(
+  `/src/assets/uploads/maksimvasilisa2025/*.{jpeg,jpg,png,gif,JPG}`
+);
+const aleksdaris2025 = import.meta.glob<{ default: ImageMetadata }>(
+  `/src/assets/uploads/aleksdaris2025/*.{jpeg,jpg,png,gif,JPG}`
+);
+const sergeyoksana2025 = import.meta.glob<{ default: ImageMetadata }>(
+  `/src/assets/uploads/sergeyoksana2025/*.{jpeg,jpg,png,gif,JPG}`
+);
+const danilpolina2025 = import.meta.glob<{ default: ImageMetadata }>(
+  `/src/assets/uploads/danilpolina2025/*.{jpeg,jpg,png,gif,JPG}`
+);
 ---
 
 <Layout title="Martu - Портфолио">
@@ -59,6 +74,54 @@ const timofey2024 = import.meta.glob<{ default: ImageMetadata }>(
       format="jpg"
       images={timofey2024}
     />
+    <PortfolioCase
+      folder="inna2025"
+      year="2025"
+      names="Никита и Инна"
+      length={25}
+      format="JPG"
+      images={inna2025}
+    />
+    <PortfolioCase
+      folder="maksimvasilisa2025"
+      year="2025"
+      names="Максим и Василиса"
+      length={39}
+      format="JPG"
+      images={maksimvasilisa2025}
+    />
+    <PortfolioCase
+      folder="aleksdaris2025"
+      year="2025"
+      names="Александр и Дарья"
+      length={18}
+      format="JPG"
+      images={aleksdaris2025}
+    />
+    <PortfolioCase
+      folder="aleksdaris2025"
+      year="2025"
+      names="Анатолий и Алена"
+      length={18}
+      format="JPG"
+      images={aleksdaris2025}
+    />
+    <PortfolioCase
+      folder="sergeyoksana2025"
+      year="2025"
+      names="Сергей и Оксана"
+      length={49}
+      format="JPG"
+      images={sergeyoksana2025}
+    />
+    <PortfolioCase
+      folder="danilpolina2025"
+      year="2025"
+      names="Даниил и Полина"
+      length={39}
+      format="JPG"
+      images={danilpolina2025}
+    />
   </div>
 </Layout>
 <style>
@@ -66,6 +129,7 @@ const timofey2024 = import.meta.glob<{ default: ImageMetadata }>(
     display: flex;
     flex-direction: column;
     padding: 13.25rem 10.25rem;
+    gap: 2rem;
   }
   @media (max-width: 1025px) {
     .cases {

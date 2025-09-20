@@ -14,6 +14,7 @@ const weddingPhotos = Array.from(
   (_, i) => `/src/assets/uploads/${folder}/${i + 1}.${format}`
 );
 console.log(weddingPhotos);
+console.log("folder");
 console.log(images);
 
 const initialCount = 12;
@@ -144,16 +145,11 @@ const initialCount = 12;
     border: 1px solid #f7eee0;
     border-radius: 999px;
   }
-  @media (max-width: 600px) {
-    .photo-grid {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-  }
 
-  @media (min-width: 601px) and (max-width: 900px) {
+  @media (max-width: 1025px) {
     .photo-grid {
       grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
     }
   }
 
