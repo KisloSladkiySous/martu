@@ -98,9 +98,7 @@ const { className } = Astro.props;
 
     animate(sequence);
 
-    return () => {
-      animate(elementsToAnimate, { opacity: 0, y: 50, filter: "blur(8px)" });
-    };
+    return () => {};
   });
 </script>
 
