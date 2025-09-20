@@ -93,7 +93,7 @@ const { title } = Astro.props;
       window.addEventListener("load", updateScale);
     </script>
 
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
       (function (m, e, t, r, i, k, a) {
         m[i] =
           m[i] ||
@@ -127,19 +127,18 @@ const { title } = Astro.props;
         accurateTrackBounce: true,
         trackLinks: true,
       });
+    </script> -->
+    <script>
+      if (window.location.hash) {
+        history.replaceState(
+          null,
+          "",
+          window.location.pathname + window.location.search
+        );
+        window.scrollTo(0, 0);
+      }
     </script></head
   >
-
-  <script>
-    if (window.location.hash) {
-      history.replaceState(
-        null,
-        "",
-        window.location.pathname + window.location.search
-      );
-      window.scrollTo(0, 0);
-    }
-  </script>
 
   <!-- Yandex.Metrika counter -->
 
@@ -153,8 +152,9 @@ const { title } = Astro.props;
     </div></noscript
   >
   <!-- /Yandex.Metrika counter -->
+
+  <body>
+    <Navigation />
+    <slot />
+  </body>
 </html>
-<body>
-  <Navigation />
-  <slot />
-</body>

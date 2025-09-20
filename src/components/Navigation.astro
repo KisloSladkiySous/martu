@@ -425,10 +425,15 @@ import { socialLinks } from "../social-links.ts";
         console.log(targetId);
         const targetSection = document.getElementById(targetId);
         console.log(targetSection);
+        console.log(targetSection.offsetTop);
+
         if (targetSection) {
-          targetSection.scrollIntoView({
-            behavior: "instant",
-          });
+          setTimeout(() => {
+            targetSection.scrollIntoView({
+              behavior: "instant",
+            });
+          }, 10);
+
           // history.replaceState(null, null, targetId);
         }
       });
