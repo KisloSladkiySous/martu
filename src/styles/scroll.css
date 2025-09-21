@@ -5,3 +5,6 @@ html {
   overflow-y: scroll;
   box-sizing: border-box;
 }
+.scroll-snap-disabled {
+  scroll-snap-type: none !important;
+}

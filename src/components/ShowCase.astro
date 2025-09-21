@@ -29,6 +29,7 @@ const { date, names, cssClass, hash } = Astro.props;
     const elementsToAnimate = [
       ...target.querySelectorAll(".showcase__wrapper > *"),
     ];
+    console.log(target.querySelectorAll(".showcase__wrapper > *"));
 
     const footerElements = target.querySelectorAll(".showcase__toolbar > *");
 

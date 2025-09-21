@@ -10,7 +10,7 @@ import { socialLinks } from "../social-links.ts";
 ---
 
 <nav class="navigation" id="navigation">
-  <a class="logo logo-link" href="/#hero">
+  <a class="logo logo-link" href="#hero" data-scroll-section="hero">
     <Logo />
   </a>
 
@@ -54,22 +54,38 @@ import { socialLinks } from "../social-links.ts";
     </div>
     <div class="mobile-menu-content">
       <div class="mobile-links">
-        <a class="mobile-link" data-scroll-section="about">
+        <a class="mobile-link" href="#about-1" data-scroll-section="about-1">
           <span>О нас</span>
         </a>
-        <a class="mobile-link" data-scroll-section="portfolio">
+        <a
+          class="mobile-link"
+          href="#portfolio-0"
+          data-scroll-section="portfolio-0"
+        >
           <span>Портфолио</span></a
         >
-        <a class="mobile-link" data-scroll-section="advantages">
+        <a
+          class="mobile-link"
+          href="#advantages-0"
+          data-scroll-section="advantages-0"
+        >
           <span>Почему мы</span></a
         >
-        <a class="mobile-link" data-scroll-section="workflow">
+        <a
+          class="mobile-link"
+          href="#workflow-0"
+          data-scroll-section="workflow-0"
+        >
           <span>Процесс</span></a
         >
-        <a class="mobile-link" data-scroll-section="price">
+        <a class="mobile-link" href="#price-0" data-scroll-section="price-0">
           <span>Услуги</span></a
         >
-        <a class="mobile-link" data-scroll-section="reviews">
+        <a
+          class="mobile-link"
+          href="#reviews-0"
+          data-scroll-section="reviews-0"
+        >
           <span>Отзывы</span></a
         >
       </div>
@@ -325,7 +341,6 @@ import { socialLinks } from "../social-links.ts";
 </script>
 
 <script>
-  // Только клиентский JS — Astro выполнит его в браузере
   document.addEventListener("DOMContentLoaded", () => {
     const burgerIcon = document.getElementById("burger-icon");
     const mobileMenu = document.getElementById("mobile-menu");
@@ -340,23 +355,25 @@ import { socialLinks } from "../social-links.ts";
       const isOpen = mobileMenu.classList.contains("open");
       if (isOpen) {
         mobileMenu.classList.remove("open");
-        mobileBackdrop.classList.remove("open"); // ← НОВАЯ СТРОКА
+        mobileBackdrop.classList.remove("open");
         burgerIcon.classList.remove("open");
-        document.body.style.overflow = "";
+        // document.body.style.overflow = "";
       } else {
         mobileMenu.classList.add("open");
-        mobileBackdrop.classList.add("open"); // ← НОВАЯ СТРОКА
+        mobileBackdrop.classList.add("open");
         burgerIcon.classList.add("open");
-        document.body.style.overflow = "hidden";
+        // document.body.style.overflow = "hidden";
       }
     }
 
     // Закрытие меню
     function closeMenu() {
+      // document.body.style.overflow = "hidden";
       mobileMenu.classList.remove("open");
-      mobileBackdrop.classList.remove("open"); // ← НОВАЯ СТРОКА
+      mobileBackdrop.classList.remove("open");
       burgerIcon.classList.remove("open");
-      document.body.style.overflow = "";
+
+      // setTimeout(() => (document.body.style.overflow = ""), 500);
     }
 
     if (burgerIcon) {
@@ -365,10 +382,6 @@ import { socialLinks } from "../social-links.ts";
     if (closeBtn) {
       closeBtn.addEventListener("click", toggleMenu);
     }
-
-    allLinks.forEach((link) => {
-      link.addEventListener("click", closeMenu);
-    });
 
     document.addEventListener("click", (e) => {
       if (
@@ -440,15 +453,21 @@ import { socialLinks } from "../social-links.ts";
         // const targetId = link.getAttribute("href")?.replace("/", "");
         const targetId = link.getAttribute("data-scroll-section");
         console.log(targetId);
-        const targetSection = document.getElementById(targetId);
-        console.log(targetSection);
-        console.log(targetSection.offsetTop);
+        if (targetId) {
+          e.preventDefault();
+          const targetSection = document.getElementById(targetId);
 
-        if (targetSection) {
-          targetSection.scrollIntoView({
-            behavior: "instant",
-          });
-          // history.replaceState(null, null, targetId);
+          document.documentElement.classList.add("scroll-snap-disabled");
+
+          if (targetSection) {
+            targetSection.scrollIntoView({
+              behavior: "instant",
+            });
+            setTimeout(() => {
+              document.documentElement.classList.remove("scroll-snap-disabled");
+              closeMenu();
+            }, 100);
+          }
         }
       });
     });
