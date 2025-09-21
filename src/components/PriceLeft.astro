@@ -2,7 +2,7 @@
 import SectionAware from "../components/SectionAware.astro";
 import ShowCaseSign from "../assets/icons/sign/show-case-underline.svg";
 import PriceBackground from "../assets/images/price-section-background.webp";
-import ShowCase from "./ShowCase.astro";
+import ShowCase from "../components/ShowCase.astro";
 import { socialLinks } from "../social-links";
 import ContactButton from "./ContactButton.astro";
 
@@ -16,15 +16,15 @@ const imageSources = [
 ---
 
 <ShowCase cssClass="border-top border-bottom">
-  <h2 slot="showcase__title" class="fs-54 showcase__title">
+  <h2 slot="showcase__title" class="showcase__title fs-54">
     Проверьте <br />
     <span class="italic">свободную</span> дату
   </h2>
   <ContactButton link={socialLinks.wu} slot="showcase__contact-us" />
-  <div slot="showcase__description" class="showcase__description">
+  <p slot="showcase__description" class="showcase__description">
     Планируете свадьбу? <br /> Узнайте, доступна ли ваша дата <br /> — она может
     быть уже почти вашей.
-  </div>
+  </p>
 </ShowCase>
 
 <SectionAware
