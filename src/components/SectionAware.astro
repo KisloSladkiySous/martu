@@ -39,6 +39,7 @@ const pictureId = `section-lazy-${Math.random().toString(36).substr(2, 9)}`;
   {
     sources.map((source) => (
       <source
+        srcset=""
         data-srcset={source.srcset}
         media={source.media}
         type={source.type}
@@ -231,6 +232,7 @@ const pictureId = `section-lazy-${Math.random().toString(36).substr(2, 9)}`;
         const srcset = source.dataset.srcset;
         if (srcset) {
           source.srcset = srcset;
+          source.setAttribute("srcset", srcset);
           source.removeAttribute("data-srcset");
         }
       });
