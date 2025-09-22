@@ -8,10 +8,7 @@ const { borderColor = "white", imagePath, height } = Astro.props;
 ---
 
 <div class="circle">
-  <img
-    class="outer"
-    style={` ${imagePath ? `background-image: url("${imagePath}")` : ""}`}
-  />
+  <img class="outer" src={imagePath} alt="Martu" />
   <div class="inner">
     <slot name="text" />
   </div>
@@ -31,7 +28,6 @@ const { borderColor = "white", imagePath, height } = Astro.props;
     background-position: center;
     background-repeat: no-repeat;
     z-index: 2;
-    /* position: relative; */
   }
   @media (max-width: 455px) {
     .outer {
