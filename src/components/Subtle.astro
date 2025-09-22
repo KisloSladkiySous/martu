@@ -35,9 +35,9 @@ const { lines, delay = 200 } = Astro.props;
 
 <div class="subtle" data-delay={delay}>
   {
-    lines.map((line, index) => (
+    lines.map((line) => (
       <div class="subtle__row">
-        <p class="subtle__line" id={`line${index + 1}`} set:html={line} />
+        <p class="subtle__line" set:html={line} />
       </div>
     ))
   }
