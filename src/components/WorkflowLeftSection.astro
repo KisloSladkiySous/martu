@@ -21,59 +21,66 @@ const { className } = Astro.props;
       > организация
     </h2>
     <ol class="custom-list">
-      <li>
-        <div class="custom-list__title">Живая встреча</div>
+      <li class="custom-list__item">
+        <p class="custom-list__title">Живая встреча</p>
+        <span class="custom-list__description">
+          Первая встреча решает все! Важно понять образовалось ли между нами
+          доверие и понимание процесса работы, ведь впереди нас ждет
+          увлекательная подготовка к вашему главному дню!
+        </span>
       </li>
-      <div class="custom-list__description">
-        Первая встреча решает все! Важно понять образовалось ли между нами
-        доверие и понимание процесса работы, ведь впереди нас ждет увлекательная
-        подготовка к вашему главному дню!
-      </div>
-      <li>
-        <div class="custom-list__title">Заключение договора и анкета</div>
+
+      <li class="custom-list__item">
+        <p class="custom-list__title">Заключение договора и анкета</p>
+        <span class="custom-list__description">
+          После заключения договора переходим к заполнению анкеты. Нам интересно
+          все, что вам нравится и не нравится. Подробная информация о вас
+          поможет качественно подготовиться к свадьбе.
+        </span>
       </li>
-      <div class="custom-list__description">
-        После заключения договора переходим к заполнению анкеты. Нам интересно
-        все, что вам нравится и не нравится. Подробная информация о вас поможет
-        качественно подготовиться к свадьбе.
-      </div>
-      <li>
-        <div class="custom-list__title">Свадебный сюжет</div>
+
+      <li class="custom-list__item">
+        <p class="custom-list__title">Свадебный сюжет</p>
+        <span class="custom-list__description">
+          Обсуждаются ваши пожелания и наши безумные идеи. Определяем вместе
+          концепцию и стилистику свадьбы. Детально изучаем самые важные моменты
+          и сокровенные желания, которые объединяют вас.
+        </span>
       </li>
-      <div class="custom-list__description">
-        Обсуждаются ваши пожелания и наши безумные идеи. Определяем вместе
-        концепцию и стилистику свадьбы. Детально изучаем самые важные моменты и
-        сокровенные желания, которые объединяют вас.
-      </div>
-      <li>
-        <div class="custom-list__title">Подбор пространства</div>
+
+      <li class="custom-list__item">
+        <p class="custom-list__title">Подбор пространства</p>
+        <span class="custom-list__description">
+          Поиск той самой подходящей площадки. Да-да, из ваших рассказов и даже
+          скринов из свадебных порталов.
+        </span>
       </li>
-      <div class="custom-list__description">
-        Поиск той самой подходящей площадки. Да-да, из ваших рассказов и даже
-        скринов из свадебных порталов.
-      </div>
-      <li>
-        <div class="custom-list__title">Подбор команды</div>
+
+      <li class="custom-list__item">
+        <p class="custom-list__title">Подбор команды</p>
+        <span class="custom-list__description">
+          Подбирается команда подрядчиков под бюджет проекта, которая будет
+          созидать ваш день по ту сторону.
+        </span>
       </li>
-      <div class="custom-list__description">
-        Подбирается команда подрядчиков под бюджет проекта, которая будет
-        созидать ваш день по ту сторону.
-      </div>
-      <li>
-        <div class="custom-list__title">Визуализация свадьбы</div>
+
+      <li class="custom-list__item">
+        <p class="custom-list__title">Визуализация свадьбы</p>
+        <span class="custom-list__description">
+          Вместе согласовываем итоговый макет свадьбы, составляем тайминг до
+          секунд и учитываем непредвиденные ситуации!
+        </span>
       </li>
-      <div class="custom-list__description">
-        Вместе согласовываем итоговый макет свадьбы, составляем тайминг до
-        секунд и учитываем непредвиденные ситуации!
-      </div>
-      <li>
-        <div class="custom-list__title">День вашей свадьбы</div>
+
+      <li class="custom-list__item">
+        <p class="custom-list__title">День вашей свадьбы</p>
+        <span class="custom-list__description">
+          Команда организаторов будет контролировать весь процесс с самого
+          раннего часа монтажа оборудования до ухода последнего гостя. Мы несем
+          ответственность за красоту и качество вашей свадьбы.
+        </span>
       </li>
-      <div class="custom-list__description">
-        Команда организаторов будет контролировать весь процесс с самого раннего
-        часа монтажа оборудования до ухода последнего гостя. Мы несем
-        ответственность за красоту и качество вашей свадьбы.
-      </div>
+
       <ContactButton
         link={socialLinks.wu}
         backgroundColor="240, 216, 181"
@@ -124,8 +131,8 @@ const { className } = Astro.props;
   }
 
   .custom-list__title {
+    margin-bottom: 1.33rem;
     text-align: center;
-    width: fit-content;
     text-transform: uppercase;
     font-size: var(--fs-16);
     color: var(--text-color-tertiary);
@@ -137,19 +144,21 @@ const { className } = Astro.props;
     margin-bottom: 4rem;
   }
 
-  .custom-list li {
+  .custom-list__item {
     counter-increment: list-counter;
     position: relative;
-    padding-left: 2rem;
-    margin-bottom: 1.33rem;
-    width: fit-content;
-    display: inline-block;
+
     color: var(--text-color-tertiary);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
-  .custom-list li::before {
+  .custom-list__title::before {
     content: "(" counter(list-counter) ")";
-    position: absolute;
+    position: relative;
+    padding-right: 1.5rem;
     left: 0;
     font-weight: 600;
     color: var(--brand-color);

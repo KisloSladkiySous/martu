@@ -10,8 +10,13 @@ import { socialLinks } from "../social-links.ts";
 ---
 
 <nav class="navigation" id="navigation">
-  <a class="logo logo-link" href="#hero" data-scroll-section="hero">
-    <Logo />
+  <a
+    class="logo logo-link"
+    aria-label="Логотип Martu"
+    href="#hero"
+    data-scroll-section="hero"
+  >
+    <Logo aria-hidden="true" />
   </a>
 
   <!-- Desktop Menu -->
@@ -91,17 +96,37 @@ import { socialLinks } from "../social-links.ts";
       </div>
     </div>
     <div class="media-links">
-      <a href={socialLinks.vk} target="_blank" class="link">
-        <VK />
+      <a
+        href={socialLinks.vk}
+        target="_blank"
+        class="link"
+        aria-label="Вконтакте"
+      >
+        <VK aria-hidden="true" />
       </a>
-      <a href={socialLinks.inst} target="_blank" class="link">
-        <Inst />
+      <a
+        href={socialLinks.inst}
+        target="_blank"
+        class="link"
+        aria-label="Instagram"
+      >
+        <Inst aria-hidden="true" />
       </a>
-      <a href={socialLinks.wu} target="_blank" class="link">
-        <Whatsup />
+      <a
+        href={socialLinks.wu}
+        target="_blank"
+        class="link"
+        aria-label="WhatsApp"
+      >
+        <Whatsup aria-hidden="true" />
       </a>
-      <a href={socialLinks.tg} target="_blank" class="link">
-        <Telegramm />
+      <a
+        href={socialLinks.tg}
+        target="_blank"
+        class="link"
+        aria-label="Telegram"
+      >
+        <Telegramm aria-hidden="true" />
       </a>
     </div>
   </div>
