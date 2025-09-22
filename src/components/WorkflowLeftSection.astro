@@ -20,77 +20,80 @@ const { className } = Astro.props;
         </SvgAnimation></span
       > организация
     </h2>
-    <ol class="custom-list">
-      <li class="custom-list__item">
-        <p class="custom-list__title">Живая встреча</p>
-        <span class="custom-list__description">
-          Первая встреча решает все! Важно понять образовалось ли между нами
-          доверие и понимание процесса работы, ведь впереди нас ждет
-          увлекательная подготовка к вашему главному дню!
-        </span>
-      </li>
+    <div>
+      <ol class="custom-list">
+        <li class="custom-list__item">
+          <p class="custom-list__title">Живая встреча</p>
+          <span class="custom-list__description">
+            Первая встреча решает все! Важно понять образовалось ли между нами
+            доверие и понимание процесса работы, ведь впереди нас ждет
+            увлекательная подготовка к вашему главному дню!
+          </span>
+        </li>
 
-      <li class="custom-list__item">
-        <p class="custom-list__title">Заключение договора и анкета</p>
-        <span class="custom-list__description">
-          После заключения договора переходим к заполнению анкеты. Нам интересно
-          все, что вам нравится и не нравится. Подробная информация о вас
-          поможет качественно подготовиться к свадьбе.
-        </span>
-      </li>
+        <li class="custom-list__item">
+          <p class="custom-list__title">Заключение договора и анкета</p>
+          <span class="custom-list__description">
+            После заключения договора переходим к заполнению анкеты. Нам
+            интересно все, что вам нравится и не нравится. Подробная информация
+            о вас поможет качественно подготовиться к свадьбе.
+          </span>
+        </li>
 
-      <li class="custom-list__item">
-        <p class="custom-list__title">Свадебный сюжет</p>
-        <span class="custom-list__description">
-          Обсуждаются ваши пожелания и наши безумные идеи. Определяем вместе
-          концепцию и стилистику свадьбы. Детально изучаем самые важные моменты
-          и сокровенные желания, которые объединяют вас.
-        </span>
-      </li>
+        <li class="custom-list__item">
+          <p class="custom-list__title">Свадебный сюжет</p>
+          <span class="custom-list__description">
+            Обсуждаются ваши пожелания и наши безумные идеи. Определяем вместе
+            концепцию и стилистику свадьбы. Детально изучаем самые важные
+            моменты и сокровенные желания, которые объединяют вас.
+          </span>
+        </li>
 
-      <li class="custom-list__item">
-        <p class="custom-list__title">Подбор пространства</p>
-        <span class="custom-list__description">
-          Поиск той самой подходящей площадки. Да-да, из ваших рассказов и даже
-          скринов из свадебных порталов.
-        </span>
-      </li>
+        <li class="custom-list__item">
+          <p class="custom-list__title">Подбор пространства</p>
+          <span class="custom-list__description">
+            Поиск той самой подходящей площадки. Да-да, из ваших рассказов и
+            даже скринов из свадебных порталов.
+          </span>
+        </li>
 
-      <li class="custom-list__item">
-        <p class="custom-list__title">Подбор команды</p>
-        <span class="custom-list__description">
-          Подбирается команда подрядчиков под бюджет проекта, которая будет
-          созидать ваш день по ту сторону.
-        </span>
-      </li>
+        <li class="custom-list__item">
+          <p class="custom-list__title">Подбор команды</p>
+          <span class="custom-list__description">
+            Подбирается команда подрядчиков под бюджет проекта, которая будет
+            созидать ваш день по ту сторону.
+          </span>
+        </li>
 
-      <li class="custom-list__item">
-        <p class="custom-list__title">Визуализация свадьбы</p>
-        <span class="custom-list__description">
-          Вместе согласовываем итоговый макет свадьбы, составляем тайминг до
-          секунд и учитываем непредвиденные ситуации!
-        </span>
-      </li>
+        <li class="custom-list__item">
+          <p class="custom-list__title">Визуализация свадьбы</p>
+          <span class="custom-list__description">
+            Вместе согласовываем итоговый макет свадьбы, составляем тайминг до
+            секунд и учитываем непредвиденные ситуации!
+          </span>
+        </li>
 
-      <li class="custom-list__item">
-        <p class="custom-list__title">День вашей свадьбы</p>
-        <span class="custom-list__description">
-          Команда организаторов будет контролировать весь процесс с самого
-          раннего часа монтажа оборудования до ухода последнего гостя. Мы несем
-          ответственность за красоту и качество вашей свадьбы.
-        </span>
-      </li>
-
-      <ContactButton
-        link={socialLinks.wu}
-        backgroundColor="240, 216, 181"
-        alpha="1"
-        textColor="rgba(85, 85, 85, 1)"
-        target=""
-      >
-        Оставить заявку
-      </ContactButton>
-    </ol>
+        <li class="custom-list__item">
+          <p class="custom-list__title">День вашей свадьбы</p>
+          <span class="custom-list__description">
+            Команда организаторов будет контролировать весь процесс с самого
+            раннего часа монтажа оборудования до ухода последнего гостя. Мы
+            несем ответственность за красоту и качество вашей свадьбы.
+          </span>
+        </li>
+      </ol>
+      <div class="custom-list__button">
+        <ContactButton
+          link={socialLinks.wu}
+          backgroundColor="240, 216, 181"
+          alpha="1"
+          textColor="rgba(85, 85, 85, 1)"
+          target=""
+        >
+          Оставить заявку
+        </ContactButton>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -125,7 +128,6 @@ const { className } = Astro.props;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 12rem;
     margin-top: 3.875rem;
     max-width: 30.625rem;
   }
@@ -142,6 +144,12 @@ const { className } = Astro.props;
     color: var(--text-color-secondary);
     text-align: center;
     margin-bottom: 4rem;
+  }
+
+  .custom-list__button {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 6rem;
   }
 
   .custom-list__item {

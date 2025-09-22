@@ -1,6 +1,6 @@
 ---
 import SectionAware from "../components/SectionAware.astro";
-import CircleAlt from "../components/CircleAlt.astro";
+import CircleText from "../components/CircleText.astro";
 import PortfolioVisual from "../assets/images/portfolio-section.webp";
 import PortfolioSign from "../assets/icons/sign/portfolio-sign.svg";
 import SvgAnimation from "./SvgAnimation.astro";
@@ -69,11 +69,11 @@ const { className } = Astro.props;
       target="_blank"
       aria-label="Смотреть портфолио"
     >
-      <CircleAlt height="11.875rem" borderColor="#57718C">
+      <CircleText height="11.875rem" borderColor="#57718C">
         <span slot="text" class="circle-text">
           <p class="portfolio">Смотреть <br /> портфолио</p>
         </span>
-      </CircleAlt>
+      </CircleText>
     </a>
   </div>
 </div>

@@ -1,0 +1,46 @@
+---
+interface Props {
+  borderColor: string;
+  height?: string;
+}
+const { borderColor = "white", height } = Astro.props;
+---
+
+<div class="outer circle">
+  <div class="inner circle">
+    <slot name="text" />
+  </div>
+</div>
+
+<style define:vars={{ borderColor, height }}>
+  .outer {
+    height: var(--height);
+
+    aspect-ratio: 1;
+    background-color: var(--background-color-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 2;
+    position: relative;
+  }
+  @media (max-width: 455px) {
+    .outer {
+      height: min(30vh, var(--height));
+    }
+  }
+  .inner {
+    width: 85%;
+    aspect-ratio: 1;
+    border: 1px solid var(--borderColor);
+  }
+  .circle {
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
