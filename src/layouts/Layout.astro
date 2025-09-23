@@ -70,6 +70,15 @@ const { title } = Astro.props;
     <title>{title}</title>
 
     <script>
+      if (window.location.hash) {
+        history.replaceState(
+          null,
+          "",
+          window.location.pathname + window.location.search
+        );
+        window.scrollTo(0, 0);
+      }
+
       function updateScale() {
         const baseWidth = 1440;
         const baseHeight = 900;
@@ -131,32 +140,20 @@ const { title } = Astro.props;
         trackLinks: true,
       });
     </script>
-    <script>
-      if (window.location.hash) {
-        history.replaceState(
-          null,
-          "",
-          window.location.pathname + window.location.search
-        );
-        window.scrollTo(0, 0);
-      }
-    </script></head
-  >
-
-  <!-- Yandex.Metrika counter -->
-
-  <noscript
-    ><div>
-      <img
-        src="https://mc.yandex.ru/watch/104200119"
-        style="position:absolute; left:-9999px;"
-        alt=""
-      />
-    </div></noscript
-  >
-  <!-- /Yandex.Metrika counter -->
+  </head>
 
   <body>
+    <!-- Yandex.Metrika counter -->
+    <noscript>
+      <div>
+        <img
+          src="https://mc.yandex.ru/watch/104200119"
+          style="position:absolute; left:-9999px;"
+          alt=""
+        />
+      </div>
+    </noscript>
+    <!-- /Yandex.Metrika counter -->
     <Navigation />
     <slot />
   </body>
