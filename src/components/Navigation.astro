@@ -349,7 +349,7 @@ import { socialLinks } from "../social-links.ts";
 </style>
 
 <script>
-  import { animate, inView, stagger } from "motion";
+  import { animate } from "motion";
 
   animate(
     "#navigation",
@@ -363,9 +363,7 @@ import { socialLinks } from "../social-links.ts";
       delay: 1,
     }
   );
-</script>
 
-<script>
   document.addEventListener("DOMContentLoaded", () => {
     const burgerIcon = document.getElementById("burger-icon");
     const mobileMenu = document.getElementById("mobile-menu");
