@@ -1,6 +1,7 @@
 ---
 import PortfolioCase from "../components/PortfolioCase.astro";
 import Layout from "../layouts/Layout.astro";
+import ScrollToTopButton from "../components/ScrollToTopButton.astro";
 const pavel2023 = import.meta.glob<{ default: ImageMetadata }>(
   `/src/assets/uploads/pavel2023/*.{jpeg,jpg,png,gif}`
 );
@@ -37,6 +38,7 @@ const danilpolina2025 = import.meta.glob<{ default: ImageMetadata }>(
 ---
 
 <Layout title="Martu - Портфолио">
+  <ScrollToTopButton />
   <div class="cases">
     <PortfolioCase
       folder="pavel2023"

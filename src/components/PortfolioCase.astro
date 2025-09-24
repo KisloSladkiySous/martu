@@ -21,7 +21,7 @@ const initialCount = 12;
 ---
 
 <div class="case-wrapper">
-  <div class="case-year">{year}</div>
+  <span class="case-year">{year}</span>
   <h3 class="case-couple">{names}</h3>
   <div class="content">
     <div class="photo-grid" grid-section={folder}>
@@ -109,12 +109,15 @@ const initialCount = 12;
     text-align: center;
     color: var(--text-color-secondary);
     margin-bottom: 1rem;
+    font-size: var(--fs-14);
+    line-height: var(--lh-14);
   }
   .case-couple {
     text-align: center;
     color: var(--text-color-secondary);
     margin: 0;
     font-size: var(--fs-46);
+    line-height: var(--lh-46);
     font-weight: 400;
     margin-bottom: 4.4375rem;
   }
