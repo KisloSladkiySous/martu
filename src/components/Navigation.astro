@@ -518,11 +518,9 @@ import { socialLinks } from "../social-links.ts";
       link.addEventListener("click", (e) => {
         // const targetId = link.getAttribute("href")?.replace("/", "");
         const targetId = link.getAttribute("data-scroll-section");
-        console.log(targetId);
         if (targetId) {
           e.preventDefault();
           const targetSection = document.getElementById(targetId);
-
           document.documentElement.classList.add("scroll-snap-disabled");
 
           if (targetSection) {
@@ -533,6 +531,11 @@ import { socialLinks } from "../social-links.ts";
               document.documentElement.classList.remove("scroll-snap-disabled");
               closeMenu();
             }, 100);
+          } else {
+            // Если секция не найдена, переходим на главную
+            // TODO: скроллить до нужной секции после перехода
+            window.location.href = "/";
+            document.documentElement.classList.remove("scroll-snap-disabled");
           }
         }
       });
