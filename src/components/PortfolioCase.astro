@@ -199,35 +199,20 @@ const initialCount = 12;
       });
     }
 
-    // inView(".photo-grid-img", (element) => {
-    //   animatePhotos(element);
-    // });
+    inView(".photo-grid-img", (element) => {
+      animate(
+        element,
+        {
+          //@ts-expect-error
+          y: [20, 0],
+        },
+        {
+          duration: 0.4,
+          easing: "ease-out",
+        }
+      );
+    });
   });
-
-  function animatePhotos() {
-    const images = document.querySelectorAll(".photo-grid-img");
-    if (images.length === 0) return;
-    for (const img of images) {
-      img.addEventListener("load", (e) => {
-        if (!e.target) return;
-        animate(
-          e.target,
-          {
-            //@ts-expect-error
-            opacity: [0, 1],
-            y: [20, 0],
-            filter: ["blur(8px)", "blur(0px)"],
-          },
-          {
-            duration: 0.4,
-
-            easing: "ease-out",
-            delay: stagger(0.1),
-          }
-        );
-      });
-    }
-  }
 
   function loadMorePhotos(sectionName: string) {
     console.log(sectionName);
