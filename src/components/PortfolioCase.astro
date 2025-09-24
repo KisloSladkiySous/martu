@@ -42,8 +42,9 @@ const initialCount = 12;
                 loading="lazy"
                 width={800}
                 height={600}
+                onload="this.classList.add('photo-grid-item_loaded')"
                 sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
-                class="photo-grid-img"
+                class="photo-grid-img fade"
               />
             </div>
           );
@@ -79,6 +80,19 @@ const initialCount = 12;
 </div>
 
 <style>
+  .fade {
+    opacity: 0;
+    filter: blur(8px);
+    transition: opacity 0.6s ease;
+  }
+  .fade.photo-grid-item_loaded {
+    opacity: 1;
+    filter: blur(0px);
+  }
+
+  .photo-grid-item {
+    background-color: var(--card-color);
+  }
   .divider {
     width: 50%;
     height: 1px;
@@ -161,10 +175,13 @@ const initialCount = 12;
   }
 </style>
 <script>
+  import { animate, stagger, inView } from "motion";
   document.addEventListener("DOMContentLoaded", () => {
     const loadBtns = document.querySelectorAll(".load-more");
     const hideBtn = document.querySelector('[data-on-click="hideExtraPhotos"]');
     console.log(loadBtns);
+
+    // animatePhotos();
 
     if (loadBtns) {
       loadBtns.forEach((button) => {
@@ -181,7 +198,36 @@ const initialCount = 12;
         hideExtraPhotos(sectionName);
       });
     }
+
+    // inView(".photo-grid-img", (element) => {
+    //   animatePhotos(element);
+    // });
   });
+
+  function animatePhotos() {
+    const images = document.querySelectorAll(".photo-grid-img");
+    if (images.length === 0) return;
+    for (const img of images) {
+      img.addEventListener("load", (e) => {
+        if (!e.target) return;
+        animate(
+          e.target,
+          {
+            //@ts-expect-error
+            opacity: [0, 1],
+            y: [20, 0],
+            filter: ["blur(8px)", "blur(0px)"],
+          },
+          {
+            duration: 0.4,
+
+            easing: "ease-out",
+            delay: stagger(0.1),
+          }
+        );
+      });
+    }
+  }
 
   function loadMorePhotos(sectionName: string) {
     console.log(sectionName);
