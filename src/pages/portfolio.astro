@@ -35,6 +35,9 @@ const sergeyoksana2025 = import.meta.glob<{ default: ImageMetadata }>(
 const danilpolina2025 = import.meta.glob<{ default: ImageMetadata }>(
   `/src/assets/uploads/danilpolina2025/*.{jpeg,jpg,png,gif,JPG}`
 );
+const vitaly2025 = import.meta.glob<{ default: ImageMetadata }>(
+  `/src/assets/uploads/vitaly2025/*.{jpeg,jpg,png,gif,JPG}`
+);
 ---
 
 <Layout title="Martu - Портфолио">
@@ -126,6 +129,14 @@ const danilpolina2025 = import.meta.glob<{ default: ImageMetadata }>(
       length={39}
       format="JPG"
       images={danilpolina2025}
+    />
+    <PortfolioCase
+      folder="vitaly2025"
+      year="2025"
+      names="Виталий и Анастасия"
+      length={39}
+      format="JPG"
+      images={vitaly2025}
     />
   </div>
 </Layout>
