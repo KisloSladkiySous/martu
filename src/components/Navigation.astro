@@ -49,8 +49,6 @@ import { socialLinks } from "../social-links.ts";
     <Burger />
   </div>
 
-  <div class="mobile-backdrop" id="mobile-backdrop"></div>
-
   <div class="mobile-menu-overlay" id="mobile-menu">
     <div class="mobile-header">
       <div class="close mobile" id="close-icon">
@@ -71,8 +69,8 @@ import { socialLinks } from "../social-links.ts";
         >
         <a
           class="mobile-link"
-          href="#advantages-0"
-          data-scroll-section="advantages-0"
+          href="#advantages-1"
+          data-scroll-section="advantages-1"
         >
           <span>Почему мы</span></a
         >
@@ -83,7 +81,7 @@ import { socialLinks } from "../social-links.ts";
         >
           <span>Процесс</span></a
         >
-        <a class="mobile-link" href="#price-0" data-scroll-section="price-0">
+        <a class="mobile-link" href="#price-1" data-scroll-section="price-1">
           <span>Услуги</span></a
         >
         <a
@@ -130,6 +128,8 @@ import { socialLinks } from "../social-links.ts";
       </a>
     </div>
   </div>
+
+  <div class="mobile-backdrop" id="mobile-backdrop"></div>
 </nav>
 
 <style>
@@ -349,20 +349,60 @@ import { socialLinks } from "../social-links.ts";
 </style>
 
 <script>
-  import { animate } from "motion";
+  import { animate, stagger } from "motion";
 
-  animate(
-    "#navigation",
-    {
-      opacity: [0, 1],
-      filter: ["blur(8px)", "blur(0px)"],
-    },
-    {
-      duration: 0.6,
-      easing: "ease-out",
-      delay: 1,
-    }
-  );
+  let isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
+
+  if (!isMobile) {
+    animate(
+      "#navigation",
+      // @ts-expect-error
+      {
+        opacity: [0, 1],
+        filter: ["blur(8px)", "blur(0px)"],
+      },
+      {
+        duration: 0.6,
+        easing: "ease-out",
+        delay: 1,
+      }
+    );
+  }
+
+  const sequence = [
+    [
+      ".mobile-link",
+      {
+        opacity: [0, 1],
+        y: [20, 0],
+        filter: ["blur(8px)", "blur(0px)"],
+      },
+      {
+        duration: 0.4,
+        easing: "ease-out",
+        delay: stagger(0.1),
+      },
+    ],
+    [
+      ".media-links .link",
+      {
+        opacity: [0, 1],
+        y: [10, 0],
+        filter: ["blur(8px)", "blur(0px)"],
+      },
+      {
+        duration: 0.4,
+        easing: "ease-out",
+        delay: stagger(0.05),
+        at: 0.5,
+      },
+    ],
+  ];
+
+  function animateMobileMenu() {
+    //@ts-expect-error
+    animate(sequence);
+  }
 
   document.addEventListener("DOMContentLoaded", () => {
     const burgerIcon = document.getElementById("burger-icon");
@@ -375,28 +415,30 @@ import { socialLinks } from "../social-links.ts";
 
     // Функция открытия/закрытия меню
     function toggleMenu() {
+      if (!mobileMenu || !burgerIcon || !mobileBackdrop) return;
       const isOpen = mobileMenu.classList.contains("open");
       if (isOpen) {
         mobileMenu.classList.remove("open");
         mobileBackdrop.classList.remove("open");
         burgerIcon.classList.remove("open");
-        // document.body.style.overflow = "";
+
+        document.documentElement.style.overflow = "";
       } else {
         mobileMenu.classList.add("open");
         mobileBackdrop.classList.add("open");
         burgerIcon.classList.add("open");
-        // document.body.style.overflow = "hidden";
+        animateMobileMenu();
+        document.documentElement.style.overflow = "hidden";
       }
     }
 
     // Закрытие меню
     function closeMenu() {
-      // document.body.style.overflow = "hidden";
+      if (!mobileMenu || !burgerIcon || !mobileBackdrop) return;
       mobileMenu.classList.remove("open");
       mobileBackdrop.classList.remove("open");
       burgerIcon.classList.remove("open");
-
-      // setTimeout(() => (document.body.style.overflow = ""), 500);
+      document.documentElement.style.overflow = "";
     }
 
     if (burgerIcon) {
@@ -408,8 +450,11 @@ import { socialLinks } from "../social-links.ts";
 
     document.addEventListener("click", (e) => {
       if (
+        //@ts-expect-error
         mobileMenu.classList.contains("open") &&
+        //@ts-expect-error
         !mobileMenu.contains(e.target) &&
+        //@ts-expect-error
         !burgerIcon.contains(e.target)
       ) {
         closeMenu();
@@ -418,8 +463,6 @@ import { socialLinks } from "../social-links.ts";
 
     const nav = document.getElementById("navigation");
     if (!nav) return;
-
-    let isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
 
     const sections = document.querySelectorAll("[data-page-index]");
 
