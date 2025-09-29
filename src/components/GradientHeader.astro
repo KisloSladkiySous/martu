@@ -1,0 +1,27 @@
+<div class="gradient-header">
+  <div class="gradient-header-inner"></div>
+</div>
+<style>
+  @media (min-width: 1025px) {
+    .gradient-header {
+      pointer-events: none;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .gradient-header-inner {
+      position: sticky;
+      top: 0;
+      left: 0;
+      height: 9rem;
+      background: linear-gradient(
+        to bottom,
+        var(--background-color) 90%,
+        #ffffff00 100%
+      );
+    }
+  }
+</style>
