@@ -2,6 +2,15 @@
 import PortfolioCase from "../components/PortfolioCase.astro";
 import Layout from "../layouts/Layout.astro";
 import ScrollToTopButton from "../components/ScrollToTopButton.astro";
+import fetchApi from "../lib/strapi";
+
+const cases = await fetchApi({
+  endpoint: "cases", // the content type to fetch
+  wrappedByKey: "data", // the key to unwrap the response
+});
+
+console.log("fetch", cases);
+
 const pavel2023 = import.meta.glob<{ default: ImageMetadata }>(
   `/src/assets/uploads/pavel2023/*.{jpeg,jpg,png,gif}`
 );
@@ -38,11 +47,36 @@ const danilpolina2025 = import.meta.glob<{ default: ImageMetadata }>(
 const vitaly2025 = import.meta.glob<{ default: ImageMetadata }>(
   `/src/assets/uploads/vitaly2025/*.{jpeg,jpg,png,gif,JPG}`
 );
+
+const casesArray = [
+  pavel2023,
+  nikita2023,
+  grisha2024,
+  dmitriy2024,
+  timofey2024,
+  inna2025,
+  maksimvasilisa2025,
+  aleksdaris2025,
+  tolya2025,
+  sergeyoksana2025,
+  danilpolina2025,
+  vitaly2025,
+];
 ---
 
 <Layout title="Martu - Портфолио">
   <ScrollToTopButton />
   <div class="cases">
+    <!-- {casesArray.map((caseItem) => (
+      <PortfolioCase
+        folder={caseItem.folder}
+        year={caseItem.year}
+        names={caseItem.names}
+        length={caseItem.length}
+        format={caseItem.format}
+        images={caseItem.images}
+      />
+    ))} -->
     <PortfolioCase
       folder="pavel2023"
       year="2023"
