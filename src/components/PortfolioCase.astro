@@ -9,12 +9,13 @@ const {
   length = 24,
   format = "jpg",
 } = Astro.props;
-const weddingPhotos = Array.from(
-  { length: length },
-  (_, i) => `/src/assets/uploads/${folder}/${i + 1}.${format}`
-);
+// const weddingPhotos = Array.from(
+//   { length: length },
+//   (_, i) => `/src/assets/uploads/${folder}/${i + 1}.${format}`
+// );
 
 const initialCount = 12;
+const baseUrl = import.meta.env.STRAPI_URL;
 ---
 
 <div class="case-wrapper">
@@ -23,7 +24,7 @@ const initialCount = 12;
   <div class="content">
     <div class="photo-grid" grid-section={folder}>
       {
-        weddingPhotos.map((src, index) => {
+        images.map((image: any, index: number) => {
           const isHidden = index >= initialCount;
 
           return (
@@ -33,11 +34,11 @@ const initialCount = 12;
               style={isHidden ? "display: none;" : undefined}
             >
               <Image
-                src={images[src]()}
-                alt={`Фото ${index + 1}`}
+                src={`${baseUrl}${image.formats.medium.url}`}
+                alt={image.alternativeText || `Фото ${index + 1}, ${names}`}
                 loading="lazy"
-                width={800}
-                height={600}
+                width={image.formats.medium.width}
+                height={image.formats.medium.height}
                 onload="this.classList.add('photo-grid-item_loaded')"
                 sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
                 class="photo-grid-img fade"
@@ -51,7 +52,7 @@ const initialCount = 12;
   </div>
 
   {
-    weddingPhotos.length > initialCount && (
+    images.length > initialCount && (
       <div class="gallery-actions">
         <button
           id="load-more-btn"
@@ -96,6 +97,7 @@ const initialCount = 12;
     display: flex;
     background-color: var(--border-color);
     margin: 0 auto;
+    margin-top: 3rem;
   }
   .case-wrapper {
     display: flex;
@@ -148,7 +150,7 @@ const initialCount = 12;
     justify-content: center;
     position: relative;
     margin-top: 3rem;
-    margin-bottom: 3rem;
+    /* margin-bottom: 3rem; */
   }
   .load-more {
     color: var(--text-color-fifth);
@@ -174,7 +176,6 @@ const initialCount = 12;
   }
 </style>
 <script>
-  import { animate, stagger, inView } from "motion";
   document.addEventListener("DOMContentLoaded", () => {
     const loadBtns = document.querySelectorAll(".load-more");
     const hideBtn = document.querySelector('[data-on-click="hideExtraPhotos"]');
@@ -197,20 +198,6 @@ const initialCount = 12;
         hideExtraPhotos(sectionName);
       });
     }
-
-    inView(".photo-grid-img", (element) => {
-      animate(
-        element,
-        {
-          //@ts-expect-error
-          y: [20, 0],
-        },
-        {
-          duration: 0.4,
-          easing: "ease-out",
-        }
-      );
-    });
   });
 
   function loadMorePhotos(sectionName: string) {

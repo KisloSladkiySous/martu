@@ -4,12 +4,12 @@ import Layout from "../layouts/Layout.astro";
 import ScrollToTopButton from "../components/ScrollToTopButton.astro";
 import fetchApi from "../lib/strapi";
 
-const cases = await fetchApi({
-  endpoint: "cases", // the content type to fetch
+const cases = await fetchApi<any[]>({
+  endpoint: "cases?populate=*", // the content type to fetch
   wrappedByKey: "data", // the key to unwrap the response
 });
 
-console.log("fetch", cases);
+console.log("fetch", cases[0].images[0].formats);
 
 const pavel2023 = import.meta.glob<{ default: ImageMetadata }>(
   `/src/assets/uploads/pavel2023/*.{jpeg,jpg,png,gif}`
@@ -67,17 +67,18 @@ const casesArray = [
 <Layout title="Martu - Портфолио">
   <ScrollToTopButton />
   <div class="cases">
-    <!-- {casesArray.map((caseItem) => (
-      <PortfolioCase
-        folder={caseItem.folder}
-        year={caseItem.year}
-        names={caseItem.names}
-        length={caseItem.length}
-        format={caseItem.format}
-        images={caseItem.images}
-      />
-    ))} -->
-    <PortfolioCase
+    {
+      cases.map((caseItem) => (
+        <PortfolioCase
+          folder={caseItem.slug}
+          year={caseItem.date}
+          names={caseItem.names}
+          length={caseItem.images.length || 24}
+          images={caseItem.images}
+        />
+      ))
+    }
+    <!-- <PortfolioCase
       folder="pavel2023"
       year="2023"
       names="Павел и Елизавета"
@@ -171,7 +172,7 @@ const casesArray = [
       length={39}
       format="JPG"
       images={vitaly2025}
-    />
+    /> -->
   </div>
 </Layout>
 <style>
