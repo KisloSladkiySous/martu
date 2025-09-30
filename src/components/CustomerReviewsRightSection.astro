@@ -1,14 +1,14 @@
 ---
 import ReviewCard from "./ReviewCard.astro";
-import reviews from "../data/reviews.json";
+// import reviews from "../data/reviews.json";
 
 import fetchApi from "../lib/strapi";
-const reviewsData = await fetchApi({
-  endpoint: "reviews", // the content type to fetch
+const reviews = await fetchApi<[]>({
+  endpoint: "reviews?populate=*", // the content type to fetch
   wrappedByKey: "data", // the key to unwrap the response
 });
 
-console.log("fetch", reviewsData);
+// console.log("fetch", reviewsData);
 
 const mid = Math.ceil(reviews.length / 2);
 
