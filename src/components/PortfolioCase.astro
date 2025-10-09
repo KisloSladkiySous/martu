@@ -13,9 +13,6 @@ const weddingPhotos = Array.from(
   { length: length },
   (_, i) => `/src/assets/uploads/${folder}/${i + 1}.${format}`
 );
-console.log(weddingPhotos);
-console.log("folder");
-console.log(images);
 
 const initialCount = 12;
 ---
@@ -28,7 +25,6 @@ const initialCount = 12;
       {
         weddingPhotos.map((src, index) => {
           const isHidden = index >= initialCount;
-          console.log(src);
 
           return (
             <div
@@ -182,7 +178,6 @@ const initialCount = 12;
   document.addEventListener("DOMContentLoaded", () => {
     const loadBtns = document.querySelectorAll(".load-more");
     const hideBtn = document.querySelector('[data-on-click="hideExtraPhotos"]');
-    console.log(loadBtns);
 
     // animatePhotos();
 
@@ -218,15 +213,13 @@ const initialCount = 12;
   });
 
   function loadMorePhotos(sectionName: string) {
-    console.log(sectionName);
-
     const targetGrid = document.querySelector(
       `.photo-grid[grid-section=${sectionName}]`
     );
     const hiddenItems = targetGrid.querySelectorAll(
       `.photo-grid-item[data-hidden="true"]`
     );
-    console.log(hiddenItems);
+
     let shownCount = 0;
     const batchSize = 20;
 
@@ -243,9 +236,6 @@ const initialCount = 12;
     //   );
     //   if (hideBtn) hideBtn.style.display = "inline-block";
     // }
-    console.log(
-      targetGrid.querySelectorAll(`.photo-grid-item[data-hidden="true"]`)
-    );
 
     if (
       targetGrid.querySelectorAll(`.photo-grid-item[data-hidden="true"]`)
@@ -257,8 +247,6 @@ const initialCount = 12;
   }
 
   function hideExtraPhotos(sectionName) {
-    console.log("Скрываем фото для секции:", sectionName);
-
     const allItems = document.querySelectorAll(
       `.photo-grid-item[data-section="${sectionName}"]`
     );

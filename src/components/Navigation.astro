@@ -378,7 +378,7 @@ import { socialLinks } from "../social-links.ts";
         filter: ["blur(8px)", "blur(0px)"],
       },
       {
-        duration: 0.4,
+        duration: 0.2,
         easing: "ease-out",
         delay: stagger(0.1),
       },
@@ -391,7 +391,7 @@ import { socialLinks } from "../social-links.ts";
         filter: ["blur(8px)", "blur(0px)"],
       },
       {
-        duration: 0.4,
+        duration: 0.2,
         easing: "ease-out",
         delay: stagger(0.05),
         at: 0.5,
@@ -516,31 +516,105 @@ import { socialLinks } from "../social-links.ts";
     // Плавная прокрутка при клике (заменена на instant для точности)
     allLinks.forEach((link) => {
       link.addEventListener("click", (e) => {
-        // const targetId = link.getAttribute("href")?.replace("/", "");
         const targetId = link.getAttribute("data-scroll-section");
+
         if (targetId) {
           e.preventDefault();
-          const targetSection = document.getElementById(targetId);
-          document.documentElement.classList.add("scroll-snap-disabled");
 
-          if (targetSection) {
-            targetSection.scrollIntoView({
-              behavior: "instant",
-            });
-            setTimeout(() => {
-              document.documentElement.classList.remove("scroll-snap-disabled");
-              closeMenu();
-            }, 100);
+          // Ищем якорь (anchor div с id секции)
+          const anchor = document.getElementById(targetId);
+
+          if (anchor) {
+            // Находим ближайший .snap-column (реальный элемент для скролла)
+            const targetColumn = anchor.closest(".snap-column");
+
+            if (targetColumn) {
+              scrollToSection(targetColumn as HTMLElement);
+            }
           } else {
-            // Если секция не найдена, переходим на главную
-            // TODO: скроллить до нужной секции после перехода
+            // Секция на другой странице
+            sessionStorage.setItem("scrollToSection", targetId);
             window.location.href = "/";
-            document.documentElement.classList.remove("scroll-snap-disabled");
           }
         }
       });
     });
+    function scrollToSection(targetElement: HTMLElement) {
+      const htmlElement = document.documentElement;
 
+      // Отключаем scroll-snap
+      htmlElement.style.scrollSnapType = "none";
+      htmlElement.classList.add("scroll-snap-disabled");
+
+      // Двойной RAF для применения стилей
+
+      requestAnimationFrame(() => {
+        targetElement.scrollIntoView({
+          behavior: "instant",
+          block: "start",
+        });
+
+        // Отслеживание окончания скролла
+        let rafId: number;
+        let lastY = window.scrollY;
+        let stableCount = 0;
+
+        const checkScroll = () => {
+          const currentY = window.scrollY;
+
+          if (Math.abs(currentY - lastY) < 0.5) {
+            stableCount++;
+            if (stableCount > 10) {
+              enableScrollSnap();
+              return;
+            }
+          } else {
+            stableCount = 0;
+          }
+
+          lastY = currentY;
+          rafId = requestAnimationFrame(checkScroll);
+        };
+
+        const enableScrollSnap = () => {
+          cancelAnimationFrame(rafId);
+
+          setTimeout(() => {
+            htmlElement.style.scrollSnapType = "";
+            htmlElement.classList.remove("scroll-snap-disabled");
+            closeMenu();
+          }, 100);
+        };
+
+        rafId = requestAnimationFrame(checkScroll);
+
+        // Страховка
+        // setTimeout(() => {
+        //   cancelAnimationFrame(rafId);
+        //   htmlElement.style.scrollSnapType = "";
+        //   htmlElement.classList.remove("scroll-snap-disabled");
+        //   closeMenu();
+        // }, 3000);
+      });
+    }
+    const scrollToId = sessionStorage.getItem("scrollToSection");
+    if (scrollToId) {
+      // Удаляем из sessionStorage сразу
+      sessionStorage.removeItem("scrollToSection");
+
+      // Даем время на полную загрузку и рендер страницы
+      setTimeout(() => {
+        const anchor = document.getElementById(scrollToId);
+
+        if (anchor) {
+          const targetColumn = anchor.closest(".snap-column");
+
+          if (targetColumn) {
+            scrollToSection(targetColumn as HTMLElement);
+          }
+        }
+      }, 100); // Увеличил задержку для надежности
+    }
     window.addEventListener("resize", () => {
       if (window.innerWidth < 1025) {
         isMobile = true;
