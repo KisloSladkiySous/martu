@@ -357,13 +357,15 @@ import Close from "../assets/icons/close.svg";
 <script>
   import IMask from "imask";
   const dialog = document.getElementById("feedbackDialog") as HTMLDialogElement;
-  const openBtn = document.getElementById("openDialog") as HTMLButtonElement;
+  const openBtns = document.querySelectorAll(".openDialog") ;
   const form = document.getElementById("feedbackForm") as HTMLFormElement;
   const nameInput = document.getElementById("name") as HTMLInputElement;
   const phoneInput = document.getElementById("phone") as HTMLInputElement;
   IMask(phoneInput, {
     mask: "{8}(000)000-00-00",
   });
+  console.log(openBtns);
+  
   const nameError = document.getElementById("nameError") as HTMLDivElement;
   const phoneError = document.getElementById("phoneError") as HTMLDivElement;
   const formMessage = document.getElementById("formMessage") as HTMLDivElement;
@@ -377,7 +379,7 @@ import Close from "../assets/icons/close.svg";
 
   const checkbox = document.getElementById("policy");
   confirmButton.disabled = true;
-  const API_URL = `http://127.0.0.1:1337/api/applications`;
+  const API_URL = `https://cms.agencymartu.ru/api/applications`;
   function clearErrors() {
     nameError.textContent = "";
     phoneError.textContent = "";
@@ -404,12 +406,14 @@ import Close from "../assets/icons/close.svg";
   //   }
   // });
 
-  openBtn.addEventListener("click", () => {
+  openBtns.forEach((button) => {
+   button.addEventListener("click", () => {
     clearErrors();
     dialog.classList.remove("animate-out");
     dialog.showModal();
     dialog.classList.add("animate-in");
   });
+  })
   closeButton.addEventListener("click", () => {
     clearErrors();
     dialog.classList.remove("animate-in");

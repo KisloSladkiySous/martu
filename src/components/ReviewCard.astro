@@ -10,7 +10,7 @@ const baseUrl = import.meta.env.STRAPI_URL;
   <div class="review_bottom">
     <div class="review-author">
       <Image
-        src={`${baseUrl}${review.avatar.formats.thumbnail.url}`}
+        src={`${baseUrl}${review.avatar.url}`}
         class="avatar"
         alt={review.avatar.alternativeText || review.author}
         width="28"

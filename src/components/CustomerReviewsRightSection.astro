@@ -3,6 +3,7 @@ import ReviewCard from "./ReviewCard.astro";
 // import reviews from "../data/reviews.json";
 
 import fetchApi from "../lib/strapi";
+import { record } from "astro:schema";
 const reviews = await fetchApi<[]>({
   endpoint: "reviews?populate=*", // the content type to fetch
   wrappedByKey: "data", // the key to unwrap the response
