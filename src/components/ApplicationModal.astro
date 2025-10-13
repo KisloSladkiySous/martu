@@ -2,119 +2,179 @@
 import Close from "../assets/icons/close.svg";
 ---
 
-
 <dialog id="feedbackDialog">
   <div class="dialog-toolbar">
-    <Close id="closeButton"></Close>
+    <Close id="closeButton" />
   </div>
   <h2 class="dialog-title">
-    Получите бесплатную консультациюи подбор идеальных локаций!
+    Получите бесплатную консультацию <br class="desktop" />и подбор идеальных
+    локаций!
   </h2>
   <form id="feedbackForm">
-    <div class="form-group">
-      <label for="name">Ваше имя:</label>
-      <input type="text" id="name" name="name" placeholder="Иванов Иван" />
-      <div class="error-message" id="nameError"></div>
-    </div>
-    <div class="form-group">
-      <label for="phone">Ваш телефон:</label>
-      <input
-        type="tel"
-        id="phone"
-        name="phone"
-        inputmode="numeric"
-        placeholder="8(___) ___-__-__"
-      />
-      <div class="error-message" id="phoneError"></div>
+    <div class="form-inputs">
+      <div class="form-group">
+        <label for="name" class="form-input__label">Ваше имя:</label>
+        <input
+          class="form-input"
+          type="text"
+          id="name"
+          name="name"
+          required
+          placeholder="Ваше имя"
+        />
+        <div class="error-message" id="nameError"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="phone" class="form-input__label">Ваш телефон:</label>
+        <input
+          class="form-input"
+          required
+          type="tel"
+          id="phone"
+          name="phone"
+          inputmode="numeric"
+          placeholder="+7 (___) ___-__-__"
+        />
+        <div class="error-message" id="phoneError"></div>
+      </div>
     </div>
 
     <div class="form-actions">
       <button class="confirm-buton" id="confirmButton" type="submit"
         >Оставить заявку</button
       >
-      <label class="agreement">
+      <label class="agreement" for="policy">
         <input type="checkbox" id="policy" />
         <span class="checkmark"></span>
-        <!-- TODO: заменить на тег a -->
-        Я соглашаюсь с <span class="brand-color italic"
-          >политикой конфиденциальности</span
-        > и обработкой персональных данных
+        <span>
+          Я соглашаюсь с
+          <a class="brand-color italic"> политикой конфиденциальности </a>
+          <br />
+          и обработкой персональных данных
+        </span>
       </label>
     </div>
     <div id="formMessage" class="success"></div>
   </form>
 </dialog>
+
 <style>
-  dialog {
-    border: none;
-    padding: 26px;
-    width: 67vw;
-    max-width: 1200px;
-    background: #f8f2e9;
-    margin: auto;
+  @keyframes scale-down {
+    from {
+      opacity: 1;
+      transform: scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: scale(0.95);
+    }
   }
 
-  dialog::backdrop {
+  @keyframes scale-up {
+    from {
+      opacity: 0.3;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes opacity-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  #formMessage {
+    display: contents;
+  }
+  #feedbackDialog {
+    border: none;
+    padding: 7rem;
+    width: 67vw;
+    max-width: 75rem;
+    background: #f8f2e9;
+    margin: auto;
+    animation: 0.4s scale-down forwards ease-out;
+    animation-timing-function: var(--ease-squish-3);
+  }
+
+  #feedbackDialog[open] {
+    animation: 0.4s scale-up forwards;
+  }
+
+  #feedbackDialog::backdrop {
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(4px);
+    animation: 0.4s opacity-in forwards ease-out;
   }
 
   .dialog-title {
     margin-top: 0;
-    margin-bottom: 24px;
+    margin-bottom: 1.5rem;
     font-size: var(--fs-32);
-    line-height: var(--lh-32);
-    color: #444444;
+    line-height: 2.4rem;
+    color: var(--text-color-secondary);
     text-align: center;
   }
+
   #feedbackForm {
-    padding: 2px 94px;
     max-width: 50%;
     margin: 0 auto;
   }
+
   #policy {
-    width: 16px;
-    height: 16px;
+    width: 1rem;
+    height: 1rem;
     background-color: #f0d8b5;
     border: 1px solid #caac81;
   }
 
   .form-group {
-    margin-bottom: 20px;
+    margin: 0.625rem 0;
   }
 
-  label {
+  .form-input__label {
     display: block;
-    margin-bottom: 8px;
+    margin-left: 0.5rem;
+    margin-bottom: 0.25rem;
     font-size: var(--fs-14);
     line-height: var(--lh-14);
-    color: #444444;
+    color: var(--text-color-secondary);
   }
 
-  input {
+  .form-input {
     width: 100%;
     box-sizing: border-box;
-    border: 1px solid #f0d8b5;
+    border: 1px solid #f7eee0;
     border-radius: 999px;
-    font-size: 16px;
+    font-size: 1rem;
     background-color: #fff9f0;
     padding: 0.75rem 1.5rem;
-    color: #444444;
+    color: var(--text-color-secondary);
   }
 
-  input:focus {
+  .form-input:focus {
     outline: none;
+    border-color: #f0d8b5;
   }
 
-  input.error {
+  .form-input.error {
     border-color: #e74c3c;
     background-color: #fdf2f2;
   }
 
   .error-message {
-    min-height: 20px;
-    margin-top: 6px;
-    font-size: 13px;
+    display: contents;
+    min-height: 1.25rem;
+    font-size: var(--fs-14);
+    line-height: var(--lh-14);
     color: #e74c3c;
   }
 
@@ -129,7 +189,6 @@ import Close from "../assets/icons/close.svg";
   .form-actions {
     display: flex;
     flex-direction: column;
-    margin-top: 16px;
   }
 
   .form-actions button {
@@ -141,6 +200,7 @@ import Close from "../assets/icons/close.svg";
   }
 
   .confirm-buton {
+    margin: 0.5rem 0;
     overflow: hidden;
     background-color: rgba(#f0d8b5, 1);
     color: #5a5348;
@@ -200,7 +260,11 @@ import Close from "../assets/icons/close.svg";
     }
   }
   .agreement {
-    margin-top: 18px;
+    user-select: none;
+    margin: 0.625rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
   }
   .agreement input {
     display: none;
@@ -208,13 +272,14 @@ import Close from "../assets/icons/close.svg";
 
   .checkmark {
     display: inline-block;
-    width: 16px;
-    height: 16px;
-    border-radius: 6px;
+    aspect-ratio: 1;
+    height: 1rem;
+    border-radius: 0.375rem;
+    margin-top: 0.25rem;
     border: 1px solid #caac81;
-    background-color: #caac81;
+    background-color: #fff9f0;
     vertical-align: middle;
-    margin-right: 8px;
+    margin-right: 0.5rem;
     position: relative;
     transition:
       background-color 0.2s,
@@ -230,44 +295,75 @@ import Close from "../assets/icons/close.svg";
   .agreement input:checked + .checkmark::after {
     content: "";
     position: absolute;
-    left: 5px;
-    top: 1px;
-    width: 5px;
-    height: 9px;
+    left: 0.275rem;
+    top: 0.0625rem;
+    width: 0.3125rem;
+    height: 0.5625rem;
     border: solid #caac81;
-    border-width: 0 2px 2px 0;
+    border-width: 0 0.125rem 0.125rem 0;
     transform: rotate(45deg);
   }
   .agreement input:checked + .checkmark:hover {
     background-color: #f0d8b5;
   }
   .confirm-buton:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none !important;
-  box-shadow: none !important;
-}
-.dialog-toolbar {
-  display: flex;
-  justify-content: flex-end;
-}
-#closeButton:hover {
-  cursor: pointer;
-}
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+  .dialog-toolbar {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+  }
+  #closeButton:hover {
+    cursor: pointer;
+    color: var(--text-color-secondary);
+  }
+
+  @media (max-width: 1024px) {
+    #feedbackDialog {
+      padding: 0rem;
+      width: 100vw;
+      height: 70vh;
+      display: flex;
+      flex-direction: column;
+      padding: 6rem 0;
+    }
+    #feedbackForm {
+      margin-left: 1rem;
+      margin-right: 1rem;
+      flex: 1;
+      max-width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .form-inputs {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .dialog-toolbar {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+  }
 </style>
 <script>
-  import IMask from 'imask';
+  import IMask from "imask";
   const dialog = document.getElementById("feedbackDialog") as HTMLDialogElement;
   const openBtn = document.getElementById("openDialog") as HTMLButtonElement;
   const form = document.getElementById("feedbackForm") as HTMLFormElement;
   const nameInput = document.getElementById("name") as HTMLInputElement;
   const phoneInput = document.getElementById("phone") as HTMLInputElement;
-  IMask(
-  phoneInput,
-  {
-    mask: '+{7}(000)000-00-00'
-  }
-)
+  IMask(phoneInput, {
+    mask: "+{7}(000)000-00-00",
+  });
   const nameError = document.getElementById("nameError") as HTMLDivElement;
   const phoneError = document.getElementById("phoneError") as HTMLDivElement;
   const formMessage = document.getElementById("formMessage") as HTMLDivElement;
@@ -278,7 +374,7 @@ import Close from "../assets/icons/close.svg";
     "closeButton"
   ) as HTMLButtonElement;
   console.log(closeButton);
-  
+
   const checkbox = document.getElementById("policy");
   confirmButton.disabled = true;
   const API_URL = `http://127.0.0.1:1337/api/applications`;
@@ -310,12 +406,16 @@ import Close from "../assets/icons/close.svg";
 
   openBtn.addEventListener("click", () => {
     clearErrors();
+    dialog.classList.remove("animate-out");
     dialog.showModal();
+    dialog.classList.add("animate-in");
   });
-  closeButton.addEventListener('click', () => {
-    clearErrors()
-    dialog.close()
-  })
+  closeButton.addEventListener("click", () => {
+    clearErrors();
+    dialog.classList.remove("animate-in");
+    dialog.classList.add("animate-out");
+    dialog.close();
+  });
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     clearErrors();
@@ -370,6 +470,5 @@ import Close from "../assets/icons/close.svg";
 
   checkbox.addEventListener("change", () => {
     confirmButton.disabled = !checkbox.checked;
- 
   });
 </script>
