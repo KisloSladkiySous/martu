@@ -1,52 +1,82 @@
-  <dialog id="feedbackDialog">
-    <h2>Оставьте ваши контакты</h2>
-    <form id="feedbackForm">
-      <div class="form-group">
-        <label for="name">Имя:</label>
-        <input type="text" id="name" name="name">
-        <div class="error-message" id="nameError"></div>
-      </div>
-      <div class="form-group">
-        <label for="phone">Телефон (11 цифр, например: 79123456789):</label>
-        <input type="tel" id="phone" name="phone" inputmode="numeric" maxlength="11">
-        <div class="error-message" id="phoneError"></div>
-      </div>
-      <div id="formMessage" class="success"></div>
-      <div class="form-actions">
-        <button type="button" id="cancelBtn">Отмена</button>
-        <button type="submit">Отправить</button>
-      </div>
-    </form>
-  </dialog>
+---
+import Close from "../assets/icons/close.svg";
+---
+
+
+<dialog id="feedbackDialog">
+  <div class="dialog-toolbar">
+    <Close id="closeButton"></Close>
+  </div>
+  <h2 class="dialog-title">
+    Получите бесплатную консультациюи подбор идеальных локаций!
+  </h2>
+  <form id="feedbackForm">
+    <div class="form-group">
+      <label for="name">Ваше имя:</label>
+      <input type="text" id="name" name="name" placeholder="Иванов Иван" />
+      <div class="error-message" id="nameError"></div>
+    </div>
+    <div class="form-group">
+      <label for="phone">Ваш телефон:</label>
+      <input
+        type="tel"
+        id="phone"
+        name="phone"
+        inputmode="numeric"
+        placeholder="8(___) ___-__-__"
+      />
+      <div class="error-message" id="phoneError"></div>
+    </div>
+
+    <div class="form-actions">
+      <button class="confirm-buton" id="confirmButton" type="submit"
+        >Оставить заявку</button
+      >
+      <label class="agreement">
+        <input type="checkbox" id="policy" />
+        <span class="checkmark"></span>
+        <!-- TODO: заменить на тег a -->
+        Я соглашаюсь с <span class="brand-color italic"
+          >политикой конфиденциальности</span
+        > и обработкой персональных данных
+      </label>
+    </div>
+    <div id="formMessage" class="success"></div>
+  </form>
+</dialog>
 <style>
-  /* Сбросим только то, что нужно */
   dialog {
     border: none;
-    border-radius: 16px;
-    padding: 32px;
-    width: 90vw; /* 90% ширины окна */
-    max-width: 500px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-    background: #ffffff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #333;
-    margin: auto; /* важно для центрирования в dialog */
+    padding: 26px;
+    width: 67vw;
+    max-width: 1200px;
+    background: #f8f2e9;
+    margin: auto;
   }
 
-  /* Фон затемнения */
   dialog::backdrop {
     background: rgba(0, 0, 0, 0.6);
-    /* backdrop-filter не обязателен, но добавляет эффект */
     backdrop-filter: blur(4px);
   }
 
-  dialog h2 {
+  .dialog-title {
     margin-top: 0;
     margin-bottom: 24px;
-    font-size: 24px;
-    font-weight: 600;
-    color: #2c3e50;
+    font-size: var(--fs-32);
+    line-height: var(--lh-32);
+    color: #444444;
     text-align: center;
+  }
+  #feedbackForm {
+    padding: 2px 94px;
+    max-width: 50%;
+    margin: 0 auto;
+  }
+  #policy {
+    width: 16px;
+    height: 16px;
+    background-color: #f0d8b5;
+    border: 1px solid #caac81;
   }
 
   .form-group {
@@ -56,27 +86,24 @@
   label {
     display: block;
     margin-bottom: 8px;
-    font-weight: 600;
-    font-size: 14px;
-    color: #2c3e50;
+    font-size: var(--fs-14);
+    line-height: var(--lh-14);
+    color: #444444;
   }
 
   input {
     width: 100%;
-    padding: 12px 16px;
     box-sizing: border-box;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    border: 1px solid #f0d8b5;
+    border-radius: 999px;
     font-size: 16px;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    background-color: #fafafa;
+    background-color: #fff9f0;
+    padding: 0.75rem 1.5rem;
+    color: #444444;
   }
 
   input:focus {
     outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
-    background-color: #fff;
   }
 
   input.error {
@@ -101,145 +128,248 @@
 
   .form-actions {
     display: flex;
-    justify-content: flex-end;
-    gap: 12px;
+    flex-direction: column;
     margin-top: 16px;
   }
 
   .form-actions button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.2s, transform 0.1s;
+    background-color: #f0d8b5;
+    transition:
+      background-color 0.2s,
+      transform 0.1s;
   }
 
-  .form-actions button:hover {
-    transform: translateY(-2px);
+  .confirm-buton {
+    overflow: hidden;
+    background-color: rgba(#f0d8b5, 1);
+    color: #5a5348;
+    font-size: var(--fs-18);
+    line-height: var(--lh-18);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: none;
+    border-radius: 999px;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    padding: 0.7em 2em;
+    box-shadow: 0 10px 40px 10px rgb(255, 255, 255, 0);
+    transition: all 0.2s ease-out;
   }
 
-  .form-actions button:active {
-    transform: translateY(0);
+  @media (hover: hover) {
+    .confirm-buton:hover {
+      transform: scale(1.02) translateY(-5%);
+      background-color: rgba(var(--backgroundColor), calc(var(--alpha) + 0.05));
+      box-shadow: 0 4px 40px 20px rgb(255, 255, 255, 0.05);
+    }
+  }
+  .confirm-buton:active {
+    transform: scale(1.04) translateY(-5%);
+    background-color: rgba(var(--backgroundColor), calc(var(--alpha) + 0.1));
+  }
+  .confirm-buton::before {
+    content: "";
+    background: linear-gradient(
+      60deg,
+      #0000,
+      #0000,
+      rgba(255, 255, 255, 0.15),
+      #0000,
+      #0000
+    );
+    width: 100%;
+    height: 100%;
+    animation: infinite slide-in 4s ease-out;
+    position: absolute;
+    top: 0;
+    left: -100%;
+    z-index: 1;
   }
 
-  #cancelBtn {
-    background-color: #ecf0f1;
-    color: #7f8c8d;
-  }
-
-  #cancelBtn:hover {
-    background-color: #d5dbdb;
-  }
-
-  button[type="submit"] {
-    background-color: #3498db;
-    color: white;
-  }
-
-  button[type="submit"]:hover {
-    background-color: #2980b9;
-  }
-</style> 
-  <script>
-
-    const dialog = document.getElementById('feedbackDialog') as HTMLDialogElement;
-    const openBtn = document.getElementById('openDialog') as HTMLButtonElement;
-    const cancelBtn = document.getElementById('cancelBtn') as HTMLButtonElement;
-    const form = document.getElementById('feedbackForm') as HTMLFormElement;
-    const nameInput = document.getElementById('name') as HTMLInputElement;
-    const phoneInput = document.getElementById('phone') as HTMLInputElement;
-    const nameError = document.getElementById('nameError') as HTMLDivElement;
-    const phoneError = document.getElementById('phoneError') as HTMLDivElement;
-    const formMessage = document.getElementById('formMessage') as HTMLDivElement;
-
-    const API_URL = `http://127.0.0.1:1337/api/applications`; // Замените на ваш эндпоинт
-
-
-    function clearErrors() {
-      nameError.textContent = '';
-      phoneError.textContent = '';
-      nameInput.classList.remove('error');
-      phoneInput.classList.remove('error');
-      formMessage.textContent = '';
+  @keyframes slide-in {
+    0%,
+    20% {
+      transform: translateX(0);
     }
 
+    80%,
+    100% {
+      transform: translateX(300%);
+    }
+  }
+  .agreement {
+    margin-top: 18px;
+  }
+  .agreement input {
+    display: none;
+  }
 
-    phoneInput.addEventListener('input', () => {
-      phoneInput.value = phoneInput.value.replace(/\D/g, '').slice(0, 11);
-    });
+  .checkmark {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 6px;
+    border: 1px solid #caac81;
+    background-color: #caac81;
+    vertical-align: middle;
+    margin-right: 8px;
+    position: relative;
+    transition:
+      background-color 0.2s,
+      border-color 0.2s;
+  }
 
+  .agreement input:checked + .checkmark {
+    background-color: #f0d8b5;
+    border-color: #caac81 !important;
+    border: 1px solid;
+  }
 
-    phoneInput.addEventListener('keydown', (e) => {
-      if (
-        [46, 8, 9, 27, 13, 37, 38, 39, 40].includes(e.keyCode) ||
-        (e.ctrlKey && [65, 67, 86, 88].includes(e.keyCode))
-      ) return;
-      if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-        e.preventDefault();
+  .agreement input:checked + .checkmark::after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 1px;
+    width: 5px;
+    height: 9px;
+    border: solid #caac81;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  .agreement input:checked + .checkmark:hover {
+    background-color: #f0d8b5;
+  }
+  .confirm-buton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+.dialog-toolbar {
+  display: flex;
+  justify-content: flex-end;
+}
+#closeButton:hover {
+  cursor: pointer;
+}
+</style>
+<script>
+  import IMask from 'imask';
+  const dialog = document.getElementById("feedbackDialog") as HTMLDialogElement;
+  const openBtn = document.getElementById("openDialog") as HTMLButtonElement;
+  const form = document.getElementById("feedbackForm") as HTMLFormElement;
+  const nameInput = document.getElementById("name") as HTMLInputElement;
+  const phoneInput = document.getElementById("phone") as HTMLInputElement;
+  IMask(
+  phoneInput,
+  {
+    mask: '+{7}(000)000-00-00'
+  }
+)
+  const nameError = document.getElementById("nameError") as HTMLDivElement;
+  const phoneError = document.getElementById("phoneError") as HTMLDivElement;
+  const formMessage = document.getElementById("formMessage") as HTMLDivElement;
+  const confirmButton = document.getElementById(
+    "confirmButton"
+  ) as HTMLButtonElement;
+  const closeButton = document.getElementById(
+    "closeButton"
+  ) as HTMLButtonElement;
+  console.log(closeButton);
+  
+  const checkbox = document.getElementById("policy");
+  confirmButton.disabled = true;
+  const API_URL = `http://127.0.0.1:1337/api/applications`;
+  function clearErrors() {
+    nameError.textContent = "";
+    phoneError.textContent = "";
+    nameInput.classList.remove("error");
+    phoneInput.classList.remove("error");
+    formMessage.textContent = "";
+  }
+
+  // phoneInput.addEventListener("input", () => {
+  //   phoneInput.value = phoneInput.value.replace(/\D/g, "").slice(0, 11);
+  // });
+
+  // phoneInput.addEventListener("keydown", (e) => {
+  //   if (
+  //     [46, 8, 9, 27, 13, 37, 38, 39, 40].includes(e.keyCode) ||
+  //     (e.ctrlKey && [65, 67, 86, 88].includes(e.keyCode))
+  //   )
+  //     return;
+  //   if (
+  //     (e.shiftKey || e.keyCode < 48 || e.keyCode > 57) &&
+  //     (e.keyCode < 96 || e.keyCode > 105)
+  //   ) {
+  //     e.preventDefault();
+  //   }
+  // });
+
+  openBtn.addEventListener("click", () => {
+    clearErrors();
+    dialog.showModal();
+  });
+  closeButton.addEventListener('click', () => {
+    clearErrors()
+    dialog.close()
+  })
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    clearErrors();
+
+    const name = nameInput.value.trim();
+    const phone_number = phoneInput.value.trim();
+
+    let hasError = false;
+
+    if (!name) {
+      nameError.textContent = "Пожалуйста, укажите имя.";
+      nameInput.classList.add("error");
+      hasError = true;
+    }
+
+    // if (!/^\d{11}$/.test(phone_number)) {
+    //   phoneError.textContent =
+    //     "Телефон должен содержать ровно 11 цифр (например: 79123456789).";
+    //   phoneInput.classList.add("error");
+    //   hasError = true;
+    // }
+
+    if (hasError) return;
+
+    try {
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          data: { phone_number, name },
+        }),
+      });
+
+      if (response.ok) {
+        formMessage.textContent = "Спасибо! Ваши данные успешно отправлены.";
+        formMessage.className = "success";
+        form.reset();
+        setTimeout(() => {
+          dialog.close();
+          clearErrors();
+        }, 1500);
+      } else {
+        throw new Error("Ошибка сервера");
       }
-    });
+    } catch (error) {
+      console.error("Ошибка:", error);
+      formMessage.textContent =
+        "Не удалось отправить данные. Попробуйте позже.";
+      formMessage.className = "error-message";
+    }
+  });
 
+  checkbox.addEventListener("change", () => {
+    confirmButton.disabled = !checkbox.checked;
  
-    openBtn.addEventListener('click', () => {
-      clearErrors();
-      dialog.showModal();
-    });
-
-    cancelBtn.addEventListener('click', () => {
-      dialog.close();
-      clearErrors();
-    });
-
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      clearErrors();
-
-      const name = nameInput.value.trim();
-      const phone_number = phoneInput.value.trim();
-
-      let hasError = false;
-
-      if (!name) {
-        nameError.textContent = 'Пожалуйста, укажите имя.';
-        nameInput.classList.add('error');
-        hasError = true;
-      }
-
-      if (!/^\d{11}$/.test(phone_number)) {
-        phoneError.textContent = 'Телефон должен содержать ровно 11 цифр (например: 79123456789).';
-        phoneInput.classList.add('error');
-        hasError = true;
-      }
-
-      if (hasError) return;
-
-      try {
-        const response = await fetch(API_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            data:{  phone_number, name}
-          })
-        });
-
-        if (response.ok) {
-          formMessage.textContent = 'Спасибо! Ваши данные успешно отправлены.';
-          formMessage.className = 'success';
-          form.reset();
-          setTimeout(() => {
-            dialog.close();
-            clearErrors();
-          }, 1500);
-        } else {
-          throw new Error('Ошибка сервера');
-        }
-      } catch (error) {
-        console.error('Ошибка:', error);
-        formMessage.textContent = 'Не удалось отправить данные. Попробуйте позже.';
-        formMessage.className = 'error-message';
-      }
-    });
-  </script>
+  });
+</script>

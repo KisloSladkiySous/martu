@@ -7,4 +7,5 @@ html {
 }
 .scroll-snap-disabled {
   scroll-snap-type: none !important;
+  height: unset;
 }

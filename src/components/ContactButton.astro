@@ -8,16 +8,13 @@ const {
 } = Astro.props;
 ---
 
-<a
-  href={link}
+<button
   class="contact-us"
-  target={target}
   aria-label="Связаться с нами"
-  rel="noopener noreferrer"
   id="openDialog"
 >
   <slot> Связаться с нами </slot>
-</a>
+</button>
 
 <style define:vars={{ textColor, backgroundColor, alpha }}>
   .contact-us {
