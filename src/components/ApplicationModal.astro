@@ -361,9 +361,18 @@ import Close from "../assets/icons/close.svg";
   const form = document.getElementById("feedbackForm") as HTMLFormElement;
   const nameInput = document.getElementById("name") as HTMLInputElement;
   const phoneInput = document.getElementById("phone") as HTMLInputElement;
+<<<<<<< HEAD
   IMask(phoneInput, {
     mask: "+{7}(000)000-00-00",
   });
+=======
+  IMask(
+  phoneInput,
+  {
+    mask: '{8}(000)000-00-00'
+  }
+)
+>>>>>>> 9b94c625f9414c9de2b1fc35292ed83ddf65cb16
   const nameError = document.getElementById("nameError") as HTMLDivElement;
   const phoneError = document.getElementById("phoneError") as HTMLDivElement;
   const formMessage = document.getElementById("formMessage") as HTMLDivElement;
@@ -430,13 +439,15 @@ import Close from "../assets/icons/close.svg";
       nameInput.classList.add("error");
       hasError = true;
     }
+    const cleanedNumber =  phone_number.replace(/\D/g, '');
+     const phoneRegex =  /^[78]\d{10}$/;
 
-    // if (!/^\d{11}$/.test(phone_number)) {
-    //   phoneError.textContent =
-    //     "Телефон должен содержать ровно 11 цифр (например: 79123456789).";
-    //   phoneInput.classList.add("error");
-    //   hasError = true;
-    // }
+    if (!phoneRegex.test(cleanedNumber)) {
+      phoneError.textContent =
+        "Телефон должен содержать ровно 11 цифр (например: 8(912)345-67-89).";
+      phoneInput.classList.add("error");
+      hasError = true;
+    }
 
     if (hasError) return;
 
