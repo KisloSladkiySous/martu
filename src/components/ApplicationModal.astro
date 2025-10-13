@@ -265,7 +265,7 @@ import Close from "../assets/icons/close.svg";
   IMask(
   phoneInput,
   {
-    mask: '+{7}(000)000-00-00'
+    mask: '{8}(000)000-00-00'
   }
 )
   const nameError = document.getElementById("nameError") as HTMLDivElement;
@@ -330,13 +330,15 @@ import Close from "../assets/icons/close.svg";
       nameInput.classList.add("error");
       hasError = true;
     }
+    const cleanedNumber =  phone_number.replace(/\D/g, '');
+     const phoneRegex =  /^[78]\d{10}$/;
 
-    // if (!/^\d{11}$/.test(phone_number)) {
-    //   phoneError.textContent =
-    //     "Телефон должен содержать ровно 11 цифр (например: 79123456789).";
-    //   phoneInput.classList.add("error");
-    //   hasError = true;
-    // }
+    if (!phoneRegex.test(cleanedNumber)) {
+      phoneError.textContent =
+        "Телефон должен содержать ровно 11 цифр (например: 8(912)345-67-89).";
+      phoneInput.classList.add("error");
+      hasError = true;
+    }
 
     if (hasError) return;
 
