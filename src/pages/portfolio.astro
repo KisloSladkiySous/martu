@@ -9,59 +9,59 @@ const cases = await fetchApi<any[]>({
   wrappedByKey: "data", // the key to unwrap the response
 });
 
-console.log("fetch", cases[0].images[0].formats);
+// console.log("fetch", cases[0].images[0].formats);
 
-const pavel2023 = import.meta.glob<{ default: ImageMetadata }>(
-  `/src/assets/uploads/pavel2023/*.{jpeg,jpg,png,gif}`
-);
-const nikita2023 = import.meta.glob<{ default: ImageMetadata }>(
-  `/src/assets/uploads/nikita2023/*.{jpeg,jpg,png,gif,JPG}`
-);
-const grisha2024 = import.meta.glob<{ default: ImageMetadata }>(
-  `/src/assets/uploads/grisha2024/*.{jpeg,jpg,png,gif,JPG}`
-);
-const dmitriy2024 = import.meta.glob<{ default: ImageMetadata }>(
-  `/src/assets/uploads/dmitriy2024/*.{jpeg,jpg,png,gif,JPG}`
-);
-const timofey2024 = import.meta.glob<{ default: ImageMetadata }>(
-  `/src/assets/uploads/timofey2024/*.{jpeg,jpg,png,gif,JPG}`
-);
-const inna2025 = import.meta.glob<{ default: ImageMetadata }>(
-  `/src/assets/uploads/inna2025/*.{jpeg,jpg,png,gif,JPG}`
-);
-const maksimvasilisa2025 = import.meta.glob<{ default: ImageMetadata }>(
-  `/src/assets/uploads/maksimvasilisa2025/*.{jpeg,jpg,png,gif,JPG}`
-);
-const aleksdaris2025 = import.meta.glob<{ default: ImageMetadata }>(
-  `/src/assets/uploads/aleksdaris2025/*.{jpeg,jpg,png,gif,JPG}`
-);
-const tolya2025 = import.meta.glob<{ default: ImageMetadata }>(
-  `/src/assets/uploads/tolya2025/*.{jpeg,jpg,png,gif,JPG}`
-);
-const sergeyoksana2025 = import.meta.glob<{ default: ImageMetadata }>(
-  `/src/assets/uploads/sergeyoksana2025/*.{jpeg,jpg,png,gif,JPG}`
-);
-const danilpolina2025 = import.meta.glob<{ default: ImageMetadata }>(
-  `/src/assets/uploads/danilpolina2025/*.{jpeg,jpg,png,gif,JPG}`
-);
-const vitaly2025 = import.meta.glob<{ default: ImageMetadata }>(
-  `/src/assets/uploads/vitaly2025/*.{jpeg,jpg,png,gif,JPG}`
-);
+// const pavel2023 = import.meta.glob<{ default: ImageMetadata }>(
+//   `/src/assets/uploads/pavel2023/*.{jpeg,jpg,png,gif}`
+// );
+// const nikita2023 = import.meta.glob<{ default: ImageMetadata }>(
+//   `/src/assets/uploads/nikita2023/*.{jpeg,jpg,png,gif,JPG}`
+// );
+// const grisha2024 = import.meta.glob<{ default: ImageMetadata }>(
+//   `/src/assets/uploads/grisha2024/*.{jpeg,jpg,png,gif,JPG}`
+// );
+// const dmitriy2024 = import.meta.glob<{ default: ImageMetadata }>(
+//   `/src/assets/uploads/dmitriy2024/*.{jpeg,jpg,png,gif,JPG}`
+// );
+// const timofey2024 = import.meta.glob<{ default: ImageMetadata }>(
+//   `/src/assets/uploads/timofey2024/*.{jpeg,jpg,png,gif,JPG}`
+// );
+// const inna2025 = import.meta.glob<{ default: ImageMetadata }>(
+//   `/src/assets/uploads/inna2025/*.{jpeg,jpg,png,gif,JPG}`
+// );
+// const maksimvasilisa2025 = import.meta.glob<{ default: ImageMetadata }>(
+//   `/src/assets/uploads/maksimvasilisa2025/*.{jpeg,jpg,png,gif,JPG}`
+// );
+// const aleksdaris2025 = import.meta.glob<{ default: ImageMetadata }>(
+//   `/src/assets/uploads/aleksdaris2025/*.{jpeg,jpg,png,gif,JPG}`
+// );
+// const tolya2025 = import.meta.glob<{ default: ImageMetadata }>(
+//   `/src/assets/uploads/tolya2025/*.{jpeg,jpg,png,gif,JPG}`
+// );
+// const sergeyoksana2025 = import.meta.glob<{ default: ImageMetadata }>(
+//   `/src/assets/uploads/sergeyoksana2025/*.{jpeg,jpg,png,gif,JPG}`
+// );
+// const danilpolina2025 = import.meta.glob<{ default: ImageMetadata }>(
+//   `/src/assets/uploads/danilpolina2025/*.{jpeg,jpg,png,gif,JPG}`
+// );
+// const vitaly2025 = import.meta.glob<{ default: ImageMetadata }>(
+//   `/src/assets/uploads/vitaly2025/*.{jpeg,jpg,png,gif,JPG}`
+// );
 
-const casesArray = [
-  pavel2023,
-  nikita2023,
-  grisha2024,
-  dmitriy2024,
-  timofey2024,
-  inna2025,
-  maksimvasilisa2025,
-  aleksdaris2025,
-  tolya2025,
-  sergeyoksana2025,
-  danilpolina2025,
-  vitaly2025,
-];
+// const casesArray = [
+//   pavel2023,
+//   nikita2023,
+//   grisha2024,
+//   dmitriy2024,
+//   timofey2024,
+//   inna2025,
+//   maksimvasilisa2025,
+//   aleksdaris2025,
+//   tolya2025,
+//   sergeyoksana2025,
+//   danilpolina2025,
+//   vitaly2025,
+// ];
 ---
 
 <Layout title="Martu - Портфолио">
