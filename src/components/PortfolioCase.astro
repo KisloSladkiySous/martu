@@ -4,7 +4,7 @@ import { Image } from "astro:assets";
 const { year, names, folder, images } = Astro.props;
 
 const initialCount = 12;
-const baseUrl = import.meta.env.STRAPI_URL;
+const baseUrl = import.meta.env.PUBLIC_STRAPI_URL;
 ---
 
 <div class="case-wrapper">
