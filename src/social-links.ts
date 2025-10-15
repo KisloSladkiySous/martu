@@ -7,4 +7,6 @@ export const socialLinks = {
   },
   wu: "https://wa.me/79999851083?text=Здравствуйте!%20Планируем%20свадьбу,%20нужна%20консультация.",
   tg: "https://t.me/+79999851083?text=Здравствуйте!%20Планируем%20свадьбу,%20нужна%20консультация.",
+  yandex:
+    "https://yandex.ru/navi/org/martu/127604881350?si=va7k1wfzf1tuyu2crxh42kg7a8",
 };
