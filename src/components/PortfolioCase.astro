@@ -177,9 +177,7 @@ const baseUrl = import.meta.env.PUBLIC_STRAPI_URL;
   document.addEventListener("DOMContentLoaded", () => {
     const loadBtns = document.querySelectorAll(".load-more");
     const hideBtn = document.querySelector('[data-on-click="hideExtraPhotos"]');
-    // console.log(loadBtns);
 
-    // animatePhotos();
 
     if (loadBtns) {
       loadBtns.forEach((button) => {
@@ -215,16 +213,6 @@ const baseUrl = import.meta.env.PUBLIC_STRAPI_URL;
       item.removeAttribute("data-hidden");
       shownCount++;
     }
-    //не работает )
-    // if (shownCount > 0) {
-    //   const hideBtn = document.querySelector(
-    //     `[data-section-name="${sectionName}"]`
-    //   );
-    //   if (hideBtn) hideBtn.style.display = "inline-block";
-    // }
-    // console.log(
-    //   targetGrid.querySelectorAll(`.photo-grid-item[data-hidden="true"]`)
-    // );
 
     if (
       targetGrid.querySelectorAll(`.photo-grid-item[data-hidden="true"]`)

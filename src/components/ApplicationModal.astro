@@ -34,7 +34,7 @@ import Close from "../assets/icons/close.svg";
           id="phone"
           name="phone"
           inputmode="numeric"
-          placeholder="+7 (___) ___-__-__"
+          placeholder="8 (___) ___-__-__"
         />
         <div class="error-message" id="phoneError"></div>
       </div>
@@ -357,15 +357,16 @@ import Close from "../assets/icons/close.svg";
 <script>
   import IMask from "imask";
   const dialog = document.getElementById("feedbackDialog") as HTMLDialogElement;
-  const openBtns = document.querySelectorAll(".openDialog");
+  const openBtns = document.querySelectorAll(".openDialog") ;
+  console.log(openBtns)
   const form = document.getElementById("feedbackForm") as HTMLFormElement;
   const nameInput = document.getElementById("name") as HTMLInputElement;
   const phoneInput = document.getElementById("phone") as HTMLInputElement;
   IMask(phoneInput, {
-    mask: "{8}(000)000-00-00",
+    mask: "0(000)000-00-00",
   });
-  console.log(openBtns);
 
+  
   const nameError = document.getElementById("nameError") as HTMLDivElement;
   const phoneError = document.getElementById("phoneError") as HTMLDivElement;
   const formMessage = document.getElementById("formMessage") as HTMLDivElement;
@@ -375,7 +376,7 @@ import Close from "../assets/icons/close.svg";
   const closeButton = document.getElementById(
     "closeButton"
   ) as HTMLButtonElement;
-  console.log(closeButton);
+
 
   const checkbox = document.getElementById("policy");
   confirmButton.disabled = true;
@@ -388,23 +389,7 @@ import Close from "../assets/icons/close.svg";
     formMessage.textContent = "";
   }
 
-  // phoneInput.addEventListener("input", () => {
-  //   phoneInput.value = phoneInput.value.replace(/\D/g, "").slice(0, 11);
-  // });
 
-  // phoneInput.addEventListener("keydown", (e) => {
-  //   if (
-  //     [46, 8, 9, 27, 13, 37, 38, 39, 40].includes(e.keyCode) ||
-  //     (e.ctrlKey && [65, 67, 86, 88].includes(e.keyCode))
-  //   )
-  //     return;
-  //   if (
-  //     (e.shiftKey || e.keyCode < 48 || e.keyCode > 57) &&
-  //     (e.keyCode < 96 || e.keyCode > 105)
-  //   ) {
-  //     e.preventDefault();
-  //   }
-  // });
 
   openBtns.forEach((button) => {
     button.addEventListener("click", () => {

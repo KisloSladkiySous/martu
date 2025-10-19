@@ -5,16 +5,32 @@ const {
   backgroundColor = "255, 255, 255",
   alpha = "0.2",
   target = "_blank",
-} = Astro.props;
----
+  cssClass
 
-<button
-  class="contact-us openDialog"
+} = Astro.props;
+
+
+---
+ {
+  link ? 
+  <a
+  href={link}
+  class="contact-us"
+  target={target}
+  aria-label="Связаться с нами"
+  rel="noopener noreferrer"
+>
+  <slot> Связаться с нами </slot>
+</a> : 
+  <button
+  class:list={[cssClass, "contact-us "]}
   aria-label="Связаться с нами"
   
 >
   <slot> Связаться с нами </slot>
 </button>
+ }
+
 
 <style define:vars={{ textColor, backgroundColor, alpha }}>
   .contact-us {
