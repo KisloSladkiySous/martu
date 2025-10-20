@@ -49,7 +49,9 @@ import Close from "../assets/icons/close.svg";
         <span class="checkmark"></span>
         <span>
           Я соглашаюсь с
-          <a class="brand-color italic"> политикой конфиденциальности </a>
+          <a class="brand-color italic" href="/privacy.pdf" target="_blank">
+            политикой конфиденциальности
+          </a>
           <br />
           и обработкой персональных данных
         </span>
@@ -357,8 +359,8 @@ import Close from "../assets/icons/close.svg";
 <script>
   import IMask from "imask";
   const dialog = document.getElementById("feedbackDialog") as HTMLDialogElement;
-  const openBtns = document.querySelectorAll(".openDialog") ;
-  console.log(openBtns)
+  const openBtns = document.querySelectorAll(".openDialog");
+  console.log(openBtns);
   const form = document.getElementById("feedbackForm") as HTMLFormElement;
   const nameInput = document.getElementById("name") as HTMLInputElement;
   const phoneInput = document.getElementById("phone") as HTMLInputElement;
@@ -366,7 +368,6 @@ import Close from "../assets/icons/close.svg";
     mask: "0(000)000-00-00",
   });
 
-  
   const nameError = document.getElementById("nameError") as HTMLDivElement;
   const phoneError = document.getElementById("phoneError") as HTMLDivElement;
   const formMessage = document.getElementById("formMessage") as HTMLDivElement;
@@ -376,7 +377,6 @@ import Close from "../assets/icons/close.svg";
   const closeButton = document.getElementById(
     "closeButton"
   ) as HTMLButtonElement;
-
 
   const checkbox = document.getElementById("policy");
   confirmButton.disabled = true;
@@ -388,8 +388,6 @@ import Close from "../assets/icons/close.svg";
     phoneInput.classList.remove("error");
     formMessage.textContent = "";
   }
-
-
 
   openBtns.forEach((button) => {
     button.addEventListener("click", () => {
