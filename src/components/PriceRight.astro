@@ -11,21 +11,20 @@ const { className } = Astro.props;
 
 <div class:list={[className, "section-column__wrapper"]}>
   <div class="section-column__wrapper-inner">
-    <h2 class="section__title">
+    <h2 class="section__title fs-32">
       Гибкие пакеты и <span class="brand-color italic underline"
         >индивидуальный
 
         <SvgAnimation bottom="0.4rem">
           <PricesSign />
         </SvgAnimation>
-      </span> подход <br />к каждой паре
+      </span> подход <br class="desktop" />к каждой паре
     </h2>
     <div class="content">
       <p class="content__title">
         От первого знакомства до последнего бокала <br class="mobile" /> шампанского
-        в финале вечера — мы берём на себя <br class="mobile" /> весь процесс: <br
-          class="desktop"
-        /> от идеи до реализации.
+        в финале вечера — мы берём на себя весь процесс: <br class="desktop" /> от
+        идеи до реализации.
       </p>
       <div class="content__list">
         <div class="content-item">
@@ -48,13 +47,15 @@ const { className } = Astro.props;
           <span>Приятные бонусы <br /> от агенства</span>
         </div>
       </div>
-      <p class="content__budget">
-        Стоимость услуг агентства составляет <br /> 10% от бюджета мероприятия.
-      </p>
-
-      <p class="content__budget">
-        Фиксированные тарифы обсуждаются <br /> в процессе подготовки.
-      </p>
+      <div></div>
+      <div class="content__budget">
+        <p style="margin-bottom: 0.3rem">
+          Стоимость услуг агентства составляет <br /> 10% от бюджета мероприятия.
+        </p>
+        <p>
+          Фиксированные тарифы обсуждаются <br /> в процессе подготовки.
+        </p>
+      </div>
 
       <div class="contact-button">
         <ContactButton
@@ -64,8 +65,12 @@ const { className } = Astro.props;
           alpha="1"
           textColor="rgba(85, 85, 85, 1)"
         >
-         Заказать расчёт стоимости</ContactButton
+          Заказать расчёт стоимости</ContactButton
         >
+
+        <p class="contact-button__description">
+          Оперативно подготовим расчёт <br /> бюджета мероприятия в 3-х вариантах
+        </p>
       </div>
     </div>
   </div>
@@ -128,8 +133,15 @@ const { className } = Astro.props;
   .contact-button {
     justify-content: center;
     display: flex;
+    flex-direction: column;
     margin-bottom: 1rem;
     margin-top: 1rem;
+  }
+
+  .contact-button__description {
+    margin-top: 0.6rem;
+    text-align: center;
+    color: var(--text-color-fourth);
   }
 
   @media (max-width: 1024px) {

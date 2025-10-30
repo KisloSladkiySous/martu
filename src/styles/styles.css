@@ -395,6 +395,11 @@ main {
   .pt-25 {
     padding-top: 0;
   }
+
+  .fs-32 {
+    font-size: var(--fs-32) !important;
+    line-height: var(--lh-32) !important;
+  }
 }
 .section-full {
   width: 100%;
