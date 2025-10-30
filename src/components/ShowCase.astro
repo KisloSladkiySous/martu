@@ -29,7 +29,9 @@ const { date, names, cssClass, hash } = Astro.props;
       ...target.querySelectorAll(".showcase__wrapper > *"),
     ];
     const isHero = target.parentElement?.id === "hero-1";
-    const delay = isHero ? 1 : 0;
+
+    let isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
+    const delay = isHero && !isMobile ? 1 : 0;
 
     const footerElements = target.querySelectorAll(".showcase__toolbar > *");
 
