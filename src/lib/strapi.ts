@@ -31,7 +31,15 @@ export default async function fetchApi<T>({
       url.searchParams.append(key, value);
     });
   }
-  const res = await fetch(url.toString());
+  const res = await fetch(url.toString(), {
+    method:'GET',
+      headers: {
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Pragma': 'no-cache',
+    'Expires': '0',
+  },
+  cache: 'no-store',
+  });
   let data = await res.json();
 
   if (wrappedByKey) {
