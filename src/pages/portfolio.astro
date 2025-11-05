@@ -8,6 +8,8 @@ const cases = await fetchApi<any[]>({
   endpoint: "cases?populate=*", // the content type to fetch
   wrappedByKey: "data", // the key to unwrap the response
 });
+console.log(cases);
+
 ---
 
 <Layout title="Martu - Портфолио">
