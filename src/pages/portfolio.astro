@@ -4,17 +4,16 @@ import Layout from "../layouts/Layout.astro";
 import ScrollToTopButton from "../components/ScrollToTopButton.astro";
 import fetchApi from "../lib/strapi";
 
-const cases = await fetchApi<any[]>({
-  endpoint: "cases?populate=*", // the content type to fetch
-  wrappedByKey: "data", // the key to unwrap the response
-});
-console.log(cases);
-
+// const cases = await fetchApi<any[]>({
+//   endpoint: "cases?populate=*", // the content type to fetch
+//   wrappedByKey: "data", // the key to unwrap the response
+// });
+// console.log(cases);
 ---
 
 <Layout title="Martu - Портфолио">
   <ScrollToTopButton />
-  <div class="cases">
+  <!-- <div class="cases">
     {
       cases.map((caseItem) => (
         <PortfolioCase
@@ -26,7 +25,7 @@ console.log(cases);
         />
       ))
     }
-  </div>
+  </div> -->
 </Layout>
 <style>
   .cases {
