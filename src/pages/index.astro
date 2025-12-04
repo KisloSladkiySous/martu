@@ -6,8 +6,8 @@ import AboutRightSection from "../components/AboutRightSection.astro";
 import AdvantagesLeftSection from "../components/AdvantagesLeftSection.astro";
 import AdvantagesRightSection from "../components/AdvantagesRightSection.astro";
 import Contacts from "../components/Contacts.astro";
-import CustomerReviewLeftSection from "../components/CustomerReviewLeftSection.astro";
-import CustomerReviewsRightSection from "../components/CustomerReviewsRightSection.astro";
+// import CustomerReviewLeftSection from "../components/CustomerReviewLeftSection.astro";
+// import CustomerReviewsRightSection from "../components/CustomerReviewsRightSection.astro";
 import HeroLeftSection from "../components/HeroLeftSection.astro";
 import HeroRightSection from "../components/HeroRightSection.astro";
 import PortfolioLeft from "../components/PortfolioLeft.astro";
@@ -135,21 +135,21 @@ const sections = [
       },
     ],
   },
-  {
-    id: "reviews",
-    children: [
-      {
-        component: CustomerReviewLeftSection,
-        props: {
-          className: "pt-4 section-column__wrapper_menu",
-        },
-      },
-      {
-        component: CustomerReviewsRightSection,
-        props: {},
-      },
-    ],
-  },
+  // {
+  //   id: "reviews",
+  //   children: [
+  //     {
+  //       component: CustomerReviewLeftSection,
+  //       props: {
+  //         className: "pt-4 section-column__wrapper_menu",
+  //       },
+  //     },
+  //     {
+  //       component: CustomerReviewsRightSection,
+  //       props: {},
+  //     },
+  //   ],
+  // },
   {
     id: "contacts",
     children: [
@@ -202,7 +202,7 @@ const renderAnchor = (parentIndex: number, index: number) => {
     }
     <!-- <Contacts /> -->
   </main>
-  <ApplicationModal></ApplicationModal>
+  <ApplicationModal />
 </Layout>
 
 <style>
