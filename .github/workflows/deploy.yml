@@ -24,11 +24,11 @@ jobs:
 
       - name: Build Astro project
         run: npm run build
-        env:
+        en›v:
           PUBLIC_STRAPI_URL: ${{ secrets.PUBLIC_STRAPI_URL }}
 
       - name: Deploy via SCP
-        uses: appleboy/scp-action@v0.1.4
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
