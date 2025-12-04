@@ -28,7 +28,7 @@ jobs:
           PUBLIC_STRAPI_URL: ${{ secrets.PUBLIC_STRAPI_URL }}
 
       - name: Deploy via SCP
-        uses: appleboy/ssh-action@master
+        uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
