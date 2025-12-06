@@ -11,5 +11,6 @@ export default defineConfig({
   image: {
     domains: ["cms.agencymartu.ru", "127.0.0.1:1337"],
   },
+  output: "server",
   // output: "static",
 });
