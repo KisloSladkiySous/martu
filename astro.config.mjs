@@ -12,5 +12,10 @@ export default defineConfig({
     domains: ["cms.agencymartu.ru", "127.0.0.1:1337"],
   },
   output: "server",
+  vite: {
+    ssr: {
+      noExternal: ["piccolore", "@astrojs/node"],
+    },
+  },
   // output: "static",
 });
