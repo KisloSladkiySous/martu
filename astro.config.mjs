@@ -14,7 +14,7 @@ export default defineConfig({
   output: "server",
   vite: {
     ssr: {
-      noExternal: ["piccolore", "@astrojs/node"],
+      noExternal: ["piccolore", "@astrojs/node", "clsx"],
     },
   },
   // output: "static",
