@@ -3,6 +3,7 @@ import "../styles/normalize.css";
 import "../styles/scroll.css";
 import "../styles/styles.css";
 import Navigation from "../components/Navigation.astro";
+import CookieConsent from "../components/CookieConsent.astro";
 
 const { title } = Astro.props;
 ---
@@ -105,56 +106,58 @@ const { title } = Astro.props;
       window.addEventListener("load", updateScale);
     </script>
 
-    <script type="text/javascript">
-      (function (m, e, t, r, i, k, a) {
-        m[i] =
-          m[i] ||
-          function () {
-            (m[i].a = m[i].a || []).push(arguments);
-          };
-        m[i].l = 1 * new Date();
-        for (var j = 0; j < document.scripts.length; j++) {
-          if (document.scripts[j].src === r) {
-            return;
-          }
-        }
-        (k = e.createElement(t)),
-          (a = e.getElementsByTagName(t)[0]),
-          (k.async = 1),
-          (k.src = r),
-          a.parentNode.insertBefore(k, a);
-      })(
-        window,
-        document,
-        "script",
-        "https://mc.yandex.ru/metrika/tag.js?id=104200119",
-        "ym"
-      );
+    <script is:inline type="text/javascript">
+      // Яндекс.Метрика инициализируется только после согласия на cookie
+      // (см. компонент CookieConsent). Согласие хранится в localStorage.
+      window.initMetrika = function () {
+        if (window.__metrikaLoaded) return;
+        window.__metrikaLoaded = true;
 
-      ym(104200119, "init", {
-        ssr: true,
-        webvisor: true,
-        clickmap: true,
-        ecommerce: "dataLayer",
-        accurateTrackBounce: true,
-        trackLinks: true,
-      });
+        (function (m, e, t, r, i, k, a) {
+          m[i] =
+            m[i] ||
+            function () {
+              (m[i].a = m[i].a || []).push(arguments);
+            };
+          m[i].l = 1 * new Date();
+          for (var j = 0; j < document.scripts.length; j++) {
+            if (document.scripts[j].src === r) {
+              return;
+            }
+          }
+          (k = e.createElement(t)),
+            (a = e.getElementsByTagName(t)[0]),
+            (k.async = 1),
+            (k.src = r),
+            a.parentNode.insertBefore(k, a);
+        })(
+          window,
+          document,
+          "script",
+          "https://mc.yandex.ru/metrika/tag.js?id=104200119",
+          "ym"
+        );
+
+        ym(104200119, "init", {
+          ssr: true,
+          webvisor: true,
+          clickmap: true,
+          ecommerce: "dataLayer",
+          accurateTrackBounce: true,
+          trackLinks: true,
+        });
+      };
+
+      // Пользователь уже давал согласие ранее — инициализируем сразу
+      if (localStorage.getItem("cookie-consent") === "accepted") {
+        window.initMetrika();
+      }
     </script>
   </head>
 
   <body>
-    <!-- Yandex.Metrika counter -->
-    <noscript>
-      <div>
-        <img
-          src="https://mc.yandex.ru/watch/104200119"
-          style="position:absolute; left:-9999px;"
-          alt=""
-        />
-      </div>
-    </noscript>
-    <!-- /Yandex.Metrika counter -->
     <Navigation />
     <slot />
+    <CookieConsent />
   </body>
 </html>

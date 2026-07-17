@@ -1,0 +1,176 @@
+<div
+  class="cookie-consent"
+  id="cookieConsent"
+  role="dialog"
+  aria-live="polite"
+  aria-label="Согласие на использование cookie"
+>
+  <p class="cookie-consent__text">
+    Мы используем cookie и сервис Яндекс.Метрики для анализа трафика и улучшения
+    работы сайта. Продолжая пользоваться сайтом, вы соглашаетесь с
+    <a href="/privacy.pdf" target="_blank" rel="noopener"
+      >политикой конфиденциальности</a
+    >.
+  </p>
+  <div class="cookie-consent__actions">
+    <button
+      type="button"
+      class="cookie-consent__button cookie-consent__button--accept"
+      id="cookieAccept"
+    >
+      Принять
+    </button>
+    <button
+      type="button"
+      class="cookie-consent__button cookie-consent__button--decline"
+      id="cookieDecline"
+    >
+      Отклонить
+    </button>
+  </div>
+</div>
+
+<script>
+  const CONSENT_KEY = "cookie-consent";
+  const banner = document.getElementById("cookieConsent");
+  const acceptBtn = document.getElementById("cookieAccept");
+  const declineBtn = document.getElementById("cookieDecline");
+
+  if (!localStorage.getItem(CONSENT_KEY)) {
+    // небольшая задержка, чтобы баннер появился плавно после загрузки
+    setTimeout(() => banner?.classList.add("cookie-consent--visible"), 800);
+  }
+
+  acceptBtn?.addEventListener("click", () => {
+    localStorage.setItem(CONSENT_KEY, "accepted");
+    banner?.classList.remove("cookie-consent--visible");
+    (window as any).initMetrika?.();
+  });
+
+  declineBtn?.addEventListener("click", () => {
+    localStorage.setItem(CONSENT_KEY, "declined");
+    banner?.classList.remove("cookie-consent--visible");
+  });
+</script>
+
+<style>
+  .cookie-consent {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translate(-50%, 150%);
+    z-index: 3000;
+
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    max-width: 60rem;
+    width: calc(100% - 3rem);
+    padding: 1.5rem 2rem;
+
+    background-color: var(--card-color);
+    border: 1px solid var(--card-border);
+    border-radius: 1.5rem;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.15);
+
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      transform 0.4s ease-out,
+      opacity 0.4s ease-out,
+      visibility 0.4s;
+  }
+
+  .cookie-consent--visible {
+    transform: translate(-50%, 0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .cookie-consent__text {
+    margin: 0;
+    font-size: var(--fs-14);
+    line-height: var(--lh-14, 1.4);
+    color: var(--text-color-secondary);
+  }
+
+  .cookie-consent__text a {
+    color: var(--brand-color);
+    text-decoration: underline;
+  }
+
+  .cookie-consent__actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-shrink: 0;
+  }
+
+  .cookie-consent__button {
+    font-family: var(--ff-main);
+    font-size: var(--fs-18);
+    border: none;
+    border-radius: 999px;
+    padding: 0.7em 2em;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+    white-space: nowrap;
+  }
+
+  .cookie-consent__button:hover {
+    transform: scale(1.02) translateY(-5%);
+  }
+
+  .cookie-consent__button--accept {
+    background-color: #f0d8b5;
+    color: #5a5348;
+  }
+
+  .cookie-consent__button--decline {
+    background-color: transparent;
+    color: var(--text-color-fifth);
+    border: 1px solid var(--border-color);
+  }
+
+  @media (max-width: 1024px) {
+    .cookie-consent {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      bottom: 1rem;
+      width: calc(100% - 2rem);
+      max-width: 34rem;
+      border-radius: 1.25rem;
+    }
+
+    .cookie-consent__actions {
+      justify-content: center;
+    }
+
+    .cookie-consent__button {
+      flex: 1;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 630px) {
+    .cookie-consent {
+      width: calc(100% - 3rem);
+      bottom: 0.75rem;
+      padding: 1rem 1.25rem;
+      gap: 0.75rem;
+    }
+
+    .cookie-consent__text {
+      font-size: var(--fs-12);
+      text-align: center;
+    }
+
+    .cookie-consent__button {
+      font-size: var(--fs-16, 1rem);
+      padding: 0.6em 1.5em;
+      text-align: center;
+    }
+  }
+</style>
